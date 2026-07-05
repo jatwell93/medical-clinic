@@ -135,7 +135,7 @@ cells.append(code(lines(
     "    import subprocess",
     "    repo_path = \"/content/medical-clinic\"",
     "    if not os.path.exists(repo_path):",
-    "        subprocess.run([\"git\", \"clone\", \"https://github.com/<OWNER>/medical-clinic.git\", repo_path],",
+    "        subprocess.run([\"git\", \"clone\", \"https://github.com/jatwell93/medical-clinic.git\", repo_path],",
     "                       check=True)",
     "    PROJECT_ROOT = Path(repo_path)",
     "    # Load API key from Colab Secrets",

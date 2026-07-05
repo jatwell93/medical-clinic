@@ -43,7 +43,7 @@ response = session.post(url, json=payload, force_refresh=FORCE_REFRESH)
 import os
 repo_path = "/content/medical-clinic"
 if not os.path.exists(repo_path):
-    !git clone https://github.com/<owner>/medical-clinic.git {repo_path}
+    !git clone https://github.com/jatwell93/medical-clinic.git {repo_path}
 ```
 
 **Repo visibility:** OPEN QUESTION — see Open Questions section. If private, auth via PAT in Colab Secrets or embedded in URL.
@@ -205,7 +205,7 @@ The phase's "validation" is reproducibility itself — the notebook must run off
 
 ## Resolved Questions (user-confirmed 2026-07-05)
 
-1. **Repo visibility:** **PUBLIC** — git clone in Colab needs no auth. The bootstrap cell uses a plain `!git clone https://github.com/<owner>/medical-clinic.git /content/medical-clinic` with a TODO placeholder for the owner username.
+1. **Repo visibility:** **PUBLIC** — git clone in Colab needs no auth. The bootstrap cell uses a plain `!git clone https://github.com/jatwell93/medical-clinic.git /content/medical-clinic` with a TODO placeholder for the owner username.
 
 2. **Cache file format:** **Filesystem backend** — individual JSON files in `data/cache/` plus a gitignored `redirects.sqlite`. Matches ARCHITECTURE.md's `data/cache/*.json` expectation and is teaching-friendly.
 

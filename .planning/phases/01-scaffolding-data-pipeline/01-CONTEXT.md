@@ -23,7 +23,7 @@ Scope anchor (from ROADMAP.md, fixed): PIPE-01 through PIPE-06. Discussion clari
 - **D-05:** NOT chosen: hand-rolled `cached_fetch()` helper (ARCHITECTURE.md example). The requests-cache approach replaces it. The deduped-competitor GeoJSON persistence (`data/cache/competitors.geojson`) suggested in STACK.md is a Phase 3 concern — Phase 1 only provides the cache session, not analysis-output persistence.
 
 ### Colab bootstrap
-- **D-06:** §0 setup cell does `!git clone https://github.com/<owner>/medical-clinic.git /content/medical-clinic` (guarded so it skips if the directory already exists). `PROJECT_ROOT = Path("/content/medical-clinic")` in Colab.
+- **D-06:** §0 setup cell does `!git clone https://github.com/jatwell93/medical-clinic.git /content/medical-clinic` (guarded so it skips if the directory already exists). `PROJECT_ROOT = Path("/content/medical-clinic")` in Colab.
 - **D-07:** No Drive mount. v1's hardcoded `/content/drive/...` paths are explicitly rejected. Caches and code travel together via git.
 - **D-08:** This decision depends on D-09..D-12 (caches must be committed for a fresh clone to run offline). The bootstrap and commit-policy decisions are coupled.
 
