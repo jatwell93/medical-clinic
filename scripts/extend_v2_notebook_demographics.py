@@ -215,7 +215,7 @@ def demographics_cells():
         "    # Return a stub DataFrame with pct_65plus for 3067 only",
         "    df = pd.DataFrame([{",
         "        \"POA_CODE21\": \"3067\",",
-        "        \"pct_65plus\": 0,  # populated from local GCP if available",
+        "        \"pct_65plus\": float(\"nan\"),  # NaN not 0 — zero is not a valid 65+ share (WR-07 fix)",
         "    }])",
         "    return df, \"fallback\"",
         "",
