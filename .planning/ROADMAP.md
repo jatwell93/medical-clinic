@@ -25,7 +25,7 @@
 
 **Plan progress:**
 - [x] 01-01: Repo scaffolding (.gitignore, .env.example, directory structure, file relocation) — COMPLETE
-- [ ] 01-02: Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — pending
+- [x] 01-02: Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — COMPLETE
 
 **Success criteria:**
 1. Notebook executes end-to-end via Restart & Run All in Colab with no manual intervention, and also runs locally on Windows with environment auto-detected.
@@ -152,4 +152,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-05 — plan 01-01 complete*
+*Last updated: 2026-07-05 — plan 01-02 complete, Phase 1 fully delivered*

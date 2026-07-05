@@ -4,12 +4,12 @@
 
 ### Pipeline & Environment (PIPE)
 
-- [ ] **PIPE-01**: Notebook (`Johnston_St_v2.ipynb`) runs end-to-end via Restart & Run All in Google Colab with no manual intervention
-- [ ] **PIPE-02**: Notebook also runs locally on Windows — environment auto-detected (`google.colab` in `sys.modules`), paths handled via `pathlib` relative to project root
-- [ ] **PIPE-03**: `GOOGLE_PLACES_KEY` loaded from Colab `userdata` or local `.env` (python-dotenv); no keys in git; `.env.example` and `.gitignore` provided
-- [ ] **PIPE-04**: All external API responses (ABS, Google geocode/places) cached to `data/cache/` with deterministic keys; caches committed to git so the notebook re-runs offline/keyless at $0
-- [ ] **PIPE-05**: Single parameters cell holds every assumption (site, radii, financial constants) with citation comments — no numeric literal appears outside it
-- [ ] **PIPE-06**: Teaching commentary in markdown throughout — each section explains what it does, why, and what flaw from v1 it fixes
+- [x] **PIPE-01**: Notebook (`Johnston_St_v2.ipynb`) runs end-to-end via Restart & Run All in Google Colab with no manual intervention
+- [x] **PIPE-02**: Notebook also runs locally on Windows — environment auto-detected (`google.colab` in `sys.modules`), paths handled via `pathlib` relative to project root
+- [x] **PIPE-03**: `GOOGLE_PLACES_KEY` loaded from Colab `userdata` or local `.env` (python-dotenv); no keys in git; `.env.example` and `.gitignore` provided
+- [x] **PIPE-04**: All external API responses (ABS, Google geocode/places) cached to `data/cache/` with deterministic keys; caches committed to git so the notebook re-runs offline/keyless at $0
+- [x] **PIPE-05**: Single parameters cell holds every assumption (site, radii, financial constants) with citation comments — no numeric literal appears outside it
+- [x] **PIPE-06**: Teaching commentary in markdown throughout — each section explains what it does, why, and what flaw from v1 it fixes
 
 ### Geospatial Catchment (GEO)
 

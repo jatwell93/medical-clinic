@@ -8,8 +8,8 @@ progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 2
-  completed_plans: 1
-  percent: 50
+  completed_plans: 2
+  percent: 100
 ---
 
 # State — Clinic Feasibility Study
@@ -24,12 +24,14 @@ progress:
 
 ## Current Status
 
-Phase 1 execution in progress. Plan 01-01 complete; plan 01-02 pending.
+Phase 1 execution complete. All plans delivered.
 
 - `01-01-PLAN.md` — Repo scaffolding — **COMPLETE** (commits 5390043, b0e3e6c)
-- `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — pending
+- `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — **COMPLETE** (commits 1d47733, 654ab63)
 
 Plan 01-01 delivered: .gitignore, .env.example, directory structure (data/local/, data/cache/, outputs/, docs/abs-api/), 8 data files relocated, 4 ABS docs relocated, clean repo root. See [01-01-SUMMARY.md](./phases/01-scaffolding-data-pipeline/01-01-SUMMARY.md).
+
+Plan 01-02 delivered: Johnston_St_v2.ipynb (11 cells: §0 setup/env-detect/PARAMS + §1 CachedSession/ABS-smoke-test), scripts/create_v2_notebook.py (generator), scripts/validate_v2_notebook.py (validation — OVERALL: PASS). All v1 flaws eradicated. See [01-02-SUMMARY.md](./phases/01-scaffolding-data-pipeline/01-02-SUMMARY.md).
 
 ## Recent Decisions
 
@@ -42,9 +44,11 @@ Plan 01-01 delivered: .gitignore, .env.example, directory structure (data/local/
 | Public repo, filesystem cache, section+inline commentary | User-confirmed: public GitHub repo (no Colab auth needed), requests-cache filesystem backend (JSON files, teaching-friendly), section-level markdown + inline comments for PIPE-06 | 2026-07-05 |
 | data/cache/*.json committed, redirects.sqlite gitignored | D-12: API response caches are the reproducibility keystone (no secrets); redirects.sqlite is regenerable metadata | 2026-07-05 |
 | outputs/.gitkeep force-added despite outputs/ gitignored | Directory structure must survive in fresh clones; outputs contents remain gitignored (regenerated on run) | 2026-07-05 |
+| json.dump over nbformat for notebook generation | Avoids extra dependency; .ipynb structure is simple enough for direct dict construction (RESEARCH.md §4) | 2026-07-05 |
+| Teaching commentary reworded to avoid literal v1 flaw strings | Acceptance criteria requires zero /content/drive and drive.mount occurrences in any cell, including markdown teaching commentary | 2026-07-05 |
 
 ## Next Actions
 
-1. Execute plan 01-02 (notebook v2 scaffolding: §0 setup + §1 cache layer + ABS smoke test).
-2. After 01-02 completes, verify Phase 1 must_haves against the codebase.
-3. Proceed to Phase 2 (Catchment & Demographics) planning.
+1. Verify Phase 1 must_haves against the codebase (all 6 PIPE requirements).
+2. Proceed to Phase 2 (Catchment & Demographics) planning.
+3. Phase 2 will use the CachedSession and BASE_ASSUMPTIONS established in 01-02.
