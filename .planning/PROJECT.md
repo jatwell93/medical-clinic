@@ -46,7 +46,7 @@ Answer, with defensible data and transparent assumptions, one question: **can th
 - User is studying business analytics; the process should teach as it goes (plain-language explanations of each fix and method).
 - The cohealth Collingwood catchment report PDF is a useful benchmark for what a professional catchment report contains.
 - Peer postcodes for comparison: 3067, 3066, 3121, 3068, 3070, 3078, 3079, 3101, 3122, 3123.
-- Google API key available; ABS Data API (https://api.data.abs.gov.au) is free, no key required, but rate-limited — cache everything.
+- Google API key available; ABS Data API (https://data.api.abs.gov.au — note: old api.data.abs.gov.au retired Nov 2024) is free, no key required, but rate-limited — cache everything.
 
 ## Constraints
 
