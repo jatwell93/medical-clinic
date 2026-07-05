@@ -3,8 +3,9 @@
 Validation script for Johnston_St_v2.ipynb.
 
 Checks structural validity, content requirements (PIPE-01 through PIPE-06),
-and v1 flaw eradication. Exits 0 with "OVERALL: PASS" if all checks pass,
-exits 1 with failure details if any check fails.
+v1 flaw eradication, and Phase 2 catchment checks (GEO-01 through GEO-04 + D-06).
+Exits 0 with "OVERALL: PASS" if all checks pass, exits 1 with failure details
+if any check fails.
 
 Run:  python scripts/validate_v2_notebook.py
 """
@@ -218,7 +219,75 @@ def main():
         print(f"[validate] v1 flaws eradicated: FAIL")
 
     # ──────────────────────────────────────────────────────────────
-    # 4. Summary report
+    # 4. Phase 2 — Catchment (GEO-01 through GEO-04 + D-06)
+    # ──────────────────────────────────────────────────────────────
+
+    phase2_failures = []
+    phase2_passes = []
+
+    def check_phase2(label, condition, fail_msg):
+        if condition:
+            phase2_passes.append(label)
+        else:
+            phase2_failures.append(fail_msg)
+            print(f"[validate] {label}: FAIL")
+
+    # GEO-01 (geocode)
+    geo01 = (
+        "geocode/json" in all_source
+        and "session.get" in all_source
+        and "geocode" in all_source
+        and "visually verify" in all_source
+    )
+    check_phase2("Phase 2 GEO-01 (geocode)", geo01,
+                 "GEO-01: missing geocode/json, session.get+geocode, or visually verify")
+
+    # GEO-02 (buffers + assertion)
+    geo02_to_crs = '.to_crs("EPSG:7855")' in all_source or ".to_crs('EPSG:7855')" in all_source
+    geo02_assert = "assert_3km_buffer_km2" in all_source
+    geo02_buffer = ".buffer(" in all_source
+    geo02_epsg = "EPSG:7855" in all_source
+    # No degree-based buffering: no .buffer( on the same line as EPSG:4326
+    geo02_no_degree = True
+    for src in cell_sources:
+        for line in src.split("\n"):
+            if ".buffer(" in line and "EPSG:4326" in line:
+                geo02_no_degree = False
+                phase2_failures.append("GEO-02: .buffer() on same line as EPSG:4326 (degree-based buffering)")
+                break
+    geo02 = geo02_to_crs and geo02_assert and geo02_buffer and geo02_epsg and geo02_no_degree
+    check_phase2("Phase 2 GEO-02 (buffers + assertion)", geo02,
+                 f"GEO-02: missing to_crs EPSG:7855 ({geo02_to_crs}), assert_3km_buffer_km2 ({geo02_assert}), .buffer( ({geo02_buffer}), EPSG:7855 ({geo02_epsg}), or degree-buffer check ({geo02_no_degree})")
+
+    # GEO-03 (SA1 apportionment)
+    geo03_overlay = 'overlay(' in all_source and 'how="intersection"' in all_source
+    geo03_sa1 = "SA1_CODE21" in all_source
+    geo03_frac = '"frac"' in all_source or "'frac'" in all_source or "frac" in all_source
+    geo03_plausible = "catchment_pop_plausible_range" in all_source
+    geo03 = geo03_overlay and geo03_sa1 and geo03_frac and geo03_plausible
+    check_phase2("Phase 2 GEO-03 (SA1 apportionment)", geo03,
+                 f"GEO-03: missing overlay+intersection ({geo03_overlay}), SA1_CODE21 ({geo03_sa1}), frac ({geo03_frac}), or catchment_pop_plausible_range ({geo03_plausible})")
+
+    # GEO-04 (maps)
+    geo04_folium = "folium.Map" in all_source
+    geo04_contextily = "cx.add_basemap" in all_source
+    geo04_carto = "CartoDB Positron" in all_source
+    geo04_yarra = "Yarra" in all_source
+    geo04 = geo04_folium and geo04_contextily and geo04_carto and geo04_yarra
+    check_phase2("Phase 2 GEO-04 (maps)", geo04,
+                 f"GEO-04: missing folium.Map ({geo04_folium}), cx.add_basemap ({geo04_contextily}), CartoDB Positron ({geo04_carto}), or Yarra ({geo04_yarra})")
+
+    # D-06 (v1-vs-v2 comparison)
+    d06 = "compare_v1_v2" in all_source
+    check_phase2("Phase 2 D-06 (v1-vs-v2 comparison)", d06,
+                 "D-06: missing compare_v1_v2 function")
+
+    # Add Phase 2 passes/failures to the main lists
+    passes.extend(phase2_passes)
+    failures.extend(phase2_failures)
+
+    # ──────────────────────────────────────────────────────────────
+    # 5. Summary report
     # ──────────────────────────────────────────────────────────────
 
     return report(failures, passes, cells, code_cells, md_cells)
@@ -256,9 +325,27 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
     v1_pass = any("v1 flaws eradicated" in p for p in passes)
     print(f"[validate] v1 flaws eradicated: {'PASS' if v1_pass else 'FAIL'}")
 
+    # Phase 2 checks
+    phase2_labels = [
+        "Phase 2 GEO-01 (geocode)",
+        "Phase 2 GEO-02 (buffers + assertion)",
+        "Phase 2 GEO-03 (SA1 apportionment)",
+        "Phase 2 GEO-04 (maps)",
+        "Phase 2 D-06 (v1-vs-v2 comparison)",
+    ]
+    for label in phase2_labels:
+        found_pass = any(label in p for p in passes)
+        found_fail = any(label in f for f in failures)
+        if found_pass:
+            print(f"[validate] {label}: PASS")
+        elif found_fail:
+            print(f"[validate] {label}: FAIL")
+        else:
+            print(f"[validate] {label}: FAIL")
+
     # Structural passes (not printed individually unless failed)
     for f in failures:
-        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw"]):
+        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06"]):
             print(f"[validate] FAIL: {f}")
 
     overall = len(failures) == 0
