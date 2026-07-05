@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-07-05T11:14:34Z"
+last_updated: "2026-07-05T11:24:11.595Z"
 progress:
   total_phases: 2
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
-  percent: 75
+  completed_plans: 4
+  percent: 100
 ---
 
 # State — Clinic Feasibility Study
@@ -20,24 +20,29 @@ progress:
 
 ## Current Phase
 
-**Phase 2 — Catchment & Demographics**
+**Phase 2 — Catchment & Demographics (COMPLETE)**
+
+Ready for Phase 3 — Demand & Competitors.
 
 ## Current Status
 
-Plan 02-01 complete. Ready for Plan 02-02 (Wave 2).
+Phase 2 complete. All 4 plans across 2 phases delivered.
 
 - `02-01-PLAN.md` — Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — **COMPLETE** (commits 9a0dbbc, 7083642)
-- `02-02-PLAN.md` — Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — **PLANNED** (Wave 2, depends on 02-01)
+- `02-02-PLAN.md` — Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — **COMPLETE** (commits 2e2dac6, 5432534)
 
 - `01-01-PLAN.md` — Repo scaffolding — **COMPLETE** (commits 5390043, b0e3e6c)
 - `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — **COMPLETE** (commits 1d47733, 654ab63)
 
-Plan 02-01 delivered: Johnston_St_v2.ipynb extended from 11→26 cells with §1.2 Geocode Site (cached Google Geocoding + folium verification map) + §2 Geospatial Catchment (EPSG:7855 buffers, SA1 area apportionment, v1-vs-v2 comparison, folium + static contextily maps, uniform-density caveat). scripts/extend_v2_notebook.py (idempotent generator), scripts/validate_v2_notebook.py (extended with GEO-01..04 + D-06 checks — OVERALL: PASS). BASE_ASSUMPTIONS extended with 6 Phase 2 keys. See [02-01-SUMMARY.md](./phases/02-catchment-demographics/02-01-SUMMARY.md).
+Plan 02-02 delivered: Johnston_St_v2.ipynb extended from 26→36 cells with §3 Demographics (ABS G01/G02/G04 fetch + local GCP fallback, SA1 total persons wired into §2.3 apportionment for v2 catchment population totals, ERP scaling to 2024, peer benchmarking table with Phase 3 placeholders, 2×2 comparison charts). compare_v1_v2() called with real v2 totals — D-06 headline teaching moment complete. scripts/extend_v2_notebook_demographics.py (idempotent generator), scripts/validate_v2_notebook.py (extended with DEMO-01..04 + D-03/D-06/D-09b/D-11 — OVERALL: PASS). See [02-02-SUMMARY.md](./phases/02-catchment-demographics/02-02-SUMMARY.md).
 
 ## Recent Decisions
 
 | Decision | Rationale | Date |
 |----------|-----------|------|
+| fetch_abs_csv() returns (DataFrame, response) tuple | Plan pseudocode had scoping bug — resp referenced outside try block; returning tuple fixes this | 2026-07-05 |
+| ERP growth rate defaults to 1.0 when API unavailable | Never hard-fail on network call (PIPE-04); peer table falls back to unscaled 2021 values | 2026-07-05 |
+| v2_ring_pops initialized as empty dict for non-SA1 path | Plan only defined it inside if USE_SA1; ERP cell references it unconditionally — would NameError | 2026-07-05 |
 | Added geopandas/shapely imports inline in §2.1 cell | Plan omitted explicit imports; code uses gpd/Point without importing — would fail on execution | 2026-07-05 |
 | Replaced old Phase 1 Next Steps with Phase 2 version | Old Next Steps referenced Phase 2 as future; now Phase 2 cells are present | 2026-07-05 |
 | Used ensure_ascii=False in json.dump | Preserve Unicode teaching characters (⚠, π, ℹ) in notebook source | 2026-07-05 |
@@ -53,5 +58,6 @@ Plan 02-01 delivered: Johnston_St_v2.ipynb extended from 11→26 cells with §1.
 
 ## Next Actions
 
-1. Execute Phase 2 Plan 02-02 (Wave 2) — Demographics: ABS G01/G02/G04, ERP scaling, peer benchmarking. Wires SA1 total persons into §2.3 apportionment function + calls compare_v1_v2() after computing v2 totals.
-2. Phase 2 Plan 02-02 uses the CachedSession, BASE_ASSUMPTIONS (with 6 new Phase 2 keys), site_lat/site_lon, buffers, and apportion_ring() from 02-01.
+1. Phase 2 is complete — all GEO-01..04 + DEMO-01..04 requirements satisfied and validated.
+2. Ready for Phase 3 — Demand & Competitors: SA3-level MBS data, Google Places competitor mapping, age-adjusted demand model, required market share calculation.
+3. Phase 3 depends on: geocoded site (§1.2), catchment buffers (§2), apportioned population (§3), age profile (§3 G04), peer benchmarking table (§3 with placeholder GP/pharmacy columns).

@@ -47,7 +47,7 @@
 
 **Plan progress:**
 - [x] 02-01: Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — COMPLETE
-- [ ] 02-02: Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — PLANNED (Wave 2, depends on 02-01)
+- [x] 02-02: Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — COMPLETE
 
 **Cross-cutting constraints:**
 - All HTTP through the Phase 1 `CachedSession` (no bare `requests.get`) — appears in both plans
@@ -161,4 +161,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-05 — plan 02-01 complete, Phase 2 Wave 1 delivered*
+*Last updated: 2026-07-05 — Phase 2 complete (plans 02-01 + 02-02 delivered)*
