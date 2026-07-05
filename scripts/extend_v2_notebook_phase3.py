@@ -390,6 +390,497 @@ def mbs_aihw_cells():
 
 
 # ──────────────────────────────────────────────────────────────────────
+#  §4 Competitor Landscape cells
+# ──────────────────────────────────────────────────────────────────────
+
+def competitor_cells():
+    """Return the §4 Competitor Landscape cells.
+
+    Implements: classify_place (D-09), fuzzy_dedupe_competitors (rapidfuzz),
+    GeoJSON persistence (D-08), ring assignment via sjoin, manual-review
+    checkpoint (D-11 — no input()), folium competitor map + 3 static figures
+    (D-15), peer competitor table with GP-per-1,000 benchmark (D-16, COMP-03),
+    and the D-12 capacity caveat.
+    """
+    cells = []
+
+    # 1. Markdown — §4 header + teaching commentary
+    cells.append(md(
+        "# §4 Competitor Landscape",
+        "",
+        "v1's raw `type=doctor` Google Places counts were **inflated 2–5×** by",
+        "three problems (Pitfall 9):",
+        "1. **Specialists** — skin clinics, cosmetic clinics, and vets mis-tagged",
+        "   as \"doctor\" in Google Places",
+        "2. **Individual practitioner listings** — each GP gets their own Places",
+        "   entry *plus* the practice entry (double-counting)",
+        "3. **Miscategorised places** — radiology, pathology, optometry flagged as",
+        "   \"medical\" but not GP clinics",
+        "",
+        "v1 concluded \"6.6 doctors per 1,000\" when the sane metro benchmark is",
+        "~1.2 FTE GPs per 1,000. This section fixes it with:",
+        "- **Keyword-based classification** (D-09) — pharmacy brands first, then",
+        "  exclude keywords, corporate GP brands, independent GP indicators,",
+        "  allied health indicators",
+        "- **rapidfuzz fuzzy-dedupe** (D-09) of individual-practitioner listings",
+        "  (MIT-licensed, NOT the deprecated GPL alternative)",
+        "- **Manual-review checkpoint** (D-11) for ambiguous rows — printed inline,",
+        "  no blocking prompts",
+        "- **GeoJSON persistence** (D-08) — deduped GeoDataFrame saved to",
+        "  `data/cache/competitors.geojson` so re-runs never touch the API (Pitfall 10)",
+        "",
+        "The per-ring competitor counts feed the GP FTE capacity estimate in §5.",
+        "The peer competitor table (D-16) fills the DEMO-03 placeholder with real data.",
+    ))
+
+    # 2. Code — §4.1 Classification rules
+    cells.append(code(
+        "# §4.1 Classification rules (D-09) — keyword-based competitor bucketing",
+        "# pip install rapidfuzz  # MIT-licensed fuzzy string matching",
+        "# Checks pharmacy brands FIRST (D-07), then exclude keywords, corporate GP",
+        "# brands, independent GP indicators, allied health indicators, else ambiguous.",
+        "",
+        "# Corporate GP brands (from gpzoo.com.au 2025 — verified site counts)",
+        "CORPORATE_GP_BRANDS = {",
+        '    "ipn": "IPN (Sonic Healthcare)",',
+        '    "myhealth": "Amplar Health (Myhealth/Medibank)",',
+        '    "family doctor": "Family Doctor",',
+        '    "forhealth": "ForHealth",',
+        '    "healius": "ForHealth (formerly Healius)",',
+        '    "bupa": "Bupa (Partnered Health)",',
+        '    "better medical": "Amplar Health (Better Medical)",',
+        '    "jupiter health": "Jupiter Health",',
+        '    "ochre": "Ochre Health",',
+        '    "sonic": "Sonic Healthcare",',
+        '    "qualitas": "Qualitas",',
+        '    "health&co": "ForHealth (Health&Co)",',
+        "}",
+        "",
+        "# Pharmacy brands (D-07) — keyword rules on displayName",
+        "PHARMACY_BRANDS = {",
+        '    "chemist warehouse": "Chemist Warehouse",',
+        '    "priceline": "Priceline",',
+        '    "amcal": "Amcal",',
+        '    "terrywhite": "TerryWhite Chemmart",',
+        '    "terry white": "TerryWhite Chemmart",',
+        '    "chemmart": "TerryWhite Chemmart",',
+        '    "sigma": "Sigma (API)",',
+        '    "pharmacy 4 less": "Pharmacy 4 Less",',
+        '    "national pharmacy": "National Pharmacy",',
+        '    "soul pattinson": "Soul Pattinson",',
+        '    "discount drug stores": "Discount Drug Stores",',
+        "}",
+        "",
+        "# Exclude keywords — these are NOT GP clinics (21 terms)",
+        "EXCLUDE_KEYWORDS = [",
+        '    "skin", "cosmetic", "dermatology", "laser", "beauty",',
+        '    "vet", "veterinary", "animal",',
+        '    "optometry", "optometrist", "podiatry", "audiology",',
+        '    "radiology", "imaging", "pathology", "laboratory",',
+        '    "specialist", "paediatric", "obstetric", "gynaecology", "psychiatry",',
+        "]",
+        "",
+        "def classify_place(name, primary_type, types_list):",
+        '    """Classify a place into: gp_corporate, gp_independent, pharmacy, allied_health, exclude, ambiguous."""',
+        "    name_lower = str(name).lower()",
+        "",
+        "    # 1. Check pharmacy brands first (most specific — D-07)",
+        "    for brand, label in PHARMACY_BRANDS.items():",
+        "        if brand in name_lower:",
+        '            return ("pharmacy", label)',
+        "",
+        '    if primary_type == "pharmacy" or "pharmacy" in (types_list or []):',
+        '        return ("pharmacy", "Independent")',
+        "",
+        "    # 2. Check exclude bucket (specialists, cosmetic, vet, etc.)",
+        "    for kw in EXCLUDE_KEYWORDS:",
+        "        if kw in name_lower:",
+        '            return ("exclude", kw)',
+        "",
+        "    # 3. Check corporate GP brands",
+        "    for brand, label in CORPORATE_GP_BRANDS.items():",
+        "        if brand in name_lower:",
+        '            return ("gp_corporate", label)',
+        "",
+        "    # 4. Check independent GP clinic indicators",
+        '    gp_clinic_indicators = ["medical centre", "medical center", "general practice",',
+        '                            "gp clinic", "gp practice", "medical clinic", "family practice",',
+        '                            "health centre", "health center", "community health"]',
+        "    if any(kw in name_lower for kw in gp_clinic_indicators):",
+        '        return ("gp_independent", "Independent")',
+        "",
+        "    # 5. doctor-type without clinic indicator → ambiguous (manual review)",
+        '    if primary_type in ("doctor", "medical_center", "medical_clinic"):',
+        '        return ("ambiguous", "doctor-type but no clinic indicator in name")',
+        "",
+        "    # 6. Allied health indicators",
+        '    allied_indicators = ["physio", "physiotherapy", "psychology", "psychologist",',
+        '                         "dental", "dentist", "chiropractic", "chiropractor",',
+        '                         "occupational therapy", "dietitian", "dietician",',
+        '                         "speech", "acupuncture", "osteopath"]',
+        "    if any(kw in name_lower for kw in allied_indicators):",
+        '        return ("allied_health", "Allied Health")',
+        '    if primary_type in ("physiotherapist", "dentist", "dental_clinic", "chiropractor"):',
+        '        return ("allied_health", "Allied Health")',
+        "",
+        "    # 7. Unclassified → ambiguous",
+        '    return ("ambiguous", f"Unclassified (primaryType={primary_type})")',
+        "",
+        'print("[classify] classify_place() defined — 12 corporate GP brands, 11 pharmacy brands, 21 exclude keywords")',
+    ))
+
+    # 3. Code — §4.2 Fuzzy-dedupe + GeoDataFrame construction + GeoJSON persistence
+    cells.append(code(
+        "# §4.2 Fuzzy-dedupe + GeoDataFrame construction + GeoJSON persistence (D-08, D-09)",
+        "# rapidfuzz: MIT-licensed, C++-fast, drop-in fuzz.token_sort_ratio API",
+        "from rapidfuzz import fuzz",
+        "import geopandas as gpd",
+        "from shapely.geometry import Point",
+        "",
+        "def fuzzy_dedupe_competitors(places_gdf, name_threshold=85, address_threshold=80):",
+        '    """Dedupe individual-practitioner listings that share a practice address.',
+        "    Uses rapidfuzz.token_sort_ratio on normalised name + formattedAddress.",
+        '    Keeps the first occurrence (by place.id), merges duplicates into a list."""',
+        "    keep = []",
+        "    seen = []",
+        "    duplicates = []",
+        "",
+        "    for idx, row in places_gdf.iterrows():",
+        '        name_norm = str(row.get("displayName", "")).lower().strip()',
+        '        addr_norm = str(row.get("formattedAddress", "")).lower().strip()',
+        "        is_dup = False",
+        "",
+        "        for kept in seen:",
+        '            name_sim = fuzz.token_sort_ratio(name_norm, kept["name"])',
+        '            addr_sim = fuzz.token_sort_ratio(addr_norm, kept["addr"])',
+        "            # Match if name is very similar AND address is very similar",
+        "            if name_sim >= name_threshold and addr_sim >= address_threshold:",
+        "                is_dup = True",
+        "                duplicates.append({",
+        '                    "kept_id": kept["id"],',
+        '                    "dup_id": row.get("id"),',
+        '                    "name": row.get("displayName"),',
+        '                    "name_sim": name_sim,',
+        '                    "addr_sim": addr_sim,',
+        "                })",
+        "                break",
+        "",
+        "        if not is_dup:",
+        "            keep.append(idx)",
+        '            seen.append({"id": row.get("id"), "name": name_norm, "addr": addr_norm})',
+        "",
+        "    deduped = places_gdf.loc[keep].copy()",
+        "    return deduped, duplicates",
+        "",
+        "# Build GeoDataFrame from site_places raw results",
+        "# Flatten all (type, radius) results into a list of place dicts",
+        "all_places = []",
+        "for (ptype, radius), places in site_places.items():",
+        "    for p in places:",
+        '        pid = p.get("id", "")',
+        '        dn = p.get("displayName", {})',
+        '        name = dn.get("text", "") if isinstance(dn, dict) else str(dn)',
+        '        loc = p.get("location", {})',
+        '        lat = loc.get("latitude", None) if isinstance(loc, dict) else None',
+        '        lon = loc.get("longitude", None) if isinstance(loc, dict) else None',
+        '        ptdn = p.get("primaryTypeDisplayName", {})',
+        '        ptdn_text = ptdn.get("text", "") if isinstance(ptdn, dict) else str(ptdn)',
+        "        record = {",
+        '            "id": pid,',
+        '            "displayName": name,',
+        '            "lat": lat,',
+        '            "lon": lon,',
+        '            "types": p.get("types", []),',
+        '            "primaryType": p.get("primaryType", ""),',
+        '            "primaryTypeDisplayName": ptdn_text,',
+        '            "businessStatus": p.get("businessStatus", ""),',
+        '            "formattedAddress": p.get("formattedAddress", ""),',
+        '            "query_type": ptype,',
+        '            "query_radius": radius,',
+        "        }",
+        "        all_places.append(record)",
+        "",
+        "# Dedupe on place.id first (cross-type duplicates from saturation subdivision)",
+        "seen_ids = {}",
+        "unique_places = []",
+        "for rec in all_places:",
+        '    if rec["id"] and rec["id"] not in seen_ids:',
+        '        seen_ids[rec["id"]] = True',
+        "        unique_places.append(rec)",
+        "    elif not rec[\"id\"]:",
+        "        unique_places.append(rec)  # keep records without id",
+        "",
+        "# Classify each place",
+        "for rec in unique_places:",
+        '    category, label = classify_place(rec["displayName"], rec["primaryType"], rec["types"])',
+        '    rec["category"] = category',
+        '    rec["label"] = label',
+        "",
+        "# Build GeoDataFrame",
+        "geometry = [Point(r[\"lon\"], r[\"lat\"]) for r in unique_places if r[\"lon\"] is not None and r[\"lat\"] is not None]",
+        "valid_records = [r for r in unique_places if r[\"lon\"] is not None and r[\"lat\"] is not None]",
+        "competitors_gdf = gpd.GeoDataFrame(valid_records, geometry=geometry, crs=\"EPSG:4326\")",
+        "",
+        "# Fuzzy-dedupe individual-practitioner listings (D-09)",
+        "competitors_gdf, dup_list = fuzzy_dedupe_competitors(competitors_gdf)",
+        'print(f"[dedupe] kept {len(competitors_gdf)}, removed {len(dup_list)} duplicates")',
+        "",
+        "# D-08: GeoJSON persistence — re-runs load from cache, never touch the API",
+        'geojson_path = CACHE_DIR / "competitors.geojson"',
+        "if geojson_path.exists() and not FORCE_REFRESH:",
+        "    competitors_gdf = gpd.read_file(geojson_path)",
+        '    print(f"[cache] loaded {len(competitors_gdf)} competitors from {geojson_path.name}")',
+        "else:",
+        '    competitors_gdf.to_file(geojson_path, driver="GeoJSON")',
+        '    print(f"[cache] wrote {len(competitors_gdf)} competitors to {geojson_path.name}")',
+        'print(f"[competitors] {len(competitors_gdf)} unique competitors after dedupe + classification")',
+    ))
+
+    # 4. Code — §4.3 Ring assignment via spatial join
+    cells.append(code(
+        "# §4.3 Ring assignment via spatial join — which ring is each competitor in?",
+        "# Reproject competitors to EPSG:7855 (metric), spatial join with buffer GeoDataFrames",
+        "import pandas as pd",
+        "",
+        'competitors_gdf_metric = competitors_gdf.to_crs("EPSG:7855")',
+        "",
+        "# Build per-ring counts table",
+        "per_ring_rows = []",
+        'for radius in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    # Get the buffer for this radius",
+        '    ring_gdf = buffers[radius].to_crs("EPSG:7855") if hasattr(buffers[radius], "to_crs") else buffers[radius]',
+        "    # Spatial join: which competitors are WITHIN this ring?",
+        '    comp_in_ring = gpd.sjoin(competitors_gdf_metric, ring_gdf, predicate="within")',
+        "",
+        "    # Count by category",
+        '    counts = comp_in_ring["category"].value_counts().to_dict() if len(comp_in_ring) > 0 else {}',
+        "    row = {",
+        '        "ring_km": radius // 1000,',
+        '        "gp_corporate": counts.get("gp_corporate", 0),',
+        '        "gp_independent": counts.get("gp_independent", 0),',
+        '        "pharmacy": counts.get("pharmacy", 0),',
+        '        "allied_health": counts.get("allied_health", 0),',
+        '        "ambiguous": counts.get("ambiguous", 0),',
+        '        "exclude": counts.get("exclude", 0),',
+        "    }",
+        '    row["total"] = sum(v for k, v in row.items() if k != "ring_km")',
+        "    per_ring_rows.append(row)",
+        "",
+        "per_ring_counts = pd.DataFrame(per_ring_rows)",
+        'print("[ring-assignment] per-ring competitor counts:")',
+        "print(per_ring_counts.to_string(index=False))",
+    ))
+
+    # 5. Code — §4.4 Manual-review checkpoint (D-11, no blocking prompts)
+    cells.append(code(
+        "# D-11: Manual-review checkpoint — print ambiguous rows inline (no blocking)",
+        '# The review is a documented post-run step, not an in-session gate (PIPE-01).',
+        'ambiguous = competitors_gdf[competitors_gdf["category"] == "ambiguous"]',
+        "if len(ambiguous) > 0:",
+        '    print(f"\\n⚠ MANUAL REVIEW: {len(ambiguous)} ambiguous competitors flagged.")',
+        '    print("Review the table below. If any are misclassified, edit data/cache/competitors.geojson")',
+        '    print("manually and re-run from §5.\\n")',
+        '    review_cols = ["displayName", "formattedAddress", "primaryType", "label"]',
+        "    print(ambiguous[review_cols].to_string(index=False))",
+        "else:",
+        '    print("[review] No ambiguous competitors — all classified successfully.")',
+    ))
+
+    # 6. Markdown — §4.5 Competitor Maps
+    cells.append(md(
+        "## §4.5 Competitor Maps",
+        "",
+        "**Folium** interactive map (inline only, NOT in PDF — D-15): toggleable",
+        "ring layers (1/3/5km) + competitor markers coloured by type.",
+        "",
+        "**3 static matplotlib + contextily figures** (one per ring, for PDF — D-15):",
+        "competitors coloured by category (GP corporate=red, GP independent=orange,",
+        "pharmacy=blue, allied health=green, ambiguous=gray). Same pattern as Phase 2",
+        "§2.5 catchment maps.",
+    ))
+
+    # 7. Code — §4.5 folium competitor map
+    cells.append(code(
+        "# §4.5 Folium interactive competitor map (D-15) — inline only, NOT in PDF",
+        "import folium",
+        "",
+        "def make_competitor_map(competitors, site_lat, site_lon, buffers_dict):",
+        '    """Interactive competitor map with toggleable ring layers + type colours."""',
+        '    m = folium.Map(location=[site_lat, site_lon], zoom_start=13, tiles="CartoDB Positron")',
+        "",
+        "    # Site marker",
+        '    folium.Marker(',
+        "        [site_lat, site_lon],",
+        '        popup="Site: 292-296 Johnston St, Abbotsford",',
+        '        icon=folium.Icon(color="red", icon="star", prefix="fa")',
+        "    ).add_to(m)",
+        "",
+        "    # Ring layers as FeatureGroups (toggleable)",
+        '    ring_colours = {1000: "blue", 3000: "green", 5000: "purple"}',
+        "    for radius, colour in ring_colours.items():",
+        '        fg = folium.FeatureGroup(name=f"{radius//1000} km ring")',
+        "        buf = buffers_dict.get(radius)",
+        "        if buf is not None:",
+        '            buf_4326 = buf.to_crs("EPSG:4326") if hasattr(buf, "to_crs") else buf',
+        "            for _, row in buf_4326.iterrows():",
+        "                geom = row.geometry",
+        '                if geom.geom_type == "Polygon":',
+        "                    folium.Polygon(",
+        "                        locations=[(lat, lon) for lon, lat in geom.exterior.coords],",
+        '                        color=colour, weight=2, fill=False, dashArray="5"',
+        "                    ).add_to(fg)",
+        '                elif geom.geom_type == "LineString":',
+        "                    folium.PolyLine(",
+        "                        locations=[(lat, lon) for lon, lat in geom.coords],",
+        '                        color=colour, weight=2, dashArray="5"',
+        "                    ).add_to(fg)",
+        "        fg.add_to(m)",
+        "",
+        "    # Competitor markers coloured by type",
+        '    type_colours = {"gp_corporate": "red", "gp_independent": "orange", "pharmacy": "blue", "allied_health": "green", "ambiguous": "gray"}',
+        '    for _, row in competitors.iterrows():',
+        '        cat = row.get("category", "ambiguous")',
+        '        colour = type_colours.get(cat, "gray")',
+        "        folium.CircleMarker(",
+        "            location=[row.geometry.y, row.geometry.x],",
+        "            radius=5, color=colour, fill=True, fillOpacity=0.7,",
+        '            popup=f"{row.get(\'displayName\', \'\')} ({cat})"',
+        "        ).add_to(m)",
+        "",
+        '    folium.LayerControl(collapsed=False).add_to(m)',
+        "    return m",
+        "",
+        "comp_map = make_competitor_map(competitors_gdf, site_lat, site_lon, buffers)",
+        "comp_map",
+    ))
+
+    # 8. Code — §4.5 static matplotlib figures (3, one per ring)
+    cells.append(code(
+        "# §4.5 Static matplotlib + contextily figures for PDF (D-15) — one per ring",
+        "import matplotlib.pyplot as plt",
+        "import contextily as cx",
+        "",
+        'type_colours = {"gp_corporate": "red", "gp_independent": "orange", "pharmacy": "blue", "allied_health": "green", "ambiguous": "gray"}',
+        "",
+        'for radius in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    fig, ax = plt.subplots(1, 1, figsize=(8, 8))",
+        "",
+        "    # Plot buffer boundary",
+        '    buf = buffers[radius].to_crs("EPSG:7855") if hasattr(buffers[radius], "to_crs") else buffers[radius]',
+        '    buf.boundary.plot(ax=ax, color="black", linewidth=1.5, linestyle="--")',
+        "",
+        "    # Plot competitors coloured by category",
+        "    for cat, colour in type_colours.items():",
+        '        subset = competitors_gdf_metric[competitors_gdf_metric["category"] == cat]',
+        "        if len(subset) > 0:",
+        "            subset.plot(ax=ax, color=colour, markersize=30, label=cat, alpha=0.7)",
+        "",
+        "    # Add contextily basemap",
+        '    cx.add_basemap(ax, crs="EPSG:7855", source=cx.providers.CartoDB.Positron)',
+        '    ax.set_title(f"Competitors — {radius//1000} km ring")',
+        '    ax.legend(loc="upper right", fontsize=8)',
+        "    ax.set_axis_off()",
+        "    plt.tight_layout()",
+        "    plt.show()",
+    ))
+
+    # 9. Markdown — §4.6 Peer Competitor Table
+    cells.append(md(
+        "## §4.6 Peer Competitor Table",
+        "",
+        "D-16 — separate from the Phase 2 census-only peer table. This table adds",
+        "**GP count, pharmacy count by brand, allied health count, and GP-per-1,000",
+        "ratio** per peer. Benchmarked against the VIC average ~117 FTE GPs/100k",
+        "(COMP-03). Fills the DEMO-03 placeholder GP/pharmacy columns with real",
+        "Places data.",
+    ))
+
+    # 10. Code — §4.6 peer competitor table
+    cells.append(code(
+        "# §4.6 Peer competitor table (D-16, COMP-03) — GP count, pharmacy by brand, GP-per-1,000",
+        "# Separate from the Phase 2 census-only peer table — this adds real Places data.",
+        "",
+        "peer_comp_rows = []",
+        "for poa_code in PEER_POSTCODES:",
+        "    # Gather all places for this peer across all (type, radius) pairs",
+        "    peer_all = []",
+        "    for (p_poa, ptype, radius), places in peer_places.items():",
+        "        if p_poa == poa_code:",
+        "            for p in places:",
+        '                dn = p.get("displayName", {})',
+        '                name = dn.get("text", "") if isinstance(dn, dict) else str(dn)',
+        '                loc = p.get("location", {})',
+        '                lat = loc.get("latitude") if isinstance(loc, dict) else None',
+        '                lon = loc.get("longitude") if isinstance(loc, dict) else None',
+        "                if lat and lon:",
+        "                    cat, lbl = classify_place(name, p.get(\"primaryType\", \"\"), p.get(\"types\", []))",
+        "                    peer_all.append({\"name\": name, \"category\": cat, \"label\": lbl})",
+        "",
+        "    # Dedupe on name (peers use centroid, no place.id dedupe across radii)",
+        "    seen_names = set()",
+        "    unique_peer = []",
+        "    for rec in peer_all:",
+        '        key = rec["name"].lower().strip()',
+        "        if key not in seen_names:",
+        "            seen_names.add(key)",
+        "            unique_peer.append(rec)",
+        "",
+        "    # Count by category",
+        '    gp_corp = sum(1 for r in unique_peer if r["category"] == "gp_corporate")',
+        '    gp_indep = sum(1 for r in unique_peer if r["category"] == "gp_independent")',
+        '    gp_clinic_count = gp_corp + gp_indep',
+        '    pharmacy_count = sum(1 for r in unique_peer if r["category"] == "pharmacy")',
+        '    allied_count = sum(1 for r in unique_peer if r["category"] == "allied_health")',
+        "",
+        "    # Pharmacy by brand",
+        '    pharmacy_brands = {}',
+        '    for r in unique_peer:',
+        '        if r["category"] == "pharmacy":',
+        '            brand = r["label"]',
+        '            pharmacy_brands[brand] = pharmacy_brands.get(brand, 0) + 1',
+        "",
+        "    # GP-per-1,000 using ERP-scaled population from Phase 2",
+        '    poa_pop_row = peer_table[peer_table["poa_code"] == poa_code] if "peer_table" in dir() else None',
+        "    peer_pop = 0",
+        '    if poa_pop_row is not None and not poa_pop_row.empty:',
+        '        peer_pop = poa_pop_row.iloc[0].get("Total_P_P_erp", poa_pop_row.iloc[0].get("Total_P_P", 0))',
+        "",
+        "    if peer_pop > 0:",
+        '        gp_per_1000 = (gp_clinic_count * BASE_ASSUMPTIONS["avg_fte_per_clinic"]) / (peer_pop / 1000)',
+        "    else:",
+        "        gp_per_1000 = 0",
+        "",
+        "    peer_comp_rows.append({",
+        '        "poa_code": poa_code,',
+        '        "gp_clinics": gp_clinic_count,',
+        '        "pharmacies": pharmacy_count,',
+        '        "allied_health": allied_count,',
+        '        "gp_per_1000": round(gp_per_1000, 2),',
+        '        "top_pharmacy_brand": max(pharmacy_brands, key=pharmacy_brands.get) if pharmacy_brands else "—",',
+        "    })",
+        "",
+        "peer_comp_table = pd.DataFrame(peer_comp_rows)",
+        'print("[peer-competitors] peer competitor table:")',
+        "print(peer_comp_table.to_string(index=False))",
+        'print(f"\\n[benchmark] VIC average: {BASE_ASSUMPTIONS[\'amwac_per_100k\']} FTE GPs/100k (AMWAC planning), 117 (VIC actual RACGP 2025)")',
+        'print(f"[benchmark] GP-per-1,000 = (gp_clinics × {BASE_ASSUMPTIONS[\'avg_fte_per_clinic\']} FTE/clinic) / (population / 1000)")',
+    ))
+
+    # 11. Markdown — §4.7 Capacity Caveat (D-12)
+    cells.append(md(
+        "## §4.7 Capacity Caveat",
+        "",
+        "> **Caveat (D-12):** Places listings ≠ FTE GPs. The GP capacity estimate",
+        "> (computed in §5) spans a **clinic-derived method** (clinic count × 4.0",
+        "> FTE/clinic) and a **benchmark-derived method** (AMWAC 110.4/100k ×",
+        "> population). The variance IS the caveat — there is no single point",
+        "> estimate. The range spans clinic-derived and benchmark-derived estimates.",
+    ))
+
+    return cells
+
+
+# ──────────────────────────────────────────────────────────────────────
 #  BASE_ASSUMPTIONS extension
 # ──────────────────────────────────────────────────────────────────────
 
@@ -507,7 +998,7 @@ def main():
             break
 
     # Build the new cells (§1.4 Places + §1.5 MBS/AIHW)
-    new_cells = places_cells() + mbs_aihw_cells()
+    new_acquisition_cells = places_cells() + mbs_aihw_cells()
 
     if start_idx is not None:
         # Find where the §1.4+§1.5 section ends (next major section marker or Next Steps)
@@ -519,8 +1010,8 @@ def main():
                 break
         removed = end_idx - start_idx
         cells = cells[:start_idx] + cells[end_idx:]
-        cells[start_idx:start_idx] = new_cells
-        print(f"[extend-phase3] replaced {removed} §1.4+§1.5 cells with {len(new_cells)} corrected cells")
+        cells[start_idx:start_idx] = new_acquisition_cells
+        print(f"[extend-phase3] replaced {removed} §1.4+§1.5 cells with {len(new_acquisition_cells)} corrected cells")
     else:
         # Fresh install — find the "## Next Steps" cell, insert before it
         insert_idx = len(cells)
@@ -529,8 +1020,43 @@ def main():
             if "## Next Steps" in src:
                 insert_idx = i
                 break
-        cells[insert_idx:insert_idx] = new_cells
-        print(f"[extend-phase3] appended {len(new_cells)} §1.4+§1.5 cells (fresh install)")
+        cells[insert_idx:insert_idx] = new_acquisition_cells
+        print(f"[extend-phase3] appended {len(new_acquisition_cells)} §1.4+§1.5 cells (fresh install)")
+
+    # ── §4 Competitor Landscape cells (cell-replacement idempotency) ──
+    COMP_MARKER = "# §4 Competitor Landscape"
+    COMP_STOP_MARKERS = ["# §5 Demand Model", "## Next Steps"]
+
+    comp_start_idx = None
+    for i, c in enumerate(cells):
+        if COMP_MARKER in "".join(c.get("source", [])):
+            comp_start_idx = i
+            break
+
+    new_comp_cells = competitor_cells()
+
+    if comp_start_idx is not None:
+        # Find where the §4 section ends (next major section marker or Next Steps)
+        comp_end_idx = len(cells)
+        for j in range(comp_start_idx + 1, len(cells)):
+            src = "".join(cells[j].get("source", []))
+            if any(marker in src for marker in COMP_STOP_MARKERS):
+                comp_end_idx = j
+                break
+        comp_removed = comp_end_idx - comp_start_idx
+        cells = cells[:comp_start_idx] + cells[comp_end_idx:]
+        cells[comp_start_idx:comp_start_idx] = new_comp_cells
+        print(f"[extend-phase3] replaced {comp_removed} §4 cells with {len(new_comp_cells)} corrected cells")
+    else:
+        # Fresh install — find the "## Next Steps" cell, insert before it
+        comp_insert_idx = len(cells)
+        for i, c in enumerate(cells):
+            src = "".join(c.get("source", []))
+            if "## Next Steps" in src:
+                comp_insert_idx = i
+                break
+        cells[comp_insert_idx:comp_insert_idx] = new_comp_cells
+        print(f"[extend-phase3] appended {len(new_comp_cells)} §4 Competitor Landscape cells (fresh install)")
 
     # Write back
     nb["cells"] = cells
