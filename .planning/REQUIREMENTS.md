@@ -73,4 +73,41 @@ Deferred to a future milestone:
 
 ## Traceability
 
-(Filled by roadmap)
+Every v1 requirement is mapped to exactly one phase in [ROADMAP.md](./ROADMAP.md).
+
+| REQ-ID | Phase | Phase Name |
+|--------|-------|------------|
+| PIPE-01 | 1 | Scaffolding & Data Pipeline |
+| PIPE-02 | 1 | Scaffolding & Data Pipeline |
+| PIPE-03 | 1 | Scaffolding & Data Pipeline |
+| PIPE-04 | 1 | Scaffolding & Data Pipeline |
+| PIPE-05 | 1 | Scaffolding & Data Pipeline |
+| PIPE-06 | 1 | Scaffolding & Data Pipeline |
+| GEO-01 | 2 | Catchment & Demographics |
+| GEO-02 | 2 | Catchment & Demographics |
+| GEO-03 | 2 | Catchment & Demographics |
+| GEO-04 | 2 | Catchment & Demographics |
+| DEMO-01 | 2 | Catchment & Demographics |
+| DEMO-02 | 2 | Catchment & Demographics |
+| DEMO-03 | 2 | Catchment & Demographics |
+| DEMO-04 | 2 | Catchment & Demographics |
+| DEMAND-01 | 3 | Demand & Competitors |
+| DEMAND-02 | 3 | Demand & Competitors |
+| DEMAND-03 | 3 | Demand & Competitors |
+| DEMAND-04 | 3 | Demand & Competitors |
+| COMP-01 | 3 | Demand & Competitors |
+| COMP-02 | 3 | Demand & Competitors |
+| COMP-03 | 3 | Demand & Competitors |
+| FIN-01 | 4 | Clinic Financial Model |
+| FIN-02 | 4 | Clinic Financial Model |
+| FIN-03 | 4 | Clinic Financial Model |
+| FIN-04 | 5 | Scenarios & Executive Report |
+| FIN-05 | 5 | Scenarios & Executive Report |
+| FIN-06 | 5 | Scenarios & Executive Report |
+| FIN-07 | 5 | Scenarios & Executive Report |
+| REP-01 | 5 | Scenarios & Executive Report |
+| REP-02 | 5 | Scenarios & Executive Report |
+| REP-03 | 5 | Scenarios & Executive Report |
+| REP-04 | 5 | Scenarios & Executive Report |
+
+**Coverage:** 32/32 v1 requirements mapped (100%).
