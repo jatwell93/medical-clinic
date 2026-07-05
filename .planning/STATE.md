@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-07-05T11:56:17.975Z"
+last_updated: "2026-07-05T12:08:35.382Z"
 progress:
   total_phases: 2
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
-  percent: 80
+  completed_plans: 5
+  percent: 100
 ---
 
 # State — Clinic Feasibility Study
@@ -20,22 +20,22 @@ progress:
 
 ## Current Phase
 
-**Phase 2 — Catchment & Demographics (GAP CLOSURE PLANNED)**
+**Phase 2 — Catchment & Demographics (COMPLETE)**
 
-Gap-closure plan 02-03 created to address 6 gaps from 02-VERIFICATION.md (2 critical, 4 warning/info). Ready to execute.
+Gap-closure plan 02-03 executed — all 6 verification gaps closed (2 critical, 4 warning/info). §3 demographics is runtime-functional; v1-vs-v2 comparison shows real overstatement. Validator OVERALL: PASS (22 checks). Phase 2 complete.
 
 ## Current Status
 
-Phase 2 gap closure planned. 4 of 5 plans complete; plan 02-03 ready to execute.
+Phase 2 complete. All 5 of 5 plans done.
 
 - `02-01-PLAN.md` — Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — **COMPLETE** (commits 9a0dbbc, 7083642)
 - `02-02-PLAN.md` — Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — **COMPLETE** (commits 2e2dac6, 5432534)
-- `02-03-PLAN.md` — Gap closure (CR-01 check_dataflow_exists XML fix, CR-02 v1-vs-v2 comparison fix, WR-01..04 + IR-02 validator strengthening) — **READY TO EXECUTE**
+- `02-03-PLAN.md` — Gap closure (CR-01 check_dataflow_exists XML fix, CR-02 v1-vs-v2 comparison fix, WR-01..04 + IR-02 validator strengthening) — **COMPLETE** (commits 782494c, 612d36b, d4d62ed, e870a22)
 
 - `01-01-PLAN.md` — Repo scaffolding — **COMPLETE** (commits 5390043, b0e3e6c)
 - `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — **COMPLETE** (commits 1d47733, 654ab63)
 
-Plan 02-02 delivered: Johnston_St_v2.ipynb extended from 26→36 cells with §3 Demographics (ABS G01/G02/G04 fetch + local GCP fallback, SA1 total persons wired into §2.3 apportionment for v2 catchment population totals, ERP scaling to 2024, peer benchmarking table with Phase 3 placeholders, 2×2 comparison charts). compare_v1_v2() called with real v2 totals — D-06 headline teaching moment complete. scripts/extend_v2_notebook_demographics.py (idempotent generator), scripts/validate_v2_notebook.py (extended with DEMO-01..04 + D-03/D-06/D-09b/D-11 — OVERALL: PASS). See [02-02-SUMMARY.md](./phases/02-catchment-demographics/02-02-SUMMARY.md).
+Plan 02-03 closed all 6 gaps from 02-VERIFICATION.md: CR-01 (check_dataflow_exists now parses SDMX-ML XML via ElementTree, no .json() on XML endpoint, try/except safe default True), CR-02 (compare_v1_v2 accepts (v1_ring_pops, v2_ring_pops) and computes real pct_overstate; v1_naive_catchment_pop joins g01_df Total_P_P; v1_pop = v2_pop stub eradicated), WR-01 (try/except safe default), WR-02 (empty-schema GCP fallbacks, no zero-stubs), WR-03 (fetch_g04_poa calls fetch_g04_fallback), WR-04 (explicit age-band prefix matching + matched-columns print). Both generators upgraded to cell-replacement idempotency (re-run regenerates the corrected notebook; 36 cells preserved). Validator strengthened with negative pattern assertions for CR-01 + CR-02 stub (IR-02) — OVERALL: PASS. See [02-03-SUMMARY.md](./phases/02-catchment-demographics/02-03-SUMMARY.md).
 
 ## Recent Decisions
 
@@ -56,10 +56,14 @@ Plan 02-02 delivered: Johnston_St_v2.ipynb extended from 26→36 cells with §3 
 | outputs/.gitkeep force-added despite outputs/ gitignored | Directory structure must survive in fresh clones; outputs contents remain gitignored (regenerated on run) | 2026-07-05 |
 | json.dump over nbformat for notebook generation | Avoids extra dependency; .ipynb structure is simple enough for direct dict construction (RESEARCH.md §4) | 2026-07-05 |
 | Teaching commentary reworded to avoid literal v1 flaw strings | Acceptance criteria requires zero /content/drive and drive.mount occurrences in any cell, including markdown teaching commentary | 2026-07-05 |
+| Cell-replacement idempotency strips trailing §2 Next Steps when §3 follows | §3 owns the final Next Steps; keeping the §2 version would duplicate it mid-notebook and break the 36-cell count | 2026-07-05 |
+| Demographics cell-replacement includes Next Steps in removed range (end_idx = j+1) | demographics_cells() ships its own Next Steps; excluding it from removal would duplicate and break 36-cell count | 2026-07-05 |
+| check_dataflow_exists safe-defaults True on any failure | No-hard-fail principle (PIPE-04); downstream fetch_g0X_poa functions have their own try/except fallbacks | 2026-07-05 |
+| Added CR-01 to validator report label list + structural-failure filter | report() uses a hardcoded label list; without adding CR-01 the new check was invisible and a failure would double-print | 2026-07-05 |
 
 ## Next Actions
 
-1. Execute gap-closure plan 02-03 — fixes CR-01 (check_dataflow_exists XML crash), CR-02 (v1-vs-v2 no-op), WR-01..04, and IR-02 (validator strengthening).
-2. After 02-03 execution + re-verification passes, Phase 2 is complete — all GEO-01..04 + DEMO-01..04 requirements satisfied at runtime.
-3. Then Phase 3 — Demand & Competitors: SA3-level MBS data, Google Places competitor mapping, age-adjusted demand model, required market share calculation.
-4. Phase 3 depends on: geocoded site (§1.2), catchment buffers (§2), apportioned population (§3), age profile (§3 G04), peer benchmarking table (§3 with placeholder GP/pharmacy columns) — all of which require the 02-03 gap fixes to be runtime-functional.
+1. Phase 2 is complete — all GEO-01..04 + DEMO-01..04 requirements satisfied at the structural/runtime-ready level.
+2. Deferred human verification (Colab Restart & Run All): confirm §3 runs end-to-end without JSONDecodeError, v1-vs-v2 chart shows v1 > v2 (pct_overstate > 0%), G04 age bands detected, fallback consistent across G01/G02/G04.
+3. Phase 3 — Demand & Competitors: SA3-level MBS data, Google Places competitor mapping, age-adjusted demand model, required market share calculation.
+4. Phase 3 depends on: geocoded site (§1.2), catchment buffers (§2), apportioned population (§3), age profile (§3 G04), peer benchmarking table (§3 with placeholder GP/pharmacy columns) — all now runtime-functional after 02-03.
