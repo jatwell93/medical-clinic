@@ -1,0 +1,23 @@
+# Secrets — never commit (D-15)
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local fallback data — large files, not in git (D-13)
+data/local/
+
+# Generated outputs — maps, report, PDF (regenerated on run)
+outputs/
+
+# Cache metadata — regenerable; keep the *.json response files (D-12)
+data/cache/redirects.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
