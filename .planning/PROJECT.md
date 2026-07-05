@@ -20,9 +20,9 @@ Answer, with defensible data and transparent assumptions, one question: **can th
 - [ ] New `Johnston_St_v2.ipynb` built from scratch (v1 preserved as reference)
 - [ ] Runs in Colab as primary environment, but paths/config also work locally on Windows
 - [ ] `.env` / Colab userdata handling for `GOOGLE_PLACES_KEY` (no keys committed)
-- [ ] ABS Data API as primary census source (G01/G02-equivalent variables for POA 3067 + peer postcodes), local GCP files as fallback, responses cached
+- [x] Exact-address geocoding and 1/3/5 km radial catchments with **area-apportioned** population (fixes v1 whole-postcode summing flaw) — Validated in Phase 2: Catchment & Demographics
+- [x] ABS Data API as primary census source (G01/G02-equivalent variables for POA 3067 + peer postcodes), local GCP files as fallback, responses cached — Validated in Phase 2: Catchment & Demographics (G01/G02/G04 fetched, GCP fallback emits empty schema + warning)
 - [ ] SA3-level MBS/Medicare utilisation data (SA3 20604 Yarra) replacing state-level files; documented fallback to state benchmarks with warning
-- [ ] Exact-address geocoding and 1/3/5 km radial catchments with **area-apportioned** population (fixes v1 whole-postcode summing flaw)
 - [ ] Competitor mapping via Google Places (doctors, medical centres, pharmacies, allied health) with pagination, caching, and brand classification
 - [ ] Age-adjusted GP demand model: catchment consult demand vs existing GP capacity → market share the clinic must capture
 - [ ] Full clinic P&L: mixed billing (70% bulk / 30% private), revenue (consults, gap fees, procedures, allied health) vs costs (GP %, staff, rent ~$100k/yr, insurance, equipment, admin)
@@ -91,6 +91,7 @@ This document evolves at phase transitions and milestone boundaries.
 ## Phase Completion Log
 
 - **Phase 1: Scaffolding & Data Pipeline** — complete (2026-07-05). Reproducible foundation established: dual-environment bootstrap (Colab/Windows), single `BASE_ASSUMPTIONS` parameters cell, `CachedSession` HTTP boundary with keyless ABS smoke test (SDMX-ML XML response format). All 6 PIPE requirements (PIPE-01..06) verified. 2 plans, 8 commits, 0 critical code-review findings. Note for Phase 2: ABS REST API returns SDMX-ML XML by default — use `?format=csvfilewithlabels` for actual census data fetches.
+- **Phase 2: Catchment & Demographics** — complete (2026-07-05). Exact-address geocoding (cached), 1/3/5 km buffers in EPSG:7855 with 28.27 km² sanity assertion, SA1-level area-apportioned catchment population (v1 whole-postcode flaw fixed), v1-vs-v2 comparison with real `pct_overstate`. ABS Data API G01/G02/G04 for POA 3067 + 9 peers through CachedSession, GCP fallback emits empty schema + warning, ERP scaling to 2024, peer benchmarking table + 2×2 comparison charts. All 8 requirements (GEO-01..04, DEMO-01..04) verified. 3 plans (incl. 1 gap-closure), 0 critical code-review findings post-fix. 6 prior verification gaps (CR-01 XML endpoint crash, CR-02 v1-vs-v2 no-op, WR-01..04, IR-02) all closed. Deferred: Colab Restart & Run All with API keys + SA1 shapefile to confirm §3 runs end-to-end and v1-vs-v2 chart shows real overstatement.
 
 ---
-*Last updated: 2026-07-05 after Phase 1 completion*
+*Last updated: 2026-07-05 after Phase 2 completion*
