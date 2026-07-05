@@ -840,7 +840,7 @@ def competitor_cells():
         '            pharmacy_brands[brand] = pharmacy_brands.get(brand, 0) + 1',
         "",
         "    # GP-per-1,000 using ERP-scaled population from Phase 2",
-        '    poa_pop_row = peer_table[peer_table["poa_code"] == poa_code] if "peer_table" in dir() else None',
+        '    poa_pop_row = peer_table[peer_table["POA_CODE21"] == poa_code] if "peer_table" in dir() else None',
         "    peer_pop = 0",
         '    if poa_pop_row is not None and not poa_pop_row.empty:',
         '        peer_pop = poa_pop_row.iloc[0].get("Total_P_P_erp", poa_pop_row.iloc[0].get("Total_P_P", 0))',
