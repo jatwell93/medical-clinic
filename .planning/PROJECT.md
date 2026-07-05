@@ -87,4 +87,10 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-05 after initialization*
+
+## Phase Completion Log
+
+- **Phase 1: Scaffolding & Data Pipeline** — complete (2026-07-05). Reproducible foundation established: dual-environment bootstrap (Colab/Windows), single `BASE_ASSUMPTIONS` parameters cell, `CachedSession` HTTP boundary with keyless ABS smoke test (SDMX-ML XML response format). All 6 PIPE requirements (PIPE-01..06) verified. 2 plans, 8 commits, 0 critical code-review findings. Note for Phase 2: ABS REST API returns SDMX-ML XML by default — use `?format=csvfilewithlabels` for actual census data fetches.
+
+---
+*Last updated: 2026-07-05 after Phase 1 completion*
