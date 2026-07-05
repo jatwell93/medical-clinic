@@ -46,7 +46,7 @@
 **Requirements mapped:** GEO-01, GEO-02, GEO-03, GEO-04, DEMO-01, DEMO-02, DEMO-03, DEMO-04
 
 **Plan progress:**
-- [ ] 02-01: Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — PLANNED (Wave 1)
+- [x] 02-01: Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — COMPLETE
 - [ ] 02-02: Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — PLANNED (Wave 2, depends on 02-01)
 
 **Cross-cutting constraints:**
@@ -161,4 +161,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-05 — plan 01-02 complete, Phase 1 fully delivered*
+*Last updated: 2026-07-05 — plan 02-01 complete, Phase 2 Wave 1 delivered*
