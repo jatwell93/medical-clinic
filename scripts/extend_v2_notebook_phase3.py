@@ -881,6 +881,319 @@ def competitor_cells():
 
 
 # ──────────────────────────────────────────────────────────────────────
+#  §5 Demand Model cells
+# ──────────────────────────────────────────────────────────────────────
+
+def demand_cells():
+    """Return the §5 Demand Model cells.
+
+    Implements: aggregate_age_bands (ABS 5-year → AIHW 4 bands, Correction 2),
+    compute_demand (transparent arithmetic, no ML — Pitfall 14, DEMAND-04),
+    SA3 20604 MBS cross-check (D-03), estimate_gp_capacity_range (D-10 two methods),
+    compute_required_market_share (D-13 three framings), label_market_share (D-14),
+    plain-language interpretation with NO go/no-go verdict (D-14 — verdict is Phase 5),
+    and the No-ML Assertion markdown (DEMAND-04).
+    """
+    cells = []
+
+    # 1. Markdown — §5 header + teaching commentary
+    cells.append(md(
+        "# §5 Demand Model",
+        "",
+        "v1's \"demand model\" was a **3-row Random Forest** on peer postcodes —",
+        "statistical theatre on a handful of rows that would destroy investor",
+        "credibility if probed (Pitfall 14, FEATURES.md Anti-Features). This section",
+        "replaces it with **transparent arithmetic**:",
+        "",
+        "    annual_demand = sum(population_band × attendance_rate_band)",
+        "",
+        "Every number is traceable to a cited source. No ML libraries, no regression,",
+        "no clustering — just multiplication and addition.",
+        "",
+        "**Key design decisions:**",
+        "- The AIHW SA3 age bands are **0-24, 25-44, 45-64, 65+** (Correction 2 —",
+        "  NOT 0-14/15-64/65+). Phase 2's ABS 5-year age bands must be aggregated",
+        "  to match these 4 bands before multiplying.",
+        "- The SA3 20604 MBS data is a **total-attendance cross-check** (computed",
+        "  total ≈ SA3 reported total ±15%, D-03).",
+        "- The required-market-share is presented in **three framings** (D-13):",
+        "  share of total consults, share of unmet demand, share of population.",
+        "- The plain-language interpretation labels the share as low/moderate/high",
+        "  but does **NOT** issue a go/no-go verdict (D-14 — that's Phase 5 after",
+        "  the P&L).",
+    ))
+
+    # 2. Code — §5.1 Aggregate ABS 5-year bands to AIHW 4 bands
+    cells.append(code(
+        "# §5.1 Aggregate ABS 5-year age bands → AIHW SA3 4 bands (Correction 2)",
+        "# AIHW SA3 bands: 0-24, 25-44, 45-64, 65+",
+        "# ABS G04 5-year bands: 0-4, 5-9, 10-14, 15-19, 20-24, 25-29, ..., 85+",
+        "# Mapping:",
+        "#   0-24  = 0-4 + 5-9 + 10-14 + 15-19 + 20-24",
+        "#   25-44 = 25-29 + 30-34 + 35-39 + 40-44",
+        "#   45-64 = 45-49 + 50-54 + 55-59 + 60-64",
+        "#   65+   = 65-69 + 70-74 + 75-79 + 80-84 + 85+",
+        "def aggregate_age_bands(g04_age_df):",
+        '    """Aggregate ABS 5-year age bands to AIHW SA3 4 bands.',
+        "    g04_age_df: DataFrame with age band columns (from Phase 2 §3 G04 fetch).",
+        '    Returns dict: {"0-24": pop, "25-44": pop, "45-64": pop, "65+": pop}"""',
+        "    band_map = {",
+        '        "0-24": ["0_4", "5_9", "10_14", "15_19", "20_24"],',
+        '        "25-44": ["25_29", "30_34", "35_39", "40_44"],',
+        '        "45-64": ["45_49", "50_54", "55_59", "60_64"],',
+        '        "65+": ["65_69", "70_74", "75_79", "80_84", "85_ov"],',
+        "    }",
+        "    result = {}",
+        "    for aihw_band, abs_bands in band_map.items():",
+        "        total = 0",
+        "        for abs_band in abs_bands:",
+        "            # Find matching column(s) — handle naming variations",
+        '            cols = [c for c in g04_age_df.columns if abs_band in str(c).replace("-", "_").lower()]',
+        "            for c in cols:",
+        "                total += g04_age_df[c].sum()",
+        "        result[aihw_band] = total",
+        "    return result",
+        "",
+        "# Compute per-ring age profiles using POA 3067 G04 data as the age template,",
+        "# scaled proportionally to each ring's ERP-scaled population (from Phase 2 §3).",
+        "# The catchment is centred on Abbotsford (3067) — POA-level age profile is a",
+        "# reasonable proxy for all rings (inner-Melbourne age profiles are similar).",
+        "ring_age_profiles = {}",
+        'site_g04 = g04_df[g04_df["POA_CODE21"] == "3067"] if "POA_CODE21" in g04_df.columns else g04_df',
+        "if len(site_g04) == 0:",
+        "    site_g04 = g04_df.iloc[[0]] if len(g04_df) > 0 else g04_df",
+        "    print('[demand] ⚠ POA 3067 not in G04 — using first row as age template')",
+        "",
+        "site_age_bands = aggregate_age_bands(site_g04)",
+        "site_total_pop = sum(site_age_bands.values())",
+        "print(f'[demand] site age bands (POA 3067): {site_age_bands}')",
+        "",
+        'for r in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    ring_pop = ring_pops_erp.get(r, 0)",
+        "    if site_total_pop > 0:",
+        "        # Scale age proportions to ring population",
+        "        ring_age_profiles[r] = {",
+        "            band: (pop / site_total_pop) * ring_pop",
+        "            for band, pop in site_age_bands.items()",
+        "        }",
+        "    else:",
+        '        ring_age_profiles[r] = {"0-24": 0, "25-44": 0, "45-64": 0, "65+": 0}',
+        '    print(f"[demand] {r//1000}km ring age profile: {ring_age_profiles[r]}")',
+        "",
+        'print("[demand] aggregate_age_bands() defined — maps ABS 5-year → AIHW 4 bands (0-24, 25-44, 45-64, 65+)")',
+    ))
+
+    # 3. Code — §5.2 Compute age-adjusted demand per ring
+    cells.append(code(
+        "# §5.2 Compute age-adjusted demand per ring (DEMAND-02, Pitfall 14)",
+        "# Transparent arithmetic — no ML. annual_demand = sum(pop_band × rate_band)",
+        "def compute_demand(catchment_age_profile, aihw_rates_per_100, ring_pop):",
+        '    """Age-adjusted annual GP consult demand for a catchment ring.',
+        "    Transparent arithmetic — no ML (Pitfall 14, DEMAND-04).",
+        "    catchment_age_profile: dict of age_band → population (AIHW 4 bands)",
+        "    aihw_rates_per_100: dict of age_band → services per 100 people (from AIHW)",
+        "    ring_pop: total population in the ring (ERP-scaled, from Phase 2)",
+        '    Returns: annual GP consults demanded in this ring (float)"""',
+        "    total_demand = 0",
+        "    for band, pop in catchment_age_profile.items():",
+        "        rate = aihw_rates_per_100.get(band, 0)",
+        "        total_demand += pop * (rate / 100.0)",
+        "    return total_demand",
+        "",
+        "# Compute demand per ring using AIHW rates (from §1.5) and ring age profiles (from §5.1)",
+        "ring_demand = {}",
+        'for r in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    ring_demand[r] = compute_demand(ring_age_profiles[r], aihw_rates, ring_pops_erp.get(r, 0))",
+        "    per_capita = ring_demand[r] / ring_pops_erp.get(r, 1) * 100 if ring_pops_erp.get(r, 0) else 0",
+        '    print(f"[demand] {r//1000}km ring | age_adjusted_demand: {ring_demand[r]:.0f} | per_capita_rate: {per_capita:.1f}/100")',
+        "",
+        'print("[demand] compute_demand() defined — sum(pop_band × rate_band), transparent arithmetic (no ML)")',
+    ))
+
+    # 4. Code — §5.3 SA3 MBS cross-check (D-03)
+    cells.append(code(
+        "# §5.3 SA3 20604 MBS total-attendance cross-check (D-03, ±15% tolerance)",
+        "# Compare computed total demand against SA3 20604 MBS reported total.",
+        "# This validates the demand model against an independent data source.",
+        "if mbs_source == \"sa3\":",
+        "    # Sum the latest 4 quarters of SA3 20604 GP non-referred attendances",
+        "    # (exact column verified at runtime — look for attendance/count columns)",
+        "    numeric_cols = mbs_sa3_df.select_dtypes(include=[\"number\"])",
+        "    sa3_total = numeric_cols.sum().sum()  # placeholder — adjust at runtime",
+        "    computed_total = sum(ring_demand.values())",
+        "    if sa3_total > 0:",
+        "        pct_diff = abs(computed_total - sa3_total) / sa3_total * 100",
+        '        print(f"[cross-check] computed demand total: {computed_total:.0f}")',
+        '        print(f"[cross-check] SA3 20604 MBS total: {sa3_total:.0f}")',
+        '        print(f"[cross-check] difference: {pct_diff:.1f}% (tolerance: ±15%)")',
+        "        if pct_diff > 15:",
+        '            print("[cross-check] ⚠ Difference exceeds 15% — check age band mapping or rates")',
+        "        else:",
+        '            print("[cross-check] ✓ Within ±15% tolerance")',
+        "    else:",
+        '        print("[cross-check] ⚠ SA3 total is 0 — check MBS data columns")',
+        "else:",
+        '    print("[cross-check] ⚠ Skipped — using state fallback, no SA3 total to cross-check")',
+    ))
+
+    # 5. Code — §5.4 GP FTE capacity range (D-10)
+    cells.append(code(
+        "# §5.4 GP FTE capacity range (D-10) — two-method range, variance IS the caveat (D-12)",
+        "# Method A: clinic count × avg FTE per clinic (4.0 FTE, RACGP+DoH)",
+        "# Method B: AMWAC benchmark × population (110.4/100k)",
+        "def estimate_gp_capacity_range(clinic_count, ring_pop):",
+        '    """D-10: Two-method range. The variance IS the caveat (D-12).',
+        "    Method A: clinic count × avg FTE per clinic (4.0 FTE, RACGP+DoH)",
+        "    Method B: AMWAC benchmark × population (110.4/100k)",
+        '    Returns dict with both methods, range, and caveat string."""',
+        '    AVG_FTE_PER_CLINIC = BASE_ASSUMPTIONS["avg_fte_per_clinic"]  # 4.0',
+        '    AMWAC_PER_100K = BASE_ASSUMPTIONS["amwac_per_100k"]          # 110.4',
+        "    capacity_a = clinic_count * AVG_FTE_PER_CLINIC",
+        "    capacity_b = ring_pop * (AMWAC_PER_100K / 100_000)",
+        "    return {",
+        '        "method_a_clinic_derived": capacity_a,',
+        '        "method_b_benchmark_derived": capacity_b,',
+        '        "range": (min(capacity_a, capacity_b), max(capacity_a, capacity_b)),',
+        '        "caveat": "Places listings ≠ FTE GPs; range spans clinic-derived and benchmark-derived estimates.",',
+        "    }",
+        "",
+        "# Compute capacity per ring using per_ring_counts GP clinic count (from §4)",
+        "# and ERP-scaled ring population (from §3). Convert FTE to consult capacity:",
+        "# existing_consult_capacity = fte_count × gp_fte_consults_per_yr (5500/yr per FTE)",
+        "capacity_results = {}",
+        "existing_capacity_range = {}",
+        'for r in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        '    ring_row = per_ring_counts[per_ring_counts["ring_km"] == r // 1000]',
+        "    if len(ring_row) > 0:",
+        '        gp_clinic_count = int(ring_row.iloc[0].get("gp_corporate", 0) + ring_row.iloc[0].get("gp_independent", 0))',
+        "    else:",
+        "        gp_clinic_count = 0",
+        "    ring_pop = ring_pops_erp.get(r, 0)",
+        "    cap = estimate_gp_capacity_range(gp_clinic_count, ring_pop)",
+        "    capacity_results[r] = cap",
+        "    # Convert FTE to consult capacity (5500 consults/yr per FTE)",
+        '    consult_cap_a = cap["method_a_clinic_derived"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]',
+        '    consult_cap_b = cap["method_b_benchmark_derived"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]',
+        "    existing_capacity_range[r] = (min(consult_cap_a, consult_cap_b), max(consult_cap_a, consult_cap_b))",
+        '    print(f"[capacity] {r//1000}km ring | GP clinics: {gp_clinic_count} | FTE_a: {cap["method_a_clinic_derived"]:.1f} | FTE_b: {cap["method_b_benchmark_derived"]:.1f} | consult_cap: {existing_capacity_range[r][0]:.0f}–{existing_capacity_range[r][1]:.0f}/yr")',
+        "",
+        'print("[capacity] estimate_gp_capacity_range() defined — two methods (clinic-derived × 4.0 FTE, AMWAC 110.4/100k × pop)")',
+    ))
+
+    # 6. Code — §5.5 Required market share — three framings (D-13, D-14)
+    cells.append(code(
+        "# §5.5 Required market share — three framings (D-13, D-14)",
+        "# D-13: share_of_total, share_of_unmet, share_of_pop — side-by-side, no ML",
+        "# D-14: label_market_share — low/moderate/high, NO go/no-go verdict (Phase 5)",
+        "def compute_required_market_share(annual_demand, existing_capacity, clinic_capacity,",
+        "                                   ring_pop, consults_per_patient_yr=5.0):",
+        '    """D-13: Three framings side-by-side. No ML, pure arithmetic (Pitfall 14).',
+        "    annual_demand: age-adjusted GP consults demanded in ring",
+        "    existing_capacity: estimated existing GP consult capacity in ring (D-10 range)",
+        "    clinic_capacity: 5-FTE clinic annual consult capacity (~27,500/yr)",
+        "    ring_pop: total population in ring",
+        '    consults_per_patient_yr: ~5.0 (BASE_ASSUMPTIONS)"""',
+        "    unmet_demand = max(annual_demand - existing_capacity, 0)",
+        "    return {",
+        '        "share_of_total":   clinic_capacity / annual_demand * 100 if annual_demand else 0,',
+        '        "share_of_unmet":   clinic_capacity / unmet_demand * 100 if unmet_demand else float("inf"),',
+        '        "patients_needed":  clinic_capacity / consults_per_patient_yr,',
+        '        "share_of_pop":     (clinic_capacity / consults_per_patient_yr) / ring_pop * 100 if ring_pop else 0,',
+        "    }",
+        "",
+        "def label_market_share(pct_of_total):",
+        '    """D-14: Plain-language label. <5% low, 5-15% moderate, >15% high."""',
+        '    thresholds = BASE_ASSUMPTIONS["market_share_thresholds"]',
+        '    if pct_of_total < thresholds["low"]:   return "low"',
+        '    if pct_of_total < thresholds["high"]:  return "moderate"',
+        '    return "high"',
+        "",
+        "# Compute market share for each ring using both capacity methods (D-10 range)",
+        "# Clinic capacity: 5 FTE × 5,500/yr = 27,500 consults/yr",
+        'clinic_capacity = BASE_ASSUMPTIONS["n_gp_fte"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]  # 27,500/yr',
+        'print(f"[market-share] clinic capacity: {clinic_capacity:.0f} consults/yr (5 FTE × 5,500/yr)")',
+        "",
+        "market_share_results = {}",
+        'for r in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    cap = capacity_results[r]",
+        '    consult_cap_a = cap["method_a_clinic_derived"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]',
+        '    consult_cap_b = cap["method_b_benchmark_derived"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]',
+        "    ms_a = compute_required_market_share(ring_demand[r], consult_cap_a, clinic_capacity,",
+        '                                            ring_pops_erp.get(r, 0), BASE_ASSUMPTIONS["consults_per_patient_yr"])',
+        "    ms_b = compute_required_market_share(ring_demand[r], consult_cap_b, clinic_capacity,",
+        '                                            ring_pops_erp.get(r, 0), BASE_ASSUMPTIONS["consults_per_patient_yr"])',
+        "    # Mid values for the interpretation (average of both methods)",
+        "    share_total_mid = (ms_a[\"share_of_total\"] + ms_b[\"share_of_total\"]) / 2",
+        "    unmet_a = ms_a[\"share_of_unmet\"]",
+        "    unmet_b = ms_b[\"share_of_unmet\"]",
+        "    if unmet_a != float('inf') and unmet_b != float('inf'):",
+        "        share_unmet_mid = (unmet_a + unmet_b) / 2",
+        "    else:",
+        "        share_unmet_mid = float('inf')",
+        "    market_share_results[r] = {",
+        '        "share_of_total_a": ms_a["share_of_total"],',
+        '        "share_of_total_b": ms_b["share_of_total"],',
+        '        "share_of_total_mid": share_total_mid,',
+        '        "share_of_unmet_a": unmet_a,',
+        '        "share_of_unmet_b": unmet_b,',
+        '        "share_of_unmet_mid": share_unmet_mid,',
+        '        "patients_needed": ms_a["patients_needed"],',
+        '        "share_of_pop": ms_a["share_of_pop"],',
+        "    }",
+        "    label = label_market_share(share_total_mid)",
+        '    print(f"[market-share] {r//1000}km ring | demand: {ring_demand[r]:.0f} | cap_a: {consult_cap_a:.0f} | cap_b: {consult_cap_b:.0f} | share_total_a: {ms_a["share_of_total"]:.1f}% | share_total_b: {ms_b["share_of_total"]:.1f}% | share_unmet_mid: {share_unmet_mid:.1f}% | share_pop: {ms_a["share_of_pop"]:.1f}% | label: {label}")',
+        "",
+        'print("[market-share] compute_required_market_share() + label_market_share() defined — three framings (D-13), low/moderate/high labels (D-14)")',
+    ))
+
+    # 7. Code — §5.6 Plain-language interpretation (D-14, NO go/no-go verdict)
+    cells.append(code(
+        "# D-14: Plain-language interpretation — NO go/no-go verdict (that's Phase 5)",
+        'print("\\n" + "=" * 70)',
+        'print("REQUIRED MARKET SHARE — PLAIN LANGUAGE SUMMARY")',
+        'print("=" * 70)',
+        'for r in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    ms = market_share_results[r]",
+        '    label = label_market_share(ms["share_of_total_mid"])',
+        '    print(f"\\n  {r//1000} km ring:")',
+        '    print(f"    • {ms[\'share_of_total_mid\']:.1f}% of all GP consults in the ring — {label} share required")',
+        '    unmet_str = f"{ms[\'share_of_unmet_mid\']:.1f}%" if ms["share_of_unmet_mid"] != float("inf") else "N/A (no unmet gap)"',
+        '    print(f"    • {unmet_str} of the unmet consult gap (can exceed 100%)")',
+        '    print(f"    • {ms[\'patients_needed\']:.0f} patients needed = {ms[\'share_of_pop\']:.1f}% of catchment population")',
+        '    print(f"    • Clinic capacity: {clinic_capacity:.0f} consults/yr (5 FTE × 5,500/yr)")',
+        '    print(f"    • Demand: {ring_demand[r]:.0f} consults/yr (age-adjusted)")',
+        '    print(f"    • Existing capacity range: {existing_capacity_range[r][0]:.0f} – {existing_capacity_range[r][1]:.0f} consults/yr")',
+        'print("\\n  Note: The go/no-go verdict is a Phase 5 output (after P&L + scenarios).")',
+        'print("  This section quantifies the required share — it does not judge achievability.")',
+        'print("=" * 70)',
+    ))
+
+    # 8. Markdown — §5.7 No-ML Assertion (DEMAND-04, Pitfall 14)
+    cells.append(md(
+        "## §5.7 No-ML Assertion",
+        "",
+        "> **No predictive ML (DEMAND-04, Pitfall 14):** The demand model is",
+        "> `sum(population_band × attendance_rate_band)` — pure arithmetic with cited",
+        "> rates from AIHW (2026). v1's 3-row Random Forest on peer postcodes was",
+        "> statistical theatre on a handful of rows. This section replaces it with",
+        "> transparent arithmetic where every input is traceable to a cited source.",
+        "> No ML libraries, no regression, no clustering — just multiplication and",
+        "> addition.",
+    ))
+
+    # 9. Markdown — Next Steps (Phase 4)
+    cells.append(md(
+        "## Next Steps",
+        "",
+        "**§6 Financial Model (Phase 4)** will build the clinic P&L as a pure function of",
+        "`BASE_ASSUMPTIONS`, using the required market share (§5) to derive consult volume →",
+        "revenue. The go/no-go verdict is a Phase 5 output after scenarios + sensitivity.",
+    ))
+
+    return cells
+
+
+# ──────────────────────────────────────────────────────────────────────
 #  BASE_ASSUMPTIONS extension
 # ──────────────────────────────────────────────────────────────────────
 
@@ -1057,6 +1370,41 @@ def main():
                 break
         cells[comp_insert_idx:comp_insert_idx] = new_comp_cells
         print(f"[extend-phase3] appended {len(new_comp_cells)} §4 Competitor Landscape cells (fresh install)")
+
+    # ── §5 Demand Model cells (cell-replacement idempotency) ──
+    DEMAND_MARKER = "# §5 Demand Model"
+    DEMAND_STOP_MARKERS = ["## Next Steps"]
+
+    demand_start_idx = None
+    for i, c in enumerate(cells):
+        if DEMAND_MARKER in "".join(c.get("source", [])):
+            demand_start_idx = i
+            break
+
+    new_demand_cells = demand_cells()
+
+    if demand_start_idx is not None:
+        # Find where the §5 section ends (next major section marker or Next Steps)
+        demand_end_idx = len(cells)
+        for j in range(demand_start_idx + 1, len(cells)):
+            src = "".join(cells[j].get("source", []))
+            if any(marker in src for marker in DEMAND_STOP_MARKERS):
+                demand_end_idx = j
+                break
+        demand_removed = demand_end_idx - demand_start_idx
+        cells = cells[:demand_start_idx] + cells[demand_end_idx:]
+        cells[demand_start_idx:demand_start_idx] = new_demand_cells
+        print(f"[extend-phase3] replaced {demand_removed} §5 cells with {len(new_demand_cells)} corrected cells")
+    else:
+        # Fresh install — find the "## Next Steps" cell, insert before it
+        demand_insert_idx = len(cells)
+        for i, c in enumerate(cells):
+            src = "".join(c.get("source", []))
+            if "## Next Steps" in src:
+                demand_insert_idx = i
+                break
+        cells[demand_insert_idx:demand_insert_idx] = new_demand_cells
+        print(f"[extend-phase3] appended {len(new_demand_cells)} §5 Demand Model cells (fresh install)")
 
     # Write back
     nb["cells"] = cells
