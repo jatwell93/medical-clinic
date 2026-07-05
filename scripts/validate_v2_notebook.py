@@ -343,12 +343,23 @@ def main():
     check_demog("Phase 2 D-03 (SA1 total persons)", d03,
                 f"D-03: missing C21_G01_SA1 ({d03_flow}) or sa1_pop_df ({d03_df})")
 
-    # D-06 completion (v1-vs-v2 with real totals)
+    # D-06 completion (v1-vs-v2 with real totals) — strengthened (IR-02 fix)
     d06_call = "compare_v1_v2(" in all_source
     d06_totals = "v2_ring_pops" in all_source
-    d06_done = d06_call and d06_totals
+    d06_v1_totals = "v1_ring_pops" in all_source
+    d06_stub_present = "v1_pop = v2_pop" in all_source  # CR-02 stub — must be ABSENT
+    d06_done = d06_call and d06_totals and d06_v1_totals and not d06_stub_present
     check_demog("Phase 2 D-06 (v1-vs-v2 with real totals)", d06_done,
-                f"D-06: missing compare_v1_v2( call ({d06_call}) or v2_ring_pops ({d06_totals})")
+                f"D-06: missing compare_v1_v2( call ({d06_call}), v2_ring_pops ({d06_totals}), "
+                f"v1_ring_pops ({d06_v1_totals}), or CR-02 stub present ({d06_stub_present})")
+
+    # CR-01 fix (check_dataflow_exists must not call .json() on XML endpoint)
+    cr01_json_on_xml = "flows_resp.json()" in all_source
+    cr01_xml_parse = "xml.etree.ElementTree" in all_source or "ET.fromstring" in all_source
+    cr01_safe_default = "return True" in all_source
+    cr01_fixed = not cr01_json_on_xml and (cr01_xml_parse or cr01_safe_default)
+    check_demog("Phase 2 CR-01 (check_dataflow_exists XML-safe)", cr01_fixed,
+                f"CR-01: flows_resp.json() present ({cr01_json_on_xml}), XML parse ({cr01_xml_parse}), safe default ({cr01_safe_default})")
 
     # D-09b (catchment pop plausibility assertion)
     d09b = "catchment_pop_plausible_range" in all_source and "assert" in all_source
@@ -411,6 +422,7 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
         "Phase 2 D-11 (G04 runtime verify)",
         "Phase 2 D-03 (SA1 total persons)",
         "Phase 2 D-06 (v1-vs-v2 with real totals)",
+        "Phase 2 CR-01 (check_dataflow_exists XML-safe)",
         "Phase 2 D-09b (pop plausibility assert)",
     ]
     for label in phase2_labels:
@@ -425,7 +437,7 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
 
     # Structural passes (not printed individually unless failed)
     for f in failures:
-        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b"]):
+        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b"]):
             print(f"[validate] FAIL: {f}")
 
     overall = len(failures) == 0
