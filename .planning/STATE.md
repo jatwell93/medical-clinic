@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: milestone_complete
-last_updated: "2026-07-05T08:41:10Z"
+status: ready_to_execute
+last_updated: "2026-07-05T20:30:00Z"
 progress:
-  total_phases: 1
+  total_phases: 5
   completed_phases: 1
-  total_plans: 2
+  total_plans: 4
   completed_plans: 2
-  percent: 100
+  percent: 50
 ---
 
 # State — Clinic Feasibility Study
@@ -20,11 +20,14 @@ progress:
 
 ## Current Phase
 
-**Phase 1 — Scaffolding & Data Pipeline**
+**Phase 2 — Catchment & Demographics**
 
 ## Current Status
 
-Phase 1 execution complete. All plans delivered.
+Phase 2 planning complete. Ready to execute.
+
+- `02-01-PLAN.md` — Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — **PLANNED** (Wave 1)
+- `02-02-PLAN.md` — Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — **PLANNED** (Wave 2, depends on 02-01)
 
 - `01-01-PLAN.md` — Repo scaffolding — **COMPLETE** (commits 5390043, b0e3e6c)
 - `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — **COMPLETE** (commits 1d47733, 654ab63)
@@ -49,6 +52,6 @@ Plan 01-02 delivered: Johnston_St_v2.ipynb (11 cells: §0 setup/env-detect/PARAM
 
 ## Next Actions
 
-1. Verify Phase 1 must_haves against the codebase (all 6 PIPE requirements).
-2. Proceed to Phase 2 (Catchment & Demographics) planning.
-3. Phase 2 will use the CachedSession and BASE_ASSUMPTIONS established in 01-02.
+1. Execute Phase 2 Plan 02-01 (Wave 1) — Catchment: geocode, buffers, SA1 apportionment, maps.
+2. Execute Phase 2 Plan 02-02 (Wave 2) — Demographics: ABS G01/G02/G04, ERP scaling, peer benchmarking.
+3. Phase 2 uses the CachedSession and BASE_ASSUMPTIONS established in 01-02; extends BASE_ASSUMPTIONS with 6 new Phase 2 keys.

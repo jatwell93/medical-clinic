@@ -45,6 +45,15 @@
 
 **Requirements mapped:** GEO-01, GEO-02, GEO-03, GEO-04, DEMO-01, DEMO-02, DEMO-03, DEMO-04
 
+**Plan progress:**
+- [ ] 02-01: Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — PLANNED (Wave 1)
+- [ ] 02-02: Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — PLANNED (Wave 2, depends on 02-01)
+
+**Cross-cutting constraints:**
+- All HTTP through the Phase 1 `CachedSession` (no bare `requests.get`) — appears in both plans
+- No numeric literal outside `BASE_ASSUMPTIONS` except unit conversions (PIPE-05) — appears in both plans
+- v1-flaw eradication maintained (no `/content/drive`, no `drive.mount`, no degree-based buffering) — appears in both plans
+
 **Success criteria:**
 1. Site is geocoded from the exact address (cached); 1/3/5 km buffers are built in EPSG:7855 with a sanity assertion (3 km buffer ≈ 28.3 km²).
 2. Catchment population is computed by area-apportioning POA populations across buffer intersections (not whole-postcode summing); a v1-vs-v2 comparison is shown.
