@@ -16,7 +16,9 @@ data/local/
 outputs/
 
 # Cache metadata — regenerable; keep the *.json response files (D-12)
-data/cache/redirects.sqlite
+# requests-cache filesystem backend stores responses in a subdirectory
+# named after cache_name (e.g. data/cache/api_cache/), so match recursively.
+data/cache/**/redirects.sqlite
 
 # OS
 .DS_Store
