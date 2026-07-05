@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-07-05T11:24:11.595Z"
+last_updated: "2026-07-05T14:30:00.000Z"
 progress:
   total_phases: 2
-  completed_phases: 2
-  total_plans: 4
+  completed_phases: 1
+  total_plans: 5
   completed_plans: 4
-  percent: 100
+  percent: 80
 ---
 
 # State — Clinic Feasibility Study
@@ -20,16 +20,17 @@ progress:
 
 ## Current Phase
 
-**Phase 2 — Catchment & Demographics (COMPLETE)**
+**Phase 2 — Catchment & Demographics (GAP CLOSURE PLANNED)**
 
-Ready for Phase 3 — Demand & Competitors.
+Gap-closure plan 02-03 created to address 6 gaps from 02-VERIFICATION.md (2 critical, 4 warning/info). Ready to execute.
 
 ## Current Status
 
-Phase 2 complete. All 4 plans across 2 phases delivered.
+Phase 2 gap closure planned. 4 of 5 plans complete; plan 02-03 ready to execute.
 
 - `02-01-PLAN.md` — Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — **COMPLETE** (commits 9a0dbbc, 7083642)
 - `02-02-PLAN.md` — Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — **COMPLETE** (commits 2e2dac6, 5432534)
+- `02-03-PLAN.md` — Gap closure (CR-01 check_dataflow_exists XML fix, CR-02 v1-vs-v2 comparison fix, WR-01..04 + IR-02 validator strengthening) — **READY TO EXECUTE**
 
 - `01-01-PLAN.md` — Repo scaffolding — **COMPLETE** (commits 5390043, b0e3e6c)
 - `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — **COMPLETE** (commits 1d47733, 654ab63)
@@ -58,6 +59,7 @@ Plan 02-02 delivered: Johnston_St_v2.ipynb extended from 26→36 cells with §3 
 
 ## Next Actions
 
-1. Phase 2 is complete — all GEO-01..04 + DEMO-01..04 requirements satisfied and validated.
-2. Ready for Phase 3 — Demand & Competitors: SA3-level MBS data, Google Places competitor mapping, age-adjusted demand model, required market share calculation.
-3. Phase 3 depends on: geocoded site (§1.2), catchment buffers (§2), apportioned population (§3), age profile (§3 G04), peer benchmarking table (§3 with placeholder GP/pharmacy columns).
+1. Execute gap-closure plan 02-03 — fixes CR-01 (check_dataflow_exists XML crash), CR-02 (v1-vs-v2 no-op), WR-01..04, and IR-02 (validator strengthening).
+2. After 02-03 execution + re-verification passes, Phase 2 is complete — all GEO-01..04 + DEMO-01..04 requirements satisfied at runtime.
+3. Then Phase 3 — Demand & Competitors: SA3-level MBS data, Google Places competitor mapping, age-adjusted demand model, required market share calculation.
+4. Phase 3 depends on: geocoded site (§1.2), catchment buffers (§2), apportioned population (§3), age profile (§3 G04), peer benchmarking table (§3 with placeholder GP/pharmacy columns) — all of which require the 02-03 gap fixes to be runtime-functional.

@@ -48,6 +48,7 @@
 **Plan progress:**
 - [x] 02-01: Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — COMPLETE
 - [x] 02-02: Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — COMPLETE
+- [ ] 02-03: Gap closure (CR-01 check_dataflow_exists XML fix, CR-02 v1-vs-v2 comparison fix, WR-01..04 + IR-02 validator strengthening) — READY TO EXECUTE
 
 **Cross-cutting constraints:**
 - All HTTP through the Phase 1 `CachedSession` (no bare `requests.get`) — appears in both plans
@@ -161,4 +162,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-05 — Phase 2 complete (plans 02-01 + 02-02 delivered)*
+*Last updated: 2026-07-05 — Phase 2 gap-closure plan 02-03 created (CR-01 + CR-02 + WR-01..04 + IR-02)*
