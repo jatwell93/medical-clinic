@@ -416,11 +416,40 @@ def main():
                  f"COMP-03: missing GeoJSON ({comp03_geojson}), folium layers ({comp03_folium}), "
                  f"contextily ({comp03_static}), GP-per-1000 ({comp03_ratio}), or 117 benchmark ({comp03_benchmark})")
 
-    # DEMAND-04 (no ML — negative assertion)
+    # DEMAND-04 (no ML — strengthened negative assertion)
     demand04_no_sklearn = "sklearn" not in all_source and "scikit-learn" not in all_source
-    demand04 = demand04_no_sklearn
-    check_phase3("Phase 3 DEMAND-04 (no ML / no sklearn)", demand04,
-                 f"DEMAND-04: sklearn or scikit-learn found in notebook ({not demand04_no_sklearn})")
+    demand04_no_rf = "RandomForest" not in all_source and "random_forest" not in all_source
+    demand04 = demand04_no_sklearn and demand04_no_rf
+    check_phase3("Phase 3 DEMAND-04 (no ML / no sklearn / no RandomForest)", demand04,
+                 f"DEMAND-04: sklearn or scikit-learn found ({not demand04_no_sklearn}), "
+                 f"RandomForest or random_forest found ({not demand04_no_rf})")
+
+    # DEMAND-01 (SA3 MBS data acquired + state fallback warning)
+    demand01_sa3 = "load_mbs_sa3" in all_source and "20604" in all_source
+    demand01_fallback = "STATE BENCHMARK, NOT LOCAL" in all_source
+    demand01 = demand01_sa3 and demand01_fallback
+    check_phase3("Phase 3 DEMAND-01 (SA3 MBS + state fallback warning)", demand01,
+                 f"DEMAND-01: missing load_mbs_sa3+20604 ({demand01_sa3}) or state fallback warning ({demand01_fallback})")
+
+    # DEMAND-02 (age-adjusted demand per ring with AIHW 4 bands)
+    demand02_compute = "compute_demand" in all_source
+    demand02_aggregate = "aggregate_age_bands" in all_source
+    demand02_bands = "0-24" in all_source and "25-44" in all_source and "45-64" in all_source and "65+" in all_source
+    demand02 = demand02_compute and demand02_aggregate and demand02_bands
+    check_phase3("Phase 3 DEMAND-02 (age-adjusted demand + AIHW 4 bands)", demand02,
+                 f"DEMAND-02: missing compute_demand ({demand02_compute}), aggregate_age_bands ({demand02_aggregate}), "
+                 f"or AIHW 4 bands ({demand02_bands})")
+
+    # DEMAND-03 (demand vs capacity + required market share + plain language)
+    demand03_capacity = "estimate_gp_capacity_range" in all_source
+    demand03_marketshare = "compute_required_market_share" in all_source
+    demand03_three = "share_of_total" in all_source and "share_of_unmet" in all_source and "share_of_pop" in all_source
+    demand03_interpretation = "label_market_share" in all_source and ("PLAIN LANGUAGE" in all_source or "plain language" in all_source)
+    demand03_no_verdict = "Phase 5" in all_source  # verdict deferred to Phase 5
+    demand03 = demand03_capacity and demand03_marketshare and demand03_three and demand03_interpretation and demand03_no_verdict
+    check_phase3("Phase 3 DEMAND-03 (capacity range + market share + interpretation)", demand03,
+                 f"DEMAND-03: missing capacity range ({demand03_capacity}), market share ({demand03_marketshare}), "
+                 f"three framings ({demand03_three}), interpretation ({demand03_interpretation}), or Phase 5 deferral ({demand03_no_verdict})")
 
     passes.extend(phase3_passes)
     failures.extend(phase3_failures)
@@ -496,7 +525,10 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
         "Phase 3 COMP-01 (Places API New + saturation + dedupe)",
         "Phase 3 COMP-02 (classification + fuzzy dedupe)",
         "Phase 3 COMP-03 (GeoJSON + maps + GP-per-1000 benchmark)",
-        "Phase 3 DEMAND-04 (no ML / no sklearn)",
+        "Phase 3 DEMAND-04 (no ML / no sklearn / no RandomForest)",
+        "Phase 3 DEMAND-01 (SA3 MBS + state fallback warning)",
+        "Phase 3 DEMAND-02 (age-adjusted demand + AIHW 4 bands)",
+        "Phase 3 DEMAND-03 (capacity range + market share + interpretation)",
     ]
     for label in phase3_labels:
         found_pass = any(label in p for p in passes)
@@ -510,7 +542,7 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
 
     # Structural passes (not printed individually unless failed)
     for f in failures:
-        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b", "COMP-01", "COMP-02", "COMP-03", "DEMAND-04"]):
+        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b", "COMP-01", "COMP-02", "COMP-03", "DEMAND-01", "DEMAND-02", "DEMAND-03", "DEMAND-04"]):
             print(f"[validate] FAIL: {f}")
 
     overall = len(failures) == 0
