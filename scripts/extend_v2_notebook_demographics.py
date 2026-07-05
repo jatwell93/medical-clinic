@@ -10,7 +10,9 @@ Follows the same cell-dict pattern as extend_v2_notebook.py:
   except possibly the last); code cells have execution_count: null, outputs: [].
 
 Idempotent: if a cell containing "# §3 Demographics" already exists,
-the script skips appending and prints a skip message.
+the script REMOVES the existing §3 cells and re-appends the corrected
+versions (cell-replacement idempotency — re-running produces the
+corrected notebook).
 
 Run:  python scripts/extend_v2_notebook_demographics.py
 Output: Johnston_St_v2.ipynb (extended in-place)
@@ -102,27 +104,34 @@ def demographics_cells():
         "    return pd.read_csv(io.StringIO(resp.text)), resp",
         "",
         "def check_dataflow_exists(flow_id):",
-        "    \"\"\"Check if a dataflow ID exists in the ABS dataflow list (D-11).\"\"\"",
-        "    flows_resp = session.get(f\"{ABS_BASE}/dataflow?detail=allstubs\")",
-        "    flows = flows_resp.json()",
-        "    # Parse SDMX-JSON structure for dataflow IDs",
-        "    flow_ids = [f.get(\"id\", \"\") for f in flows.get(\"dataflows\", [])]",
-        "    return flow_id in flow_ids",
+        "    \"\"\"Check if a dataflow ID exists in the ABS dataflow list (D-11).",
+        "    Safe default: returns True on any failure so the fetch is always attempted —",
+        "    downstream functions have their own try/except fallbacks (no-hard-fail principle).",
+        "    The dataflow endpoint returns SDMX-ML XML, not JSON, so .json() would crash (CR-01 fix).\"\"\"",
+        "    try:",
+        "        flows_resp = session.get(f\"{ABS_BASE}/dataflow?detail=allstubs\")",
+        "        # Endpoint returns SDMX-ML XML (verified by §1.2 smoke test) — parse with ElementTree",
+        "        import xml.etree.ElementTree as ET",
+        "        root = ET.fromstring(flows_resp.text)",
+        "        # SDMX-ML namespace for dataflow structures",
+        "        ns = {\"str\": \"http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure\"}",
+        "        flow_ids = [f.get(\"id\", \"\") for f in root.findall(\".//str:Dataflow\", ns)]",
+        "        if not flow_ids:",
+        "            # Namespace might differ — try without namespace",
+        "            flow_ids = [f.get(\"id\", \"\") for f in root.iter() if \"Dataflow\" in f.tag]",
+        "        return flow_id in flow_ids",
+        "    except Exception as e:",
+        "        print(f\"⚠ check_dataflow_exists({flow_id}) failed: {e} — defaulting to True (will attempt fetch)\")",
+        "        return True",
         "",
         "def parse_gcp_g01_to_tidy(xlsx_path):",
         "    \"\"\"Parse local GCP POA 3067 xlsx into the same schema as the API path (D-17).",
-        "    Schema parity: column names, dtypes, row-per-POA shape must match API path.\"\"\"",
-        "    xl = pd.ExcelFile(xlsx_path)",
-        "    # GCP G01 sheet contains Total_P_P, M_P, F_P, Total_Dwll_D for POA 3067",
-        "    # Parse into the SAME tidy schema the API path produces (D-17)",
-        "    df = pd.DataFrame([{",
-        "        \"POA_CODE21\": \"3067\",",
-        "        \"Total_P_P\": 0,  # populated from xlsx cell",
-        "        \"M_P\": 0,",
-        "        \"F_P\": 0,",
-        "        \"Total_Dwll_D\": 0,",
-        "    }])",
-        "    # TODO: populate from actual xlsx cells — schema must match API path exactly (D-17)",
+        "    Schema parity: column names, dtypes, row-per-POA shape must match API path.",
+        "    Returns empty DataFrame with correct schema if xlsx parsing is not yet implemented —",
+        "    zero is not a valid population (WR-02 fix).\"\"\"",
+        "    print(f\"⚠ parse_gcp_g01_to_tidy: xlsx cell parsing not yet implemented — returning empty schema\")",
+        "    print(f\"  GCP fallback values are not populated; peer table will show N/A for 3067 (WR-02)\")",
+        "    df = pd.DataFrame(columns=[\"POA_CODE21\", \"Total_P_P\", \"M_P\", \"F_P\", \"Total_Dwll_D\"])",
         "    return df",
         "",
         "def fetch_g01_poa():",
@@ -158,12 +167,9 @@ def demographics_cells():
         "        print(f\"  Peer comparison degraded — 9 peer rows marked N/A\")",
         "        xlsx_path = PROJECT_ROOT / \"data\" / \"local\" / \"GCP_POA3067.xlsx\"",
         "        if xlsx_path.exists():",
-        "            # Parse G02 medians from GCP xlsx — schema parity with API path (D-17)",
-        "            df = pd.DataFrame([{",
-        "                \"POA_CODE21\": \"3067\",",
-        "                \"Median_age_persons\": 0,",
-        "                \"Median_tot_hshld_inc_weekly\": 0,",
-        "            }])",
+        "            # Parse G02 medians from GCP xlsx — schema parity with API path (D-17, WR-02)",
+        "            print(f\"⚠ G02 GCP fallback: xlsx cell parsing not yet implemented — returning empty schema (WR-02)\")",
+        "            df = pd.DataFrame(columns=[\"POA_CODE21\", \"Median_age_persons\", \"Median_tot_hshld_inc_weekly\"])",
         "            return df, \"fallback\"",
         "        else:",
         "            print(f\"⚠ GCP fallback file also missing: {xlsx_path}\")",
@@ -192,7 +198,8 @@ def demographics_cells():
         "        return df, \"api\"",
         "    except Exception as e:",
         "        print(f\"⚠ ABS G04 POA API failed: {e}\")",
-        "        return pd.DataFrame(), \"none\"",
+        "        print(f\"  Falling back to G04 fallback (D-12) — consistent with G01/G02 fallback (WR-03 fix)\")",
+        "        return fetch_g04_fallback()",
         "",
         "def fetch_g04_fallback():",
         "    \"\"\"G04 fallback if C21_G04_POA not available at POA level (D-12).",
@@ -210,7 +217,17 @@ def demographics_cells():
         "    g04_df, g04_source = fetch_g04_poa()",
         "    # Derive 65+ share: sum bands >= 65 / total (D-18 — ABS standard 5-year bands)",
         "    # Age bands: 0-4, 5-9, 10-14, ..., 60-64, 65-69, 70-74, 75-79, 80-84, 85+",
-        "    age_bands_65plus = [b for b in g04_df.columns if \"65\" in b or \"70\" in b or \"75\" in b or \"80\" in b or \"85\" in b]",
+        "    # Use explicit prefix matching, not fragile substring matching (WR-04 fix)",
+        "    age_bands_65plus = [b for b in g04_df.columns",
+        "                        if b.startswith(\"Age_yr_65\") or b.startswith(\"Age_yr_70\")",
+        "                        or b.startswith(\"Age_yr_75\") or b.startswith(\"Age_yr_80\")",
+        "                        or b.startswith(\"Age_yr_85\") or \"Age_yr_85ov\" in b",
+        "                        or b in (\"Age_65_69\", \"Age_70_74\", \"Age_75_79\", \"Age_80_84\", \"Age_85plus\")]",
+        "    print(f\"[abs] G04 65+ age bands matched: {age_bands_65plus}\")",
+        "    if not age_bands_65plus:",
+        "        # Fallback: print all columns for debugging if no bands matched (teaching transparency)",
+        "        print(f\"⚠ No 65+ age bands matched — G04 columns: {list(g04_df.columns)}\")",
+        "        print(f\"  Check ABS G04 data dictionary for exact column names (WR-04)\")",
         "    if age_bands_65plus and \"Total_P_P\" in g04_df.columns:",
         "        g04_df[\"pct_65plus\"] = g04_df[age_bands_65plus].sum(axis=1) / g04_df[\"Total_P_P\"] * 100",
         "    else:",
@@ -274,10 +291,21 @@ def demographics_cells():
         "    if sa1_pop_df is not None:",
         "        # Wire into §2.3 apportionment — compute actual v2 catchment population totals",
         "        v2_ring_pops = {}",
+        "        v1_ring_pops = {}",
         "        for r in BASE_ASSUMPTIONS[\"catchment_radii_m\"]:",
         "            pop, inter = apportion_ring(sa1_in_5k, sa1_pop_df, buffers[r].iloc[0])",
         "            v2_ring_pops[r] = pop",
         "            print(f\"[catchment] {r//1000} km ring: v2 apportioned pop = {pop:,.0f}\")",
+        "",
+        "            # v1 naive: sum FULL POA population for any POA touching the buffer (CR-02 fix)",
+        "            # Uses g01_df from §3.1 — the POA total persons already fetched",
+        "            if g01_df is not None and len(g01_df) > 0 and \"POA_CODE21\" in g01_df.columns:",
+        "                v1_pop = v1_naive_catchment_pop(buffers[r].iloc[0], g01_df)",
+        "                v1_ring_pops[r] = v1_pop",
+        "                print(f\"[catchment] {r//1000} km ring: v1 naive pop = {v1_pop:,.0f} (whole-postcode sum)\")",
+        "            else:",
+        "                print(f\"⚠ g01_df empty — v1 naive pop unavailable for {r//1000} km ring\")",
+        "                v1_ring_pops[r] = 0",
         "",
         "        # Plausibility assertion (D-09b, PITFALLS.md Pitfall 2)",
         "        lo, hi = BASE_ASSUMPTIONS[\"catchment_pop_plausible_range\"]",
@@ -285,14 +313,19 @@ def demographics_cells():
         "            f\"3km catchment pop {v2_ring_pops[3000]:,.0f} outside plausible range ({lo:,}-{hi:,}) — PITFALLS.md Pitfall 2\"",
         "        print(f\"[catchment] ✓ 3km pop plausibility assertion passed ({v2_ring_pops[3000]:,.0f})\")",
         "",
-        "        # Call the §2.4 v1-vs-v2 comparison with real totals (D-06 completion)",
-        "        comparison_df = compare_v1_v2(v2_ring_pops)",
+        "        # Call the §2.4 v1-vs-v2 comparison with BOTH v1 and v2 totals (D-06 completion, CR-02 fix)",
+        "        if v1_ring_pops:",
+        "            comparison_df = compare_v1_v2(v1_ring_pops, v2_ring_pops)",
+        "        else:",
+        "            print(\"[catchment] ⚠ v1 naive pops unavailable — v1-vs-v2 comparison skipped\")",
         "    else:",
         "        print(\"[catchment] ⚠ SA1 pop unavailable — v2 totals + v1 comparison deferred\")",
         "        v2_ring_pops = {}",
+        "        v1_ring_pops = {}",
         "else:",
         "    print(\"[catchment] ⚠ SA1 shapefile missing — v2 totals deferred (POA-level fallback)\")",
         "    v2_ring_pops = {}",
+        "    v1_ring_pops = {}",
     ))
 
     # 5. Markdown — §3.4 ERP Scaling
@@ -456,59 +489,53 @@ def main():
     nb = json.loads(notebook_path.read_text(encoding="utf-8"))
     cells = nb["cells"]
 
-    # Idempotency check: skip if §3 Demographics already present
-    already_present = any(
-        "# §3 Demographics" in "".join(c.get("source", []))
-        for c in cells
-    )
-
-    if already_present:
-        skipped = sum(
-            1 for c in cells
-            if "# §3 Demographics" in "".join(c.get("source", []))
-        )
-        print(f"[extend-demog] skipped: {skipped} cell(s) already present")
-        print(f"[extend-demog] appended 0 cells (skipped: {skipped} already present)")
-        return
-
-    # Find the §2.6 Uniform-Density Caveat markdown cell — new cells go right after it
-    # (or the Next Steps cell if §2.6 is the last content cell before it)
-    insert_idx = None
+    # Cell-replacement idempotency: if §3 Demographics already exists,
+    # remove the existing §3 cells (including its trailing Next Steps) and
+    # re-append the corrected versions.
+    MARKER = "# §3 Demographics"
+    STOP_MARKER = "## Next Steps"
+    start_idx = None
     for i, c in enumerate(cells):
-        src = "".join(c.get("source", []))
-        if "§2.6 Uniform-Density Caveat" in src:
-            insert_idx = i + 1
+        if MARKER in "".join(c.get("source", [])):
+            start_idx = i
             break
-
-    if insert_idx is None:
-        # Fallback: find the "Next Steps" cell from Plan 02-01 and insert before it
-        for i, c in enumerate(cells):
-            src = "".join(c.get("source", []))
-            if src.startswith("## Next Steps") and "§3 Demographics" in src:
-                insert_idx = i  # insert before the old Next Steps
-                break
-
-    if insert_idx is None:
-        # Last resort: append at end
-        insert_idx = len(cells)
-
-    # Remove the old "Next Steps" markdown cell (replaced by the new one
-    # at the end of the §3 block). Only remove if it's the Plan 02-01 version.
-    removed_next_steps = False
-    if insert_idx < len(cells):
-        old_next = cells[insert_idx]
-        old_src = "".join(old_next.get("source", []))
-        if (old_next.get("cell_type") == "markdown"
-                and old_src.startswith("## Next Steps")
-                and "§3 Demographics" in old_src):
-            cells.pop(insert_idx)
-            removed_next_steps = True
 
     # Build the new cells
     new_cells = demographics_cells()
 
-    # Insert after §2.6 (or where old Next Steps was)
-    cells[insert_idx:insert_idx] = new_cells
+    if start_idx is not None:
+        # Find where the §3 section ends (the trailing Next Steps belongs to §3,
+        # so include it in the removed range — demographics_cells() ships its own)
+        end_idx = len(cells)
+        for j in range(start_idx + 1, len(cells)):
+            src = "".join(cells[j].get("source", []))
+            if STOP_MARKER in src:
+                end_idx = j + 1  # include the Next Steps cell in the removal
+                break
+        removed = end_idx - start_idx
+        cells = cells[:start_idx] + cells[end_idx:]
+        cells[start_idx:start_idx] = new_cells
+        print(f"[extend-demog] replaced {removed} §3 cells with {len(new_cells)} corrected cells")
+    else:
+        # Fresh install — find §2.6 Uniform-Density Caveat, insert after it
+        insert_idx = None
+        for i, c in enumerate(cells):
+            src = "".join(c.get("source", []))
+            if "§2.6 Uniform-Density Caveat" in src:
+                insert_idx = i + 1
+                break
+        if insert_idx is None:
+            # Fallback: insert before the Plan 02-01 "Next Steps" (references §3)
+            for i, c in enumerate(cells):
+                src = "".join(c.get("source", []))
+                if src.startswith("## Next Steps") and "§3 Demographics" in src:
+                    insert_idx = i
+                    cells.pop(insert_idx)  # old §2 Next Steps replaced by §3 version
+                    break
+        if insert_idx is None:
+            insert_idx = len(cells)
+        cells[insert_idx:insert_idx] = new_cells
+        print(f"[extend-demog] appended {len(new_cells)} §3 cells (fresh install)")
 
     # Write back
     nb["cells"] = cells
@@ -517,11 +544,6 @@ def main():
         encoding="utf-8",
     )
 
-    n_new = len(new_cells)
-    n_skipped = 0
-    print(f"[extend-demog] appended {n_new} cells (skipped: {n_skipped} already present)")
-    if removed_next_steps:
-        print("[extend-demog] replaced old 'Next Steps' markdown with §3 version")
     n_cells = len(cells)
     n_code = sum(1 for c in cells if c.get("cell_type") == "code")
     n_md = sum(1 for c in cells if c.get("cell_type") == "markdown")
