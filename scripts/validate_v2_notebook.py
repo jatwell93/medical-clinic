@@ -370,6 +370,62 @@ def main():
     failures.extend(phase2_demog_failures)
 
     # ──────────────────────────────────────────────────────────────
+    # 6. Phase 3 — Competitors (COMP-01..03 + DEMAND-04)
+    # ──────────────────────────────────────────────────────────────
+
+    phase3_failures = []
+    phase3_passes = []
+
+    def check_phase3(label, condition, fail_msg):
+        if condition:
+            phase3_passes.append(label)
+        else:
+            phase3_failures.append(fail_msg)
+            print(f"[validate] {label}: FAIL")
+
+    # COMP-01 (Places API New with saturation + dedupe)
+    comp01_url = "places.googleapis.com/v1/places:searchNearby" in all_source
+    comp01_fieldmask = "X-Goog-FieldMask" in all_source
+    comp01_saturated = "places_nearby_saturated" in all_source
+    comp01_dedupe = "place.id" in all_source or "place_id" in all_source
+    comp01_no_rating = "places.rating" not in all_source and "places.userRatingCount" not in all_source
+    comp01 = comp01_url and comp01_fieldmask and comp01_saturated and comp01_dedupe and comp01_no_rating
+    check_phase3("Phase 3 COMP-01 (Places API New + saturation + dedupe)", comp01,
+                 f"COMP-01: missing Places URL ({comp01_url}), field mask ({comp01_fieldmask}), "
+                 f"saturation ({comp01_saturated}), dedupe ({comp01_dedupe}), or no-rating ({comp01_no_rating})")
+
+    # COMP-02 (pharmacy brand classification + clinic-vs-practitioner filtering)
+    comp02_pharmacy = "PHARMACY_BRANDS" in all_source and "chemist warehouse" in all_source.lower()
+    comp02_classify = "classify_place" in all_source
+    comp02_fuzzy = "fuzzy_dedupe_competitors" in all_source and "rapidfuzz" in all_source
+    comp02_no_fuzzywuzzy = "fuzzywuzzy" not in all_source
+    comp02 = comp02_pharmacy and comp02_classify and comp02_fuzzy and comp02_no_fuzzywuzzy
+    check_phase3("Phase 3 COMP-02 (classification + fuzzy dedupe)", comp02,
+                 f"COMP-02: missing PHARMACY_BRANDS+chemist warehouse ({comp02_pharmacy}), "
+                 f"classify_place ({comp02_classify}), rapidfuzz dedupe ({comp02_fuzzy}), "
+                 f"or no-fuzzywuzzy ({comp02_no_fuzzywuzzy})")
+
+    # COMP-03 (competitor inventory table + map layers + GP-per-1,000 benchmark)
+    comp03_geojson = "competitors.geojson" in all_source
+    comp03_folium = "folium.FeatureGroup" in all_source and "folium.LayerControl" in all_source
+    comp03_static = "cx.add_basemap" in all_source
+    comp03_ratio = "gp_per_1000" in all_source or "GP-per-1,000" in all_source or "gp_per_1k" in all_source
+    comp03_benchmark = "117" in all_source
+    comp03 = comp03_geojson and comp03_folium and comp03_static and comp03_ratio and comp03_benchmark
+    check_phase3("Phase 3 COMP-03 (GeoJSON + maps + GP-per-1000 benchmark)", comp03,
+                 f"COMP-03: missing GeoJSON ({comp03_geojson}), folium layers ({comp03_folium}), "
+                 f"contextily ({comp03_static}), GP-per-1000 ({comp03_ratio}), or 117 benchmark ({comp03_benchmark})")
+
+    # DEMAND-04 (no ML — negative assertion)
+    demand04_no_sklearn = "sklearn" not in all_source and "scikit-learn" not in all_source
+    demand04 = demand04_no_sklearn
+    check_phase3("Phase 3 DEMAND-04 (no ML / no sklearn)", demand04,
+                 f"DEMAND-04: sklearn or scikit-learn found in notebook ({not demand04_no_sklearn})")
+
+    passes.extend(phase3_passes)
+    failures.extend(phase3_failures)
+
+    # ──────────────────────────────────────────────────────────────
     # 5. Summary report
     # ──────────────────────────────────────────────────────────────
 
@@ -435,9 +491,26 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
         else:
             print(f"[validate] {label}: FAIL")
 
+    # Phase 3 checks
+    phase3_labels = [
+        "Phase 3 COMP-01 (Places API New + saturation + dedupe)",
+        "Phase 3 COMP-02 (classification + fuzzy dedupe)",
+        "Phase 3 COMP-03 (GeoJSON + maps + GP-per-1000 benchmark)",
+        "Phase 3 DEMAND-04 (no ML / no sklearn)",
+    ]
+    for label in phase3_labels:
+        found_pass = any(label in p for p in passes)
+        found_fail = any(label in f for f in failures)
+        if found_pass:
+            print(f"[validate] {label}: PASS")
+        elif found_fail:
+            print(f"[validate] {label}: FAIL")
+        else:
+            print(f"[validate] {label}: FAIL")
+
     # Structural passes (not printed individually unless failed)
     for f in failures:
-        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b"]):
+        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b", "COMP-01", "COMP-02", "COMP-03", "DEMAND-04"]):
             print(f"[validate] FAIL: {f}")
 
     overall = len(failures) == 0
