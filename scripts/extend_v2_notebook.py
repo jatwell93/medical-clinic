@@ -11,7 +11,9 @@ Follows the same cell-dict pattern as create_v2_notebook.py:
   except possibly the last); code cells have execution_count: null, outputs: [].
 
 Idempotent: if a cell containing "# §1.2 Geocode Site" already exists,
-the script skips appending and prints a skip message.
+the script REMOVES the existing §1.2 + §2 cells and re-appends the
+corrected versions (cell-replacement idempotency — re-running produces
+the corrected notebook).
 
 Run:  python scripts/extend_v2_notebook.py
 Output: Johnston_St_v2.ipynb (extended in-place)
@@ -304,37 +306,38 @@ def catchment_cells():
         "to the fixed logic. The grouped bar chart + side-by-side table show v1",
         "inflating 2–4× per ring.",
         "",
-        "The v2 totals come from §3 (Plan 02-02). This cell defines the comparison",
-        "function `compare_v1_v2(v2_ring_pops)` that §3 calls after computing the",
-        "v2 apportioned totals.",
+        "The v1 and v2 totals come from §3 (Plan 02-02). This cell defines the comparison",
+        "function `compare_v1_v2(v1_ring_pops, v2_ring_pops)` that §3.3 calls after",
+        "computing both the v1 naive whole-postcode sums and the v2 apportioned totals.",
     ))
 
     # 11. Code — §2.4 v1-vs-v2 comparison
     cells.append(code(
         "# v1-vs-v2 catchment comparison (D-06, success criterion #2)",
         "# Reproduce v1's naive whole-postcode sum inline, compare against v2 apportioned",
-        "def v1_naive_catchment_pop(ring_geom_m):",
-        '    """v1 flaw: sum FULL POA population for any POA touching the buffer."""',
-        '    ring = gpd.GeoDataFrame(geometry=[ring_geom_m], crs="EPSG:7855")',
+        "def v1_naive_catchment_pop(ring_geom_m, poa_pop_df):",
+        '    """v1 flaw: sum FULL POA population for any POA touching the buffer.',
+        "    poa_pop_df: DataFrame with columns POA_CODE21, Total_P_P (from §3 G01 fetch).",
+        '    Returns the summed population (int), NOT a GeoDataFrame."""',
         "    touching = poa[poa.geometry.intersects(ring_geom_m)]",
-        "    # v1 used POA total persons — fetch from §3 (Plan 02-02). Stub returns area-weighted proxy.",
-        "    return touching  # Plan 02-02 joins the POA total persons and sums",
+        "    # Join POA total persons onto the touching POAs and sum (v1's naive approach)",
+        '    merged = touching.merge(poa_pop_df[["POA_CODE21", "Total_P_P"]], on="POA_CODE21", how="left")',
+        '    return int(merged["Total_P_P"].sum())',
         "",
-        'def compare_v1_v2(v2_ring_pops: dict) -> "pd.DataFrame":',
+        "def compare_v1_v2(v1_ring_pops: dict, v2_ring_pops: dict):",
         '    """',
-        "    v2_ring_pops: {radius_m: apportioned_pop} — produced in §3 (Plan 02-02)",
-        "    Returns comparison DataFrame + renders grouped bar chart.",
+        "    v1_ring_pops: {radius_m: naive_whole_postcode_pop} — v1's flawed approach",
+        "    v2_ring_pops: {radius_m: sa1_apportioned_pop} — v2's corrected approach",
+        "    Returns comparison DataFrame + renders grouped bar chart showing v1 overstatement.",
         '    """',
         "    import pandas as pd",
         "    import matplotlib.pyplot as plt",
         "    rows = []",
         "    for r, v2_pop in v2_ring_pops.items():",
-        "        # v1 naive: sum full POA population touching the buffer",
-        "        touching = v1_naive_catchment_pop(buffers[r].iloc[0])",
-        "        # v1_pop computed in §3 once POA total persons are fetched — placeholder",
-        "        v1_pop = v2_pop  # placeholder, overwritten in §3",
+        "        v1_pop = v1_ring_pops.get(r, 0)",
         '        rows.append({"ring_km": r//1000, "v1_naive": v1_pop, "v2_apportioned": v2_pop,',
-        '                     "diff": v1_pop - v2_pop, "pct_overstate": (v1_pop/v2_pop - 1)*100 if v2_pop else None})',
+        '                     "diff": v1_pop - v2_pop,',
+        '                     "pct_overstate": (v1_pop/v2_pop - 1)*100 if v2_pop else None})',
         "    df = pd.DataFrame(rows)",
         "    print(df.to_string(index=False))",
         "    # Grouped bar chart",
@@ -346,7 +349,7 @@ def catchment_cells():
         '    ax.set_ylabel("Catchment population"); ax.legend(); ax.set_title("v1 vs v2 catchment population")',
         "    plt.show()",
         "    return df",
-        'print("[compare] compare_v1_v2() defined — called in §3 after v2 totals are computed")',
+        'print("[compare] compare_v1_v2(v1_ring_pops, v2_ring_pops) defined — called in §3.3 after both v1 and v2 totals are computed")',
     ))
 
     # 12. Markdown — §2.5 Catchment Maps
@@ -502,52 +505,62 @@ def main():
     nb = json.loads(notebook_path.read_text(encoding="utf-8"))
     cells = nb["cells"]
 
-    # Idempotency check: skip if §1.2 Geocode Site already present
-    already_present = any(
-        "# §1.2 Geocode Site" in "".join(c.get("source", []))
-        for c in cells
-    )
+    # Extend BASE_ASSUMPTIONS with Phase 2 keys (idempotent — no-op if already present)
+    extend_base_assumptions(cells)
 
-    if already_present:
-        skipped = sum(
-            1 for c in cells
-            if "# §1.2 Geocode Site" in "".join(c.get("source", []))
-        )
-        print(f"[extend] skipped: {skipped} cell(s) already present")
-        print(f"[extend] appended 0 cells (skipped: {skipped} already present)")
-        return
-
-    # Extend BASE_ASSUMPTIONS with Phase 2 keys
-    assumptions_extended = extend_base_assumptions(cells)
-
-    # Find the §1.2 ABS smoke test code cell — new cells go right after it
-    insert_idx = None
+    # Cell-replacement idempotency: if §1.2 Geocode Site already exists,
+    # remove the existing §1.2 + §2 cells and re-append the corrected versions.
+    MARKER = "# §1.2 Geocode Site"
+    STOP_MARKER = "# §3 Demographics"
+    start_idx = None
     for i, c in enumerate(cells):
-        src = "".join(c.get("source", []))
-        if "ABS Data API smoke test" in src and c.get("cell_type") == "code":
-            insert_idx = i + 1
+        if MARKER in "".join(c.get("source", [])):
+            start_idx = i
             break
 
-    if insert_idx is None:
-        # Fallback: append at end
-        insert_idx = len(cells)
-
-    # Remove the old "Next Steps" markdown cell (replaced by the new one
-    # at the end of the inserted block).  Only remove it if it's after
-    # the insert point (it should be the last cell).
-    removed_next_steps = False
-    if insert_idx < len(cells):
-        old_next = cells[insert_idx]
-        old_src = "".join(old_next.get("source", []))
-        if old_next.get("cell_type") == "markdown" and old_src.startswith("## Next Steps"):
-            cells.pop(insert_idx)
-            removed_next_steps = True
-
-    # Build the new cells
+    # Build the new cells (geocode + catchment)
     new_cells = geocode_cells() + catchment_cells()
 
-    # Insert after the ABS smoke test code cell
-    cells[insert_idx:insert_idx] = new_cells
+    if start_idx is not None:
+        # Find where the §1.2+§2 section ends (next major section marker or Next Steps)
+        end_idx = len(cells)
+        has_section3 = False
+        for j in range(start_idx + 1, len(cells)):
+            src = "".join(cells[j].get("source", []))
+            if STOP_MARKER in src:
+                end_idx = j
+                has_section3 = True
+                break
+            if "## Next Steps" in src:
+                end_idx = j
+                break
+        removed = end_idx - start_idx
+        cells = cells[:start_idx] + cells[end_idx:]
+        # If §3 Demographics follows, drop the trailing §2 "Next Steps" markdown
+        # (§3 owns the final Next Steps — the §2 version would be mid-notebook)
+        if has_section3 and new_cells and new_cells[-1].get("cell_type") == "markdown" \
+                and "".join(new_cells[-1].get("source", [])).startswith("## Next Steps"):
+            new_cells = new_cells[:-1]
+        cells[start_idx:start_idx] = new_cells
+        print(f"[extend] replaced {removed} §1.2+§2 cells with {len(new_cells)} corrected cells")
+    else:
+        # Fresh install — find the §1.2 ABS smoke test code cell, insert after it
+        insert_idx = None
+        for i, c in enumerate(cells):
+            src = "".join(c.get("source", []))
+            if "ABS Data API smoke test" in src and c.get("cell_type") == "code":
+                insert_idx = i + 1
+                break
+        if insert_idx is None:
+            insert_idx = len(cells)
+        # Remove old Next Steps if present at insert point (replaced by new §2 Next Steps)
+        if insert_idx < len(cells):
+            old_next = cells[insert_idx]
+            old_src = "".join(old_next.get("source", []))
+            if old_next.get("cell_type") == "markdown" and old_src.startswith("## Next Steps"):
+                cells.pop(insert_idx)
+        cells[insert_idx:insert_idx] = new_cells
+        print(f"[extend] appended {len(new_cells)} §1.2+§2 cells (fresh install)")
 
     # Write back
     nb["cells"] = cells
@@ -556,13 +569,6 @@ def main():
         encoding="utf-8",
     )
 
-    n_new = len(new_cells)
-    n_skipped = 0
-    print(f"[extend] appended {n_new} cells (skipped: {n_skipped} already present)")
-    if assumptions_extended:
-        print("[extend] BASE_ASSUMPTIONS extended with 6 Phase 2 keys")
-    if removed_next_steps:
-        print("[extend] replaced old 'Next Steps' markdown with Phase 2 version")
     n_cells = len(cells)
     n_code = sum(1 for c in cells if c.get("cell_type") == "code")
     n_md = sum(1 for c in cells if c.get("cell_type") == "markdown")
