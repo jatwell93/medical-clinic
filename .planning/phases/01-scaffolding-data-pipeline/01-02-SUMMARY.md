@@ -112,10 +112,26 @@ Each task was committed atomically:
 - **Verification:** `grep -c "/content/drive" Johnston_St_v2.ipynb` returns 0; `grep -c "drive.mount" Johnston_St_v2.ipynb` returns 0; validation script passes
 - **Committed in:** 1d47733 (Task 1 commit)
 
+**3. [Rule 2 - Missing Critical] ABS smoke test assumed JSON but ABS returns SDMX-ML XML**
+- **Found during:** Colab runtime testing (user-reported during human UAT)
+- **Issue:** The §1.2 smoke test called `response.json()` and asserted on JSON keys, but the ABS dataflow endpoint returns SDMX-ML XML by default (Content-Type: `application/vnd.sdmx.structure+xml`). Requesting JSON via `Accept: application/json` causes the server to hang/return 500. The plan's research notes (STACK.md) confirmed the endpoint URL but did not verify the response format.
+- **Fix:** Rewrote the smoke test to validate HTTP 200 + SDMX content-type + `sdmx` namespace in the response body, instead of parsing JSON. Updated the markdown teaching commentary to explain that ABS returns SDMX-ML XML and that Phase 2 will use `?format=csvfilewithlabels` for actual census data. Also fixed `CACHE_DIR.glob("*.json")` → `CACHE_DIR.rglob("*.json")` because requests-cache filesystem backend stores responses in a `data/cache/api_cache/` subdirectory named after `cache_name`.
+- **Files modified:** scripts/create_v2_notebook.py, Johnston_St_v2.ipynb, .gitignore
+- **Verification:** End-to-end smoke test run: Run 1 HTTP 200 from_cache=False (1 cache file written), Run 2 from_cache=True (cache hit confirmed — PIPE-04 validated). Validation script still passes OVERALL: PASS.
+- **Committed in:** db14f6f (post-execution fix during human UAT)
+
+**4. [Rule 2 - Missing Critical] .gitignore redirects.sqlite path did not match actual cache layout**
+- **Found during:** fix #3 above (cache files are in `data/cache/api_cache/` subdirectory, not directly in `data/cache/`)
+- **Issue:** The plan specified `.gitignore` pattern `data/cache/redirects.sqlite`, but requests-cache creates the file at `data/cache/api_cache/redirects.sqlite`. The original pattern did not match, so the regenerable cache metadata would have been committed.
+- **Fix:** Changed `.gitignore` pattern to `data/cache/**/redirects.sqlite` to match recursively regardless of cache_name.
+- **Files modified:** .gitignore
+- **Verification:** `git check-ignore -v data/cache/api_cache/redirects.sqlite` matches; `git check-ignore -v data/cache/api_cache/*.json` returns exit 1 (not ignored — correct per D-12).
+- **Committed in:** db14f6f (same commit as fix #3)
+
 ---
 
-**Total deviations:** 2 auto-fixed (2 missing critical)
-**Impact on plan:** Both auto-fixes necessary for the notebook to meet acceptance criteria on Windows. No scope creep — the teaching content is preserved, only the literal strings were reworded.
+**Total deviations:** 4 auto-fixed (4 missing critical)
+**Impact on plan:** Fixes 3 and 4 were discovered during human UAT (Colab runtime testing). Both are format/path assumptions in the plan that could only be caught by actually running the smoke test against the live ABS API. No scope creep — the smoke test still validates the same property (cache layer works) and the .gitignore policy (D-12) is still honored.
 
 ## Issues Encountered
 None
