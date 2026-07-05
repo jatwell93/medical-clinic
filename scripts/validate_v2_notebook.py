@@ -286,6 +286,78 @@ def main():
     passes.extend(phase2_passes)
     failures.extend(phase2_failures)
 
+    # Phase 2 Demographics checks (DEMO-01..04 + D-03/D-06/D-09b/D-11)
+    phase2_demog_failures = []
+    phase2_demog_passes = []
+
+    def check_demog(label, condition, fail_msg):
+        if condition:
+            phase2_demog_passes.append(label)
+        else:
+            phase2_demog_failures.append(fail_msg)
+            print(f"[validate] {label}: FAIL")
+
+    # DEMO-01 (ABS G01/G02 fetch + fallback)
+    demo01_g01 = "C21_G01_POA" in all_source
+    demo01_g02 = "C21_G02_POA" in all_source or "C21_G02" in all_source
+    demo01_fallback = "GCP_POA3067" in all_source
+    demo01_parser = "parse_gcp_g01_to_tidy" in all_source
+    demo01 = demo01_g01 and demo01_g02 and demo01_fallback and demo01_parser
+    check_demog("Phase 2 DEMO-01 (ABS G01/G02 + fallback)", demo01,
+                f"DEMO-01: missing C21_G01_POA ({demo01_g01}), C21_G02 ({demo01_g02}), GCP_POA3067 ({demo01_fallback}), or parse_gcp_g01_to_tidy ({demo01_parser})")
+
+    # DEMO-02 (peer comparison charts)
+    demo02_subplots = "subplots(2, 2" in all_source
+    demo02_site = "is_site" in all_source
+    demo02 = demo02_subplots and demo02_site
+    check_demog("Phase 2 DEMO-02 (peer comparison charts)", demo02,
+                f"DEMO-02: missing subplots(2, 2 ({demo02_subplots}) or is_site ({demo02_site})")
+
+    # DEMO-03 (peer benchmarking table)
+    demo03_gp = "gp_count" in all_source and "pharmacy_count" in all_source
+    demo03_pop = "Total_P_P" in all_source
+    demo03_age = "Median_age_persons" in all_source
+    demo03_65 = "pct_65plus" in all_source
+    demo03 = demo03_gp and demo03_pop and demo03_age and demo03_65
+    check_demog("Phase 2 DEMO-03 (peer benchmarking table)", demo03,
+                f"DEMO-03: missing gp_count+pharmacy_count ({demo03_gp}), Total_P_P ({demo03_pop}), Median_age_persons ({demo03_age}), or pct_65plus ({demo03_65})")
+
+    # DEMO-04 (ERP scaling)
+    demo04_erp = "ABS_ANNUAL_ERP_ASGS2021" in all_source
+    demo04_rate = "erp_growth_rate" in all_source
+    demo04_col = "Total_P_P_erp" in all_source
+    demo04_caveat = "Caveat" in all_source and "ERP" in all_source
+    demo04 = demo04_erp and demo04_rate and demo04_col and demo04_caveat
+    check_demog("Phase 2 DEMO-04 (ERP scaling)", demo04,
+                f"DEMO-04: missing ABS_ANNUAL_ERP_ASGS2021 ({demo04_erp}), erp_growth_rate ({demo04_rate}), Total_P_P_erp ({demo04_col}), or Caveat+ERP ({demo04_caveat})")
+
+    # D-11 (G04 runtime verification)
+    d11 = "C21_G04_POA" in all_source and "check_dataflow_exists" in all_source
+    check_demog("Phase 2 D-11 (G04 runtime verify)", d11,
+                f"D-11: missing C21_G04_POA ({'C21_G04_POA' in all_source}) or check_dataflow_exists ({'check_dataflow_exists' in all_source})")
+
+    # D-03 (SA1 total persons)
+    d03_flow = "C21_G01_SA1" in all_source
+    d03_df = "sa1_pop_df" in all_source
+    d03 = d03_flow and d03_df
+    check_demog("Phase 2 D-03 (SA1 total persons)", d03,
+                f"D-03: missing C21_G01_SA1 ({d03_flow}) or sa1_pop_df ({d03_df})")
+
+    # D-06 completion (v1-vs-v2 with real totals)
+    d06_call = "compare_v1_v2(" in all_source
+    d06_totals = "v2_ring_pops" in all_source
+    d06_done = d06_call and d06_totals
+    check_demog("Phase 2 D-06 (v1-vs-v2 with real totals)", d06_done,
+                f"D-06: missing compare_v1_v2( call ({d06_call}) or v2_ring_pops ({d06_totals})")
+
+    # D-09b (catchment pop plausibility assertion)
+    d09b = "catchment_pop_plausible_range" in all_source and "assert" in all_source
+    check_demog("Phase 2 D-09b (pop plausibility assert)", d09b,
+                f"D-09b: missing catchment_pop_plausible_range ({'catchment_pop_plausible_range' in all_source}) or assert")
+
+    passes.extend(phase2_demog_passes)
+    failures.extend(phase2_demog_failures)
+
     # ──────────────────────────────────────────────────────────────
     # 5. Summary report
     # ──────────────────────────────────────────────────────────────
@@ -332,6 +404,14 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
         "Phase 2 GEO-03 (SA1 apportionment)",
         "Phase 2 GEO-04 (maps)",
         "Phase 2 D-06 (v1-vs-v2 comparison)",
+        "Phase 2 DEMO-01 (ABS G01/G02 + fallback)",
+        "Phase 2 DEMO-02 (peer comparison charts)",
+        "Phase 2 DEMO-03 (peer benchmarking table)",
+        "Phase 2 DEMO-04 (ERP scaling)",
+        "Phase 2 D-11 (G04 runtime verify)",
+        "Phase 2 D-03 (SA1 total persons)",
+        "Phase 2 D-06 (v1-vs-v2 with real totals)",
+        "Phase 2 D-09b (pop plausibility assert)",
     ]
     for label in phase2_labels:
         found_pass = any(label in p for p in passes)
@@ -345,7 +425,7 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
 
     # Structural passes (not printed individually unless failed)
     for f in failures:
-        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06"]):
+        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b"]):
             print(f"[validate] FAIL: {f}")
 
     overall = len(failures) == 0
