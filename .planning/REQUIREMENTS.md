@@ -15,14 +15,14 @@
 
 - [ ] **GEO-01**: Site geocoded from the exact address (292-296 Johnston St) via Google Geocoding API, cached
 - [ ] **GEO-02**: 1/3/5 km catchment buffers built from the site point in EPSG:7855 (GDA2020/MGA55); all metre-based operations in projected CRS with a sanity assertion (3 km buffer ≈ 28.3 km²)
-- [ ] **GEO-03**: Catchment population computed by area-apportioning POA populations across buffer intersections (not whole-postcode summing)
+- [x] **GEO-03**: Catchment population computed by area-apportioning POA populations across buffer intersections (not whole-postcode summing)
 - [ ] **GEO-04**: Interactive folium map (site, buffers, competitors) plus static matplotlib+contextily twin figures for the PDF
 
 ### Demographics (DEMO)
 
-- [ ] **DEMO-01**: 2021 Census G01/G02 variables (population, age bands, median household income) fetched from ABS Data API (`data.api.abs.gov.au`, `C21_G01_POA`/`C21_G02_POA`, csvfilewithlabels) with local GCP files as documented fallback
-- [ ] **DEMO-02**: Demographic profile for POA 3067 plus peer postcodes (3066, 3068, 3070, 3078, 3079, 3101, 3121, 3122, 3123) with comparison charts
-- [ ] **DEMO-03**: Peer-postcode benchmarking table: demand/supply indicators (population, income, 65+ share, GP and pharmacy counts) across the peer set
+- [x] **DEMO-01**: 2021 Census G01/G02 variables (population, age bands, median household income) fetched from ABS Data API (`data.api.abs.gov.au`, `C21_G01_POA`/`C21_G02_POA`, csvfilewithlabels) with local GCP files as documented fallback
+- [x] **DEMO-02**: Demographic profile for POA 3067 plus peer postcodes (3066, 3068, 3070, 3078, 3079, 3101, 3121, 3122, 3123) with comparison charts
+- [x] **DEMO-03**: Peer-postcode benchmarking table: demand/supply indicators (population, income, 65+ share, GP and pharmacy counts) across the peer set
 - [ ] **DEMO-04**: Census staleness addressed — population scaled to current-year ABS Estimated Resident Population where available, with caveat noted
 
 ### Demand Modelling (DEMAND)
@@ -50,10 +50,10 @@
 
 ### Reporting (REP)
 
-- [ ] **REP-01**: Assumptions register: every constant in one table with value, source citation, and confidence level
-- [ ] **REP-02**: Executive summary with key metrics, maps, scenario table, and an explicit go/no-go recommendation
-- [ ] **REP-03**: Executive report exported to PDF (jinja2 + weasyprint from accumulated metrics; static map figures) runnable in Colab
-- [ ] **REP-04**: All data sources cited inline (ABS Census 2021, ABS Data API, MBS statistics, AIHW, Google Places) with access dates
+- [x] **REP-01**: Assumptions register: every constant in one table with value, source citation, and confidence level
+- [x] **REP-02**: Executive summary with key metrics, maps, scenario table, and an explicit go/no-go recommendation
+- [x] **REP-03**: Executive report exported to PDF (jinja2 + weasyprint from accumulated metrics; static map figures) runnable in Colab
+- [x] **REP-04**: All data sources cited inline (ABS Census 2021, ABS Data API, MBS statistics, AIHW, Google Places) with access dates
 
 ## v2 Requirements
 

@@ -45,6 +45,16 @@
 
 **Requirements mapped:** GEO-01, GEO-02, GEO-03, GEO-04, DEMO-01, DEMO-02, DEMO-03, DEMO-04
 
+**Plan progress:**
+- [x] 02-01: Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — COMPLETE
+- [x] 02-02: Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — COMPLETE
+- [x] 02-03: Gap closure (CR-01 check_dataflow_exists XML fix, CR-02 v1-vs-v2 comparison fix, WR-01..04 + IR-02 validator strengthening) — READY TO EXECUTE
+
+**Cross-cutting constraints:**
+- All HTTP through the Phase 1 `CachedSession` (no bare `requests.get`) — appears in both plans
+- No numeric literal outside `BASE_ASSUMPTIONS` except unit conversions (PIPE-05) — appears in both plans
+- v1-flaw eradication maintained (no `/content/drive`, no `drive.mount`, no degree-based buffering) — appears in both plans
+
 **Success criteria:**
 1. Site is geocoded from the exact address (cached); 1/3/5 km buffers are built in EPSG:7855 with a sanity assertion (3 km buffer ≈ 28.3 km²).
 2. Catchment population is computed by area-apportioning POA populations across buffer intersections (not whole-postcode summing); a v1-vs-v2 comparison is shown.
@@ -97,6 +107,10 @@
 **Goal:** Run base/optimistic/pessimistic scenarios and sensitivity analysis over the pure-function P&L, quantify pharmacy synergy only as secondary upside after the standalone verdict, assemble the cited assumptions register, and export the executive PDF report with go/no-go recommendation.
 
 **Requirements mapped:** FIN-04, FIN-05, FIN-06, FIN-07, REP-01, REP-02, REP-03, REP-04
+
+**Plan progress:**
+- [x] 05-01: Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — COMPLETE
+- [x] 05-02: Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — COMPLETE
 
 **Success criteria:**
 1. Base/optimistic/pessimistic scenario table is produced as parameter-override dicts over the same P&L function, including a 70/30-mixed vs 100%-BB+BBPIP billing-model comparison side-by-side.
@@ -152,4 +166,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-05 — plan 01-02 complete, Phase 1 fully delivered*
+*Last updated: 2026-07-06 — Phase 5 complete (all 12 plans across 5 phases executed, all 32 requirements satisfied)*
