@@ -108,6 +108,10 @@
 
 **Requirements mapped:** FIN-04, FIN-05, FIN-06, FIN-07, REP-01, REP-02, REP-03, REP-04
 
+**Plan progress:**
+- [ ] 05-01: Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — PLANNED
+- [ ] 05-02: Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — PLANNED
+
 **Success criteria:**
 1. Base/optimistic/pessimistic scenario table is produced as parameter-override dicts over the same P&L function, including a 70/30-mixed vs 100%-BB+BBPIP billing-model comparison side-by-side.
 2. A tornado sensitivity chart ranks which assumptions move annual EBITDA most; pharmacy synergy is quantified only after the standalone verdict, presented as non-load-bearing secondary upside.
