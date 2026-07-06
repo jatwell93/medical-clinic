@@ -455,7 +455,262 @@ def main():
     failures.extend(phase3_failures)
 
     # ──────────────────────────────────────────────────────────────
-    # 5. Summary report
+    # 6. Phase 5 checks (FIN-04..07, REP-01..04)
+    # ──────────────────────────────────────────────────────────────
+
+    phase5_failures = []
+    phase5_passes = []
+
+    def check_phase5(label, condition, fail_msg):
+        if condition:
+            phase5_passes.append(label)
+        else:
+            phase5_failures.append(fail_msg)
+            print(f"[validate] {label}: FAIL")
+
+    # Helper: find cell index containing a marker string
+    def cell_index_containing(marker):
+        for i, src in enumerate(cell_sources):
+            if marker in src:
+                return i
+        return None
+
+    # FIN-04 (§7.1 scenario override dicts — 3 scenarios, 5 levers, {**BASE, **overrides})
+    fin04_cell_idx = cell_index_containing("§7.1")
+    fin04_cell_present = fin04_cell_idx is not None
+    fin04_scenarios = (
+        fin04_cell_present
+        and '"base"' in cell_sources[fin04_cell_idx]
+        and '"optimistic"' in cell_sources[fin04_cell_idx]
+        and '"pessimistic"' in cell_sources[fin04_cell_idx]
+    )
+    fin04_levers = (
+        fin04_cell_present
+        and "rent_yr" in cell_sources[fin04_cell_idx]
+        and "utilisation" in cell_sources[fin04_cell_idx]
+        and "gp_revenue_share" in cell_sources[fin04_cell_idx]
+        and "gp_ramp_milestones" in cell_sources[fin04_cell_idx]
+        and "bulk_bill_share" in cell_sources[fin04_cell_idx]
+    )
+    fin04_override_pattern = "{**BASE_ASSUMPTIONS, **overrides}" in all_source
+    fin04 = fin04_cell_present and fin04_scenarios and fin04_levers and fin04_override_pattern
+    check_phase5("Phase 5 FIN-04 (scenario override dicts)", fin04,
+                 f"FIN-04: missing §7.1 cell ({fin04_cell_present}), 3 scenarios ({fin04_scenarios}), "
+                 f"5 levers ({fin04_levers}), or {{**BASE_ASSUMPTIONS, **overrides}} pattern ({fin04_override_pattern})")
+
+    # FIN-05 (§7.3 + §7.4 tornado cells — 8 EBITDA inputs, 6 peak inputs, find_zero_crossing, np.linspace/np.interp, PNG saves)
+    fin05_ebitda_cell = cell_index_containing("§7.3") is not None
+    fin05_peak_cell = cell_index_containing("§7.4") is not None
+    fin05_ebitda_count = all_source.count("tornado_inputs_ebitda") > 0 and len(re.findall(r'\(".*?",\s*[\d_]+', all_source)) >= 8
+    # Count tuples in tornado_inputs_ebitda list by finding the list block
+    fin05_ebitda_8 = False
+    fin05_peak_6 = False
+    for i, src in enumerate(cell_sources):
+        if "tornado_inputs_ebitda = [" in src:
+            # Count tuple entries (lines with parenthesised 5-tuples)
+            tuple_count = len(re.findall(r'\("[^"]+",\s*[\d_.]+,\s*[\d_.]+,\s*[\d_.]+,\s*"[^"]+"\)', src))
+            fin05_ebitda_8 = tuple_count >= 8
+        if "tornado_inputs_peak = [" in src:
+            tuple_count_peak = len(re.findall(r'\("[^"]+",\s*[\d_.]+,\s*[\d_.]+,\s*[\d_.]+,\s*(?:"[^"]+"|None)\)', src))
+            fin05_peak_6 = tuple_count_peak >= 6
+    fin05_zero_crossing = "find_zero_crossing" in all_source
+    fin05_linspace = "np.linspace" in all_source
+    fin05_interp = "np.interp" in all_source
+    fin05_png_ebitda = "tornado_ebitda.png" in all_source
+    fin05_png_peak = "tornado_peak_capital.png" in all_source
+    fin05 = (
+        fin05_ebitda_cell and fin05_peak_cell and fin05_ebitda_8 and fin05_peak_6
+        and fin05_zero_crossing and fin05_linspace and fin05_interp
+        and fin05_png_ebitda and fin05_png_peak
+    )
+    check_phase5("Phase 5 FIN-05 (tornado sensitivity + zero-crossings)", fin05,
+                 f"FIN-05: missing §7.3 cell ({fin05_ebitda_cell}), §7.4 cell ({fin05_peak_cell}), "
+                 f"8 EBITDA inputs ({fin05_ebitda_8}), 6 peak inputs ({fin05_peak_6}), "
+                 f"find_zero_crossing ({fin05_zero_crossing}), np.linspace ({fin05_linspace}), "
+                 f"np.interp ({fin05_interp}), tornado_ebitda.png ({fin05_png_ebitda}), "
+                 f"tornado_peak_capital.png ({fin05_png_peak})")
+
+    # FIN-06 (§7.5 billing-mix curve — 5 points, BBPIP 12.5%/6.25%, PNG save)
+    fin06_cell_idx = cell_index_containing("§7.5")
+    fin06_cell_present = fin06_cell_idx is not None
+    fin06_5_points = (
+        fin06_cell_present
+        and "billing_mix_points" in cell_sources[fin06_cell_idx]
+        and "0.0" in cell_sources[fin06_cell_idx]
+        and "0.25" in cell_sources[fin06_cell_idx]
+        and "0.50" in cell_sources[fin06_cell_idx]
+        and "0.70" in cell_sources[fin06_cell_idx]
+        and "1.00" in cell_sources[fin06_cell_idx]
+    )
+    fin06_bbpip = (
+        fin06_cell_present
+        and ("0.0625" in cell_sources[fin06_cell_idx] or "6.25%" in cell_sources[fin06_cell_idx])
+        and ("12.5%" in cell_sources[fin06_cell_idx] or "0.125" in cell_sources[fin06_cell_idx] or "BBPIP" in cell_sources[fin06_cell_idx])
+    )
+    fin06_png = "billing_mix_curve.png" in all_source
+    fin06 = fin06_cell_present and fin06_5_points and fin06_bbpip and fin06_png
+    check_phase5("Phase 5 FIN-06 (billing-mix curve + BBPIP)", fin06,
+                 f"FIN-06: missing §7.5 cell ({fin06_cell_present}), 5 points ({fin06_5_points}), "
+                 f"BBPIP 12.5%/6.25% ({fin06_bbpip}), billing_mix_curve.png ({fin06_png})")
+
+    # FIN-07 (§7.6 pharmacy synergy — order-gated after scenarios, NOT Load-Bearing, no clinic_pnl call)
+    fin07_cell_idx = cell_index_containing("§7.6")
+    fin07_cell_present = fin07_cell_idx is not None
+    fin07_order_gated = (
+        fin04_cell_idx is not None and fin07_cell_idx is not None
+        and fin07_cell_idx > fin04_cell_idx
+    )
+    fin07_not_loadbearing = (
+        fin07_cell_present
+        and ("NOT Load-Bearing" in cell_sources[fin07_cell_idx] or "NOT load-bearing" in cell_sources[fin07_cell_idx])
+    )
+    # The §7.6 pharmacy synergy CODE cell should NOT call clinic_pnl() — standalone arithmetic only
+    # Find the code cell containing "§7.6 Pharmacy synergy" (the code cell, not the markdown framing cell)
+    fin07_code_cell_idx = None
+    for i, src in enumerate(cell_sources):
+        if "§7.6 Pharmacy synergy" in src and "capture_rates" in src:
+            fin07_code_cell_idx = i
+            break
+    fin07_no_clinic_pnl = (
+        fin07_code_cell_idx is not None
+        and "clinic_pnl(" not in cell_sources[fin07_code_cell_idx]
+    )
+    fin07 = fin07_cell_present and fin07_order_gated and fin07_not_loadbearing and fin07_no_clinic_pnl
+    check_phase5("Phase 5 FIN-07 (pharmacy synergy order-gated + standalone)", fin07,
+                 f"FIN-07: missing §7.6 cell ({fin07_cell_present}), order-gated ({fin07_order_gated}), "
+                 f"NOT Load-Bearing label ({fin07_not_loadbearing}), no clinic_pnl in synergy cell ({fin07_no_clinic_pnl})")
+
+    # REP-01 (§8.2 assumptions register — 5-column, deposited into report{})
+    rep01_cell_idx = cell_index_containing("§8.2")
+    rep01_cell_present = rep01_cell_idx is not None
+    rep01_5col = (
+        rep01_cell_present
+        and "Parameter" in cell_sources[rep01_cell_idx]
+        and "Value" in cell_sources[rep01_cell_idx]
+        and "Source" in cell_sources[rep01_cell_idx]
+        and "Date" in cell_sources[rep01_cell_idx]
+        and "Confidence" in cell_sources[rep01_cell_idx]
+    )
+    rep01_deposited = (
+        rep01_cell_present
+        and "assumptions_register" in cell_sources[rep01_cell_idx]
+        and "report[" in cell_sources[rep01_cell_idx]
+    )
+    rep01 = rep01_cell_present and rep01_5col and rep01_deposited
+    check_phase5("Phase 5 REP-01 (assumptions register 5-column)", rep01,
+                 f"REP-01: missing §8.2 cell ({rep01_cell_present}), 5 columns ({rep01_5col}), "
+                 f"deposited into report{{}} ({rep01_deposited})")
+
+    # REP-02 (§8.1 verdict logic — binary GO/NO-GO, GATE_MARGIN=0.15, standalone, 5 key numbers)
+    rep02_cell_idx = cell_index_containing("§8.1")
+    rep02_cell_present = rep02_cell_idx is not None
+    rep02_binary = (
+        rep02_cell_present
+        and 'verdict = "GO" if' in cell_sources[rep02_cell_idx]
+        and '"NO-GO"' in cell_sources[rep02_cell_idx]
+    )
+    rep02_gate = (
+        rep02_cell_present
+        and "GATE_MARGIN = 0.15" in cell_sources[rep02_cell_idx]
+    )
+    # D-04 standalone: verdict_text construction block must NOT mention pharmacy/priceline
+    # Extract just the verdict_text assignment block (not comments) to check for pharmacy mentions
+    rep02_standalone = False
+    if rep02_cell_present:
+        src = cell_sources[rep02_cell_idx]
+        # Find the verdict_text construction block (from "verdict_text = (" to the closing ")")
+        vt_start = src.find("verdict_text = (")
+        if vt_start >= 0:
+            vt_end = src.find(")", vt_start)
+            # Find the LAST closing paren of the multi-line f-string concatenation
+            # The block ends with a ")" on its own line after the last f-string
+            vt_block = src[vt_start:vt_end + 1] if vt_end > vt_start else ""
+            # Also include the full multi-line block by finding the next "\n)" after vt_start
+            lines = src[vt_start:].split("\n")
+            vt_lines = []
+            for line in lines[1:]:
+                vt_lines.append(line)
+                if line.strip() == ")":
+                    break
+            vt_block = "\n".join(vt_lines)
+            rep02_standalone = (
+                "pharmac" not in vt_block.lower()
+                and "priceline" not in vt_block.lower()
+            )
+        else:
+            # Fallback: if verdict_text block not found, check the whole cell minus comments
+            no_comments = "\n".join(l for l in src.split("\n") if not l.strip().startswith("#"))
+            rep02_standalone = (
+                "pharmac" not in no_comments.lower()
+                and "priceline" not in no_comments.lower()
+            )
+    rep02_5keys = (
+        rep02_cell_present
+        and "steady_state_ebitda" in cell_sources[rep02_cell_idx]
+        and "steady_state_margin" in cell_sources[rep02_cell_idx]
+        and "peak_capital" in cell_sources[rep02_cell_idx]
+        and "breakeven_operating" in cell_sources[rep02_cell_idx]
+        and "breakeven_payback" in cell_sources[rep02_cell_idx]
+        and "key_numbers" in cell_sources[rep02_cell_idx]
+        and "report[" in cell_sources[rep02_cell_idx]
+    )
+    rep02 = rep02_cell_present and rep02_binary and rep02_gate and rep02_standalone and rep02_5keys
+    check_phase5("Phase 5 REP-02 (verdict logic binary + standalone)", rep02,
+                 f"REP-02: missing §8.1 cell ({rep02_cell_present}), binary GO/NO-GO ({rep02_binary}), "
+                 f"GATE_MARGIN=0.15 ({rep02_gate}), standalone no pharmacy ({rep02_standalone}), "
+                 f"5 key numbers deposited ({rep02_5keys})")
+
+    # REP-03 (§8.3 Jinja2 template 8 sections + §8.4 weasyprint + IS_COLAB + try/except)
+    rep03_template_cell_idx = cell_index_containing("§8.3")
+    rep03_template_present = rep03_template_cell_idx is not None
+    rep03_sections = (
+        rep03_template_present
+        and "Executive Summary" in cell_sources[rep03_template_cell_idx]
+        and "Site & Catchment" in cell_sources[rep03_template_cell_idx]
+        and "Competitor Landscape" in cell_sources[rep03_template_cell_idx]
+        and "Financial Model" in cell_sources[rep03_template_cell_idx]
+        and "Scenarios & Sensitivity" in cell_sources[rep03_template_cell_idx]
+        and "Pharmacy Synergy" in cell_sources[rep03_template_cell_idx]
+        and "Assumptions Register" in cell_sources[rep03_template_cell_idx]
+        and "Data Sources & Citations" in cell_sources[rep03_template_cell_idx]
+    )
+    rep03_jinja2 = (
+        rep03_template_present
+        and "jinja2" in cell_sources[rep03_template_cell_idx].lower()
+        and "Template" in cell_sources[rep03_template_cell_idx]
+    )
+    rep03_weasyprint_cell = cell_index_containing("§8.4") is not None
+    rep03_is_colab = "IS_COLAB" in all_source
+    rep03_try_except = (
+        "try:" in all_source
+        and "except" in all_source
+        and "weasyprint" in all_source
+    )
+    rep03 = rep03_template_present and rep03_sections and rep03_jinja2 and rep03_weasyprint_cell and rep03_is_colab and rep03_try_except
+    check_phase5("Phase 5 REP-03 (Jinja2 template 8 sections + weasyprint)", rep03,
+                 f"REP-03: missing §8.3 cell ({rep03_template_present}), 8 sections ({rep03_sections}), "
+                 f"Jinja2 ({rep03_jinja2}), §8.4 cell ({rep03_weasyprint_cell}), IS_COLAB ({rep03_is_colab}), "
+                 f"try/except weasyprint ({rep03_try_except})")
+
+    # REP-04 (footnote-style citations [1]-[8] + access date markers)
+    rep04_cell = rep03_template_cell_idx  # citations are in the §8.3 template cell
+    rep04_citations = (
+        rep04_cell is not None
+        and all(f"[{n}]" in cell_sources[rep04_cell] for n in range(1, 9))
+    )
+    rep04_access_date = (
+        rep04_cell is not None
+        and ("Access date" in cell_sources[rep04_cell] or "access date" in cell_sources[rep04_cell])
+    )
+    rep04 = rep04_citations and rep04_access_date
+    check_phase5("Phase 5 REP-04 (footnote citations [1]-[8] + access dates)", rep04,
+                 f"REP-04: citations [1]-[8] all present ({rep04_citations}), access date markers ({rep04_access_date})")
+
+    passes.extend(phase5_passes)
+    failures.extend(phase5_failures)
+
+    # ──────────────────────────────────────────────────────────────
+    # 7. Summary report
     # ──────────────────────────────────────────────────────────────
 
     return report(failures, passes, cells, code_cells, md_cells)
@@ -540,9 +795,30 @@ def report(failures, passes, cells=None, code_cells=None, md_cells=None):
         else:
             print(f"[validate] {label}: FAIL")
 
+    # Phase 5 checks
+    phase5_labels = [
+        "Phase 5 FIN-04 (scenario override dicts)",
+        "Phase 5 FIN-05 (tornado sensitivity + zero-crossings)",
+        "Phase 5 FIN-06 (billing-mix curve + BBPIP)",
+        "Phase 5 FIN-07 (pharmacy synergy order-gated + standalone)",
+        "Phase 5 REP-01 (assumptions register 5-column)",
+        "Phase 5 REP-02 (verdict logic binary + standalone)",
+        "Phase 5 REP-03 (Jinja2 template 8 sections + weasyprint)",
+        "Phase 5 REP-04 (footnote citations [1]-[8] + access dates)",
+    ]
+    for label in phase5_labels:
+        found_pass = any(label in p for p in passes)
+        found_fail = any(label in f for f in failures)
+        if found_pass:
+            print(f"[validate] {label}: PASS")
+        elif found_fail:
+            print(f"[validate] {label}: FAIL")
+        else:
+            print(f"[validate] {label}: FAIL")
+
     # Structural passes (not printed individually unless failed)
     for f in failures:
-        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b", "COMP-01", "COMP-02", "COMP-03", "DEMAND-01", "DEMAND-02", "DEMAND-03", "DEMAND-04"]):
+        if not any(k in f for k in ["PIPE-01", "PIPE-02", "PIPE-03", "PIPE-04", "PIPE-05", "PIPE-06", "v1 flaw", "GEO-01", "GEO-02", "GEO-03", "GEO-04", "D-06", "CR-01", "DEMO-01", "DEMO-02", "DEMO-03", "DEMO-04", "D-11", "D-03", "D-09b", "COMP-01", "COMP-02", "COMP-03", "DEMAND-01", "DEMAND-02", "DEMAND-03", "DEMAND-04", "FIN-04", "FIN-05", "FIN-06", "FIN-07", "REP-01", "REP-02", "REP-03", "REP-04"]):
             print(f"[validate] FAIL: {f}")
 
     overall = len(failures) == 0
