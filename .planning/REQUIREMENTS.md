@@ -50,10 +50,10 @@
 
 ### Reporting (REP)
 
-- [ ] **REP-01**: Assumptions register: every constant in one table with value, source citation, and confidence level
-- [ ] **REP-02**: Executive summary with key metrics, maps, scenario table, and an explicit go/no-go recommendation
-- [ ] **REP-03**: Executive report exported to PDF (jinja2 + weasyprint from accumulated metrics; static map figures) runnable in Colab
-- [ ] **REP-04**: All data sources cited inline (ABS Census 2021, ABS Data API, MBS statistics, AIHW, Google Places) with access dates
+- [x] **REP-01**: Assumptions register: every constant in one table with value, source citation, and confidence level
+- [x] **REP-02**: Executive summary with key metrics, maps, scenario table, and an explicit go/no-go recommendation
+- [x] **REP-03**: Executive report exported to PDF (jinja2 + weasyprint from accumulated metrics; static map figures) runnable in Colab
+- [x] **REP-04**: All data sources cited inline (ABS Census 2021, ABS Data API, MBS statistics, AIHW, Google Places) with access dates
 
 ## v2 Requirements
 

@@ -110,7 +110,7 @@
 
 **Plan progress:**
 - [x] 05-01: Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — COMPLETE
-- [ ] 05-02: Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — PLANNED
+- [x] 05-02: Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — COMPLETE
 
 **Success criteria:**
 1. Base/optimistic/pessimistic scenario table is produced as parameter-override dicts over the same P&L function, including a 70/30-mixed vs 100%-BB+BBPIP billing-model comparison side-by-side.
@@ -166,4 +166,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-06 — Phase 5 plan 05-01 complete (Scenarios & Sensitivity: FIN-04/05/06/07 satisfied)*
+*Last updated: 2026-07-06 — Phase 5 complete (all 12 plans across 5 phases executed, all 32 requirements satisfied)*
