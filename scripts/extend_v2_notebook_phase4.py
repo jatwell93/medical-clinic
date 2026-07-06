@@ -118,6 +118,24 @@ OLD_FITOUT_CAPITAL_LINE = '    "fitout_capital":         350_000,     # estimate
 
 
 # ──────────────────────────────────────────────────────────────────────
+#  Phase 4 Plan 04-02: ramp BASE_ASSUMPTIONS keys to insert
+# ──────────────────────────────────────────────────────────────────────
+
+# These keys are inserted alongside the Plan 04-01 keys (before the closing `}`
+# of BASE_ASSUMPTIONS). Idempotent: extend_base_assumptions_ramp() checks for
+# "gp_ramp_milestones" already present.
+PHASE4_RAMP_ASSUMPTIONS_KEYS = [
+    "    # Ramp (D-05, D-06) — industry consensus, MEDIUM confidence",
+    "    \"ramp_months\":            36,         # years 1-3 monthly cash flow",
+    "    \"gp_ramp_milestones\":     {0: 2, 6: 3, 12: 4, 18: 5},  # GP FTE by month — D-06",
+    "    \"book_fill_curve\":        {0: 0.40, 3: 0.50, 6: 0.60, 9: 0.68, 12: 0.75},  # per-GP utilisation — D-06",
+    "    # Working capital (D-12)",
+    "    \"working_capital_buffer_months\": 3,",
+    "    \"working_capital_buffer\": 49_450,  # 3 months of fixed costs (rent + insurance + admin/IT + reception/manager)",
+]
+
+
+# ──────────────────────────────────────────────────────────────────────
 #  §6 Financial Model cells
 # ──────────────────────────────────────────────────────────────────────
 
@@ -324,7 +342,261 @@ def phase4_financial_cells():
         "sensitivity can override it: `{**BASE_ASSUMPTIONS, \"gp_revenue_share\": 0.30}`.",
     ))
 
-    # 6. Markdown — Next Steps (single cell; replaces the 7 duplicate artifacts)
+    # ── §6.2 Ramp-Up Cash Flow (Plan 04-02) ──
+
+    # 6. Markdown — §6.2 Ramp-Up Cash Flow header + teaching commentary
+    cells.append(md(
+        "## §6.2 Ramp-Up Cash Flow (36 Months)",
+        "",
+        "The steady-state P&L shows the destination, but clinics don't start at full",
+        "books (Pitfall 12). This section models the 36-month path:",
+        "",
+        "- **GP recruitment milestones (D-06):** 2 GPs at open, +1 at month 6, +1 at month",
+        "  12, +1 at month 18 → 5 FTE by month 18.",
+        "- **Per-GP book-fill curve (D-06):** each GP's book fills from 40% to 75%",
+        "  utilisation over their first 12 months (40% → 50% → 60% → 68% → 75%).",
+        "- **Variable-vs-fixed staffing (D-07):** nurse FTE = GP_FTE × 0.2 (scales with",
+        "  GP count); reception/manager are fixed from day 1 (reception coverage needed",
+        "  from open); rent, insurance, and admin/IT/utilities are fixed at 100% from",
+        "  month 0.",
+        "- **Fit-out capex (D-12):** paid at month 0 (opening).",
+        "- **Peak capital (D-12):** fit-out + max cumulative operating loss + 3-month",
+        "  working-capital buffer (added ON TOP, not buried in the modelled cash drain).",
+        "- **Two breakeven definitions (D-08):** operating breakeven (first month",
+        "  EBITDA > 0) and payback breakeven (month cumulative cash flow crosses zero).",
+        "",
+        "numpy `cumsum` + `argmax` + `min` are used instead of manual loops (Don't",
+        "Hand-Roll — vectorised, no off-by-one). The ramp function calls `clinic_pnl`",
+        "per month with ramp-scaled override dicts (D-16):",
+        "`clinic_pnl({**a, **ramp_overrides})`.",
+    ))
+
+    # 7. Code — §6.2 clinic_ramp_monthly function (D-05, D-06, D-07, D-08, D-12, D-16)
+    cells.append(code(
+        "# §6.2 clinic_ramp_monthly — 36-month ramp cash flow (D-05, D-06, D-07, D-08, D-12, D-16)",
+        "# Calls clinic_pnl per month with ramp-scaled parameters (D-16).",
+        "# numpy cumsum/argmax/min for headlines (Don't Hand-Roll).",
+        "import numpy as np",
+        "",
+        "def clinic_ramp_monthly(a: dict, months: int = 36) -> dict:",
+        '    """',
+        "    36-month monthly ramp cash flow (D-05, D-06, D-07, D-08, D-12, D-16).",
+        "    ",
+        "    Calls clinic_pnl with ramp-scaled parameters per month:",
+        "    - GP count per D-06 milestones ({0: 2, 6: 3, 12: 4, 18: 5})",
+        "    - Book-fill utilisation per GP per D-06 curve (40% → 75% over 12 months)",
+        "    - Variable staffing scales with GP FTE (D-07: nurse_fte = gp_fte × 0.2)",
+        "    - Fixed overheads flat from month 0 (D-07: reception/manager/rent/insurance/admin)",
+        "    - Fit-out capex subtracted at month 0 (D-12)",
+        "    - Peak capital = |min(cumulative)| + working_capital_buffer (D-12 buffer ON TOP)",
+        "    - Operating breakeven = first month EBITDA > 0 (D-08)",
+        "    - Payback breakeven = first month cumulative >= 0 (D-08)",
+        "    \"\"\"",
+        "    # GP recruitment milestones (D-06) and book-fill curve (D-06)",
+        '    gp_milestones = a["gp_ramp_milestones"]      # {0: 2, 6: 3, 12: 4, 18: 5}',
+        '    book_fill_curve = a["book_fill_curve"]        # {0: 0.40, 3: 0.50, 6: 0.60, 9: 0.68, 12: 0.75}',
+        "",
+        "    # Derive each GP's start month from the milestones dict.",
+        "    # GP 0 and 1 start at month 0 (2 GPs at open), GP 2 at month 6, GP 3 at 12, GP 4 at 18.",
+        "    milestone_months = sorted(gp_milestones.keys())",
+        "    def gp_start_month(gp_idx):",
+        "        # GPs are added in milestone order: milestone_months[i] gives the start month",
+        "        # for the first GP added at that milestone. Map gp_idx → milestone month.",
+        "        cumulative = 0",
+        "        for k in milestone_months:",
+        "            count_at_k = gp_milestones[k]",
+        "            if gp_idx < count_at_k:",
+        "                return k",
+        "            cumulative = count_at_k",
+        "        return milestone_months[-1]  # GP added at the last milestone",
+        "",
+        "    def interpolate_book_fill(months_active, curve):",
+        "        \"\"\"Linear interpolation between curve points. -1 → 0 (not started),",
+        "        >=12 → curve[12] (steady state). Between points, linearly interpolate.\"\"\"",
+        "        if months_active < 0:",
+        "            return 0.0",
+        "        keys = sorted(curve.keys())",
+        "        if months_active >= keys[-1]:",
+        "            return curve[keys[-1]]",
+        "        # Find the bracketing pair",
+        "        for i in range(len(keys) - 1):",
+        "            if keys[i] <= months_active <= keys[i + 1]:",
+        "                t = (months_active - keys[i]) / (keys[i + 1] - keys[i])",
+        "                return curve[keys[i]] + t * (curve[keys[i + 1]] - curve[keys[i]])",
+        "        return curve[keys[-1]]",
+        "",
+        "    monthly_ebitda = np.zeros(months)",
+        "    monthly_revenue = np.zeros(months)",
+        "    monthly_costs = np.zeros(months)",
+        "",
+        "    for m in range(months):",
+        "        # GP FTE at this month (D-06 milestones)",
+        "        gp_fte = max(v for k, v in gp_milestones.items() if k <= m)",
+        "        ",
+        "        # Weighted-average utilisation across all active GPs (D-06 book-fill per GP)",
+        "        total_util = 0.0",
+        "        for gp_idx in range(gp_fte):",
+        "            months_active = m - gp_start_month(gp_idx)",
+        "            total_util += interpolate_book_fill(months_active, book_fill_curve)",
+        "        avg_util = total_util / gp_fte if gp_fte > 0 else 0.0",
+        "        ",
+        "        # Variable-vs-fixed staffing (D-07): nurse scales with GP FTE;",
+        "        # reception/manager stay at steady-state (fixed from day 1).",
+        "        ramp_overrides = {",
+        '            "n_gp_fte": gp_fte,',
+        '            "utilisation": avg_util,',
+        '            "nurse_fte": gp_fte * 0.2,  # D-07: scales with GP count',
+        "            # reception_fte, manager_fte stay at steady-state (fixed from day 1)",
+        "        }",
+        "        ",
+        "        # D-16: per-month clinic_pnl call with ramp-scaled overrides",
+        "        month_result = clinic_pnl({**a, **ramp_overrides})",
+        '        monthly_revenue[m] = month_result["practice_revenue"] / 12',
+        '        monthly_costs[m] = month_result["total_costs"] / 12',
+        '        monthly_ebitda[m] = month_result["ebitda"] / 12',
+        "",
+        "    # Cash flow: EBITDA - fit-out (month 0 only, D-12)",
+        "    monthly_cashflow = monthly_ebitda.copy()",
+        '    monthly_cashflow[0] -= a["fitout_total"]  # fit-out paid at opening',
+        "",
+        "    # Don't Hand-Roll: np.cumsum for cumulative, np.min for peak, np.argmax for breakevens",
+        "    cumulative = np.cumsum(monthly_cashflow)",
+        "    peak_capital_modelled = np.min(cumulative)  # deepest cash trough (negative)",
+        "    peak_capital_total = abs(peak_capital_modelled) + a[\"working_capital_buffer\"]  # D-12: buffer ON TOP",
+        "",
+        "    # D-08: both breakeven definitions",
+        "    breakeven_operating = int(np.argmax(monthly_ebitda > 0)) if np.any(monthly_ebitda > 0) else None",
+        "    breakeven_payback = int(np.argmax(cumulative >= 0)) if np.any(cumulative >= 0) else None",
+        "",
+        "    return {",
+        '        "monthly_revenue": monthly_revenue,',
+        '        "monthly_costs": monthly_costs,',
+        '        "monthly_ebitda": monthly_ebitda,',
+        '        "monthly_cashflow": monthly_cashflow,',
+        '        "cumulative": cumulative,',
+        '        "peak_capital_modelled": abs(peak_capital_modelled),  # |min(cumulative)|',
+        '        "peak_capital_total": peak_capital_total,             # with working-capital buffer',
+        '        "breakeven_operating": breakeven_operating,           # first month EBITDA > 0',
+        '        "breakeven_payback": breakeven_payback,               # month cumulative crosses zero',
+        '        "fitout_total": a["fitout_total"],',
+        '        "working_capital_buffer": a["working_capital_buffer"],',
+        "    }",
+        "",
+        'print("[ramp] clinic_ramp_monthly() defined — 36-month cash flow, D-06 milestones, D-07 staffing split, D-08 both breakevens")',
+    ))
+
+    # 8. Code — §6.2 run ramp + headline display (D-08, D-12)
+    cells.append(code(
+        "# §6.2 run the 36-month ramp and display headline metrics (D-08, D-12)",
+        "ramp_result = clinic_ramp_monthly(BASE_ASSUMPTIONS)",
+        "",
+        'print("=" * 70)',
+        'print("§6.2 RAMP-UP CASH FLOW — HEADLINE METRICS")',
+        'print("=" * 70)',
+        "print(f\"Fit-out capex (month 0):        ${ramp_result['fitout_total']:,.0f}\")",
+        "print(f\"Working-capital buffer (3 mo):  ${ramp_result['working_capital_buffer']:,.0f}\")",
+        "print(f\"Peak capital (modelled):        ${ramp_result['peak_capital_modelled']:,.0f}\")",
+        "print(f\"Peak capital (with buffer):     ${ramp_result['peak_capital_total']:,.0f}\")",
+        "print()",
+        "be_op = ramp_result['breakeven_operating']",
+        "be_pay = ramp_result['breakeven_payback']",
+        "print(f\"Operating breakeven (EBITDA>0): month {be_op}\" if be_op is not None else \"Operating breakeven: NOT reached in 36 months\")",
+        "print(f\"Payback breakeven (cum>0):      month {be_pay}\" if be_pay is not None else \"Payback breakeven: NOT reached in 36 months\")",
+        "print()",
+        "print(f\"Steady-state EBITDA (from §6):  ${pnl_result['ebitda']:,.0f}/yr\")",
+        "print(f\"Steady-state margin:            {pnl_result['margin']:.1%}\")",
+        'print("=" * 70)',
+    ))
+
+    # 9. Code — §6.2 ramp chart (matplotlib — cumulative cash curve + monthly EBITDA bar)
+    cells.append(code(
+        "# §6.2 Ramp-up cash-flow chart (matplotlib — for notebook + PDF)",
+        "import matplotlib.pyplot as plt",
+        "",
+        "# OUTPUTS directory for static figures (Pattern: PROJECT_ROOT / outputs)",
+        "OUTPUTS = PROJECT_ROOT / \"outputs\"",
+        "OUTPUTS.mkdir(exist_ok=True)",
+        "",
+        "fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8), sharex=True,",
+        '                                gridspec_kw={"height_ratios": [2, 1]})',
+        "",
+        'months_range = range(len(ramp_result["monthly_ebitda"]))',
+        "",
+        "# Top: cumulative cash flow curve",
+        'ax1.plot(months_range, ramp_result["cumulative"] / 1000, "b-", linewidth=2, label="Cumulative cash flow")',
+        'ax1.axhline(y=0, color="black", linestyle="-", linewidth=0.5)',
+        'if ramp_result["breakeven_payback"] is not None:',
+        '    ax1.axvline(x=ramp_result["breakeven_payback"], color="green", linestyle="--,',
+        '                label=f"Payback breakeven (mo {ramp_result[\'breakeven_payback\']})")',
+        'peak_idx = int(np.argmin(ramp_result["cumulative"]))',
+        'ax1.plot(peak_idx, ramp_result["cumulative"][peak_idx] / 1000, "ro", markersize=8,',
+        '         label=f"Peak capital (mo {peak_idx})")',
+        'ax1.set_ylabel("Cumulative cash flow ($k)")',
+        'ax1.set_title("36-Month Ramp-Up Cash Flow")',
+        'ax1.legend(loc="lower right")',
+        'ax1.grid(True, alpha=0.3)',
+        "",
+        "# Bottom: monthly EBITDA bar",
+        'colors = ["green" if e > 0 else "red" for e in ramp_result["monthly_ebitda"]]',
+        'ax2.bar(months_range, ramp_result["monthly_ebitda"] / 1000, color=colors, alpha=0.7)',
+        'ax2.axhline(y=0, color="black", linestyle="-", linewidth=0.5)',
+        'if ramp_result["breakeven_operating"] is not None:',
+        '    ax2.axvline(x=ramp_result["breakeven_operating"], color="blue", linestyle="--,',
+        '                label=f"Operating breakeven (mo {ramp_result[\'breakeven_operating\']})")',
+        'ax2.set_xlabel("Month")',
+        'ax2.set_ylabel("Monthly EBITDA ($k)")',
+        'ax2.legend(loc="lower right")',
+        'ax2.grid(True, alpha=0.3)',
+        "",
+        "plt.tight_layout()",
+        'plt.savefig(OUTPUTS / "ramp_cashflow.png", dpi=150, bbox_inches="tight")',
+        "plt.show()",
+        'print(f"[ramp] chart saved to outputs/ramp_cashflow.png")',
+    ))
+
+    # 10. Code — §6.2 report{} deposits (Pattern 5 — Phase 5 §8 renders these)
+    cells.append(code(
+        "# §6.2 report{} deposits — headline metrics for Phase 5 §8 (Pattern 5)",
+        'report["steady_state_ebitda"] = pnl_result["ebitda"]',
+        'report["steady_state_margin"] = pnl_result["margin"]',
+        'report["practice_revenue"] = pnl_result["practice_revenue"]',
+        'report["gp_billings"] = pnl_result["gp_billings"]  # informational (Pitfall 11 guardrail)',
+        'report["fitout_total"] = ramp_result["fitout_total"]',
+        'report["peak_capital"] = ramp_result["peak_capital_total"]',
+        'report["breakeven_operating"] = ramp_result["breakeven_operating"]',
+        'report["breakeven_payback"] = ramp_result["breakeven_payback"]',
+        'report["working_capital_buffer"] = ramp_result["working_capital_buffer"]',
+        "phase4_keys = ['steady_state_ebitda', 'steady_state_margin', 'practice_revenue', 'gp_billings', 'fitout_total', 'peak_capital', 'breakeven_operating', 'breakeven_payback', 'working_capital_buffer']",
+        "print(f\"[report] Phase 4 deposits: {len([k for k in report if k in phase4_keys])} metrics deposited\")",
+    ))
+
+    # 11. Markdown — §6.3 Ramp-Up Interpretation
+    cells.append(md(
+        "## §6.3 Ramp-Up Interpretation",
+        "",
+        "The ramp model shows the real cash drain during the first 18 months — even if",
+        "the steady-state P&L is profitable, the clinic needs enough capital to survive",
+        "the ramp. **Peak capital is the single most important number for an investor",
+        "with limited startup capital** (Pitfall 12).",
+        "",
+        "The 3-month working-capital buffer (D-12) is added **ON TOP** of the modelled",
+        "peak — it recognises that real-world funding needs contingency beyond the",
+        "modelled cash drain. The buffer basket is 3 months of fixed costs: rent,",
+        "insurance, admin/IT/utilities, and reception/manager staffing (the costs that",
+        "must be paid regardless of revenue).",
+        "",
+        "**Two breakeven definitions (D-08):**",
+        "- **Operating breakeven** — the first month where EBITDA > 0. The clinic stops",
+        "  bleeding monthly at this point, but hasn't paid back the cumulative loss yet.",
+        "- **Payback breakeven** — the month where cumulative cash flow crosses zero.",
+        "  The investor is whole at this point.",
+        "",
+        "If payback breakeven is NOT reached in 36 months, that's a red flag for the",
+        "Phase 5 verdict — the clinic may need more capital or a faster ramp than the",
+        "base case assumes.",
+    ))
+
+    # 12. Markdown — Next Steps (single cell; replaces the 7 duplicate artifacts)
     cells.append(md(
         "## Next Steps",
         "",
@@ -383,6 +655,34 @@ def extend_base_assumptions(cells):
     return False
 
 
+def extend_base_assumptions_ramp(cells):
+    """Insert Phase 4 ramp keys (Plan 04-02) into the BASE_ASSUMPTIONS dict cell.
+
+    Idempotent: if 'gp_ramp_milestones' is already present in the BASE_ASSUMPTIONS
+    cell, the cell is left unchanged.
+    """
+    for cell in cells:
+        src = cell.get("source", [])
+        joined = "".join(src)
+        if "BASE_ASSUMPTIONS = {" not in joined:
+            continue
+        if "gp_ramp_milestones" in joined:
+            return False  # already extended with ramp keys
+
+        new_source = []
+        for line in src:
+            if line.strip() == "}":
+                # Insert Phase 4 ramp keys before the closing brace
+                for key_line in PHASE4_RAMP_ASSUMPTIONS_KEYS:
+                    new_source.append(key_line + "\n")
+                new_source.append(line)
+            else:
+                new_source.append(line)
+        cell["source"] = new_source
+        return True
+    return False
+
+
 # ──────────────────────────────────────────────────────────────────────
 #  Duplicate "## Next Steps" cleanup
 # ──────────────────────────────────────────────────────────────────────
@@ -423,6 +723,13 @@ def main():
         print("[extend-phase4] old fitout_capital placeholder removed — replaced by fitout_total=349,000")
     else:
         print("[extend-phase4] BASE_ASSUMPTIONS already has Phase 4 keys — skipping")
+
+    # 1b. Extend BASE_ASSUMPTIONS with Phase 4 ramp keys (Plan 04-02; idempotent)
+    extended_ramp = extend_base_assumptions_ramp(cells)
+    if extended_ramp:
+        print("[extend-phase4] BASE_ASSUMPTIONS extended with ramp keys (gp_ramp_milestones, book_fill_curve, working_capital_buffer)")
+    else:
+        print("[extend-phase4] BASE_ASSUMPTIONS already has ramp keys — skipping")
 
     # 2. Remove ALL duplicate "## Next Steps" cells (Phase 2-3 artifact cleanup)
     cells, ns_removed = remove_duplicate_next_steps(cells)
