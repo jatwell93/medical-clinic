@@ -710,6 +710,70 @@ def main():
     failures.extend(phase5_failures)
 
     # ──────────────────────────────────────────────────────────────
+    # 6b. Regression checks (post-review fixes — REV-01..06)
+    # ──────────────────────────────────────────────────────────────
+
+    def check_rev(label, condition, fail_msg):
+        if condition:
+            passes.append(label)
+            print(f"[validate] {label}: PASS")
+        else:
+            failures.append(fail_msg)
+            print(f"[validate] {label}: FAIL")
+
+    # REV-01: every code cell compiles (would have caught the linestyle="--, SyntaxError).
+    # Strip IPython magics/shell escapes (%pip, !cmd) which aren't valid pure-Python syntax.
+    rev01_errors = []
+    for i, c in enumerate(code_cells):
+        raw_lines = c.get("source", [])
+        # Replace IPython magics/shell escapes with a same-indented `pass` so block
+        # structure (e.g. `if IN_COLAB:` followed by `%pip install`) stays valid.
+        py_lines = []
+        for ln in raw_lines:
+            stripped = ln.lstrip()
+            if stripped.startswith(("%", "!")):
+                indent = ln[:len(ln) - len(stripped)]
+                py_lines.append(indent + "pass\n")
+            else:
+                py_lines.append(ln)
+        src = "".join(py_lines)
+        try:
+            compile(src, f"<code cell {i}>", "exec")
+        except SyntaxError as e:
+            rev01_errors.append(f"cell {i}: {e.msg} (line {e.lineno})")
+    check_rev("REV-01 (all code cells compile)", not rev01_errors,
+              f"REV-01: {len(rev01_errors)} code cell(s) fail to compile: {rev01_errors}")
+
+    # REV-02: demand rates use the per-100 convention (values >= 100, not per-person ~4-12)
+    # AND the demand units plausibility guard is present.
+    rev02_per100 = bool(re.search(r'"consults_per_capita_yr":\s*\{[^}]*"65\+":\s*\d{3,}', all_source))
+    rev02_guard = "DEMAND UNITS CHECK" in all_source and "PLAUSIBLE_PER100" in all_source
+    check_rev("REV-02 (demand rates per-100 + units guard)", rev02_per100 and rev02_guard,
+              f"REV-02: per-100 rate values ({rev02_per100}), units guard present ({rev02_guard})")
+
+    # REV-03: no duplicate consults_per_capita_yr key in the BASE_ASSUMPTIONS cell.
+    ba_idx = first_def_cell("BASE_ASSUMPTIONS")
+    rev03_single = ba_idx is not None and cell_sources[ba_idx].count('"consults_per_capita_yr":') == 1
+    check_rev("REV-03 (no duplicate consults_per_capita_yr key)", rev03_single,
+              "REV-03: consults_per_capita_yr defined != once in BASE_ASSUMPTIONS cell")
+
+    # REV-04: working-capital buffer is derived, not a stale hardcoded literal.
+    rev04_no_literal = "49_450" not in all_source and "49450" not in all_source
+    rev04_derived = "monthly_fixed_costs" in all_source and "working_capital_buffer_months" in all_source
+    check_rev("REV-04 (working-capital buffer derived)", rev04_no_literal and rev04_derived,
+              f"REV-04: stale 49,450 literal absent ({rev04_no_literal}), derived buffer ({rev04_derived})")
+
+    # REV-05: §6 narrative arithmetic corrected (effective 20,625, not the false "=27,500").
+    rev05 = "20,625" in all_source and "75% utilisation = 27,500" not in all_source
+    check_rev("REV-05 (§6 narrative 20,625 not false 27,500)", rev05,
+              "REV-05: §6 narrative still states '75% utilisation = 27,500' or missing 20,625")
+
+    # REV-06: dead/contradictory params removed (check KEY definitions, not mentions in comments).
+    rev06 = '"consults_per_gp_day":' not in all_source and '"days_per_yr":' not in all_source
+    check_rev("REV-06 (dead params removed)", rev06,
+              "REV-06: consults_per_gp_day or days_per_yr key still defined")
+
+    # ──────────────────────────────────────────────────────────────
     # 7. Summary report
     # ──────────────────────────────────────────────────────────────
 

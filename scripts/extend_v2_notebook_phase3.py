@@ -67,10 +67,8 @@ def _join(lns):
 PHASE3_ASSUMPTIONS_KEYS = [
     "",
     "    # --- Phase 3: Demand & Competitors (source: AIHW 2026, MBS SA3, RACGP, AMWAC) ---",
-    "    # AIHW SA3 age bands: 0-24, 25-44, 45-64, 65+ (NOT 0-14/15-64/65+ — Correction 2)",
-    "    # Values are \"services per 100 people\" from AIHW (2026), SA3 20604 Yarra",
-    "    # These are placeholder defaults — replaced by load_aihw_sa3_rates() at runtime",
-    "    \"consults_per_capita_yr\": {\"0-24\": 4.5, \"25-44\": 5.5, \"45-64\": 7.5, \"65+\": 12.0},  # AIHW (2026) fallback",
+    "    # NOTE: consults_per_capita_yr (AIHW SA3 4-band attendance rates) is defined ONCE",
+    "    # in the Demand block above — do NOT redefine it here (was a duplicate key).",
     "    \"mbs_sa3_filename\":       \"medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26.xlsx\",  # D-01 manual download",
     "    \"aihw_age_band_filename\": \"aihw-medicare-subsidised-gp-allied-health-2024-25-data-tables.xlsx\",  # D-02 manual download",
     "    \"avg_fte_per_clinic\":     4.0,        # RACGP 2019 (5.7 headcount) × DoH 2024 (0.74 FTE/GP) = 4.2, rounded down — D-10",
@@ -334,7 +332,9 @@ def mbs_aihw_cells():
         "    path = DATA_LOCAL_DIR / AIHW_FILENAME",
         "    if not path.exists():",
         '        print("⚠ WARNING: AIHW age-band data not found. Using national average fallback.")',
-        '        return ({"0-24": 4.5, "25-44": 5.5, "45-64": 7.5, "65+": 12.0}, "national_fallback")',
+        "        # Fallback rates are the single source in BASE_ASSUMPTIONS (services per 100",
+        "        # people/yr — SAME unit convention as compute_demand's /100 divisor).",
+        '        return (dict(BASE_ASSUMPTIONS["consults_per_capita_yr"]), "national_fallback")',
         "",
         "    xl = pd.ExcelFile(path)",
         '    print(f"[aihw] sheets: {xl.sheet_names}")',
@@ -1007,6 +1007,20 @@ def demand_cells():
         "    per_capita = ring_demand[r] / v2_ring_pops_erp.get(r, 1) * 100 if v2_ring_pops_erp.get(r, 0) else 0",
         '    print(f"[demand] {r//1000}km ring | age_adjusted_demand: {ring_demand[r]:.0f} | per_capita_rate: {per_capita:.1f}/100")',
         "",
+        "# Units guard (Correction 2 follow-up): AIHW rates are 'services per 100 people/yr',",
+        "# so per-capita attendance should land ~300-1000/100 (i.e. ~3-10 visits/person/yr).",
+        "# A value ~100x low means a per-person rate was used where per-100 was expected",
+        "# (or vice-versa) — warn LOUDLY rather than silently shipping nonsense market shares.",
+        "PLAUSIBLE_PER100 = (300, 1000)",
+        'for r in BASE_ASSUMPTIONS["catchment_radii_m"]:',
+        "    ring_pop = v2_ring_pops_erp.get(r, 0)",
+        "    if ring_pop:",
+        "        pc = ring_demand[r] / ring_pop * 100",
+        "        if not (PLAUSIBLE_PER100[0] <= pc <= PLAUSIBLE_PER100[1]):",
+        '            print(f"⚠ DEMAND UNITS CHECK: {r//1000}km per-capita rate {pc:.1f}/100 outside "',
+        '                  f"plausible {PLAUSIBLE_PER100[0]}-{PLAUSIBLE_PER100[1]}/100 — check AIHW rate units "',
+        '                  f"(services per 100 people/yr) vs compute_demand()\'s /100 divisor.")',
+        "",
         'print("[demand] compute_demand() defined — sum(pop_band × rate_band), transparent arithmetic (no ML)")',
     ))
 
@@ -1075,7 +1089,7 @@ def demand_cells():
         '    consult_cap_a = cap["method_a_clinic_derived"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]',
         '    consult_cap_b = cap["method_b_benchmark_derived"] * BASE_ASSUMPTIONS["gp_fte_consults_per_yr"]',
         "    existing_capacity_range[r] = (min(consult_cap_a, consult_cap_b), max(consult_cap_a, consult_cap_b))",
-        '    print(f"[capacity] {r//1000}km ring | GP clinics: {gp_clinic_count} | FTE_a: {cap["method_a_clinic_derived"]:.1f} | FTE_b: {cap["method_b_benchmark_derived"]:.1f} | consult_cap: {existing_capacity_range[r][0]:.0f}–{existing_capacity_range[r][1]:.0f}/yr")',
+        '    print(f"[capacity] {r//1000}km ring | GP clinics: {gp_clinic_count} | FTE_a: {cap[\'method_a_clinic_derived\']:.1f} | FTE_b: {cap[\'method_b_benchmark_derived\']:.1f} | consult_cap: {existing_capacity_range[r][0]:.0f}–{existing_capacity_range[r][1]:.0f}/yr")',
         "",
         'print("[capacity] estimate_gp_capacity_range() defined — two methods (clinic-derived × 4.0 FTE, AMWAC 110.4/100k × pop)")',
     ))
@@ -1141,7 +1155,7 @@ def demand_cells():
         '        "share_of_pop": ms_a["share_of_pop"],',
         "    }",
         "    label = label_market_share(share_total_mid)",
-        '    print(f"[market-share] {r//1000}km ring | demand: {ring_demand[r]:.0f} | cap_a: {consult_cap_a:.0f} | cap_b: {consult_cap_b:.0f} | share_total_a: {ms_a["share_of_total"]:.1f}% | share_total_b: {ms_b["share_of_total"]:.1f}% | share_unmet_mid: {share_unmet_mid:.1f}% | share_pop: {ms_a["share_of_pop"]:.1f}% | label: {label}")',
+        '    print(f"[market-share] {r//1000}km ring | demand: {ring_demand[r]:.0f} | cap_a: {consult_cap_a:.0f} | cap_b: {consult_cap_b:.0f} | share_total_a: {ms_a[\'share_of_total\']:.1f}% | share_total_b: {ms_b[\'share_of_total\']:.1f}% | share_unmet_mid: {share_unmet_mid:.1f}% | share_pop: {ms_a[\'share_of_pop\']:.1f}% | label: {label}")',
         "",
         'print("[market-share] compute_required_market_share() + label_market_share() defined — three framings (D-13), low/moderate/high labels (D-14)")',
     ))
@@ -1218,8 +1232,15 @@ def extend_base_assumptions(cells):
         for line in src:
             # Replace old 3-band consults_per_capita_yr with 4-band version
             if OLD_CONSULTS_LINE in line:
+                # AIHW SA3 age bands 0-24/25-44/45-64/65+ (Correction 2). Units = GP
+                # attendances per 100 people/yr (SAME convention as compute_demand's /100
+                # divisor). National-average fallback; replaced by load_aihw_sa3_rates() at
+                # runtime when the AIHW SA3 file is present. Verify against AIHW national row.
                 new_source.append(
-                    '    "consults_per_capita_yr": {"0-24": 4.5, "25-44": 5.5, "45-64": 7.5, "65+": 12.0},  # AIHW (2026) fallback\n'
+                    '    # AIHW SA3 attendance rates — services per 100 people/yr (Correction 2)\n'
+                )
+                new_source.append(
+                    '    "consults_per_capita_yr": {"0-24": 450, "25-44": 550, "45-64": 750, "65+": 1200},  # per 100/yr — AIHW (2026) national fallback\n'
                 )
             elif line.strip() == "}":
                 # Insert Phase 3 keys before the closing brace
