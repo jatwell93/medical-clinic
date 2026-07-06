@@ -3,7 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: milestone_complete
-last_updated: "2026-07-06T05:45:00.000Z"
+last_updated: "2026-07-06T06:30:00.000Z"
+shipped_pr: 1
 progress:
   total_phases: 5
   completed_phases: 5
@@ -26,7 +27,9 @@ Plan 05-02 executed — §8 Executive Report added to the notebook. Binary GO/NO
 
 ## Current Status
 
-Phase 5 complete. 2 of 2 plans done. All 5 phases complete.
+**Milestone v1.0 SHIPPED — PR #1** (https://github.com/jatwell93/medical-clinic/pull/1)
+
+Phase 5 complete. 2 of 2 plans done. All 5 phases complete. All 32 requirements satisfied.
 
 - `05-01-PLAN.md` — Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — **COMPLETE**
 - `05-02-PLAN.md` — Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — **COMPLETE**
