@@ -109,7 +109,7 @@
 **Requirements mapped:** FIN-04, FIN-05, FIN-06, FIN-07, REP-01, REP-02, REP-03, REP-04
 
 **Plan progress:**
-- [ ] 05-01: Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — PLANNED
+- [x] 05-01: Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — COMPLETE
 - [ ] 05-02: Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — PLANNED
 
 **Success criteria:**
@@ -166,4 +166,4 @@ The phase order follows the dependency graph in the research synthesis and ARCHI
 Teaching commentary is written as-you-go in every phase, not retrofitted.
 
 ---
-*Last updated: 2026-07-05 — Phase 2 gap-closure plan 02-03 created (CR-01 + CR-02 + WR-01..04 + IR-02)*
+*Last updated: 2026-07-06 — Phase 5 plan 05-01 complete (Scenarios & Sensitivity: FIN-04/05/06/07 satisfied)*

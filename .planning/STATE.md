@@ -2,45 +2,45 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: milestone_complete
-last_updated: "2026-07-06T03:12:36.402Z"
+status: in_progress
+last_updated: "2026-07-06T04:30:00.000Z"
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 12
-  completed_plans: 10
-  percent: 83
+  completed_plans: 11
+  percent: 92
 ---
 
 # State — Clinic Feasibility Study
 
 **Project:** JSMC — Johnston St Medical Clinic Feasibility Study
 **Roadmap:** [ROADMAP.md](./ROADMAP.md)
-**Updated:** 2026-07-05
+**Updated:** 2026-07-06
 
 ## Current Phase
 
-**Phase 2 — Catchment & Demographics (COMPLETE)**
+**Phase 5 — Scenarios & Executive Report (IN PROGRESS)**
 
-Gap-closure plan 02-03 executed — all 6 verification gaps closed (2 critical, 4 warning/info). §3 demographics is runtime-functional; v1-vs-v2 comparison shows real overstatement. Validator OVERALL: PASS (22 checks). Phase 2 complete.
+Plan 05-01 executed — §7 Scenarios & Sensitivity section added to the notebook. Base/optimistic/pessimistic scenario override dicts (FIN-04), 2 tornado charts (FIN-05), billing-mix curve with BBPIP (FIN-06), and pharmacy synergy range (FIN-07) all implemented. All metrics deposited into `report{}` for §8. Plan 05-02 (Executive Report) remains.
 
 ## Current Status
 
-Phase 2 complete. All 5 of 5 plans done.
+Phase 5 in progress. 1 of 2 plans done.
 
-- `02-01-PLAN.md` — Catchment (geocode + buffers + SA1 apportionment + v1-vs-v2 comparison + maps) — **COMPLETE** (commits 9a0dbbc, 7083642)
-- `02-02-PLAN.md` — Demographics (ABS G01/G02/G04 + ERP scaling + peer benchmarking + charts) — **COMPLETE** (commits 2e2dac6, 5432534)
-- `02-03-PLAN.md` — Gap closure (CR-01 check_dataflow_exists XML fix, CR-02 v1-vs-v2 comparison fix, WR-01..04 + IR-02 validator strengthening) — **COMPLETE** (commits 782494c, 612d36b, d4d62ed, e870a22)
-
-- `01-01-PLAN.md` — Repo scaffolding — **COMPLETE** (commits 5390043, b0e3e6c)
-- `01-02-PLAN.md` — Notebook v2 scaffolding (§0 setup + §1 cache layer + ABS smoke test) — **COMPLETE** (commits 1d47733, 654ab63)
-
-Plan 02-03 closed all 6 gaps from 02-VERIFICATION.md: CR-01 (check_dataflow_exists now parses SDMX-ML XML via ElementTree, no .json() on XML endpoint, try/except safe default True), CR-02 (compare_v1_v2 accepts (v1_ring_pops, v2_ring_pops) and computes real pct_overstate; v1_naive_catchment_pop joins g01_df Total_P_P; v1_pop = v2_pop stub eradicated), WR-01 (try/except safe default), WR-02 (empty-schema GCP fallbacks, no zero-stubs), WR-03 (fetch_g04_poa calls fetch_g04_fallback), WR-04 (explicit age-band prefix matching + matched-columns print). Both generators upgraded to cell-replacement idempotency (re-run regenerates the corrected notebook; 36 cells preserved). Validator strengthened with negative pattern assertions for CR-01 + CR-02 stub (IR-02) — OVERALL: PASS. See [02-03-SUMMARY.md](./phases/02-catchment-demographics/02-03-SUMMARY.md).
+- `05-01-PLAN.md` — Scenarios & Sensitivity (base/opt/pess override dicts + 2 tornado charts + billing-mix curve + pharmacy synergy range) — **COMPLETE**
+- `05-02-PLAN.md` — Executive Report (verdict logic + assumptions register + Jinja2 template + weasyprint PDF + citations) — PLANNED
 
 ## Recent Decisions
 
 | Decision | Rationale | Date |
 |----------|-----------|------|
+| Scenario override dicts contain ONLY changed keys | {**BASE_ASSUMPTIONS, **overrides} supplies unchanged values; base case = empty override dict (D-05) | 2026-07-06 |
+| 5 scenario levers: rent, utilisation, service-fee %, ramp speed, billing mix | D-05 — each moves independently via override dict on clinic_pnl + clinic_ramp_monthly | 2026-07-06 |
+| Tornado zero-crossings via np.linspace(200 steps) + np.interp | Don't Hand-Roll — numpy vectorised search for rent/utilisation/service-fee where EBITDA=0 (D-02) | 2026-07-06 |
+| BBPIP 12.5% with 6.25% practice retention at 100% bulk only | D-09/Pitfall 7 — BBPIP is all-or-nothing practice incentive; added as extra revenue on top of clinic_pnl EBITDA | 2026-07-06 |
+| Pharmacy synergy as standalone arithmetic, NOT clinic_pnl override | D-11/D-12 — per-capita scripts × capture rate × margin; only new computation in Phase 5; order-gated after standalone (D-04) | 2026-07-06 |
+| §6 "## Next Steps" cell removed by Phase 5 generator | §7.7 Interpretation replaces it as notebook tail; remove_next_steps() helper strips all Next Steps cells | 2026-07-06 |
 | fetch_abs_csv() returns (DataFrame, response) tuple | Plan pseudocode had scoping bug — resp referenced outside try block; returning tuple fixes this | 2026-07-05 |
 | ERP growth rate defaults to 1.0 when API unavailable | Never hard-fail on network call (PIPE-04); peer table falls back to unscaled 2021 values | 2026-07-05 |
 | v2_ring_pops initialized as empty dict for non-SA1 path | Plan only defined it inside if USE_SA1; ERP cell references it unconditionally — would NameError | 2026-07-05 |
@@ -63,7 +63,6 @@ Plan 02-03 closed all 6 gaps from 02-VERIFICATION.md: CR-01 (check_dataflow_exis
 
 ## Next Actions
 
-1. Phase 2 is complete — all GEO-01..04 + DEMO-01..04 requirements satisfied at the structural/runtime-ready level.
-2. Deferred human verification (Colab Restart & Run All): confirm §3 runs end-to-end without JSONDecodeError, v1-vs-v2 chart shows v1 > v2 (pct_overstate > 0%), G04 age bands detected, fallback consistent across G01/G02/G04.
-3. Phase 3 — Demand & Competitors: SA3-level MBS data, Google Places competitor mapping, age-adjusted demand model, required market share calculation.
-4. Phase 3 depends on: geocoded site (§1.2), catchment buffers (§2), apportioned population (§3), age profile (§3 G04), peer benchmarking table (§3 with placeholder GP/pharmacy columns) — all now runtime-functional after 02-03.
+1. Plan 05-01 complete — §7 Scenarios & Sensitivity added (FIN-04/05/06/07 satisfied). All metrics in `report{}` for §8.
+2. Plan 05-02 — Executive Report: verdict logic (D-01/D-02/D-03), assumptions register (D-16, REP-01), Jinja2 HTML template + weasyprint PDF (D-15/D-18, REP-03), inline citations (D-17, REP-04), go/no-go recommendation (REP-02).
+3. Deferred human verification (Colab Restart & Run All): confirm §7 runs end-to-end, 3 PNG figures generate, tornado zero-crossings computed, pharmacy synergy range displays.
