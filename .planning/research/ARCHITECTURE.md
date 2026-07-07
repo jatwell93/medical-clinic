@@ -1,323 +1,667 @@
 # Architecture Research
 
-**Domain:** Reproducible geospatial/financial analytics notebook (Colab-first, dual-environment)
-**Researched:** 2026-07-05
-**Confidence:** HIGH (patterns are well-established for analytics notebooks; specifics verified against v1 prototype and PROJECT.md)
+**Domain:** Reusable multi-site geospatial/financial feasibility tool (Colab notebook, VIC pilot)
+**Researched:** 2026-07-07
+**Confidence:** HIGH (v1.0 architecture fully audited; integration points traced cell-by-cell; SA1 shapefile attributes verified live)
+
+## Purpose of This Document
+
+This is a **v2.0 integration architecture** — it assumes the v1.0 architecture (documented in the prior cycle and shipped as 88 cells / 36 validator checks) is understood. The focus is exclusively on **how the new multi-site features integrate with the existing v1.0 notebook structure**: what changes, what's new, what's deleted, and in what order to build it.
+
+The v1.0 notebook (`Johnston_St_v2.ipynb`, 88 cells, §0–§8) is the starting point. v2.0 generalises it from a single hardcoded Abbotsford study into a parameterised tool that accepts any Victorian street address. Abbotsford ships as the default config so v2.0 out-of-the-box reproduces v1.0 (minus pharmacy synergy).
+
+---
 
 ## Standard Architecture
 
-### System Overview
-
-The notebook is a **linear pipeline with a cached I/O boundary**. Every external fetch (ABS API, Google Places, geocoding) goes through a cache layer so re-runs are free and deterministic. Computation flows strictly downward — no section reads state produced by a later section (the v1 `s_lat`/`s_lon` used-before-definition bug is exactly this violation).
+### System Overview (v2.0 — changes from v1.0 marked)
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│ §0 SETUP & CONFIG (one cell each)                                │
-│  ┌────────────┐ ┌──────────────┐ ┌───────────────────────────┐  │
-│  │ pip installs│ │ env detect   │ │ PARAMS cell (site, radii, │  │
-│  │ + imports   │ │ (Colab/local)│ │ financial assumptions)    │  │
-│  └────────────┘ └──────┬───────┘ └─────────────┬─────────────┘  │
-├────────────────────────┴───────────────────────┴─────────────────┤
-│ §1 DATA ACQUISITION LAYER (all external I/O, all cached)         │
-│  ┌──────────┐ ┌───────────┐ ┌────────────┐ ┌─────────────────┐  │
-│  │ Geocoding│ │ ABS Data  │ │ Google     │ │ Local file       │  │
-│  │ (Google) │ │ API (G01/ │ │ Places     │ │ fallbacks (GCP   │  │
-│  │          │ │ G02, POA) │ │ (nearby)   │ │ zip, MBS xlsx)   │  │
-│  └────┬─────┘ └─────┬─────┘ └─────┬──────┘ └──────┬──────────┘  │
-│       └─────────────┴──── cached_fetch() ─────────┘             │
-│                            │                                     │
-│                     data/cache/*.json                            │
-├──────────────────────────────────────────────────────────────────┤
-│ §2 GEOSPATIAL CATCHMENT       §3 DEMOGRAPHICS                    │
-│  site point → 1/3/5 km        POA census → area-apportioned      │
-│  buffers (EPSG:7855)          catchment population & age bands   │
-├──────────────────────────────────────────────────────────────────┤
-│ §4 COMPETITORS                §5 DEMAND MODEL                    │
-│  Places results → dedupe,     age-adjusted consult demand vs     │
-│  classify, per-radius counts  GP capacity → required share       │
-├──────────────────────────────────────────────────────────────────┤
-│ §6 FINANCIAL MODEL            §7 SCENARIOS                       │
-│  P&L function(params) →       base/opt/pess param dicts →        │
-│  revenue, costs, breakeven    P&L per scenario, sensitivity      │
-├──────────────────────────────────────────────────────────────────┤
-│ §8 REPORT GENERATION                                             │
-│  collected key metrics + maps → markdown assembly → PDF export   │
-├──────────────────────────────────────────────────────────────────┤
-│ STORES: data/cache/ (JSON)  data/local/ (ABS zips, MBS xlsx)     │
-│         outputs/ (maps .html/.png, report .md/.pdf)              │
-└──────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│ §0 SETUP & CONFIG                                                    │
+│  ┌────────────┐ ┌──────────────┐ ┌────────────────────────────────┐  │
+│  │ pip installs│ │ env detect   │ │ §0.3 PARAMS (RESTRUCTURED)     │  │
+│  │ + imports   │ │ (Colab/local)│ │  SITE_CONFIG (user inputs)  →  │  │
+│  └────────────┘ └──────┬───────┘ │  BASE_ASSUMPTIONS (constants) │  │
+│                          │       └───────────────┬────────────────┘  │
+│                          │                       │                   │
+│                          │       ┌───────────────▼────────────────┐  │
+│                          │       │ §0.4 Upload local data (Colab) │  │
+│                          │       └───────────────┬────────────────┘  │
+├──────────────────────────┴───────────────────────┴──────────────────┤
+│ §1 DATA ACQUISITION LAYER (all cached)                               │
+│  ┌──────────┐ ┌───────────────┐ ┌──────────────┐ ┌───────────────┐  │
+│  │ §1.1     │ │ §1.2 Geocode  │ │ §1.3 DERIVE  │ │ §1.4 ABS Data │  │
+│  │ Cache    │ │ site address  │ │ POA + SA3    │ │ API (G01/G02/ │  │
+│  │ session  │ │ (Google)      │ │ from point   │ │ G04 for DERIV │  │
+│  └──────────┘ └──────┬────────┘ │ (point-in-   │ │ ED POA + peers│  │
+│                         │        │  polygon)    │ │ + DERIVED SA3 │  │
+│                         │        └──────┬───────┘ └──────┬────────┘  │
+│                         │               │                │           │
+│                         │       ┌───────▼────────────────▼──────┐   │
+│                         │       │  data/cache/*.json             │   │
+│                         │       └───────────────────────────────┘   │
+│                         │               │                │           │
+│                         │       ┌───────▼────────┐ ┌─────▼───────┐  │
+│                         │       │ §1.5 Google     │ │ §1.6 MBS    │  │
+│                         │       │ Places (nearby) │ │ SA3 (DERIV  │  │
+│                         │       │                 │ │ ED SA3)     │  │
+│                         │       └─────┬───────────┘ └─────┬──────┘  │
+├─────────────────────────┴─────────────┴───────────────────┴─────────┤
+│ §2 GEOSPATIAL CATCHMENT (reuses §1.3 geometries)                    │
+│  site point → 1/3/5 km buffers (EPSG:7855) → SA1 area apportionment │
+├──────────────────────────────────────────────────────────────────────┤
+│ §3 DEMOGRAPHICS │ §4 COMPETITORS │ §5 DEMAND MODEL                   │
+│ (derived POA    │ (Places →      │ (age-adjusted demand vs           │
+│  + peers)       │  dedupe/class) │  capacity → required share)       │
+├──────────────────────────────────────────────────────────────────────┤
+│ §6 FINANCIAL MODEL │ §7 SCENARIOS (pharmacy synergy DELETED)        │
+│ (clinic_pnl(a) —   │ (base/opt/pess + tornado + billing-mix)        │
+│  pure function)    │                                              │
+├──────────────────────────────────────────────────────────────────────┤
+│ §8 EXECUTIVE REPORT                                                  │
+│  site-parameterised template → slugified filename → PDF             │
+├──────────────────────────────────────────────────────────────────────┤
+│ STORES: data/cache/ (JSON)  data/local/ (shapefiles, MBS, AIHW)     │
+│         outputs/ (maps, report .html/.pdf — DYNAMIC FILENAME)       │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
-### Component Responsibilities
+**Key structural changes from v1.0:**
+1. **§0.3 restructured** — split into `SITE_CONFIG` (user inputs) + `BASE_ASSUMPTIONS` (constants), same cell
+2. **§1.3 NEW** — POA + SA3 derivation cell (point-in-polygon), inserted between geocode and ABS fetch
+3. **§1.4 ABS fetch reparameterised** — uses derived POA/SA3 instead of hardcoded 3067/20604
+4. **§1.6 MBS reparameterised** — uses derived SA3 instead of hardcoded 20607
+5. **§7.6 pharmacy synergy DELETED** — cells 81–82 removed
+6. **§8 report template parameterised** — site name/address from SITE_CONFIG, filename slugified
 
-| Component | Responsibility | Typical Implementation |
-|-----------|----------------|------------------------|
-| §0 Setup | pip installs, imports, quiet warnings | One cell; `%pip install -q` guarded so local runs skip it |
-| §0 Env/paths | Detect Colab vs Windows, resolve `PROJECT_ROOT`, load API keys | `try: from google.colab import userdata` / `except ImportError:` → `.env` via `python-dotenv`; `pathlib.Path` everywhere |
-| §0 PARAMS | Every tunable input in one dict/dataclass with citation comments | `ASSUMPTIONS = {...}` cell — site address, radii `[1000, 3000, 5000]`, billing mix, fee levels, rent, fit-out capital |
-| §1 Cache layer | `cached_fetch(key, fetch_fn)` — JSON on disk, deterministic keys | ~20-line helper; every API call goes through it |
-| §1 ABS client | Pull G01/G02-equivalent for POA 3067 + peers via api.data.abs.gov.au; fallback to local GCP CSVs with warning | `requests` + SDMX-JSON parse → tidy DataFrame |
-| §1 Places client | Nearby search with pagination, per (lat,lon,radius,type) caching | v1's `google_nearby_places` + cache wrapper + 2s page-token sleep |
-| §1 MBS loader | SA3 20604 utilisation; fallback to state benchmark with printed warning | Read xlsx/CSV, filter SA3, emit consults-per-capita by age band |
-| §2 Catchment | Geocode exact address; buffers in metres (EPSG:7855); area-apportion POA populations into each ring | `gpd.overlay` intersection → `pop × (intersect_area / poa_area)` — fixes v1 whole-postcode summing |
-| §3 Demographics | Catchment population, age structure, income; peer-postcode comparison table | DataFrame keyed by radius; merge ABS data with apportionment weights |
-| §4 Competitors | Dedupe by place_id across types/radii, classify (corporate GP / independent / pharmacy / allied), per-ring counts, folium map | Pure pandas on cached Places JSON |
-| §5 Demand model | Age-band consult rates × catchment age profile → annual consult demand; vs GP FTE capacity → market share required | Transparent arithmetic, no ML (v1's 3-row Random Forest is explicitly replaced) |
-| §6 Financial model | `clinic_pnl(params) -> dict` — revenue, cost lines, EBIT, fit-out, months-to-breakeven | Pure function of a params dict; zero globals |
-| §7 Scenarios | Base/optimistic/pessimistic param overrides; one-way sensitivity table (rent, bulk-bill %, consults/GP/day) | `{**BASE, **overrides}` per scenario → call `clinic_pnl` |
-| §8 Report | Assemble markdown from a `report_metrics` dict collected throughout; render PDF | f-string markdown template → `md → HTML → PDF` (weasyprint or pandoc/wkhtmltopdf; Colab: `!pip install weasyprint`) |
+### Component Responsibilities (v2.0 — new/modified marked)
+
+| Component | Responsibility | v2.0 Status | Implementation |
+|-----------|----------------|-------------|----------------|
+| §0.1 Installs | pip installs, imports | unchanged | One cell; `%pip install -q` guarded |
+| §0.2 Env/paths | Detect Colab/Windows, PROJECT_ROOT, keys | unchanged | `try: from google.colab import userdata` |
+| §0.3 PARAMS | All tunable inputs in one cell | **MODIFIED** — restructured into SITE_CONFIG + BASE_ASSUMPTIONS | See Pattern 6 below |
+| §0.4 Upload | Colab file upload for local assets | unchanged | No-op on Windows |
+| §1.1 Cache | CachedSession construction | unchanged | `requests_cache.CachedSession` |
+| §1.2 ABS smoke | Keyless ABS API connectivity test | unchanged | SDMX-ML XML smoke test |
+| §1.2 Geocode | Geocode site address → lat/lon | **MODIFIED** — reads SITE_CONFIG["address"] | Google Geocoding API, cached |
+| §1.3 Derive POA/SA3 | Point-in-polygon on ASGS boundaries → site POA + SA3 | **NEW** | See Pattern 7 below |
+| §1.4 ABS fetch | G01/G02/G04 for derived POA + user peers + derived SA3 | **MODIFIED** — parameterised POA/SA3 | `fetch_abs_csv(flow, key)` with derived codes |
+| §1.5 Places | Nearby Search with saturation subdivision | **MODIFIED** — uses derived lat/lon (already did in v1.0) | Unchanged logic, just site-agnostic |
+| §1.6 MBS SA3 | SA3-level MBS utilisation | **MODIFIED** — uses derived SA3 instead of hardcoded 20607 | Filter xlsx on `SA3 == site_sa3_code` |
+| §2 Catchment | Buffers, area apportionment, maps | **MODIFIED** — reuses §1.3 geometries; plausibility range becomes site-relative | `gpd.overlay` in EPSG:7855 |
+| §3 Demographics | Catchment profile, peer table | **MODIFIED** — peer table conditional on user-supplied peers | Skip peer section if `PEER_POSTCODES` empty |
+| §4 Competitors | Dedupe, classify, per-ring counts, maps | unchanged (already site-agnostic) | Pure pandas on cached Places JSON |
+| §5 Demand model | Age-adjusted consult demand vs capacity | unchanged | Transparent arithmetic |
+| §6 Financial model | `clinic_pnl(a)` pure function | **MODIFIED** — FTE from SITE_CONFIG, floor_area parameterised | Pure function of params dict |
+| §7 Scenarios | Base/opt/pess overrides, tornado, billing-mix | **MODIFIED** — §7.6 pharmacy synergy DELETED | Override dicts, no pharmacy section |
+| §8 Report | Verdict, assumptions register, Jinja2 template, PDF | **MODIFIED** — site-parameterised template, slugified filename | See Pattern 8 below |
+
+---
 
 ## Recommended Project Structure
 
-The deliverable is a single notebook, so "structure" = repo layout + notebook section layout.
-
-```
-medical-clinic/
-├── Johnston_St_v2.ipynb      # the deliverable notebook
-├── Johnston_St_v1.ipynb      # frozen reference (untouched)
-├── johnston_st_v1.py         # frozen reference
-├── .env                      # GOOGLE_PLACES_KEY=... (gitignored)
-├── .env.example              # documented key names, no values
-├── .gitignore                # .env, data/cache/, outputs/, *.pyc
-├── data/
-│   ├── cache/                # JSON API caches (committed optionally — makes runs reproducible without keys)
-│   │   ├── geocode_292-296-johnston-st....json
-│   │   ├── abs_G01_POA3067.json
-│   │   └── places_doctor_-37.799_145.003_3000.json
-│   └── local/                # fallback assets (GCP POA zip, POA shapefile, MBS xlsx, cohealth PDF)
-├── outputs/
-│   ├── maps/                 # folium .html + static .png exports
-│   ├── report.md             # assembled markdown
-│   └── Johnston_St_Feasibility.pdf
-└── .planning/                # GSD planning docs
-```
-
-Notebook section layout (each numbered section = markdown header cell + teaching commentary + code cells):
+The repo layout is unchanged from v1.0. The notebook section layout changes:
 
 ```
 §0  Setup & Configuration
-    0.1 Installs & imports        0.2 Environment/paths/keys      0.3 PARAMETERS & ASSUMPTIONS
+    0.1 Installs & imports
+    0.2 Environment/paths/keys
+    0.3 Parameters & Assumptions  ← RESTRUCTURED (SITE_CONFIG + BASE_ASSUMPTIONS)
+    0.4 Upload local data files (Colab only)
 §1  Data Acquisition & Caching
-    1.1 cache helper              1.2 geocode site                1.3 ABS census (API + fallback)
-    1.4 Google Places fetches     1.5 MBS SA3 data (+ fallback)
-§2  Geospatial Catchment (buffers, area apportionment, base map)
-§3  Demographics (catchment profile, peer comparison)
-§4  Competitor Landscape (classification, density, map)
-§5  Demand Model (consult demand vs capacity, required share)
-§6  Financial Model (P&L function, base-case run)
-§7  Scenarios & Sensitivity
-§8  Executive Report (markdown assembly → PDF)
+    1.1 Cache session + ABS smoke test
+    1.2 Geocode site address        ← reads SITE_CONFIG["address"]
+    1.3 Derive POA + SA3 from point ← NEW CELL
+    1.4 ABS census fetch            ← parameterised (derived POA + peers)
+    1.5 Google Places fetches       ← already site-agnostic
+    1.6 MBS SA3 data                ← parameterised (derived SA3)
+§2  Geospatial Catchment (reuses §1.3 geometries)
+§3  Demographics (conditional peer table)
+§4  Competitor Landscape
+§5  Demand Model
+§6  Financial Model (FTE from SITE_CONFIG)
+§7  Scenarios & Sensitivity (pharmacy synergy DELETED)
+§8  Executive Report (site-parameterised, slugified filename)
 ```
 
 ### Structure Rationale
 
-- **`data/cache/`:** The reproducibility keystone. With caches committed (they're small JSON), anyone can re-run the full notebook with **zero API calls and zero keys** — critical for a graded/investor artifact and for the Google-spend constraint.
-- **`data/local/`:** Fallback-only assets. The notebook must run without them if the ABS API is up; if used, a visible warning prints so provenance is honest.
-- **`outputs/`:** Generated artifacts kept out of the notebook file itself (folium maps embedded in .ipynb bloat it badly; save to HTML and display inline plus save PNG for the PDF).
-- **Section numbering:** Mirrors data-flow dependencies exactly (see Data Flow) so "run all" always works top-to-bottom — the single most important property v1 lacks.
+- **§0.3 stays as one cell:** The "single parameters cell" pattern (PIPE-05) is preserved. SITE_CONFIG and BASE_ASSUMPTIONS live in the same cell, with SITE_CONFIG defined first. This keeps the validator's `first_def_cell("BASE_ASSUMPTIONS")` check working and maintains the auditability property.
+- **§1.3 is a new cell, not a new section:** It's a derivation step within §1 (Data Acquisition), not a new top-level section. It sits between geocode (§1.2) and ABS fetch (§1.4) because ABS fetch depends on the derived POA/SA3.
+- **§7.6 deletion is a cell removal, not a renumbering:** The §7 section keeps its number; cells 81–82 (markdown + code) are simply removed. §7.7 Interpretation (cell 83) becomes §7.6 or just stays as the tail of §7.
+
+---
 
 ## Architectural Patterns
 
-### Pattern 1: Cached Fetch Boundary
+### Pattern 1: Cached Fetch Boundary (unchanged from v1.0)
 
-**What:** Every external request goes through one helper that checks `data/cache/<key>.json` before hitting the network, and writes through on miss.
-**When to use:** Always, for all three APIs (geocode, ABS, Places). Never call `requests.get` directly from analysis cells.
-**Trade-offs:** + Free/deterministic re-runs, works offline, protects rate limits and Google spend. − Stale data risk (acceptable: census/competitor data changes slowly; invalidation = delete file).
+**What:** Every external request goes through `CachedSession`. No analysis cell calls `requests.get` directly.
+**When to use:** Always — for geocoding, ABS API, Google Places.
+**Trade-offs:** + Free/deterministic re-runs. − Stale data risk (acceptable; invalidation = delete cache file).
 
-**Example:**
-```python
-import json, hashlib, re
-from pathlib import Path
+**v2.0 note:** Cache keys must now include the derived POA/SA3 codes (not hardcoded 3067/20604). The `cache_key()` helper already produces filesystem-safe keys from arbitrary parts — just pass `site_poa` and `site_sa3` as parts. Different sites produce different cache files automatically.
 
-CACHE_DIR = PROJECT_ROOT / "data" / "cache"
-CACHE_DIR.mkdir(parents=True, exist_ok=True)
+### Pattern 2: Single Parameters Cell (unchanged from v1.0)
 
-def cache_key(*parts) -> str:
-    """Human-readable, filesystem-safe, deterministic key."""
-    raw = "_".join(str(p) for p in parts)
-    return re.sub(r"[^A-Za-z0-9._-]+", "-", raw)[:120]
+**What:** All tunable inputs live in one cell (§0.3). Downstream cells only read; never redefine.
+**When to use:** Always for scenario-driven models.
+**v2.0 note:** The cell now contains TWO dicts (SITE_CONFIG + BASE_ASSUMPTIONS) but the principle is identical — one place to audit.
 
-def cached_fetch(key: str, fetch_fn, force: bool = False):
-    path = CACHE_DIR / f"{key}.json"
-    if path.exists() and not force:
-        print(f"[cache hit] {path.name}")
-        return json.loads(path.read_text(encoding="utf-8"))
-    data = fetch_fn()                      # only place the network is touched
-    path.write_text(json.dumps(data, indent=1), encoding="utf-8")
-    print(f"[cache write] {path.name}")
-    return data
+### Pattern 3: Pure-Function Financial Model (unchanged from v1.0)
 
-# usage
-places = cached_fetch(
-    cache_key("places", "doctor", f"{lat:.4f}", f"{lon:.4f}", radius_m),
-    lambda: google_nearby_all_pages(lat, lon, radius_m, "doctor"),
-)
-```
+**What:** `clinic_pnl(a: dict) -> dict` with no globals. Scenarios are override dicts: `{**BASE_ASSUMPTIONS, **overrides}`.
+**When to use:** Whenever scenarios/sensitivity are required.
+**v2.0 note:** `n_gp_fte` and `n_allied_fte` now come from SITE_CONFIG (user input) but flow through BASE_ASSUMPTIONS the same way. The merge point is `BASE_ASSUMPTIONS["n_gp_fte"] = SITE_CONFIG["n_gp_fte"]` in §0.3 — downstream is unchanged.
 
-**Cache keys and invalidation:**
+### Pattern 4: Dual-Environment Bootstrap (unchanged from v1.0)
 
-| Source | Key composition | Invalidate when |
-|--------|-----------------|-----------------|
-| Geocode | `geocode_<slugified address>` | Address changes (key changes automatically) |
-| ABS API | `abs_<dataflow>_<region>_<census-year>` e.g. `abs_C21_G02_POA3067` | Never for 2021 census (immutable vintage) |
-| Places | `places_<type>_<lat:.4f>_<lon:.4f>_<radius>` | Want fresh competitors → delete file or `force=True` (rounded coords keep keys stable across float noise) |
-| MBS | local file, no cache needed; if API'd, `mbs_sa3_20604_<quarter>` | New quarter released |
+**What:** One cell detects runtime, resolves paths/secrets. Everything downstream uses `PROJECT_ROOT`-relative `pathlib`.
+**v2.0 note:** No changes needed. The bootstrap is already site-agnostic.
 
-A single `FORCE_REFRESH = False` flag in the PARAMS cell threads through as `force=` for a one-switch full refresh.
+### Pattern 5: Report Metrics Accumulator (unchanged from v1.0)
 
-### Pattern 2: Single Parameters Cell (Assumptions ≠ Computation)
+**What:** Each section deposits headline numbers into `report = {}`. §8 renders from that dict.
+**v2.0 note:** `report["site_name"]`, `report["site_address"]`, `report["site_slug"]` are deposited by §1.2/§1.3 and consumed by §8's template + filename logic.
 
-**What:** All tunable inputs live in one clearly-labelled cell near the top: site address, radii, and every financial assumption — each with an inline citation or "UNCONFIRMED" flag. Downstream cells only *read* these; they never redefine them.
-**When to use:** Always for scenario-driven models. This is what makes §7 scenarios trivial (`{**BASE_ASSUMPTIONS, **overrides}`).
-**Trade-offs:** + One place to audit, investor-defensible, sensitivity analysis falls out for free. − Slight verbosity; discipline required not to hardcode constants downstream (rule: any numeric literal in §2-§8 that isn't a unit conversion is a bug).
+### Pattern 6: Site Config / Assumptions Split (NEW — v2.0)
+
+**What:** The §0.3 cell contains two dicts: `SITE_CONFIG` (user-supplied site inputs) and `BASE_ASSUMPTIONS` (financial/demand constants). SITE_CONFIG is defined first; its values are merged into BASE_ASSUMPTIONS so downstream code sees a single dict.
+
+**When to use:** Whenever a notebook accepts user site inputs but also has a large fixed assumption set. This preserves the "single params cell" auditability while cleanly separating "what the user provides" from "what the tool assumes."
+
+**Trade-offs:** + User inputs are visually distinct from model constants; default config reproduces v1.0; validator can check both dicts. − Slightly more complex than a single flat dict — mitigate with clear section headers and comments.
 
 **Example:**
 ```python
-SITE_ADDRESS = "292-296 Johnston St, Abbotsford VIC 3067"
+# ═══════════════════════════════════════════════════════════════
+#  SITE CONFIG — user-supplied site inputs (v2.0 multi-site)
+#  Default = Abbotsford (reproduces v1.0). Change these for a new site.
+# ═══════════════════════════════════════════════════════════════
+
+SITE_CONFIG = {
+    "address":        "292-296 Johnston St, Abbotsford VIC 3067",
+    "state":          "VIC",              # v2.0 pilot: VIC only
+    "postcode":       "3067",             # user-supplied; verified via point-in-polygon
+    "n_gp_fte":       5,                  # clinic size — drives financial model
+    "n_allied_fte":   1,
+    "peer_postcodes": ["3067", "3066", "3068", "3070", "3078", "3079",
+                       "3101", "3121", "3122", "3123"],  # optional; empty = skip peers
+    "floor_area_sqm": 170,                # site-specific; drives fit-out capex
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  BASE ASSUMPTIONS — model constants (unchanged from v1.0)
+#  Downstream cells READ these; they never redefine them.
+#  Scenarios: {**BASE_ASSUMPTIONS, **overrides}
+# ═══════════════════════════════════════════════════════════════
+
 CATCHMENT_RADII_M = [1000, 3000, 5000]
-PEER_POSTCODES = ["3067","3066","3121","3068","3070","3078","3079","3101","3122","3123"]
+FORCE_REFRESH = False
 
 BASE_ASSUMPTIONS = {
-    # --- Demand (source: MBS SA3 20604; RACGP GP:pop benchmarks) ---
-    "consults_per_capita_yr": {"0-14": 4.4, "15-64": 5.1, "65+": 11.0},  # MBS 2024-25
-    "consults_per_gp_day":   28,          # RACGP typical full-book GP
-    # --- Revenue (source: MBS item 23 rebate; local gap-fee scan) ---
-    "bulk_bill_share":       0.70,        # DECISION: mixed-billing model
-    "std_rebate":            42.85,       # MBS item 23, 2025-26 — cite exact figure at build time
-    "private_fee":           90.00,       # inner-Melb typical standard consult
-    # --- Costs ---
-    "gp_revenue_share":      0.35,        # % of billings retained by clinic (GPs keep 65%)
-    "rent_yr":               100_000,     # UNCONFIRMED — key sensitivity, flagged in report
-    "fitout_capital":        350_000,     # estimate — flagged, sensitivity-tested
-    "n_gp_fte":              5,
-    "n_allied_fte":          1,
+    # --- Site & catchment (from SITE_CONFIG) ---
+    "site_address":      SITE_CONFIG["address"],
+    "catchment_radii_m": CATCHMENT_RADII_M,
+    "peer_postcodes":    SITE_CONFIG["peer_postcodes"],
+    "n_gp_fte":          SITE_CONFIG["n_gp_fte"],
+    "n_allied_fte":      SITE_CONFIG["n_allied_fte"],
+    "floor_area_sqm":    SITE_CONFIG["floor_area_sqm"],
+
+    # --- Demand, revenue, costs, ramp (unchanged from v1.0) ---
+    "bulk_bill_share":   0.70,
+    "std_rebate":        43.90,
+    # ... (all v1.0 constants preserved) ...
 }
 ```
 
-### Pattern 3: Pure-Function Financial Model
+**Key detail:** SITE_CONFIG values are injected into BASE_ASSUMPTIONS at definition time. Downstream cells continue to read `BASE_ASSUMPTIONS["n_gp_fte"]` — they don't know or care that it came from SITE_CONFIG. This means **zero changes to §2–§7 consumer code** for the FTE/floor_area parameterisation.
 
-**What:** The P&L is a function `clinic_pnl(a: dict) -> dict` with no globals, no notebook state, returning every line item plus derived metrics (EBIT, margin, months-to-breakeven).
-**When to use:** Whenever scenarios/sensitivity are required. Scenarios become data (dicts of overrides), not copy-pasted cells.
-**Trade-offs:** + Scenario table and tornado/sensitivity chart are ~10 lines each; testable with an asserted sanity check. − Slightly less "notebook-y" than inline arithmetic — mitigate with a teaching cell that walks through the base case line by line.
+### Pattern 7: Point-in-Polygon POA/SA3 Derivation (NEW — v2.0)
+
+**What:** After geocoding, load ASGS boundary shapefiles (POA + SA1), do a point-in-polygon query with the geocoded point, and extract the containing POA code and SA3 code. This replaces v1.0's hardcoded POA 3067 and SA3 20607.
+
+**When to use:** Whenever the site address is user-supplied and the ABS fetch region must be derived, not hardcoded.
+
+**Trade-offs:** + Authoritative (the polygon says what region the point is in, regardless of what postcode the user typed). + SA1 shapefile already includes `SA3_CODE21` / `SA3_NAME21` as attributes — no separate SA3 shapefile needed. − Requires loading shapefiles before ABS fetch (currently they're loaded in §2). Mitigation: load boundaries in §1.3, reuse in §2.
+
+**Why point-in-polygon over reverse-geocoding postcode from address string:**
+- The user-supplied postcode in SITE_CONFIG is a hint, not ground truth. A user might enter "3000" (Melbourne CBD) for an address that's actually in postcode 3000's fringe.
+- The POA shapefile is the authoritative ABS boundary. Point-in-polygon gives the correct POA code for census fetch.
+- SA3 cannot be reverse-geocoded from an address string at all — SA3 is an ABS statistical geography, not a postal geography. Point-in-polygon is the only option.
 
 **Example:**
 ```python
-def clinic_pnl(a: dict) -> dict:
-    annual_consults = a["n_gp_fte"] * a["consults_per_gp_day"] * a["days_per_yr"] * a["utilisation"]
-    rev_gp = annual_consults * (
-        a["bulk_bill_share"] * a["std_rebate"]
-        + (1 - a["bulk_bill_share"]) * a["private_fee"]
+# §1.3 — Derive POA + SA3 from geocoded point (v2.0 multi-site)
+# Loads ASGS boundaries (reused by §2 catchment), does point-in-polygon.
+import geopandas as gpd
+from shapely.geometry import Point
+
+# Load POA + SA1 boundaries (VIC only, EPSG:7855 for metric area math later)
+POA_ZIP = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["poa_shapefile"]
+SA1_ZIP = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["sa1_shapefile"]
+
+poa = gpd.read_file(POA_ZIP)
+poa = poa[poa["STE_NAME21"] == "Victoria"].to_crs("EPSG:7855")
+
+sa1 = gpd.read_file(SA1_ZIP)
+sa1 = sa1[sa1["STE_NAME21"] == "Victoria"].to_crs("EPSG:7855")
+
+# Point-in-polygon: which POA contains the geocoded site?
+site_point = gpd.GeoDataFrame(
+    [{"geometry": Point(site_lon, site_lat)}],
+    crs="EPSG:4326",
+).to_crs("EPSG:7855")
+
+poa_hit = gpd.sjoin(site_point, poa, how="left", predicate="within")
+site_poa_code = str(poa_hit.iloc[0].get("POA_CODE21", "")).zfill(4)
+site_poa_name = poa_hit.iloc[0].get("POA_NAME21", "")
+
+# Point-in-polygon: which SA1 → SA3 contains the geocoded site?
+sa1_hit = gpd.sjoin(site_point, sa1, how="left", predicate="within")
+site_sa3_code = str(sa1_hit.iloc[0].get("SA3_CODE21", ""))
+site_sa3_name = sa1_hit.iloc[0].get("SA3_NAME21", "")
+
+# ── GUARD: point outside VIC ──
+if not site_poa_code or not site_sa3_code:
+    raise RuntimeError(
+        f"Geocoded point ({site_lat}, {site_lon}) falls outside VIC ASGS boundaries. "
+        f"v2.0 is a VIC-only pilot. Check the address or use v2.1 for other states."
     )
-    revenue = rev_gp + a["allied_revenue_yr"] + a["procedures_revenue_yr"]
-    costs = (rev_gp * (1 - a["gp_revenue_share"])   # GP share paid out
-             + a["rent_yr"] + a["staff_costs_yr"] + a["insurance_yr"]
-             + a["admin_it_yr"] + a["equipment_leases_yr"])
-    ebit = revenue - costs
-    return {"revenue": revenue, "costs": costs, "ebit": ebit,
-            "margin": ebit / revenue if revenue else 0,
-            "breakeven_months": (a["fitout_capital"] / (ebit / 12)) if ebit > 0 else float("inf")}
 
-SCENARIOS = {
-    "base":        {},
-    "optimistic":  {"utilisation": 0.85, "bulk_bill_share": 0.60},
-    "pessimistic": {"utilisation": 0.60, "rent_yr": 120_000, "bulk_bill_share": 0.80},
-}
-results = {name: clinic_pnl({**BASE_ASSUMPTIONS, **ov}) for name, ov in SCENARIOS.items()}
+# Deposit into report accumulator for §8
+report["site_poa_code"] = site_poa_code
+report["site_poa_name"] = site_poa_name
+report["site_sa3_code"] = site_sa3_code
+report["site_sa3_name"] = site_sa3_name
+
+print(f"[§1.3] Site POA: {site_poa_code} ({site_poa_name})")
+print(f"[§1.3] Site SA3: {site_sa3_code} ({site_sa3_name})")
 ```
 
-### Pattern 4: Dual-Environment Bootstrap (Colab + local Windows)
+**Guard: point outside VIC.** If `gpd.sjoin` returns no match (empty result), the geocoded point is outside Victoria. v2.0 is a VIC-only pilot — raise a clear `RuntimeError` with a message pointing to v2.1 for other states. This is a hard fail, not a warning, because all downstream ABS/MBS fetches would be wrong for a non-VIC site.
 
-**What:** One early cell detects the runtime and resolves paths and secrets accordingly; everything downstream uses `PROJECT_ROOT`-relative `pathlib.Path`s only.
-**When to use:** Required by PROJECT.md ("Runs in Colab as primary… also work locally on Windows").
-**Trade-offs:** + No hardcoded `/content/drive/...` paths (v1's flaw); `git clone` in Colab replaces Drive mounting. − Colab loses `data/cache/` between sessions unless the repo (with caches) is cloned or Drive is optionally mounted — committing caches solves this cleanly.
+**Geometry reuse:** The `poa` and `sa1` GeoDataFrames loaded here are reused by §2 (catchment area apportionment). §2's cell 16 (which currently loads these) should be refactored to check if they're already loaded (`if "poa" not in globals(): ...`) or simply removed, with §1.3 becoming the single load point. The cleaner approach: §1.3 loads and §2 references the globals — but this creates an implicit dependency. The safest approach: §1.3 loads into globals, §2 asserts they exist (`assert "poa" in globals() and "sa1" in globals()`).
+
+### Pattern 8: Slugified Report Filename (NEW — v2.0)
+
+**What:** The report PDF/HTML filename is derived from the site address via slugification, with special-character handling and length limits.
+
+**When to use:** Whenever the report output must be named after an arbitrary user-supplied address.
+
+**Trade-offs:** + Each site gets a distinct, human-readable filename. − Must handle edge cases (special chars, very long addresses, non-ASCII).
 
 **Example:**
 ```python
-import os, sys
-from pathlib import Path
+# §8 — Derive safe filename from site address (v2.0 multi-site)
+import re
 
-IN_COLAB = "google.colab" in sys.modules
+def slugify(address: str, max_len: int = 60) -> str:
+    """Convert an address to a filesystem-safe slug."""
+    # Take the street part before the first comma (usually "292-296 Johnston St")
+    street_part = address.split(",")[0].strip()
+    # Lowercase, replace non-alphanumeric with hyphens, collapse repeats
+    slug = re.sub(r"[^a-z0-9]+", "-", street_part.lower()).strip("-")
+    # Truncate to max_len (don't cut mid-word)
+    if len(slug) > max_len:
+        slug = slug[:max_len].rsplit("-", 1)[0]
+    return slug or "site"
 
-if IN_COLAB:
-    from google.colab import userdata
-    GOOGLE_PLACES_KEY = userdata.get("GOOGLE_PLACES_KEY")   # Colab Secrets UI
-    # repo cloned into /content (git clone in setup cell), caches come with it
-    PROJECT_ROOT = Path("/content/medical-clinic")
-else:
-    from dotenv import load_dotenv
-    load_dotenv()                                            # reads .env next to notebook
-    GOOGLE_PLACES_KEY = os.environ.get("GOOGLE_PLACES_KEY", "")
-    PROJECT_ROOT = Path(__file__).parent if "__file__" in dir() else Path.cwd()
+site_slug = slugify(SITE_CONFIG["address"])
+# "292-296 Johnston St, Abbotsford VIC 3067" → "292-296-johnston-st"
 
-assert GOOGLE_PLACES_KEY or (PROJECT_ROOT / "data/cache").exists(), \
-    "Need GOOGLE_PLACES_KEY or a populated cache to run."
+pdf_path = OUTPUTS / f"{site_slug}_Feasibility_Report.pdf"
+html_path = OUTPUTS / f"{site_slug}_Feasibility_Report.html"
 ```
-Key detail: because everything is cached, **a missing key degrades gracefully** — cache hits satisfy all fetches, so graders/reviewers can run without any secrets.
 
-### Pattern 5: Report Metrics Accumulator → Markdown → PDF
+**Edge cases handled:**
+- Special characters (`/`, `\`, `:`, `*`, `?`, `"`, `<`, `>`, `|`) → replaced with hyphens
+- Very long addresses → truncated at `max_len` without cutting mid-word
+- Empty/whitespace-only → falls back to `"site"`
+- Non-ASCII (unlikely for VIC addresses, but possible) → `re.sub` strips to `[a-z0-9-]`
 
-**What:** Each analysis section deposits its headline numbers into a shared `report = {}` dict (e.g. `report["pop_3km"] = ...`, `report["gp_within_1km"] = ...`). §8 renders one f-string markdown template from that dict plus saved map PNGs, then converts to PDF.
-**When to use:** Whenever a PDF deliverable must stay in sync with notebook numbers — no manual copy-paste of figures.
-**Trade-offs:** + Zero drift between analysis and report; report template is readable prose. − Folium maps are HTML — export static images (`selenium`+headless chrome in Colab, or `folium` screenshot via `map._to_png()`, or simply matplotlib/contextily static maps for the PDF). Recommend: **folium for interactive notebook display, matplotlib+contextily for PDF figures** — avoids the headless-browser dependency entirely.
-
-```python
-md = REPORT_TEMPLATE.format(**report)          # f-string / .format template
-(OUTPUTS / "report.md").write_text(md, encoding="utf-8")
-# PDF: markdown → HTML → PDF
-import markdown, weasyprint
-html = f"<style>{REPORT_CSS}</style>" + markdown.markdown(md, extensions=["tables"])
-weasyprint.HTML(string=html, base_url=str(OUTPUTS)).write_pdf(OUTPUTS / "Johnston_St_Feasibility.pdf")
-```
-(Fallback if weasyprint's native deps misbehave on Windows: `pandoc` via `pypandoc`, or Colab-only `!jupyter nbconvert --to pdf` for a notebook-styled export. Weasyprint in Colab needs `!apt-get install -y libpango-1.0-0 libpangocairo-1.0-0` — one line.)
+---
 
 ## Data Flow
 
-### Pipeline Flow (which sections depend on which)
+### v2.0 Pipeline Flow (changes from v1.0 in **bold**)
 
 ```
-§0 PARAMS ──────────────┬───────────────┬──────────────┬──────────────┐
-                        ▼               ▼              ▼              ▼
-§1.2 geocode ──► §2 catchment buffers   §1.4 Places    §1.5 MBS SA3   §6 P&L fn
-                        │               (needs site    (independent)      ▲
-        §1.3 ABS ──►────┤                lat/lon §1.2)     │              │
-                        ▼                   ▼              │              │
-                 §3 demographics      §4 competitors       │              │
-                 (area-apportioned    (dedupe/classify     │              │
-                  pop by ring)         per ring)           │              │
-                        │                   │              │              │
-                        └───────┬───────────┴──────────────┘              │
-                                ▼                                         │
-                        §5 demand model                                   │
-                        (demand vs capacity → required share) ──► feeds ──┤
-                                                                          ▼
-                                                    §6 base-case P&L ──► §7 scenarios
-                                                                          │
-   §2 map + §4 map + §3 tables + §5/§6/§7 metrics ──► report{} dict ──►  §8 report → PDF
+§0.3 SITE_CONFIG ──┬──────────────────────────────────────────────────┐
+                   │                                                   │
+                   ▼                                                   │
+§1.2 geocode ──► site_lat, site_lon                                    │
+                   │                                                   │
+                   ▼                                                   │
+§1.3 **DERIVE POA + SA3** ──► site_poa_code, site_sa3_code             │
+     (point-in-polygon on ASGS boundaries)                             │
+                   │                                                   │
+                   ├──► §1.4 **ABS fetch (parameterised)**             │
+                   │     G01/G02/G04 for site_poa + peers + site_sa3   │
+                   │                                                   │
+                   ├──► §1.6 **MBS SA3 (parameterised)**               │
+                   │     filter on site_sa3_code (not hardcoded 20607) │
+                   │                                                   │
+                   ▼                                                   │
+§2 catchment (reuses §1.3 geometries) ──► buffers, apportionment       │
+                   │                                                   │
+                   ▼                                                   │
+§3 demographics (conditional peers) ──► catchment profile, peer table  │
+                   │                                                   │
+§1.5 Places ──► §4 competitors                                         │
+                   │                                                   │
+                   └───────┬───────────┘                               │
+                           ▼                                           │
+                   §5 demand model                                     │
+                           │                                           │
+                           ▼                                           │
+§0.3 BASE_ASSUMPTIONS ──────────────────► §6 clinic_pnl(a) ◄──────────┘
+                           │
+                           ▼
+                   §7 scenarios (pharmacy synergy DELETED)
+                           │
+                           ▼
+                   §8 report (site-parameterised template, slugified filename)
 ```
 
-Dependency summary (build/run order is forced by this):
+### Dependency Summary (v2.0 — new/modified marked)
 
-| Section | Depends on | Produces |
-|---------|-----------|----------|
-| §0 | — | `ASSUMPTIONS`, paths, keys, cache helper config |
-| §1.2 geocode | §0 | `site_lat, site_lon` |
-| §1.3 ABS | §0 | census DataFrames per POA |
-| §1.4 Places | §1.2 | raw place lists per (type, radius) |
-| §1.5 MBS | §0 | SA3 consult rates by age band |
-| §2 catchment | §1.2, POA geometries | buffer GeoDataFrames, apportionment weights, base map |
-| §3 demographics | §2, §1.3 | catchment pop/age/income by ring; peer table |
-| §4 competitors | §1.4, §2 | classified competitor df, counts per ring, competitor map |
-| §5 demand | §3, §4, §1.5 | annual consult demand, GP capacity, required market share |
-| §6 financial | §0, §5 | `clinic_pnl()`, base-case P&L |
-| §7 scenarios | §6 | scenario table, sensitivity table/chart |
-| §8 report | §2–§7 (`report{}`) | report.md, PDF |
+| Section | Depends on | Produces | v2.0 Change |
+|---------|-----------|----------|-------------|
+| §0.3 | — | `SITE_CONFIG`, `BASE_ASSUMPTIONS`, paths | **MODIFIED** — SITE_CONFIG split |
+| §1.2 geocode | §0.3 SITE_CONFIG | `site_lat, site_lon` | **MODIFIED** — reads SITE_CONFIG["address"] |
+| §1.3 derive | §1.2, ASGS shapefiles | `site_poa_code, site_sa3_code`, loaded `poa`/`sa1` GeoDataFrames | **NEW** |
+| §1.4 ABS | §1.3 (derived POA), §0.3 (peers) | census DataFrames per POA + SA3 | **MODIFIED** — parameterised codes |
+| §1.5 Places | §1.2 (lat/lon) | raw place lists per (type, radius) | unchanged (already site-agnostic) |
+| §1.6 MBS | §1.3 (derived SA3), §0.3 | SA3 consult rates by age band | **MODIFIED** — parameterised SA3 |
+| §2 catchment | §1.2, §1.3 (geometries) | buffer GeoDataFrames, apportionment weights | **MODIFIED** — reuses §1.3 geometries |
+| §3 demographics | §2, §1.4 | catchment pop/age by ring; peer table (conditional) | **MODIFIED** — conditional peers |
+| §4 competitors | §1.5, §2 | classified competitor df, counts per ring | unchanged |
+| §5 demand | §3, §4, §1.6 | annual consult demand, GP capacity, required share | unchanged |
+| §6 financial | §0.3 (FTE from SITE_CONFIG), §5 | `clinic_pnl()`, base-case P&L | **MODIFIED** — FTE/floor_area from SITE_CONFIG |
+| §7 scenarios | §6 | scenario table, sensitivity charts | **MODIFIED** — pharmacy synergy deleted |
+| §8 report | §2–§7, §0.3 (site name/address) | report.html, report.pdf (slugified) | **MODIFIED** — parameterised template + filename |
 
 ### Key Data Flows
 
-1. **Census flow:** ABS API (SDMX-JSON, POA-level) → cache → tidy per-POA DataFrame → §2 area weights apportion into rings → §3 catchment age profile → §5 demand. Fallback branch: local GCP CSVs parsed into the *same tidy schema* so downstream code is source-agnostic.
-2. **Competitor flow:** site coords → Places nearby (paginated, per type × radius) → cache → dedupe on `place_id` → brand classification (name-pattern rules for corporates/pharmacy chains) → per-ring counts feeding §5 capacity estimate and §4 map.
-3. **Assumption flow:** `BASE_ASSUMPTIONS` (§0) is the *only* source of financial constants; §5 outputs (demand, required share) merge with it into the `clinic_pnl` input; §7 mutates only via override dicts.
-4. **Report flow:** every section appends to `report{}`; §8 is a pure render step — re-running §8 alone regenerates the PDF from current state.
+1. **Site config flow (NEW):** `SITE_CONFIG["address"]` → §1.2 geocode → `site_lat/lon` → §1.3 point-in-polygon → `site_poa_code` + `site_sa3_code` → §1.4 ABS fetch + §1.6 MBS fetch. The derived codes are the parameterisation keys for all census/MBS data.
+2. **Census flow (MODIFIED):** ABS API (G01/G02/G04) fetched for `site_poa_code` + user-supplied `peer_postcodes` (validated against ABS POA codelist) → cache → tidy DataFrames → §2 area weights → §3 catchment profile → §5 demand. If `peer_postcodes` is empty, peer table section is skipped entirely.
+3. **MBS flow (MODIFIED):** MBS SA3 xlsx filtered on `site_sa3_code` (derived, not hardcoded 20607) → SA3 consult rates by age band → §5 demand model. State fallback warning fires if the derived SA3 is not found in the file.
+4. **Competitor flow (unchanged):** site coords → Places nearby (per type × radius) → cache → dedupe → classify → per-ring counts → §5 capacity + §4 map.
+5. **Assumption flow (unchanged):** `BASE_ASSUMPTIONS` (§0.3) is the only source of financial constants. SITE_CONFIG values are injected at definition time. §7 mutates only via override dicts.
+6. **Report flow (MODIFIED):** every section appends to `report{}`; §8 renders from `report{}` + `SITE_CONFIG` (for site name/address in template) + `slugify(SITE_CONFIG["address"])` (for filename).
+
+---
+
+## Component-by-Component Integration Analysis
+
+### 1. Site-Config Form: Where Does It Sit?
+
+**v1.0:** Cell 5 (§0.3) contains `SITE_ADDRESS`, `CATCHMENT_RADII_M`, `PEER_POSTCODES` as module-level variables at the top, followed by `BASE_ASSUMPTIONS` dict.
+
+**v2.0:** Same cell (§0.3), restructured. `SITE_CONFIG` dict replaces the three module-level variables. `BASE_ASSUMPTIONS` follows, with SITE_CONFIG values injected. This preserves:
+- The single-params-cell pattern (PIPE-05) — validator's `first_def_cell("BASE_ASSUMPTIONS")` still works
+- The `{**BASE_ASSUMPTIONS, **overrides}` scenario pattern — unchanged
+- Top-to-bottom flow — SITE_CONFIG defined before BASE_ASSUMPTIONS
+
+**Why not a new §0.5 cell?** A separate cell would break the "single params cell" invariant and require validator changes. Keeping it in §0.3 with clear visual separation (comment headers) is cleaner and lower-risk.
+
+### 2. Site Config Flow Through the Notebook
+
+**Strategy: single SITE_CONFIG dict, values injected into BASE_ASSUMPTIONS at definition time.**
+
+This mirrors the BASE_ASSUMPTIONS pattern exactly. Downstream cells read `BASE_ASSUMPTIONS["n_gp_fte"]` — they don't know it came from SITE_CONFIG. The only cells that read SITE_CONFIG directly are:
+- §1.2 geocode: `SITE_CONFIG["address"]`
+- §8 report template: `SITE_CONFIG["address"]` for the report header, `slugify(SITE_CONFIG["address"])` for the filename
+
+Everything else flows through BASE_ASSUMPTIONS as before. This minimises downstream changes.
+
+**Alternative considered (per-cell parameter extraction):** Each cell reads SITE_CONFIG directly. Rejected — it would require touching every consumer cell and break the "downstream reads BASE_ASSUMPTIONS only" invariant.
+
+### 3. SA3 Derivation: Pipeline Position + Guard
+
+**Position:** New §1.3 cell, after geocode (§1.2, cell 13) and before ABS fetch (§1.4, cell 28). The derivation needs:
+- Input: `site_lat`, `site_lon` (from §1.2)
+- Assets: POA shapefile + SA1 shapefile (from `data/local/`)
+- Output: `site_poa_code`, `site_sa3_code`, plus loaded `poa`/`sa1` GeoDataFrames for §2 reuse
+
+**Why SA1 shapefile for SA3 (not a separate SA3 shapefile):** The SA1 shapefile (already on hand, 100MB) includes `SA3_CODE21` and `SA3_NAME21` as attribute columns (verified live: `sa1.columns` includes both). A single point-in-polygon on SA1s gives the SA3 code. No additional download needed. The SA3 correspondence xlsx (`SA3_2021_AUST.xlsx`) is a lookup table, not boundaries — insufficient for point-in-polygon.
+
+**Guard: point outside VIC.** If `gpd.sjoin(site_point, poa, how="left", predicate="within")` returns an empty match (NaN in joined columns), the geocoded point is outside Victoria. v2.0 is VIC-only — raise `RuntimeError` with a clear message. This is a hard fail because:
+- EPSG:7855 (MGA zone 55) is only valid for VIC (zone 55 covers VIC + parts of NSW/QLD, but the pilot scope is VIC)
+- ABS fetch would return wrong/empty data for a non-VIC POA
+- MBS SA3 filter would fail silently
+
+**Geometry reuse with §2:** §1.3 loads `poa` and `sa1` into globals. §2 (cell 16) currently loads these independently. Refactor §2 to assert they exist rather than reload:
+```python
+# §2 — assert geometries loaded by §1.3 (v2.0 reuse)
+assert "poa" in globals() and "sa1" in globals(), "§1.3 must run first (loads ASGS boundaries)"
+```
+This avoids double-loading 100MB+ shapefiles and enforces the §1.3 → §2 dependency.
+
+### 4. Parameterised ABS Fetch: The Cleanest Refactor
+
+**v1.0 (cell 28):** `PEER_POA_CODES = "+".join(PEER_POSTCODES)` — hardcodes 3067 + 9 peers. The site POA (3067) is included in PEER_POSTCODES. Fetches G01/G02 for all of them in one SDMX query.
+
+**v2.0 refactor:** Replace `PEER_POSTCODES` (module-level, hardcoded) with a derived list:
+```python
+# §1.4 — Build POA list from derived site POA + user-supplied peers (v2.0)
+all_poa_codes = [site_poa_code] + SITE_CONFIG["peer_postcodes"]
+# Dedupe (site POA might also be in peer list)
+all_poa_codes = list(dict.fromkeys(all_poa_codes))  # preserve order, dedupe
+# Validate against ABS POA codelist (optional — the API will 404 invalid codes anyway)
+PEER_POA_CODES = "+".join(all_poa_codes)
+```
+
+The fetch functions (`fetch_g01_poa`, `fetch_g02_poa`, `fetch_g04_poa`) are **unchanged** — they already take `PEER_POA_CODES` as a module-level variable and build the SDMX data key from it. The only change is how `PEER_POA_CODES` is constructed.
+
+**G04 (age by sex):** Cell 29 fetches G04. Same parameterisation — it uses the same `PEER_POA_CODES` variable. No additional changes.
+
+**SA3 fetch (if needed):** v1.0 doesn't fetch census data at SA3 level (MBS SA3 data comes from a local xlsx, not the ABS API). If v2.0 needs SA3-level census (e.g., for cross-checking), the data key would use `site_sa3_code` instead of POA codes. But this is not required for the core pipeline — SA3 is only used for MBS utilisation (§1.6).
+
+**GCP fallback removal:** v1.0's GCP fallback (`parse_gcp_g01_to_tidy`, `GCP_POA3067.xlsx`) is Abbotsford-specific. PROJECT.md explicitly scopes this out: "Manual ABS file download path — out of scope for v2.0." The fallback functions should be kept but modified to emit a generic warning (not Abbotsford-specific) or removed entirely. Recommendation: **keep the fallback function signature but remove the Abbotsford-specific xlsx reference** — the fallback becomes "empty schema + warning" for any site where the API fails.
+
+### 5. Peer Postcode Handling
+
+**v1.0:** `PEER_POSTCODES` is a hardcoded list of 10 postcodes. The peer table (§3.5, cell 34) and peer comparison charts (§3.6, cell 36) always render.
+
+**v2.0:**
+1. User supplies `peer_postcodes` in SITE_CONFIG (can be empty list).
+2. §1.4 builds `all_poa_codes = [site_poa_code] + peer_postcodes`, deduped.
+3. ABS fetch validates each peer postcode against the POA shapefile's `POA_CODE21` codelist. Invalid postcodes are dropped with a warning.
+4. §3.5 peer table: if `peer_postcodes` is empty, skip the peer table cell entirely (guard with `if SITE_CONFIG["peer_postcodes"]:`).
+5. §3.6 peer charts: same guard.
+6. §4.6 peer competitor table (cell 54): same guard — skip if no peers.
+
+**Validation approach:** Rather than calling the ABS dataflow endpoint to validate each postcode (slow, rate-limited), validate against the already-loaded POA GeoDataFrame:
+```python
+valid_poa_codes = set(poa["POA_CODE21"].astype(str).str.zfill(4))
+validated_peers = [p for p in SITE_CONFIG["peer_postcodes"]
+                   if p.zfill(4) in valid_poa_codes]
+invalid_peers = set(SITE_CONFIG["peer_postcodes"]) - set(validated_peers)
+if invalid_peers:
+    print(f"⚠ Dropped invalid peer postcodes (not in VIC ASGS): {invalid_peers}")
+```
+
+### 6. Pharmacy Synergy Removal: What to Delete, What to Keep
+
+**Delete:**
+- Cell 81 (§7.6 markdown header + explanation)
+- Cell 82 (§7.6 pharmacy synergy code — `pharmacy_synergy` dict, capture rates, print block)
+- §8 report template section "6. Pharmacy Synergy — Secondary Upside" (in cell 87's Jinja2 template string)
+- `report["pharmacy_synergy_range"]` deposit (in cell 82)
+
+**Keep (no changes needed):**
+- Cell 85 (§8.1 verdict logic) — already 100% standalone, never mentions pharmacy (D-04). The verdict gate (EBITDA > 0 AND margin > 15%) is unchanged.
+- Cell 83 (§7.7 Interpretation) — becomes the tail of §7 (may renumber to §7.6 or just stay as-is)
+- All §7.1–§7.5 cells (scenarios, tornado, billing-mix) — unchanged
+
+**Verdict cell impact:** None. The verdict was already standalone-first in v1.0. The pharmacy synergy was explicitly "NOT Load-Bearing" (FIN-07) and order-gated after the verdict. Removing it makes the verdict cleaner — no more "secondary upside" section to confuse the narrative.
+
+**Report template impact:** Cell 87's Jinja2 template has a `<h2>6. Pharmacy Synergy</h2>` section. Delete that section from the template string. The section numbering of subsequent sections (7. Assumptions Register, 8. Citations) may shift down by one, or the pharmacy section number is simply removed and subsequent sections keep their numbers (cleaner — avoids renumbering).
+
+### 7. Report Naming + Output Path
+
+**v1.0 (cell 88):** `pdf_path = OUTPUTS / "Johnston_St_v2_Executive_Report.pdf"` — hardcoded.
+**v1.0 (cell 87):** `html_path = OUTPUTS / "Johnston_St_v2_Executive_Report.html"` — hardcoded.
+**v1.0 (cell 87 template):** `<h1>Johnston St Medical Clinic</h1>`, `<h2>292-296 Johnston St, Abbotsford VIC 3067</h2>` — hardcoded.
+
+**v2.0:**
+- Filename: `slugify(SITE_CONFIG["address"])` → e.g., `"292-296-johnston-st_Feasibility_Report.pdf"` (see Pattern 8)
+- Template header: `{{ report["site_address"] }}` instead of hardcoded address
+- Template title: derive a short site name from the address (street name only) or use a SITE_CONFIG["site_name"] field (optional)
+
+**Template parameterisation:** The Jinja2 template (cell 87) needs these hardcoded strings replaced with template variables:
+- `"Johnston St Medical Clinic"` → `{{ report["site_name"] }}` (derived from address street part, or a SITE_CONFIG field)
+- `"292-296 Johnston St, Abbotsford VIC 3067"` → `{{ report["site_address"] }}`
+- `"The site at 292-296 Johnston St, Abbotsford is geocoded..."` → `"The site at {{ report['site_address'] }} is geocoded..."`
+
+These values are deposited into `report{}` by §1.2/§1.3:
+```python
+# §1.2 — deposit site info for §8 report
+report["site_address"] = SITE_CONFIG["address"]
+report["site_name"] = SITE_CONFIG["address"].split(",")[0]  # "292-296 Johnston St"
+report["site_slug"] = slugify(SITE_CONFIG["address"])
+```
+
+### 8. Validator Updates: Multi-Site Adaptation
+
+**v1.0 validator (`scripts/validate_v2_notebook.py`):** 36 checks, some hardcoded to Abbotsford:
+- `GEO-04`: checks for "Yarra" in source (cell 42 references SA3 20607 Yarra)
+- `DEMO-01`: checks for "GCP_POA3067" in source (fallback file reference)
+- Various checks look for `PEER_POSTCODES`, `BASE_ASSUMPTIONS`, `{**BASE_ASSUMPTIONS, **overrides}`
+
+**v2.0 strategy: parameterise the validator with a site fixture.**
+
+The validator should accept a `--site-config` argument (or read a fixture file) that specifies the expected site values. Default fixture = Abbotsford (reproduces v1.0 behaviour). The validator then checks:
+- Structural checks (json.load, nbformat, execution_count, source format) — **site-agnostic, unchanged**
+- Flow checks (PIPE-01 top-to-bottom, PIPE-02 dual-env, PIPE-05 single params cell) — **site-agnostic, unchanged**
+- Content checks that look for specific strings ("Yarra", "GCP_POA3067") — **parameterised**: check for the fixture's expected SA3 name and POA code instead
+- New v2.0 checks: SITE_CONFIG dict present, slugify function present, §1.3 derive cell present, pharmacy synergy section absent, report filename uses slug
+
+**Implementation approach:**
+```python
+# scripts/validate_v2_notebook.py — v2.0 parameterisation
+SITE_FIXTURE = {
+    "address": "292-296 Johnston St, Abbotsford VIC 3067",
+    "poa_code": "3067",
+    "sa3_code": "20607",
+    "sa3_name": "Yarra",
+    "slug": "292-296-johnston-st",
+}
+# Checks use SITE_FIXTURE["sa3_name"] instead of hardcoded "Yarra"
+```
+
+**Alternative: separate v2.0 validator.** Rejected — it would duplicate 30+ structural/flow checks that are site-agnostic. Better to parameterise the existing validator and add v2.0-specific checks as new sections.
+
+**New v2.0 validator checks (estimated 6–8 new checks):**
+1. `SITE_CONFIG` dict defined in §0.3 (before BASE_ASSUMPTIONS)
+2. `slugify` function defined (in §8 or a utility cell)
+3. §1.3 derive cell present (point-in-polygon, `site_poa_code`, `site_sa3_code`)
+4. No hardcoded "3067" or "20607" in §1.4/§1.6 (replaced by derived variables)
+5. Pharmacy synergy section absent (no "§7.6 Pharmacy" marker, no `pharmacy_synergy` variable)
+6. Report filename uses `slugify` or `site_slug` (not hardcoded "Johnston_St")
+7. Report template uses `{{ report['site_address'] }}` (not hardcoded address)
+8. VIC guard present in §1.3 (RuntimeError on point outside VIC)
+
+### 9. Generator Scripts: Coexistence Strategy
+
+**v1.0 generators (5 scripts):**
+1. `create_v2_notebook.py` — builds §0–§1.1 (skeleton)
+2. `extend_v2_notebook.py` — appends §1.2 geocode + §2 catchment
+3. `extend_v2_notebook_demographics.py` — appends §3 demographics
+4. `extend_v2_notebook_phase3.py` — appends §1.4 Places + §1.5 MBS + §4 competitors + §5 demand
+5. `extend_v2_notebook_phase4.py` — appends §6 financial model
+6. `extend_v2_notebook_phase5.py` — appends §7 scenarios + §8 report
+
+(That's actually 6 scripts — create + 5 extend.)
+
+**Idempotency pattern:** Each extend script finds its section marker (e.g., `"# §1.2 Geocode Site"`), removes existing cells from that marker to the next section marker, and re-appends corrected cells. Re-running produces byte-identical output.
+
+**v2.0 strategy: new generators for modified phases, following the same pattern.**
+
+The v2.0 changes touch §0.3, §1.2, §1.3 (new), §1.4, §1.6, §2, §3, §6, §7, §8. Rather than one mega-generator, follow the v1.0 pattern of one generator per phase:
+
+| v2.0 Generator | Phase | What it modifies | Idempotency marker |
+|----------------|-------|------------------|--------------------|
+| `extend_v2_notebook_phase6.py` | Phase 6 | §0.3 restructure (SITE_CONFIG split) | `"SITE_CONFIG"` or `"# §0.3"` |
+| `extend_v2_notebook_phase7.py` | Phase 7 | §1.2 geocode + §1.3 derive (NEW cell) | `"# §1.2 Geocode"` / `"# §1.3 Derive"` |
+| `extend_v2_notebook_phase8.py` | Phase 8 | §1.4 ABS fetch + §1.6 MBS parameterisation | `"# §3 Demographics"` (replaces §3 block) |
+| `extend_v2_notebook_phase9.py` | Phase 9 | §7.6 deletion + §8 report parameterisation | `"# §7 Scenarios"` / `"# §8 Executive"` |
+
+**Coexistence with v1.0 generators:** The v1.0 generators remain as-is (they produce the v1.0 notebook). The v2.0 generators load the current notebook state and apply their modifications. Running v1.0 generators first, then v2.0 generators, produces the v2.0 notebook. This preserves the "byte-stable output" property — the full generator chain is deterministic.
+
+**Critical ordering:** v2.0 generators must run AFTER v1.0 generators (they modify v1.0 output). The build chain is:
+```
+create_v2_notebook.py → extend_phase2..5.py → extend_phase6..9.py
+```
+
+**§0.3 restructure challenge:** The §0.3 cell (cell 5) is built by `create_v2_notebook.py`. The v2.0 phase 6 generator needs to replace its contents. This is a cell-content replacement (not a section append), which is a different idempotency pattern. The generator should:
+1. Find the cell containing `BASE_ASSUMPTIONS = {`
+2. Replace its entire source with the new SITE_CONFIG + BASE_ASSUMPTIONS content
+3. This is the same pattern used by `extend_v2_notebook_phase4.py`'s `extend_base_assumptions()` function (which modifies the BASE_ASSUMPTIONS cell in-place)
+
+---
+
+## Suggested Build Order
+
+The build order respects the dependency chain: site-config → geocode → derive POA/SA3 → ABS fetch → catchment → demand → competitors → financial model → scenarios → report.
+
+### Phase 6: Site Config Restructure (§0.3)
+
+**What:** Split §0.3 into SITE_CONFIG + BASE_ASSUMPTIONS. Inject SITE_CONFIG values into BASE_ASSUMPTIONS.
+**Dependencies:** None (modifies only §0.3).
+**Verification:** Validator check for SITE_CONFIG dict; `Restart & Run All` still passes (downstream cells read BASE_ASSUMPTIONS, which is unchanged in shape).
+**Generator:** `extend_v2_notebook_phase6.py`
+**Risk:** LOW — additive change to one cell; downstream consumers unaffected because BASE_ASSUMPTIONS shape is preserved.
+
+### Phase 7: Geocode Parameterisation + POA/SA3 Derivation (§1.2, §1.3 NEW)
+
+**What:** Modify §1.2 to read `SITE_CONFIG["address"]`. Add §1.3 cell: load ASGS boundaries, point-in-polygon, derive `site_poa_code` + `site_sa3_code`, VIC guard. Refactor §2 to reuse §1.3 geometries.
+**Dependencies:** Phase 6 (SITE_CONFIG must exist).
+**Verification:** Derive POA 3067 + SA3 20607 for default Abbotsford config (matches v1.0). VIC guard fires for a non-VIC test point.
+**Generator:** `extend_v2_notebook_phase7.py`
+**Risk:** MEDIUM — new cell insertion shifts cell indices; §2 geometry reuse requires refactoring cell 16. SA1 shapefile is 100MB — loading in §1.3 instead of §2 doesn't change memory but changes execution order.
+
+### Phase 8: ABS + MBS Parameterisation (§1.4, §1.6, §3)
+
+**What:** Replace hardcoded `PEER_POSTCODES` with derived `all_poa_codes`. Parameterise MBS SA3 filter to use `site_sa3_code`. Add peer postcode validation. Add conditional peer table/charts (skip if empty). Remove Abbotsford-specific GCP fallback references.
+**Dependencies:** Phase 7 (derived POA/SA3 codes must exist).
+**Verification:** Default config fetches same data as v1.0 (POA 3067 + 9 peers, SA3 20607). Empty peer list skips peer table. Invalid peer postcodes dropped with warning.
+**Generator:** `extend_v2_notebook_phase8.py`
+**Risk:** MEDIUM — ABS fetch functions are unchanged (they already take PEER_POA_CODES); the change is in how PEER_POA_CODES is constructed. MBS filter change is a one-line replacement (`"20607"` → `site_sa3_code`).
+
+### Phase 9: Pharmacy Synergy Removal + Report Parameterisation (§7, §8)
+
+**What:** Delete §7.6 cells (81–82). Remove pharmacy section from §8 Jinja2 template. Parameterise report template (site name/address from `report{}`). Add `slugify()` function. Parameterise PDF/HTML filenames.
+**Dependencies:** Phases 6–8 (SITE_CONFIG, derived codes, report accumulator values must exist).
+**Verification:** No "pharmacy" references in notebook source. Report filename uses slug. Template renders site address dynamically. Default config produces `292-296-johnston-st_Feasibility_Report.pdf`.
+**Generator:** `extend_v2_notebook_phase9.py`
+**Risk:** LOW — deletions are safe (pharmacy was non-load-bearing). Template parameterisation is string replacement in the Jinja2 template.
+
+### Phase 10: Validator Update + Hardening
+
+**What:** Parameterise validator with site fixture. Add 6–8 new v2.0 checks. Run full generator chain (v1.0 + v2.0) to verify byte-stable output. Keyless run from cache. Fresh-clone Colab run.
+**Dependencies:** Phases 6–9 (all v2.0 features must be in place).
+**Verification:** All v2.0 validator checks pass. Generator chain produces byte-identical notebook on re-run.
+**Risk:** LOW — validator-only changes; no notebook cell changes.
+
+### Parallelisable Pairs
+
+- Phase 6 (§0.3 restructure) ∥ Phase 9 slugify function draft (no dependencies on each other)
+- Phase 8 ABS parameterisation ∥ Phase 9 pharmacy deletion (independent sections)
+
+### Critical Path
+
+```
+Phase 6 (SITE_CONFIG) → Phase 7 (derive POA/SA3) → Phase 8 (parameterise ABS/MBS) → Phase 10 (validator)
+                                                                                    ↑
+                                              Phase 9 (pharmacy delete + report param) ─┘
+```
+
+---
 
 ## Scaling Considerations
 
@@ -325,95 +669,88 @@ Scaling here means analysis scope, not users.
 
 | Scale | Architecture Adjustments |
 |-------|--------------------------|
-| This project (1 site, 10 postcodes, 3 radii) | Single notebook, everything above. No modules needed. |
-| Several candidate sites | Extract §1-§5 helpers into a `feasibility.py` module imported by the notebook; loop over site addresses; caches already keyed by coords so nothing else changes. |
-| Ongoing/refreshable product | Move to scripts + Makefile/papermill parameterised runs; SQLite instead of JSON cache; SA1-level ABS geometry for finer apportionment. |
+| v2.0 (1 site per run, VIC only, user-supplied peers) | Single notebook, SITE_CONFIG + derived POA/SA3. All patterns above. |
+| v2.1 (batch/multi-site comparison) | Loop over SITE_CONFIG list; `report{}` becomes `reports[site_slug]`; per-site cache files (already keyed by derived codes). Generator scripts parameterised with `--site-list`. |
+| v2.1 (non-VIC sites) | MGA zone-aware reprojection (zones 49–56); VIC guard becomes state guard; SA3 derivation works for any state (SA1 shapefile is national). |
+| Ongoing/refreshable product | Move to scripts + papermill parameterised runs; SQLite cache instead of JSON; SA1-level ABS geometry for finer apportionment. |
 
 ### Scaling Priorities
 
-1. **First bottleneck:** Google Places spend and rate limits — solved day one by the cache boundary; never regress by adding uncached calls.
-2. **Second bottleneck:** Notebook file size from embedded folium maps — save maps to `outputs/maps/*.html`, display via small inline render, use static matplotlib maps in the PDF.
+1. **First bottleneck (v2.0):** ASGS shapefile load time (100MB SA1 + 56MB POA) — loaded once in §1.3, reused in §2. Acceptable for single-run; for batch mode (v2.1), load once and loop.
+2. **Second bottleneck (v2.1):** Cache file proliferation — each site produces ~15 cache files (geocode + ABS + Places). Mitigated by slug/keyed naming; for batch mode, consider SQLite cache.
+
+---
 
 ## Anti-Patterns
 
-(Each observed in v1 — these are the concrete fixes.)
+### Anti-Pattern 1: Hardcoded Site Constants in Downstream Cells
 
-### Anti-Pattern 1: Whole-Postcode Population Summing
+**What people do:** Leave `"3067"` or `"20607"` literals in §1.4/§1.6 cells "just for now."
+**Why it's wrong:** The whole point of v2.0 is multi-site. Any hardcoded site constant is a bug that silently produces wrong data for non-Abbotsford sites.
+**Do this instead:** All site-specific values flow through `site_poa_code` / `site_sa3_code` (derived in §1.3) or `SITE_CONFIG` (user-supplied in §0.3). Validator check: no hardcoded `"3067"` or `"20607"` in §1.4+ cells.
 
-**What people do:** Sum full populations of every POA whose polygon *touches* the buffer (v1 lines 84-91).
-**Why it's wrong:** Massively overstates catchment population — a 3 km buffer clipping 5% of Richmond's polygon claims 100% of Richmond's residents. Demand model inherits the inflation.
-**Do this instead:** Area-apportion: `pop_in_ring = poa_pop × (area(poa ∩ buffer) / area(poa))`, computed in a projected CRS (EPSG:7855). State the uniform-density assumption as a documented caveat.
+### Anti-Pattern 2: Trusting User-Supplied Postcode Over Point-in-Polygon
 
-### Anti-Pattern 2: Forward References / Non-Linear Execution Order
+**What people do:** Use `SITE_CONFIG["postcode"]` directly for ABS fetch instead of deriving POA from the geocoded point.
+**Why it's wrong:** Users make typos. A user might enter "3000" for an address in postcode 3067. The ABS fetch would return wrong census data.
+**Do this instead:** Always derive `site_poa_code` via point-in-polygon on the POA shapefile (§1.3). Use `SITE_CONFIG["postcode"]` only as a sanity-check hint (warn if it doesn't match the derived POA).
 
-**What people do:** Use variables defined in later cells (v1 uses `s_lat`/`s_lon` at line 69, defined at line 495), relying on out-of-order interactive execution.
-**Why it's wrong:** "Restart & Run All" fails; reproducibility is the whole point of the deliverable.
-**Do this instead:** Strict top-to-bottom data flow (dependency table above). Acceptance test for every phase: **Restart & Run All must pass.**
+### Anti-Pattern 3: Reloading Shapefiles in §2 After §1.3 Already Loaded Them
 
-### Anti-Pattern 3: ML Theatre on Tiny Data
+**What people do:** §1.3 loads POA/SA1 for derivation; §2 loads them again independently.
+**Why it's wrong:** Doubles memory usage and load time for 150MB+ of shapefiles.
+**Do this instead:** §1.3 loads into globals; §2 asserts they exist (`assert "poa" in globals()`). Single load point.
 
-**What people do:** Fit RandomForest/KMeans on 3-10 rows and present it as a demand model (v1 §clustering, RF import).
-**Why it's wrong:** Statistically meaningless; destroys investor credibility; obscures the actual arithmetic.
-**Do this instead:** Transparent age-adjusted arithmetic: `demand = Σ(age_band_pop × consults_per_capita[band])` from MBS SA3 rates. Peer-postcode comparison as a plain sorted table, not clusters. Every number traceable to a cited input.
+### Anti-Pattern 4: Leaving Pharmacy Synergy References in the Report Template
 
-### Anti-Pattern 4: Uncached, Un-keyed API Calls Scattered Through Analysis Cells
+**What people do:** Delete the §7.6 code cells but forget the Jinja2 template section in cell 87.
+**Why it's wrong:** The report renders an empty "Pharmacy Synergy" section with missing data, breaking the investor narrative.
+**Do this instead:** Validator check: no "pharmacy" or "Pharmacy Synergy" string in the §8 template cell. Delete the template section in the same phase as the code deletion.
 
-**What people do:** Call `requests.get` inline wherever data is needed (v1 refetches Places for every radius/postcode combination on each run).
-**Why it's wrong:** Costs money each run, rate-limits ABS, makes runs nondeterministic (competitor counts drift), and requires the key just to re-render.
-**Do this instead:** All I/O in §1 behind `cached_fetch`; analysis sections consume DataFrames only.
+### Anti-Pattern 5: Non-Slugified Filenames with Special Characters
 
-### Anti-Pattern 5: Hardcoded Environment Paths & Constants Buried in Cells
+**What people do:** Use `SITE_CONFIG["address"]` directly in the filename: `outputs/292-296 Johnston St, Abbotsford VIC 3067_Feasibility_Report.pdf`.
+**Why it's wrong:** Commas, spaces, and slashes break filesystem paths and shell commands.
+**Do this instead:** `slugify()` with special-character stripping and length limits (Pattern 8).
 
-**What people do:** `/content/drive/MyDrive/Colab_Notebooks/...` literals (v1 lines 37, 140, 525); financial constants typed inline mid-analysis.
-**Why it's wrong:** Breaks local runs; assumptions become unauditable; changing rent requires hunting through cells.
-**Do this instead:** Pattern 4 bootstrap + Pattern 2 single params cell. Rule: no path literal and no un-cited numeric assumption outside §0.
+---
 
 ## Integration Points
 
 ### External Services
 
-| Service | Integration Pattern | Notes |
-|---------|---------------------|-------|
-| ABS Data API (api.data.abs.gov.au) | REST/SDMX-JSON GET, no key, via `cached_fetch` | Rate-limited; census 2021 data immutable → cache forever. Dataflow discovery (finding the right C21 dataflow/dimension codes for G01/G02-equivalents at POA level) is the main build risk — spike this early; local GCP CSVs are the safety net |
-| Google Geocoding API | Single GET per address, cached by slugified address | One call ever, then free |
-| Google Places Nearby Search | Paginated (max 60 results/query, 2s token delay), cached per (type, lat, lon, radius) | 60-result cap can truncate dense 5 km "doctor" queries — mitigate with grid of sub-queries or note as floor-count caveat; classify with name rules after fetch |
-| Local files (GCP zip, POA shapefile, MBS xlsx, cohealth PDF) | `data/local/`, read with pandas/geopandas | Fallback only; print provenance warning when used. POA shapefile may be needed regardless (ABS API serves data, not geometry) unless using ABS geometry web service / a hosted GeoJSON |
-| weasyprint / pandoc | §8 only | Colab needs one apt-get line for pango; test on Windows early or fall back to pandoc |
+| Service | Integration Pattern | v2.0 Notes |
+|---------|---------------------|------------|
+| ABS Data API | REST/SDMX CSV, via CachedSession | **Parameterised** — data key uses derived POA/SA3 codes, not hardcoded. Cache files keyed by derived codes (automatic). |
+| Google Geocoding API | Single GET per address, cached | **Parameterised** — reads SITE_CONFIG["address"]. Cache key = slugified address (already site-specific in v1.0). |
+| Google Places Nearby Search | POST per (type, lat, lon, radius), cached | Unchanged — already uses geocoded lat/lon (site-agnostic since v1.0). |
+| MBS SA3 xlsx (local file) | pandas read_excel, filter on SA3 code | **Parameterised** — filters on `site_sa3_code` instead of hardcoded "20607". |
+| weasyprint | §8 only, Colab-only PDF | **Parameterised** — output filename uses slugify(site_address). |
 
 ### Internal Boundaries
 
-| Boundary | Communication | Notes |
-|----------|---------------|-------|
-| §1 acquisition ↔ §2-§5 analysis | Tidy DataFrames with fixed schemas | Analysis never sees raw JSON or knows which source (API vs fallback) supplied data |
-| §0 assumptions ↔ §6-§7 model | Single `BASE_ASSUMPTIONS` dict → pure `clinic_pnl()` | Scenarios are override dicts; no constant defined outside §0 |
-| §2-§7 ↔ §8 report | `report{}` accumulator dict + saved figure files | §8 re-runnable standalone after any upstream change |
-| Colab ↔ Windows | `PROJECT_ROOT` + `pathlib`; secrets via userdata/.env | Committed caches make either environment runnable keyless |
+| Boundary | Communication | v2.0 Notes |
+|----------|---------------|------------|
+| §0.3 SITE_CONFIG ↔ §1.2 geocode | `SITE_CONFIG["address"]` string | New boundary — user input enters the pipeline here |
+| §1.2 geocode ↔ §1.3 derive | `site_lat`, `site_lon` globals | New boundary — geocoded point feeds point-in-polygon |
+| §1.3 derive ↔ §1.4 ABS fetch | `site_poa_code`, `site_sa3_code` globals | New boundary — derived codes parameterise ABS/MBS fetch |
+| §1.3 derive ↔ §2 catchment | `poa`, `sa1` GeoDataFrame globals | **Modified** — §2 reuses §1.3 loaded geometries (was independent load in v1.0) |
+| §0.3 BASE_ASSUMPTIONS ↔ §6-§7 model | Single dict → pure `clinic_pnl()` | Unchanged — SITE_CONFIG values injected at definition time |
+| §2-§7 ↔ §8 report | `report{}` accumulator + saved figures | **Modified** — `report["site_address"]`, `report["site_slug"]` added by §1.2/§1.3 |
+| Colab ↔ Windows | `PROJECT_ROOT` + `pathlib` | Unchanged |
 
-## Suggested Build Order
-
-Order follows the dependency graph; each step ends with a "Restart & Run All" check.
-
-1. **Skeleton + environment bootstrap (§0):** repo layout, `.env`/userdata handling, `PROJECT_ROOT`, params cell stub, cache helper. *Everything depends on this.*
-2. **Data acquisition spikes (§1):** geocode (trivial) → **ABS API spike first** (highest uncertainty: finding correct dataflow/codes; wire fallback) → Places client with pagination+cache → MBS SA3 loader with state fallback. *Populates `data/cache/`.*
-3. **Geospatial catchment (§2):** buffers, area apportionment, base folium map. *Needs geocode + POA geometry only — can proceed in parallel with ABS spike.*
-4. **Demographics (§3):** merge §2 weights with §1.3 census; peer table. *Needs §1.3 + §2.*
-5. **Competitors (§4):** dedupe, classify, per-ring counts, map. *Needs §1.4 + §2; parallel with §3.*
-6. **Demand model (§5):** consult demand vs capacity → required share. *Needs §3 + §4 + §1.5 — first integration point; validates all upstream data.*
-7. **Financial model (§6):** `clinic_pnl()`, base case, breakeven. *Needs only §0 assumptions + §5 required-share; the function itself can be drafted anytime after §0.*
-8. **Scenarios & sensitivity (§7):** override dicts, sensitivity table (rent, bulk-bill %, utilisation, fit-out). *Trivial once §6 is a pure function.*
-9. **Report & PDF (§8):** `report{}` template, static map exports, weasyprint/pandoc pipeline, test PDF render in **both** environments. *Last, but stub the `report{}` accumulator from step 3 onward so metrics accrue as sections land.*
-10. **Hardening pass:** keyless run from cache only; fresh-clone Colab run; assumption citation audit; teaching-commentary pass.
-
-Parallelisable pairs: (§2 ∥ ABS spike), (§3 ∥ §4), (§6 draft ∥ §5). Critical path: §0 → §1.3-ABS → §3 → §5 → §6 → §7 → §8.
+---
 
 ## Sources
 
-- v1 prototype audit: `C:\Users\josha\medical-clinic\johnston_st_v1.py` (flaws at lines 69, 84-91, 140, 201-224, 525)
-- Project brief: `C:\Users\josha\medical-clinic\.planning\PROJECT.md`
-- ABS Data API: https://api.data.abs.gov.au (free, no key, SDMX-JSON, rate-limited)
-- Google Places Nearby Search docs (pagination, 60-result cap, next_page_token delay)
-- Standard analytics-notebook practice: "Restart & Run All" reproducibility, parameters-first cells (papermill convention), cache-through I/O boundaries, cookiecutter-data-science `data/` layout conventions
+- v1.0 notebook audit: `Johnston_St_v2.ipynb` (88 cells, cell-by-cell inspection of cells 5, 13, 16, 28, 42, 81–82, 85, 87–88)
+- v1.0 architecture: prior `.planning/research/ARCHITECTURE.md` (Patterns 1–5, data flow, build order)
+- v1.0 validator: `scripts/validate_v2_notebook.py` (36 checks, hardcoded Abbotsford references at lines 275, 278, 303, 307)
+- v1.0 generators: `scripts/create_v2_notebook.py` + 5 `extend_v2_notebook_*.py` (idempotent cell-replacement pattern)
+- SA1 shapefile attributes: verified live — `SA1_2021_AUST_SHP_GDA2020.zip` includes `SA3_CODE21`, `SA3_NAME21`, `SA2_CODE21`, `SA2_NAME21` columns (15,482 VIC SA1s)
+- Project context: `.planning/PROJECT.md` (v2.0 target features, key decisions, out-of-scope items)
+- Milestone history: `.planning/MILESTONES.md` (v1.0 accomplishments, 36/36 validator checks)
 
 ---
-*Architecture research for: reproducible geospatial/financial analytics notebook (Colab + local Windows)*
-*Researched: 2026-07-05*
+*Architecture research for: v2.0 multi-site feasibility tool (VIC pilot) — integration with v1.0 notebook architecture*
+*Researched: 2026-07-07*

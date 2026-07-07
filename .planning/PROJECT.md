@@ -28,7 +28,7 @@ Answer, with defensible data and transparent assumptions, one question: **can a 
 - ABS Data API auto-fetches the right POA/SA2/SA3 census tables for whatever VIC site is entered (no manual downloads; guide becomes a "how it works" explainer)
 - Geocoding of arbitrary VIC street addresses (Google Geocoding API, cached)
 - SA3 auto-derivation from the geocoded point (so MBS/Medicare utilisation data is fetched for the correct SA3, not hardcoded 20604 Yarra)
-- EPSG:7855 (MGA zone 55) stays valid for all VIC sites — no zone-awareness needed in v2.0
+- EPSG:7899 (GDA2020 / Vicgrid) adopted for state-wide VIC coverage — replaces v1.0's EPSG:7855 (MGA zone 55) which only covers 144°E–150°E and silently distorts western VIC (Mildura, Nhill, Ouyen — zone 54). Vicgrid is the VIC government's own state-wide Lambert Conformal CRS; sub-meter distortion vs MGA at catchment scale.
 - Clinic standalone profitability model reused from v1.0 (`clinic_pnl(a)` pure function), driven by the site form's FTE count
 - Pharmacy synergy section **dropped** for v2.0 — clinic verdict is purely standalone
 - Peer benchmarking via user-supplied peer postcodes (optional; skipped if not provided)
@@ -77,7 +77,7 @@ Answer, with defensible data and transparent assumptions, one question: **can a 
 - Web scraping of competitor websites/booking systems — licensed/public data only
 - Heavy raster/geospatial computation — must stay feasible in free Colab
 - ML demand prediction — sample sizes make it statistical theatre; transparent arithmetic instead
-- Non-VIC sites (v2.0) — VIC-only pilot; other states/territories deferred to v2.1 (requires MGA zone-aware reprojection, zones 49-56)
+- Non-VIC sites (v2.0) — VIC-only pilot; other states/territories deferred to v2.1 (would require zone-aware reprojection or a national CRS like EPSG:9473 GDA2020 / Australian National Grid)
 - Batch/multi-site comparison mode — deferred to v2.1; v2.0 is single-run per site
 - Manual ABS file download path — ABS Data API auto-fetch is primary; manual download fallback is out of scope for v2.0 (v1.0's GCP fallback pattern is VIC-Abbotsford-specific)
 
@@ -121,6 +121,10 @@ Answer, with defensible data and transparent assumptions, one question: **can a 
 | Service-fee % revenue model (Pitfall 11) | Practice retains 30-35% of GP billings, not gross billings | ✓ Good — guardrail in §6 |
 | Jinja2 template as inline Python string | Keeps notebook self-contained — no external template file | ✓ Good — r-string handles CSS |
 | All figures as base64-embedded static PNGs | Portable HTML + weasyprint rendering; no folium in PDF | ✓ Good — D-15, Pitfall 16 |
+| EPSG:7899 (GDA2020/Vicgrid) over EPSG:7855 (MGA zone 55) for v2.0 | EPSG:7855 only covers 144°E–150°E; western VIC (Mildura, Nhill) is zone 54 — 7855 silently distorts there. Vicgrid covers all of VIC with sub-meter distortion vs MGA at catchment scale. | ◌ Pending — v2.0 adoption (research-verified, user-approved 2026-07-07) |
+| Pharmacy synergy dropped for v2.0 | Multi-site tool's Core Value is standalone clinic verdict; pharmacy synergy was Abbotsford-specific (Priceline). Cleaner scope; candidate for v2.1 reintroduction as opt-in. | ◌ Pending — v2.0 removal |
+| VIC-only pilot scope for v2.0 | Fastest path to multi-site; single CRS (Vicgrid), known SA3/MBS structure. Other states deferred to v2.1 (national CRS or zone-aware logic). | ◌ Pending — v2.0 scope |
+| ABS Data API auto-fetch (no manual download guide) | API is free, already wired in v1.0, cache makes re-runs $0. Manual download fallback is Abbotsford-specific and doesn't generalise. Guide reframes as "how it works" explainer. | ◌ Pending — v2.0 data path |
 
 ## Evolution
 
