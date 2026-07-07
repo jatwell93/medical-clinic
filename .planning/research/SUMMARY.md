@@ -1,194 +1,207 @@
 # Project Research Summary
 
-**Project:** Johnston St Medical Clinic Feasibility Study
-**Domain:** Australian healthcare location analytics (geospatial catchment + census + MBS demand + financial modelling), delivered as a free-Colab notebook (`Johnston_St_v2.ipynb`) + executive PDF
-**Researched:** 2026-07-05
+**Project:** Johnston St Medical Clinic Feasibility Study — v2.0 Multi-Site Feasibility Tool
+**Domain:** Australian healthcare location analytics — generalising a single-site Colab notebook into a parameterised, address-driven multi-site tool (VIC pilot)
+**Researched:** 2026-07-07
 **Confidence:** HIGH
 
 ## Executive Summary
 
-This is a professional-grade site feasibility study answering one question: can a 5-FTE-GP clinic at 292-296 Johnston St, Abbotsford VIC 3067 be profitable on its own (not as a script-driver for the co-located Priceline pharmacy)? Experts build these as a consistent skeleton — executive summary with explicit go/no-go, catchment definition and demographics, competitor/supply analysis, demand modelling, parameterised P&L with breakeven, and scenarios/sensitivity — all with a cited, dated assumptions register. The deliverable is judged against health-planning consultancy reports (e.g. the cohealth Collingwood catchment study), and our unique edge is a cached, reproducible, fully-cited pipeline.
+v2.0 generalises the shipped v1.0 Abbotsford study (88 cells, 36/36 validator checks) into a reusable tool that accepts any Victorian street address via a Colab `#@param` form, auto-derives the correct ABS geographies (POA + SA3) from the geocoded point, parameterises all downstream data fetches, and produces a slugified, site-named executive PDF. The headline finding from stack research: **zero new required runtime dependencies** — every v2.0 capability (form input, spatial join, parameterised ABS fetch, slugified filenames) is a refactor/reuse of the v1.0 stack (geopandas/shapely/pyproj/requests-cache) plus one optional tiny library (`python-slugify`). The only genuinely new asset is a data file (ASGS boundary shapefile), and even that may already be on hand (see conflict below).
 
-The recommended approach is a **linear notebook pipeline with a cached I/O boundary**: everything preinstalled in Colab (geopandas 1.1.x, shapely 2.1, pyproj, folium, pandas, matplotlib) plus a small pip layer (requests-cache, contextily, weasyprint, python-dotenv). All external fetches (ABS Data API, Google Places API (New), geocoding) go through a disk cache so re-runs are free, deterministic, and demonstrable offline — this is both a cost control (Places is US$32/1k requests) and the reproducibility keystone. All metre-based geometry happens in EPSG:7855 (GDA2020 / MGA zone 55); catchment population is **area-apportioned** from POA/SA1 geometry, fixing v1's headline flaw of summing whole postcodes.
+The recommended approach is a **5-phase build order (6→7→8→9→10)** that threads the v2.0 changes through the existing v1.0 notebook structure with minimal disruption: restructure §0.3 into `SITE_CONFIG` + `BASE_ASSUMPTIONS` (Phase 6), add a new §1.3 POA/SA3 derivation cell via point-in-polygon (Phase 7), parameterise ABS/MBS fetches (Phase 8), remove pharmacy synergy + parameterise the report (Phase 9), and update the validator + generators for site-agnosticism (Phase 10). A 6th phase (Phase 11) verifies v1.0 reproduction. The architecture preserves all five v1.0 patterns (cached fetch, single params cell, pure-function P&L, dual-env bootstrap, report accumulator) and adds three new ones (site-config/assumptions split, point-in-polygon derivation, slugified filenames). Abbotsford ships as the default config so v2.0 out-of-the-box reproduces v1.0 (minus pharmacy synergy).
 
-The key risks are (1) repeating v1's analytical flaws (degree-based buffers, whole-postcode population sums, centroid-based catchments, ML on 3–10 rows); (2) silently wrong external data (ABS positional dataKeys returning empty-200s, Places' 20-per-query cap silently truncating competitor counts, state Medicare files carrying zero local signal); and (3) financial-model errors that flip the verdict (confusing GP gross billings with practice revenue — a ~3× overstatement — ignoring ramp-up, underestimating fit-out capex at $1,200–$2,200+/sqm, and using pre-Nov-2025 MBS billing economics). Every one of these has a concrete mitigation mapped to a specific phase below.
+The key risks are: (1) **EPSG:7855 does NOT cover all of VIC** — the western strip (141–144°E: Mildura, Swan Hill, far Wimmera) is MGA zone 54, not 55; PROJECT.md's "no zone-awareness needed" claim is factually wrong and must be corrected (STACK and PITFALLS independently confirm this); (2) **hardcoded SA3 20607** appears in 8+ locations across code, assertions, and markdown — missing one produces a report that says "Yarra" for a Frankston site; (3) **pharmacy synergy removal** has hidden dependencies across 4 locations (code cell, markdown, Jinja2 template, citation [6]) — partial removal crashes the report render; (4) **the validator's 36 checks are hardcoded to Abbotsford** — generalising the notebook without generalising the validator creates a false failure wall. Every risk has a concrete mitigation mapped to a specific phase below.
 
-**One correction to PROJECT.md:** the ABS API base URL listed there (`https://api.data.abs.gov.au`) was **retired 29 Nov 2024**. The correct base is **`https://data.api.abs.gov.au`** (e.g. `https://data.api.abs.gov.au/rest/data/{dataflowId}/{dataKey}?format=csvfilewithlabels`). The old URL currently redirects but is not guaranteed to. PROJECT.md should be updated at the next transition.
+**CONFLICT TO RESOLVE (roadmapper):** ARCHITECTURE.md and STACK.md disagree on SA3 derivation data assets. ARCHITECTURE says the **SA1 shapefile already on hand** (100 MB, loaded by v1.0 cell 16) includes `SA3_CODE21` / `SA3_NAME21` as attribute columns (verified live) — so a single point-in-polygon on SA1s yields the SA3 code with **no new download needed**. STACK.md says a **new SA3 shapefile data asset** (~5 MB, `SA3_2021_AUST_GDA2020.zip`) is required. The ARCHITECTURE finding is more specific (verified the SA1 columns live) and likely correct — it avoids a new download and enables geometry reuse between §1.3 and §2. However, STACK's SA3-only shapefile is far smaller (5 MB vs 100 MB) if a lighter load is preferred. **Both options are viable; the roadmapper should pick one.** Recommendation: use the SA1 shapefile (ARCHITECTURE's approach) since it's already on hand and enables §1.3→§2 geometry reuse, but note the SA3-only shapefile as the lighter alternative.
 
 ## Key Findings
 
 ### Recommended Stack
 
-Python 3.12 on the current Colab runtime, using Colab's preinstalled geospatial set unchanged (geopandas 1.1.3 / shapely 2.1.2 / pyproj 3.7 / folium 0.20 / pandas 2.2 / matplotlib 3.10) — **zero pip installs for the core**. One small install cell adds `requests-cache`, `contextily`, `weasyprint`, `python-dotenv` (and optionally `numpy-financial`). Dual-environment config detects Colab vs local Windows, loads `GOOGLE_PLACES_KEY` from Colab Secrets or `.env`, and resolves all paths via `pathlib` — no hardcoded `/content/drive/...` outside one config cell (a v1 flaw). Full details in STACK.md.
+The v2.0 multi-site features are almost entirely a refactor/reuse of the v1.0 stack. **Net new runtime dependencies: 0 required, 1 optional (`python-slugify` ≥8.0, ~20 KB, MIT).** No heavy geospatial or form-framework additions are needed. The v1.0 core (geopandas 1.1.3, shapely 2.1.2, pyproj 3.7.x, requests-cache, pandas, jinja2, weasyprint) covers every v2.0 need: spatial join, CRS reprojection, parameterised HTTP fetch, form input, report generation. Full details in STACK.md.
 
-**Core technologies:**
-- **geopandas 1.1.x + shapely 2.x + pyproj (EPSG:7855)**: buffers, overlay intersection, area apportionment — the standard, preinstalled, and metre-correct once reprojected
-- **ABS Data API via raw `requests` + `format=csvfilewithlabels`**: census G01/G02 for POA 3067 + 9 peers; no SDMX parsing needed; dataflows `C21_G01_POA` / `C21_G02_POA` confirmed live; **avoid `pandasdmx` (unmaintained)**; local GCP DataPack as first-class fallback
-- **Google Places API (New)** — `POST places:searchNearby` with a minimal field mask: the legacy Places API and the `googlemaps` PyPI client are closed/discouraged; Nearby Search (New) has **no pagination, max 20 results** — design around it (per-type, per-radius queries, subdivide on saturation, dedupe on `place.id`)
-- **requests-cache (filesystem backend, GET+POST)**: transparent on-disk caching of all API calls; committed ABS caches make the notebook re-runnable with zero keys
-- **jinja2 + weasyprint**: executive PDF built as a separate templated HTML→PDF artifact (not a notebook export); folium is interactive-only — all PDF figures are matplotlib + contextily static maps
+**Core technologies (v2.0 additions):**
+- **(none required)** — the v1.0 stack covers all v2.0 needs; no new core library
+- **`python-slugify` ≥8.0 (OPTIONAL)** — safe filename slugs from street addresses for `feasibility_<postcode>_<street>.pdf` naming; handles apostrophes, hyphens, unicode that a 5-line regex misses; acceptable regex fallback exists if zero-deps is a hard rule
+- **stdlib `dataclasses`** — `SiteConfig` dataclass for the site-input form values; no pip install
+- **Colab `#@param` form fields** — native Colab form UI (text boxes, dropdowns, sliders) for site input; zero imports, survives Restart & Run All; preferred over ipywidgets for static config (confirmed by Colab maintainers)
+
+**CRITICAL stack finding — EPSG:7855 coverage:**
+- EPSG:7855 (GDA2020 / MGA zone 55) covers **144°E–150°E only**; VIC's western border is ~141°E
+- Far-western VIC (Mildura, Swan Hill, Nhill, Ouyen) is in **MGA zone 54 (EPSG:7854)**, not zone 55
+- **Recommended fix: adopt EPSG:7899 (GDA2020 / Vicgrid)** — a single Lambert Conic Conformal CRS purpose-built by the VIC Surveyor-General for state-wide coverage (bbox 140.96–150.04°E); covers ALL of Victoria with no zone edge cases; Vicmap basemaps use it
+- Alternative: keep EPSG:7855 but document a 144°E eastern-VIC-only scope (excludes ~5% of VIC population)
+- **Either way, PROJECT.md's "EPSG:7855 stays valid for all VIC sites" claim must be corrected** — it is factually wrong
 
 ### Expected Features
 
-FEATURES.md benchmarks against professional feasibility reports and verifies current Australian metrics (item 23 rebate $43.90 from 1 Jul 2025; ~6.8–7 GP attendances/capita; 113 FTE GPs/100k national; 8.4 PBS scripts/capita; practice keeps ~30–35% of billings).
+FEATURES.md benchmarks v2.0 against professional multi-site feasibility tool archetypes (pharmacy-broker templates, health-planning consultancy GIS tools) and defines the feature set scoped to **only the new v2.0 capabilities** — v1.0 features are dependencies, not re-research targets.
 
 **Must have (table stakes):**
-- Executive summary + explicit go/no-go recommendation with headline numbers
-- Demographic catchment profile (ABS G01/G02, 2021 vintage caveat) + catchment maps (1/3/5 km rings, competitors)
-- Competitor inventory with counts/classification + provider-to-population ratios vs benchmarks
-- Demand model (attendances per capita × catchment population vs existing capacity → required market share)
-- Full parameterised clinic P&L + breakeven + fit-out capital + ramp-up curve
-- Base/optimistic/pessimistic scenarios + tornado sensitivity
-- Cited, dated assumptions register; executive PDF export
+- Site-input form (`#@param`: street address, state=VIC locked, postcode, FTE slider, peer postcodes, SA3 override) — replaces v1.0 hardcoded constants; Abbotsford as defaults
+- Geocoding of form-supplied address — reuses v1.0 cell 13 logic, reads form variable
+- VIC-only guard (two-layered: form dropdown locked to `["VIC"]` + post-geocode state check) — hard error on non-VIC with clear message
+- SA3 auto-derivation (spatial join against ASGS boundaries) + editable override field — replaces hardcoded SA3 20607
+- Peer postcode entry + validation (format check, VIC check, dedupe, self-referential rejection) — replaces hardcoded peer list
+- Graceful peer-skip when no peers provided — None-guards on v1.0 peer cells
+- Report filename from site (slugify street + postcode + date) — replaces hardcoded PDF filename
+- "How the tool sources data" markdown explainer — auto-vs-manual data split
 
 **Should have (competitive differentiators):**
-- Area-apportioned catchment population (fixes v1; most cheap reports get this wrong)
-- Age-adjusted demand model (Abbotsford skews young-adult → more conservative, more credible)
-- SA3 20604 (Yarra) MBS utilisation instead of state files
-- Cached reproducible pipeline; explicit market-share framing; teaching commentary throughout
-- Pharmacy synergy quantified only as **secondary** upside, after the standalone verdict (order-gated by design)
+- SA3 auto-derivation with editable override — most tools hardcode or make user look up manually; auto-derive + visible override is best of both
+- Reproduction-path explainer (default = v1.0 minus pharmacy synergy) — builds trust that generalisation didn't break the original
+- Slugified, date-stamped report naming with street-name extraction — human-readable, self-identifying, no clobbering
+- "How the tool sources data" as a first-class confidence builder (not a task list)
 
-**Defer (v1.x / v2+):**
-- Monte Carlo confidence intervals on breakeven — after scenario machinery is stable
-- Peer-postcode benchmarking table — after Places caching is proven
-- SA1-level apportionment upgrade — if ABS API pulls prove reliable
-- Drive-time isochrones, interactive dashboard, pharmacy retail P&L — explicitly out of scope / anti-features
+**Defer (v2.1+):**
+- Batch/multi-site comparison mode — v2.0 proves single-site generalisation first
+- Non-VIC site support (MGA zone-aware reprojection, zones 49–56) — once VIC pilot validates
+- Pharmacy synergy as opt-in module — once standalone verdict is stable
+- Dynamic SA3 dropdown via ipywidgets — only if free-text override proves insufficient
+- Auto-suggest peers by nearest POA centroid — eliminates peer validation failure modes
 
-**Anti-features to refuse:** ML demand models on <30 rows (v1's Random Forest), exploratory clustering as "analysis", uncited rules of thumb, web-scraped booking data, live-recompute-everything.
+**Anti-features to refuse:** ipywidgets for static form (state-readiness hazard), silent skip for non-VIC addresses (violates defensible-data core value), pharmacy synergy as opt-in toggle (keeps dead code), auto-download of MBS/AIHW Excel files (no stable API, fragile scraping).
 
 ### Architecture Approach
 
-A single notebook structured as a strictly-downward linear pipeline (no section reads state produced later — v1's `s_lat`/`s_lon` used-before-definition bug is exactly this violation), with a repo layout of `data/cache/` (committed JSON API caches), `data/local/` (fallback assets), and `outputs/` (maps, report.md, PDF). Five patterns carry the design: (1) **cached fetch boundary** — every API call goes through one `cached_fetch()` helper; (2) **single PARAMS cell** — every tunable assumption in one dict with inline citations, no numeric literals downstream; (3) **pure-function P&L** — `clinic_pnl(params) -> dict`, making scenarios/sensitivity ~10 lines each; (4) **dual-environment bootstrap** — Colab Secrets vs `.env`, graceful degradation to cache-only if no key; (5) **report-metrics accumulator** — sections deposit headline numbers into a `report{}` dict rendered to markdown → HTML → PDF, so the report can never drift from the analysis.
+A v2.0 **integration architecture** that threads multi-site changes through the existing v1.0 notebook structure (88 cells, §0–§8) with minimal disruption. The §0.3 parameters cell is restructured into two dicts (`SITE_CONFIG` for user inputs + `BASE_ASSUMPTIONS` for constants) in the same cell — preserving the single-params-cell auditability invariant. A new §1.3 cell (point-in-polygon POA/SA3 derivation) is inserted between geocode (§1.2) and ABS fetch (§1.4), loading ASGS boundaries once and reusing them in §2 catchment. SITE_CONFIG values are injected into BASE_ASSUMPTIONS at definition time, so downstream cells (§2–§7) continue reading `BASE_ASSUMPTIONS["n_gp_fte"]` with **zero changes**. Full details in ARCHITECTURE.md.
 
-**Major components (notebook sections):**
-1. **§0 Setup/Config/PARAMS** — installs, env detection, all assumptions in one cell
-2. **§1 Data acquisition layer** — geocode, ABS client (+ local fallback), Places client, MBS SA3 loader; all cached
-3. **§2 Geospatial catchment** — site point → 1/3/5 km buffers in EPSG:7855, area-apportionment weights
-4. **§3 Demographics** — catchment population/age/income by ring; peer comparison
-5. **§4 Competitors** — dedupe, classify, per-ring counts, maps
-6. **§5 Demand model** — age-band consult rates × catchment profile vs GP capacity → required market share
-7. **§6 Financial model** — pure-function P&L, base case
-8. **§7 Scenarios & sensitivity** — param-override dicts, tornado chart
-9. **§8 Report** — markdown assembly → weasyprint PDF
+**Major components (v2.0 new/modified):**
+1. **§0.3 SITE_CONFIG + BASE_ASSUMPTIONS split** (MODIFIED) — user inputs visually distinct from model constants; default = Abbotsford (reproduces v1.0)
+2. **§1.3 POA/SA3 Derivation** (NEW) — point-in-polygon on ASGS boundaries → `site_poa_code` + `site_sa3_code`; VIC guard (RuntimeError on point outside VIC); geometry reuse with §2
+3. **§1.4 ABS fetch** (MODIFIED) — parameterised POA/SA3 codes via `fetch_abs(flow, codes, session)` helper; derived codes replace hardcoded 3067/20604
+4. **§1.6 MBS SA3** (MODIFIED) — filters on `site_sa3_code` instead of hardcoded 20607
+5. **§7 pharmacy synergy** (DELETED) — cells 81–82 removed; Jinja2 template §6 block removed; citation [6] removed
+6. **§8 Report** (MODIFIED) — site-parameterised template (`{{ report["site_address"] }}`); slugified filename (`slugify(SITE_CONFIG["address"])`)
+7. **Validator** (MODIFIED) — parameterised with site fixture; 6–8 new v2.0 checks; `--site` mode for v1.0 reproduction
 
 ### Critical Pitfalls
 
-Top 5 of 12+ documented in PITFALLS.md (each mapped to a phase):
+Top 5 of 12 documented in PITFALLS.md (each mapped to a phase):
 
-1. **CRS confusion (buffers in degrees)** — all metric ops in EPSG:7855, all display in EPSG:4326; one `to_metric()`/`to_display()` helper pair; assert 3 km buffer area ≈ 28.27 km² before anything downstream
-2. **Whole-postcode population summing (v1's core flaw)** — area-weighted apportionment `pop × (∩area / POA area)` in EPSG:7855; show v2 vs v1 numbers side-by-side as the teaching moment; sanity range: 3 km inner-Melbourne catchment ≈ 80–110k
-3. **Places truncation + inflated competitor counts** — Nearby Search (New) caps at 20 with no pagination: treat saturation as truncation and subdivide; then dedupe by `place_id` + name/address, classify with keyword rules + manual review (raw "doctor" counts overstate GP competition 2–5×)
-4. **GP gross billings ≠ practice revenue** — practice revenue is the service fee (~30–35% of billings), not the $2.75M gross; getting this wrong overstates revenue ~3× and makes any site look profitable; structure the P&L with an explicit service-fee % row
-5. **Stale MBS economics + no ramp/capex realism** — Nov 2023 and Nov 2025 bulk-billing changes (tripled BBI, BBPIP 12.5%) structurally changed GP revenue: date-stamp every item value, model both 70/30 mixed and 100%-BB+BBPIP strategies; model monthly ramp (books fill over 12–24 months) and cited fit-out $/sqm ranges ($350k–$700k+ plausible) with peak cash requirement as a headline output
+1. **MGA zone 55 does NOT cover all of VIC** (Pitfall 1, Phase 6) — western VIC (141–144°E) is zone 54; reprojection doesn't crash but produces out-of-spec coordinates with ~0.4% distortion; the 28.27 km² buffer assertion passes silently (28.38) so the error is invisible. **Fix:** adopt EPSG:7899 (Vicgrid) for all-VIC coverage, OR add a `lon < 144.0` zone check + warning. Either way, correct PROJECT.md.
 
-Also critical: ABS API positional dataKeys return **empty data with HTTP 200** when dimension order is wrong — introspect the datastructure at runtime, never hardcode; and use the **SA3 Summary** Medicare product (SA3 20604 must appear in the loaded dataframe), never the state/MMM file v1 used.
+2. **Hardcoded SA3 20607 in 8+ locations** (Pitfall 2, Phase 7 + 10) — the SA3 code appears in MBS loader, AIHW loader, assertion cell, ERP SA2 code (206071139), print statements, warning messages, and markdown. Parameterising the obvious loaders but missing one produces a report that says "Yarra" for a Frankston site, or crashes the assertion. **Fix:** grep the entire notebook for `20607` and `20604`; replace every instance with `SA3_CODE`/`SA3_NAME` variables; add validator check that no literal SA3 code appears in source.
+
+3. **Pharmacy synergy removal has hidden dependencies** (Pitfall 8, Phase 9 + 10) — removing §7.6 code cells but leaving the Jinja2 template's `{{ report['pharmacy_synergy_range'] }}` reference crashes the render with `UndefinedError`; citation [6] becomes dangling; validator REP-03/REP-04/FIN-07 fail. **Fix:** coordinated removal across 4 locations (code cell, markdown, template section 6, citation [6]) + validator updates in one pass.
+
+4. **Validator hardcoded to Abbotsford** (Pitfall 9, Phase 10) — 36 checks assert Abbotsford-specific literals (`"Yarra"`, `"GCP_POA3067"`, `"20607"`, `"Pharmacy Synergy"`, `[1]`-`[8]`). Generalising the notebook without generalising the validator creates a false failure wall. **Fix:** parameterise validator with site fixture; add `--site` mode (default: abbotsford reproduces v1.0); replace literal checks with variable-existence checks.
+
+5. **v1.0 reproduction must be verified** (Pitfall 11, Phase 11) — default Abbotsford config must produce SA3 20607, same catchment population (±1%), same verdict (GO), same P&L base case (±5%). Subtle differences creep in via SA3 shapefile edition mismatch, ERP SA2 code drift, geocoded point drift, and peer list changes. **Fix:** dedicated reproduction verification phase; pin ASGS edition, pin cached geocoded coordinates, document acceptable tolerances.
+
+Also critical: SA3 point-in-polygon edge cases (Pitfall 3 — boundary hits, water/off-shore points, ASGS edition mismatch), ABS API parameterised fetch edge cases (Pitfall 4 — non-existent POAs, rate limiting, cache poisoning from 504s), geocoding edge cases (Pitfall 5 — `partial_match`, `location_type`, out-of-state results), and ERP scaling for new sites (Pitfall 12 — high-growth fringe suburbs vs declining regional areas need site-specific SA2 growth rates, not Abbotsford's).
 
 ## Implications for Roadmap
 
-The four documents agree on dependency order. Note on reconciliation: ARCHITECTURE.md's section numbering (§0–§8) places competitors (§4) before the demand model (§5), while the phase list below places MBS/demand data work before competitor mapping. These are compatible: the MBS phase acquires and validates the *demand-rate inputs* (SA3 utilisation, age-band rates), but the final market-share calculation is completed only after competitor capacity is known. The required market-share headline metric therefore lands at the end of the competitors phase / start of the financial phase, exactly as FEATURES.md's dependency graph specifies (`market share ──requires──> demand model + competitor capacity`).
+The four documents agree on a 5-phase build order (6→7→8→9→10) plus a verification phase (11), threading v2.0 changes through the v1.0 notebook structure. The dependency chain is: site-config → geocode → derive POA/SA3 → parameterise ABS/MBS → remove pharmacy + parameterise report → update validator/generators → verify v1.0 reproduction.
 
-### Phase 1: Scaffolding — Config, Caching, Environment
-**Rationale:** Every subsequent feature touches an external API; the cache layer must exist before the first bulk fetch (Pitfall 10 — Places cost blowout), and the dual-env bootstrap prevents v1's hardcoded-path flaws.
-**Delivers:** Repo layout (`data/cache/`, `data/local/`, `outputs/`), §0 setup + PARAMS cell, `cached_fetch()` helper, Colab/Windows key handling, `.gitignore`/`.env.example`.
-**Addresses:** Caching + config + key handling (P1, HIGH value / LOW cost per FEATURES.md).
-**Avoids:** API cost blowout; hardcoded Drive paths; out-of-order execution.
+### Phase 6: Site Config Restructure (§0.3)
+**Rationale:** Every v2.0 feature reads from the form fields; the form replaces v1.0's hardcoded constants. Must exist before geocode parameterisation.
+**Delivers:** `SITE_CONFIG` dict (user inputs via `#@param` form) + `BASE_ASSUMPTIONS` dict (constants) in the same §0.3 cell; SITE_CONFIG values injected into BASE_ASSUMPTIONS; Abbotsford as defaults. Peer postcode validation cell (format, VIC, dedupe). Geocode quality checks (`partial_match`, `location_type`, VIC bounding box). MGA zone check/warning (or EPSG:7899 adoption).
+**Addresses:** Site-input form, Abbotsford default, VIC-only guard, peer postcode validation, geocoding edge cases (FEATURES table stakes).
+**Avoids:** Pitfalls 1 (MGA zone), 5 (geocoding edge cases), 6 (peer validation).
+**Generator:** `extend_v2_notebook_phase6.py`
 
-### Phase 2: Geospatial Catchment
-**Rationale:** The site point and buffers are the root of the dependency graph ("start here" in FEATURES.md); v1's three geometry flaws all live here.
-**Delivers:** Geocoded exact address (cached, visually verified), 1/3/5 km buffers in EPSG:7855, POA geometry intersection + area-apportionment weights, base map.
-**Uses:** geopandas/shapely/pyproj (preinstalled), `to_metric()`/`to_display()` convention.
-**Avoids:** Pitfalls 1–3 (CRS confusion, whole-postcode summing, centroid-based catchment). Include the buffer-area assertion cell and the v1-vs-v2 population comparison.
+### Phase 7: Geocode Parameterisation + POA/SA3 Derivation (§1.2, §1.3 NEW)
+**Rationale:** SA3 derivation is the keystone of multi-site — all downstream ABS/MBS fetches depend on derived codes. Must follow SITE_CONFIG (Phase 6) and precede ABS parameterisation (Phase 8).
+**Delivers:** §1.2 modified to read `SITE_CONFIG["address"]`; new §1.3 cell loads ASGS boundaries, point-in-polygon → `site_poa_code` + `site_sa3_code`, VIC guard (RuntimeError on point outside VIC), SA3 override handling, nearest-neighbor fallback for water/off-shore points (2 km cap). §2 refactored to reuse §1.3 geometries (assert globals exist, no reload). ERP SA2 code derived from point-in-polygon (not hardcoded 206071139).
+**Uses:** geopandas `sjoin(predicate="within")`, shapely `Point`, pyproj CRS transforms — all from v1.0 stack.
+**Implements:** Pattern 7 (point-in-polygon POA/SA3 derivation).
+**Avoids:** Pitfalls 2 (hardcoded SA3), 3 (PIP edge cases), 12 (ERP scaling).
+**Generator:** `extend_v2_notebook_phase7.py`
+**CONFLICT NOTE:** This phase must decide SA1-vs-SA3 shapefile (see conflict above). If SA1 is chosen, §1.3 loads the existing 100 MB SA1 shapefile and extracts SA3_CODE21. If SA3 is chosen, a new ~5 MB download is required.
 
-### Phase 3: Census Demographics (ABS Data API)
-**Rationale:** Demand modelling is meaningless without the apportioned age/income profile; the ABS API has real discovery friction to absorb early.
-**Delivers:** G01/G02 pulls for POA 3067 + 9 peers via **`https://data.api.abs.gov.au/rest/...`** (corrected base URL — the old `api.data.abs.gov.au` in PROJECT.md was retired Nov 2024), `format=csvfilewithlabels`, cached; local GCP DataPack fallback emitting the *same tidy schema* with a printed warning; catchment demographic profile by ring.
-**Uses:** raw requests + requests-cache; runtime datastructure introspection for dataKey dimension order.
-**Avoids:** Pitfall 4 (silent empty-200s, 30 s/10 MB gateway limits, Beta-service flakiness — verify the notebook runs cache-only/offline).
+### Phase 8: ABS + MBS Parameterisation (§1.4, §1.6, §3)
+**Rationale:** With derived POA/SA3 codes available (Phase 7), the ABS and MBS fetches can be parameterised. Peer conditional logic depends on validated peer list (Phase 6).
+**Delivers:** `fetch_abs(flow, codes, session)` helper replacing inline fetch code; `PEER_POA_CODES` built from derived site POA + user peers (deduped, validated against POA shapefile); MBS SA3 filter on `site_sa3_code` (not hardcoded 20607); conditional peer table/charts (skip if empty); `allowable_codes=(200,)` to prevent cache poisoning; batch logic for >10 peers; empty-response warnings. Abbotsford-specific GCP fallback removed/genericised.
+**Addresses:** Peer postcode entry, graceful peer-skip, parameterised ABS/MBS fetch (FEATURES).
+**Avoids:** Pitfalls 4 (ABS API edge cases), 6 (peer validation downstream).
+**Generator:** `extend_v2_notebook_phase8.py`
 
-### Phase 4: MBS Demand Data & Age-Adjusted Demand Model
-**Rationale:** Demand rates are independent of competitors and depend on Phase 3's age profile; getting the geography strategy right (POA census vs SA3 rates) needs deciding before any merges.
-**Delivers:** SA3 20604 (Yarra) utilisation from the Medicare **SA3 Summary** product (fallback to state benchmark with loud warning), age-band consult rates × catchment age structure → annual catchment consult demand.
-**Addresses:** Age-adjusted demand model + SA3-level data (differentiators).
-**Avoids:** Pitfalls 5–6 (POA/SA3 geography mismatch — use SA3 data only as rates, never counts; state files masquerading as local signal — assert SA3 code 20604 present).
+### Phase 9: Pharmacy Synergy Removal + Report Parameterisation (§7, §8)
+**Rationale:** Pharmacy removal and report parameterisation are independent of Phases 7–8 (different sections) and can be parallelised. Both touch §7/§8 only.
+**Delivers:** §7.6 cells (81–82) deleted; Jinja2 template §6 pharmacy block removed; citation [6] removed + citations renumbered (or validator updated to [1]–[7]); `report["pharmacy_synergy_range"]` deposit removed; `slugify()` function; report template parameterised (`{{ report["site_address"] }}`, `{{ report["site_name"] }}`); PDF/HTML filenames slugified; "How the tool sources data" markdown explainer; reproduction-path explainer.
+**Addresses:** Pharmacy synergy removal, report filename from site, data sourcing explainer, reproduction explainer (FEATURES).
+**Avoids:** Pitfalls 7 (filename slugification), 8 (pharmacy removal hidden deps).
+**Generator:** `extend_v2_notebook_phase9.py`
+**Parallelisable with:** Phase 8 (independent sections).
 
-### Phase 5: Competitor Landscape
-**Rationale:** Needs the geocoded site (Phase 2) and completes the supply side, enabling the required-market-share headline metric.
-**Delivers:** Places (New) Nearby Search per-type/per-radius with subdivision on 20-result saturation, dedupe + classification (corporate GP / independent / pharmacy / allied / exclude), per-ring counts, provider-to-population ratios vs the ~110–113/100k benchmark, competitor maps, persisted `competitors.geojson`, **required market share** computed.
-**Uses:** Places API (New) POST + field mask via cached requests-cache session (POST caching enabled).
-**Avoids:** Pitfalls 8–10 (truncation, duplicates/miscategorisation with a manual-review checkpoint, uncached spend).
+### Phase 10: Validator Update + Generator Hardening
+**Rationale:** All v2.0 features must be in place before the validator can be updated to check them. Generator byte-stability must be verified after all generator modifications.
+**Delivers:** Validator parameterised with site fixture (`--site` mode, default: abbotsford); 6–8 new v2.0 checks (SITE_CONFIG present, slugify present, §1.3 derive cell present, no hardcoded 3067/20607 in §1.4+, pharmacy synergy absent, filename uses slug, template uses `{{ report['site_address'] }}`, VIC guard present); site-specific checks (GEO-04 "Yarra", DEMO-01 "GCP_POA3067", DEMAND-01 "20607") replaced with variable-existence checks; REP-03/REP-04/FIN-07 updated for pharmacy removal. Generator chain verified byte-stable (two runs produce identical output; no site-specific values embedded in generators).
+**Addresses:** Validator generalisation, generator byte-stability (PITFALLS).
+**Avoids:** Pitfalls 9 (validator hardcoded), 10 (generator byte-stability).
 
-### Phase 6: Financial Model
-**Rationale:** The point of the study; consumes the market-share/volume outputs and the PARAMS cell built in Phase 1.
-**Delivers:** Pure-function `clinic_pnl(params)` — billings top line, explicit service-fee % row, cost lines, EBIT; monthly ramp curve (GP recruitment + book fill), cited fit-out $/sqm × floor area, time-to-breakeven and peak cash requirement as headline outputs.
-**Implements:** Pattern 3 (pure-function P&L) — the single most important architectural dependency (scenarios are cheap only if this is a function of a config dict).
-**Avoids:** Pitfalls 7, 11, 12 (stale MBS values — date-stamp everything and model both billing strategies incl. BBPIP; billings ≠ revenue; steady-state fantasy).
-
-### Phase 7: Scenarios, Sensitivity & Executive Report
-**Rationale:** Scenarios are override-dicts over the Phase 6 function; the report needs every upstream number and figure.
-**Delivers:** Base/optimistic/pessimistic table (incl. 70/30-mixed vs 100%-BB+BBPIP comparison), one-way tornado sensitivity, assumptions register, pharmacy-synergy upside module (computed **after** the standalone verdict, clearly non-load-bearing), `report{}` accumulator → jinja2/markdown → weasyprint PDF with static matplotlib+contextily maps, executive summary + go/no-go.
-**Addresses:** Scenarios, sensitivity, assumptions register, PDF export, pharmacy synergy (order-gated).
+### Phase 11: v1.0 Reproduction Verification
+**Rationale:** The final verification before milestone close — confirms the generalisation didn't break the original result.
+**Delivers:** Default Abbotsford config run: SA3 = 20607 (not a different code from edition mismatch), catchment population ±1% of v1.0, verdict = GO, P&L base case ±5%, v1.0 validator passes (minus pharmacy checks). Documented tolerances. Fresh-clone Colab run + keyless cache-only run.
+**Addresses:** v1.0 reproduction requirement (PITFALLS Pitfall 11).
+**Avoids:** Pitfall 11 (reproduction failure from subtle code-path differences).
 
 ### Phase Ordering Rationale
 
-- Order follows the dependency graph in FEATURES.md and the §-flow in ARCHITECTURE.md exactly: cache/config → geocode/buffers → census → demand rates → competitors → P&L → scenarios/report. "Run all" must always work top-to-bottom — the single property v1 lacked.
-- Caching first makes every later phase free to re-run and is itself a differentiator (reproducibility for graders/investors).
-- The demand model spans Phases 4–5 deliberately: rates before supply, market share once both exist.
-- Pharmacy synergy and Monte Carlo CIs are explicitly sequenced after their gates (standalone verdict; stable scenario machinery) — pulling them earlier violates the Core Value or wastes effort.
-- Teaching commentary is written as-you-go in every phase, not retrofitted.
+- **6 before 7:** SITE_CONFIG must exist before geocode can read `SITE_CONFIG["address"]`.
+- **7 before 8:** Derived POA/SA3 codes must exist before ABS/MBS fetches can be parameterised.
+- **8 ∥ 9:** ABS/MBS parameterisation (§1.4/§1.6/§3) and pharmacy removal + report parameterisation (§7/§8) touch different sections — parallelisable.
+- **10 after 6–9:** Validator can only check v2.0 features once they exist; generator byte-stability verified after all generator modifications.
+- **11 after 10:** Reproduction verification needs the updated validator to run v1.0 checks against the v2.0 notebook.
+- **Critical path:** Phase 6 → 7 → 8 → 10 → 11 (Phase 9 joins at Phase 10).
 
 ### Research Flags
 
 Phases likely needing deeper research during planning:
-- **Phase 3 (Census/ABS):** exact `C21_*` dataKey dimension order was NOT verified live — must introspect `/rest/datastructure/ABS/{id}?references=codelist` at runtime; confirm `C21_G04_POA` (age by sex) exists via the dataflow list.
-- **Phase 4 (MBS):** exact current download URL/format of the "Medicare quarterly statistics – SA3 Summary" product and AIHW supplement needs verification at build time; age-band attendance rates need a specific citable vintage.
-- **Phase 6 (Financial):** fit-out $/sqm, private-fee levels, and service-fee % are MEDIUM-confidence ranges that vary by practice — every value needs a source + date in the assumptions register, and BBPIP mechanics (post-Nov-2025) should be re-verified against current DoH factsheets.
+- **Phase 6 (MGA zone decision):** The EPSG:7855 vs EPSG:7899 decision has architectural consequences (changes the v1.0 CRS constant, buffer area assertion tolerance, all §2 geometry). STACK recommends EPSG:7899; PITFALLS offers a zone-check alternative. This is a PROJECT.md-level decision that must be made before Phase 6 planning.
+- **Phase 7 (SA1 vs SA3 shapefile):** The CONFLICT between ARCHITECTURE (use existing SA1 shapefile with SA3_CODE21 attribute) and STACK (new SA3 shapefile download) must be resolved. ARCHITECTURE's finding is more specific (verified live) and enables geometry reuse; STACK's is lighter. Roadmapper decides.
+- **Phase 7 (SA3 PIP edge cases):** Boundary hits, water/off-shore points, ASGS edition mismatch all need handling logic — the exact fallback strategy (nearest-neighbor cap distance, coastal point buffering) needs specification.
+- **Phase 8 (ABS SA3 dataflows):** `C21_G01_SA3` / `C21_G02_SA3` / `C21_G04_SA3` dataflow IDs are inferred from the `C21_{table}_{geography}` pattern but not live-verified — must confirm via `dataflow?detail=allstubs` at runtime.
 
 Phases with standard patterns (skip research-phase):
-- **Phase 1 (Scaffolding):** well-established patterns, fully specified in ARCHITECTURE.md with code examples.
-- **Phase 2 (Geospatial):** textbook geopandas overlay/apportionment; conventions and assertions already defined.
-- **Phase 5 (Competitors):** Places (New) request/response shape, pricing, and caps verified HIGH-confidence in STACK.md.
-- **Phase 7 (Report):** jinja2 + weasyprint is a known path; only risk is Windows GTK (fallback: Colab-only PDF, already decided).
+- **Phase 6 (site-input form):** Colab `#@param` is well-documented; `@dataclass` + `__post_init__` validation is textbook Python.
+- **Phase 9 (pharmacy removal + report param):** Deletions are safe (pharmacy was non-load-bearing); Jinja2 template parameterisation is string replacement; slugify is a solved problem.
+- **Phase 10 (validator update):** Parameterisation strategy is straightforward (site fixture dict); generator byte-stability is verified by diff.
 
 ## Confidence Assessment
 
 | Area | Confidence | Notes |
 |------|------------|-------|
-| Stack | HIGH | Colab preinstalled versions verified against googlecolab/backend-info; ABS URL migration and Places (New) pricing/caps verified against official docs. MEDIUM only on exact ABS dataKey dimension order (runtime introspection required). |
-| Features | HIGH | Report skeleton and Australian benchmarks verified against MBS Online, AIHW, RACGP, PBS, Productivity Commission. MEDIUM on private-fee/fit-out cost ranges (market-variable). |
-| Architecture | HIGH | Patterns are standard for reproducible analytics notebooks; specifics validated directly against the v1 prototype's failure modes. |
-| Pitfalls | HIGH | Web-verified (MBS changes, fit-out costs, API limits) plus direct audit of v1 code (line-level flaws identified). |
+| Stack | HIGH | Zero new deps verified against Colab preinstalled set; EPSG:7855 coverage gap verified against EPSG registry + Land Vic; EPSG:7899 verified as VIC government standard. MEDIUM on exact ABS SA3 shapefile download URL (verify at runtime). |
+| Features | HIGH | Colab `#@param` patterns verified against official docs + colabtools issues; notebook cell references verified by reading `Johnston_St_v2.ipynb` directly. MEDIUM on SA3 boundary-join availability in Colab (depends on shapefile load). |
+| Architecture | HIGH | v1.0 architecture fully audited cell-by-cell; SA1 shapefile SA3_CODE21 attribute verified live; integration points traced. The SA1-vs-SA3 conflict is a genuine open question, not a confidence gap. |
+| Pitfalls | HIGH | v1.0 codebase audited directly (notebook, validator, generators); MGA zone coverage and ABS POA/SA3 edge cases web-verified against EPSG registry + ABS docs. All 12 pitfalls mapped to specific phases. |
 
 **Overall confidence:** HIGH
 
 ### Gaps to Address
 
-- **ABS dataKey dimension order (`C21_G01_POA` etc.):** not verified live — Phase 3 must GET the datastructure first and print dimension order; never hardcode from research docs.
-- **MBS SA3 Summary product URL/format:** verify current release at Phase 4 build time; the loaded dataframe must contain SA3 code 20604 as an assertion.
-- **Corrected ABS base URL vs PROJECT.md:** PROJECT.md still lists retired `https://api.data.abs.gov.au` — update to `https://data.api.abs.gov.au` at the next PROJECT.md revision.
-- **weasyprint on local Windows (GTK):** if install is painful, PDF generation is Colab-only with local HTML output — acceptable fallback, decide in Phase 7.
-- **Financial benchmark vintages (service-fee %, private fee, fit-out $/sqm, BBPIP details):** carry as cited ranges with sensitivity tests, never point estimates; re-verify BBPIP factsheets during Phase 6.
-- **Document-date inconsistency:** PITFALLS.md is dated 2026-03-02 vs 2026-07-05 for the others — immaterial to content, but MBS/BBPIP facts in PITFALLS.md should be re-checked for anything newer at Phase 6.
+- **SA1 vs SA3 shapefile (CONFLICT):** ARCHITECTURE says SA1 shapefile (already on hand, 100 MB) has `SA3_CODE21` attribute — no new download needed. STACK says a new SA3 shapefile (~5 MB) is required. Roadmapper must resolve. Recommendation: SA1 (already on hand, enables §1.3→§2 reuse), but flag both options.
+- **EPSG:7855 vs EPSG:7899 decision:** PROJECT.md's "no zone-awareness needed" claim is wrong. Must decide: adopt EPSG:7899 (STACK recommendation, covers all VIC) or keep EPSG:7855 with documented 144°E scope limitation. This is a PROJECT.md correction + architectural decision before Phase 6.
+- **ABS SA3 dataflow IDs:** `C21_G01_SA3` etc. inferred from pattern, not live-verified — confirm at runtime via dataflow list. (Note: v2.0 may not need SA3-level census at all — SA3 is only used for MBS utilisation which comes from a local xlsx, not the ABS API.)
+- **ERP SA2 derivation:** v1.0 uses a specific SA2 code (206071139) for ERP growth rate. v2.0 must derive the SA2 from point-in-polygon — but SA2-level ERP data may be suppressed for some areas. Fallback strategy (SA3 → SA4 → state) needs specification in Phase 7/8.
+- **ASGS edition pinning:** MBS SA3 Summary uses ASGS Edition 3 (2021) codes. The shapefile used for point-in-polygon must be the same edition. Store edition as a constant and print it.
+- **Citation renumbering:** Removing citation [6] (PBS Statistics, pharmacy-only) requires either renumbering [7]–[8] → [6]–[7] or updating the validator's `[1]`-`[8]` check to `[1]`-`[7]`. Decide in Phase 9.
 
 ## Sources
 
 ### Primary (HIGH confidence)
-- https://github.com/googlecolab/backend-info — Colab runtime pip-freeze (Python 3.12, geopandas 1.1.3, shapely 2.1.2, folium 0.20.0)
-- https://www.abs.gov.au/statistics/application-programming-interfaces-apis/data-api-user-guide — base URL migration (29 Nov 2024), `/rest/data/{flow}/{key}?format=csvfilewithlabels`, dataflow/datastructure endpoints
-- https://developers.google.com/maps/billing-and-pricing/pricing (+ march-2025 pages) — Places (New) Pro $32/1k, 5,000 free/month, legacy closure; migrate-nearby doc — POST, mandatory FieldMask, no pagetoken, max 20
-- MBS Online (www9.health.gov.au/mbs) — item 23 $43.90 from 1 Jul 2025; Level C item 36 $84.90
-- AIHW *Medicare funding of GP services over time* — ~6.8 attendances/capita (2022); Productivity Commission RoGS 2026; RACGP Health of the Nation 2025 — 113 FTE GPs/100k
-- PBS Expenditure & Prescriptions Report 2023-24 — 8.4 subsidised scripts/capita
-- Direct audit of `johnston_st_v1.py` / `Johnston_St_v1.ipynb` — line-level identification of v1 flaws
+- EPSG registry (epsg.org) — EPSG:7855 area of use (144°E–150°E), EPSG:7899 GDA2020/Vicgrid bbox (140.96–150.04°E) — HIGH
+- Land Victoria (land.vic.gov.au) — VicGrid2020 EPSG:7899 is "the most accurate projection for Victoria"; MGA zone boundaries (zone 54 = 138–144°E, zone 55 = 144–150°E) — HIGH
+- ABS digital boundary files page (abs.gov.au) — ASGS 2021 SA3 shapefile source; file names `SA3_2021_AUST_GDA2020` / `SA3_2021_AUST_GDA94` — HIGH (page verified; exact direct-download URL MEDIUM)
+- Colab Forms notebook (colab.research.google.com/notebooks/forms.ipynb) — `#@param` syntax, field types — HIGH
+- GoogleColab/colabtools Issue #2407 — Colab maintainers recommend `#@param` for static config, ipywidgets for dynamic — HIGH
+- v1.0 notebook audit (`Johnston_St_v2.ipynb`, 88 cells) — cell-by-cell inspection of hardcoded SA3 20607, pharmacy synergy cells, report template — HIGH
+- v1.0 validator audit (`scripts/validate_v2_notebook.py`, 36 checks) — site-specific literals identified — HIGH
+- SA1 shapefile attributes verified live — `SA1_2021_AUST_SHP_GDA2020.zip` includes `SA3_CODE21`, `SA3_NAME21`, `SA2_CODE21`, `SA2_NAME21` — HIGH
 
 ### Secondary (MEDIUM confidence)
-- https://github.com/Bigred97/abs-mcp — confirms `C21_G01_POA`/`C21_G02_POA` dataflow IDs (third-party, consistent with ABS naming)
-- RACGP mixed-billing guide + Alecto 2025 survey — GP service-fee splits (65–70% retained by GPs), $95 private-fee scenario
-- Melbourne medical fit-out cost guides — $1,200–$2,200+/sqm ranges (market-variable)
+- python-slugify PyPI (v8.0.4, MIT, Python ≥3.7) — unicode-aware slugify; `text-unidecode` backend GPL note — HIGH on library, MEDIUM on dep-vs-regex decision
+- ABS Data API dataflow pattern `C21_{table}_{geography}` generalises to SA3 — inferred from POA pattern + third-party confirmation (docs.sarahcgall.co.uk) — MEDIUM-HIGH
+- ABS Postal Areas (ASGS Edition 3) — exclude non-street-delivery postcodes; codes may not match past editions — HIGH
 
 ### Tertiary (LOW confidence)
-- Inner-Melbourne private-fee observation (~$90–110 Level B) — flag as assumption, sensitivity-test
-- Exact `C21_*` dataKey dimension order — inferred, must be introspected at runtime
+- Exact ABS SA3 shapefile direct-download URL string — not live-verified; ABS occasionally restructures paths — verify with HEAD request at runtime
+- ABS ArcGIS REST SA3 MapServer (geo.abs.gov.au) — alternative source, usable but shapefile download preferred for offline cache pattern
 
 ---
-*Research completed: 2026-07-05*
+*Research completed: 2026-07-07*
 *Ready for roadmap: yes*
