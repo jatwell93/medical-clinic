@@ -425,11 +425,11 @@ def main():
                  f"RandomForest or random_forest found ({not demand04_no_rf})")
 
     # DEMAND-01 (SA3 MBS data acquired + state fallback warning)
-    demand01_sa3 = "load_mbs_sa3" in all_source and "20604" in all_source
+    demand01_sa3 = "load_mbs_sa3" in all_source and "20607" in all_source
     demand01_fallback = "STATE BENCHMARK, NOT LOCAL" in all_source
     demand01 = demand01_sa3 and demand01_fallback
     check_phase3("Phase 3 DEMAND-01 (SA3 MBS + state fallback warning)", demand01,
-                 f"DEMAND-01: missing load_mbs_sa3+20604 ({demand01_sa3}) or state fallback warning ({demand01_fallback})")
+                 f"DEMAND-01: missing load_mbs_sa3+20607 ({demand01_sa3}) or state fallback warning ({demand01_fallback})")
 
     # DEMAND-02 (age-adjusted demand per ring with AIHW 4 bands)
     demand02_compute = "compute_demand" in all_source

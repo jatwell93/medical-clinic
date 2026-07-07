@@ -76,7 +76,7 @@ from google.colab import files
 LOCAL_DIR = "/content/medical-clinic/data/local"
 os.makedirs(LOCAL_DIR, exist_ok=True)
 
-print("Select the data files to upload (SA1 zip, MBS SA3 xlsx, AIHW xlsx, POA zip)...")
+print("Select the data files to upload (SA1 zip, MBS SA3 xlsx, AIHW CSV, POA zip)...")
 uploaded = files.upload()
 for fname in uploaded:
     shutil.move(fname, os.path.join(LOCAL_DIR, fname))
@@ -93,12 +93,19 @@ for fname in uploaded:
 | 1 | `POA_2021_AUST_GDA2020_SHP.zip` | **YES** (hard crash) | [ABS digital boundaries](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard/asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files) — "Postal Areas" | Notebook cannot build catchment rings |
 | 2 | `SA1_2021_AUST_GDA2020.zip` | Recommended (degraded fallback) | Same ABS page — "Statistical Area Level 1" | Falls back to POA-level apportionment (coarser) |
 | 3 | `medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26.xlsx` | Recommended (state fallback exists) | [health.gov.au](https://www.health.gov.au/resources/publications/medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26) — published 25 May 2026 | Falls back to VIC state average (less local) |
-| 4 | `aihw-medicare-subsidised-gp-allied-health-2024-25-data-tables.xlsx` | Recommended (national fallback exists) | [AIHW](https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist) — click "Data" tab, download Excel | Falls back to national average age-band rates |
+| 4 | `aihw-phc-19-csv_file_2425.csv` (extract from zip) | Recommended (national fallback exists) | [AIHW](https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist) — click "Data" tab, download `aihw-phc-019-csv-file-2324-2425.zip`, then **extract the CSV** from the zip | Falls back to national average age-band rates |
 
-> **You already have files 1–3 locally** in `data/local/` on your Windows
-> machine. Only file 4 (AIHW) is missing — and it has a national fallback
-> that works. If you want the most accurate demand model, download it from
-> the AIHW link above.
+> **Check your `data/local/` folder before uploading.** You need all four
+> files for best results. Common issues:
+> - **File 2 (SA1):** Make sure you have `SA1_2021_AUST_GDA2020.zip` (the
+>   shapefile), not `SA3_2021_AUST.xlsx` (a reference table — wrong file).
+> - **File 3 (MBS):** Make sure you have the **SA3 Summary** file
+>   (`...statistical-area-sa3-summary...`), not the **Primary Care Service
+>   Type Summary** file (`...primary-care-service-type-summary...`). The
+>   latter is state-level only — no SA3 data (Pitfall 6).
+> - **File 4 (AIHW):** The download is a **zip** containing CSV files (not
+>   xlsx). Extract `aihw-phc-19-csv_file_2425.csv` from the zip and upload
+>   that CSV.
 
 ### Download links (direct)
 
@@ -108,7 +115,9 @@ for fname in uploaded:
 - **MBS SA3 Summary:** <https://www.health.gov.au/resources/publications/medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26>
   - Download: the `.xlsx` file (~5 MB)
 - **AIHW age-band rates:** <https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist>
-  - Click the **Data** tab → download the Excel data tables (~2 MB)
+  - Click the **Data** tab → download `aihw-phc-019-csv-file-2324-2425.zip` (~210 MB)
+  - **Extract the zip** and upload `aihw-phc-19-csv_file_2425.csv` (the 2024-25 data file, ~109 MB)
+  - The zip also contains `aihw-phc-19-csv_file_2324.csv` (2023-24) and a metadata xlsx — you only need the 2425 CSV
 
 ---
 
@@ -162,13 +171,17 @@ Go back to Step 2.
 → You didn't upload `SA1_2021_AUST_GDA2020.zip`. The notebook still runs,
 but catchment apportionment is coarser. Upload it for best results.
 
-### "⚠ STATE BENCHMARK, NOT LOCAL — SA3 20604 data not found"
-→ You didn't upload the MBS SA3 xlsx. The notebook falls back to VIC
-state average. Upload the file for SA3-level (Yarra) demand signal.
+### "⚠ STATE BENCHMARK, NOT LOCAL — SA3 20607 data not found"
+→ You didn't upload the MBS SA3 xlsx, or you uploaded the wrong file
+(the state-level "Primary Care Service Type Summary" instead of the
+"Statistical Area SA3 Summary"). The notebook falls back to VIC state
+average. Download the correct SA3-level file from the health.gov.au link
+in Step 3 and upload it for SA3-level (Yarra) demand signal.
 
 ### "⚠ AIHW age-band data not found. Using national average fallback."
-→ You didn't upload the AIHW xlsx. The notebook uses national average
-age-band rates (the same values in `BASE_ASSUMPTIONS`). Upload the file
+→ You didn't upload the AIHW CSV. The notebook uses national average
+age-band rates (the same values in `BASE_ASSUMPTIONS`). Download the
+AIHW zip, extract `aihw-phc-19-csv_file_2425.csv`, and upload it
 for SA3-level rates.
 
 ### ABS API calls fail (network/timeout)
@@ -189,9 +202,9 @@ monthly reset or enable billing on your Google Cloud project.
 - [ ] Open notebook in Colab (GitHub tab)
 - [ ] Add `GOOGLE_PLACES_KEY` to Colab Secrets (notebook access ON)
 - [ ] Upload `POA_2021_AUST_GDA2020_SHP.zip` to `/content/medical-clinic/data/local/`
-- [ ] Upload `SA1_2021_AUST_GDA2020.zip` (recommended)
-- [ ] Upload MBS SA3 xlsx (recommended)
-- [ ] Upload AIHW xlsx (recommended — national fallback otherwise)
+- [ ] Upload `SA1_2021_AUST_GDA2020.zip` (recommended — not the SA3 xlsx reference table)
+- [ ] Upload MBS SA3 xlsx (recommended — must be the SA3 Summary, not the state-level file)
+- [ ] Upload AIHW CSV (recommended — extract `aihw-phc-19-csv_file_2425.csv` from the downloaded zip)
 - [ ] **Runtime → Restart and Run All**
 - [ ] Verify `VERDICT: GO` appears at the end
 - [ ] Download PDF from `outputs/`

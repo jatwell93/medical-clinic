@@ -203,7 +203,7 @@ cells.append(code(lines(
     "    \"catchment_radii_m\":      CATCHMENT_RADII_M,",
     "    \"peer_postcodes\":         PEER_POSTCODES,",
     "",
-    "    # --- Demand (source: MBS SA3 20604 Yarra; RACGP GP:pop benchmarks) ---",
+    "    # --- Demand (source: MBS SA3 20607 Yarra; RACGP GP:pop benchmarks) ---",
     "    # NOTE: full-book GP capacity is modelled via gp_fte_consults_per_yr (Phase 3);",
     "    # the old consults_per_gp_day/days_per_yr pair was unused and contradictory — removed.",
     "    \"consults_per_capita_yr\": {\"0-14\": 4.4, \"15-64\": 5.1, \"65+\": 11.0},  # MBS 2024-25 — UNCONFIRMED vintage",
