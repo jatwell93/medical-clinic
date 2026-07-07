@@ -2,11 +2,11 @@
 
 ## What This Is
 
-A professional-grade site feasibility analysis, delivered as a Colab notebook (`Johnston_St_v2.ipynb`, 88 cells covering §0-§8) plus an executive PDF report generator, evaluating whether 292-296 Johnston St, Abbotsford VIC 3067 can support an independently profitable medical clinic (5 FTE GPs + 1 FTE allied health) alongside a Priceline Pharmacy (beauty/cosmetics focus). Built by and for a business analytics student learning healthcare location analytics, to an investor-presentation standard. Shipped as Milestone v1.0 (PR #1, merged 2026-07-06).
+A reusable, investor-grade medical-clinic feasibility **tool**, delivered as a Colab notebook that accepts any Victorian street address via a site-input form and produces a standalone-profitability verdict plus an executive PDF report. Built by and for a business analytics student learning healthcare location analytics. v1.0 shipped a single-site study (Abbotsford, PR #1, merged 2026-07-06); v2.0 generalises it into a parameterised, multi-site tool with Abbotsford as the default config.
 
 ## Core Value
 
-Answer, with defensible data and transparent assumptions, one question: **can the clinic be profitable on its own at this site** — not as a script-driving vehicle for the pharmacy?
+Answer, with defensible data and transparent assumptions, one question: **can a clinic be profitable on its own at a user-specified site** — for any Victorian address the user enters, not just the original Abbotsford site.
 
 ## Current State
 
@@ -19,15 +19,29 @@ Answer, with defensible data and transparent assumptions, one question: **can th
 
 **Deferred to Colab runtime:** PNG figure generation, PDF generation, assumptions register population, end-to-end Restart & Run All, HTML visual fidelity (requires Colab + API keys + matplotlib/weasyprint/GTK deps).
 
-## Next Milestone Goals
+## Current Milestone: v2.0 Multi-Site Feasibility Tool
 
-Not yet planned. Candidate v2 items (from REQUIREMENTS.md v2 section, now archived):
-- Monte Carlo confidence intervals on profitability (V2-01)
-- Drive-time isochrone catchments (V2-02)
-- SA1/mesh-block finer population apportionment (V2-03)
-- Interactive dashboard
+**Goal:** Generalise the v1.0 Abbotsford study into a reusable, VIC-pilot feasibility tool that any user can point at a new street address and get the same investor-grade standalone clinic profitability verdict.
 
-Run `/gsd-new-milestone` to start the next cycle.
+**Target features:**
+- Site input form (street address + state + postcode + clinic FTE count + optional peer postcodes) replacing v1.0's hardcoded Abbotsford config
+- ABS Data API auto-fetches the right POA/SA2/SA3 census tables for whatever VIC site is entered (no manual downloads; guide becomes a "how it works" explainer)
+- Geocoding of arbitrary VIC street addresses (Google Geocoding API, cached)
+- SA3 auto-derivation from the geocoded point (so MBS/Medicare utilisation data is fetched for the correct SA3, not hardcoded 20604 Yarra)
+- EPSG:7855 (MGA zone 55) stays valid for all VIC sites — no zone-awareness needed in v2.0
+- Clinic standalone profitability model reused from v1.0 (`clinic_pnl(a)` pure function), driven by the site form's FTE count
+- Pharmacy synergy section **dropped** for v2.0 — clinic verdict is purely standalone
+- Peer benchmarking via user-supplied peer postcodes (optional; skipped if not provided)
+- Single report per run, named after the site; batch/comparison mode deferred to v2.1
+- Abbotsford (292-296 Johnston St) ships as the default site config, so v2.0 out-of-the-box reproduces the v1.0 study (minus pharmacy synergy)
+
+**Key context:**
+- Major version bump (v1.0 → v2.0) — product's core use case changes from single-site study to reusable tool
+- Phase numbering continues from v1.0 (new phases start at 6)
+- VIC-only pilot scope — other states/territories deferred to v2.1 (would require MGA zone-aware reprojection)
+- ABS Data API is free + already wired in v1.0; the "guide on which files to download" reframes as a "how the tool sources data" explainer, not a manual download checklist
+- Pharmacy synergy removal is a deliberate scope reduction — the tool's Core Value (clinic standalone verdict) becomes cleaner
+- v1.0 notebook preserved as reference (same pattern as v1.0 preserving v1 notebook)
 
 ## Requirements
 
@@ -52,16 +66,20 @@ Run `/gsd-new-milestone` to start the next cycle.
 
 ### Active
 
-(None — all v1 requirements shipped. Next milestone requirements defined via `/gsd-new-milestone`.)
+(Defined for v2.0 via `/gsd-new-milestone` — see REQUIREMENTS.md.)
 
 ### Out of Scope
 
 - Pharmacy retail P&L modelling — pharmacy is a separate business; this study only validates it doesn't need to subsidise the clinic
-- Drive-time isochrones (Distance Matrix/OSRM) — radial buffers chosen for reproducibility and zero API cost; candidate for v2
+- Pharmacy synergy quantification — dropped for v2.0; clinic verdict is purely standalone. Candidate for v2.1+ reintroduction as opt-in.
+- Drive-time isochrones (Distance Matrix/OSRM) — radial buffers chosen for reproducibility and zero API cost; candidate for v2.1
 - Real-time PBS dispensing data by pharmacy — not publicly available at that granularity; per-capita script benchmarks used instead
 - Web scraping of competitor websites/booking systems — licensed/public data only
 - Heavy raster/geospatial computation — must stay feasible in free Colab
 - ML demand prediction — sample sizes make it statistical theatre; transparent arithmetic instead
+- Non-VIC sites (v2.0) — VIC-only pilot; other states/territories deferred to v2.1 (requires MGA zone-aware reprojection, zones 49-56)
+- Batch/multi-site comparison mode — deferred to v2.1; v2.0 is single-run per site
+- Manual ABS file download path — ABS Data API auto-fetch is primary; manual download fallback is out of scope for v2.0 (v1.0's GCP fallback pattern is VIC-Abbotsford-specific)
 
 ## Context
 
@@ -132,4 +150,4 @@ This document evolves at phase transitions and milestone boundaries.
 - **Phase 5: Scenarios & Executive Report** — complete (2026-07-06). Base/optimistic/pessimistic scenario override dicts (5 independent levers), side-by-side P&L table (D-08), two tornado sensitivity charts (EBITDA + peak capital) with numpy zero-crossings, billing-mix sensitivity curve with BBPIP 12.5%/6.25% practice retention, pharmacy synergy as standalone arithmetic (order-gated after verdict, FIN-07), 5-column assumptions register parsed from BASE_ASSUMPTIONS citations, 8-section Jinja2 HTML template with weasyprint PDF generation, footnote-style citations [1]-[8] with access dates. Binary GO/NO-GO verdict gated on EBITDA > 0 AND margin > 15% (D-01, D-03, D-04). All 8 requirements (FIN-04..07, REP-01..04) verified. 2 plans, 0 critical code-review findings. Security audit: 5 threats, 0 open (05-SECURITY.md). Nyquist validation: 8/8 gaps filled (05-VALIDATION.md). Notebook extended 76→88 cells. Validator: 36 checks pass. 2 PR review bugs found by sentry[bot] and fixed (private_fee tornado no-op, Path.cwd() Colab failure). Deferred: Colab Restart & Run All for PNG/PDF generation, assumptions register runtime population, HTML visual fidelity.
 
 ---
-*Last updated: 2026-07-06 after v1.0 milestone completion*
+*Last updated: 2026-07-07 — v2.0 milestone started (Multi-Site Feasibility Tool, VIC pilot)*

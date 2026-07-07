@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: "Johnston St Medical Clinic Feasibility Study"
-status: milestone_archived
-last_updated: "2026-07-06T18:00:00.000Z"
-shipped_pr: 1
+milestone: v2.0
+milestone_name: Multi-Site Feasibility Tool
+status: planning
+last_updated: "2026-07-07T12:07:08.955Z"
+last_activity: 2026-07-07
 progress:
-  total_phases: 5
-  completed_phases: 5
-  total_plans: 12
-  completed_plans: 12
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # State — Clinic Feasibility Study
@@ -45,3 +45,10 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 2. Run `/gsd-new-milestone` to start the next cycle (questioning → research → requirements → roadmap).
 3. Candidate v2 items: Monte Carlo confidence intervals (V2-01), drive-time isochrones (V2-02), SA1/mesh-block apportionment (V2-03), interactive dashboard.
 4. Deferred to Colab runtime: PNG/PDF generation, assumptions register population, end-to-end Restart & Run All, HTML visual fidelity.
+
+## Current Position
+
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-07-07 — Milestone v2.0 started
