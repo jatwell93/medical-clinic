@@ -65,26 +65,18 @@ API responses — makes ABS re-runs free) but **not** `data/local/` (gitignored
 
 ### How to upload
 
-In Colab, run this in a cell **before** Restart & Run All, OR upload via the
-file browser:
+The notebook includes a dedicated **§0.4 "Upload Local Data Files"** cell
+(Colab only — it's a no-op on Windows). After the §0.2 cell clones the repo,
+run the §0.4 cell to open a file picker and select the four files below. Then
+do **Runtime → Restart & Run All**.
 
-```python
-# Option A: Upload via code (run this cell, then Restart & Run All)
-import os, shutil
-from google.colab import files
+> The §0.4 cell moves uploaded files into `/content/medical-clinic/data/local/`
+> automatically. On a fresh Colab runtime you must re-upload (Colab storage is
+> ephemeral).
 
-LOCAL_DIR = "/content/medical-clinic/data/local"
-os.makedirs(LOCAL_DIR, exist_ok=True)
-
-print("Select the data files to upload (SA1 zip, MBS SA3 xlsx, AIHW CSV, POA zip)...")
-uploaded = files.upload()
-for fname in uploaded:
-    shutil.move(fname, os.path.join(LOCAL_DIR, fname))
-    print(f"  uploaded: {fname}")
-```
-
-> **Option B:** Use the left sidebar **Files** tab → drag and drop into
-> `/content/medical-clinic/data/local/` (create the folder first).
+> **Alternative:** Use the left sidebar **Files** tab → drag and drop into
+> `/content/medical-clinic/data/local/` (create the folder first). This skips
+> the §0.4 cell entirely.
 
 ### Files to upload
 
