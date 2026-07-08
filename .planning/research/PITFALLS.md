@@ -142,7 +142,7 @@ v1.0 geocodes one known address ("292-296 Johnston St, Abbotsford VIC 3067") and
 
 3. **Rural VIC addresses with no street number:** Common in rural VIC — addresses like "Springvale Rd, Traralgon VIC 3844" with no number. Google returns a road centroid. The catchment may not contain the actual site. This is less of a problem for 3/5 km catchments but material for the 1 km ring.
 
-4. **Addresses that geocode outside VIC:** A user enters "1 Smith St, Richmond" (forgetting VIC). Google may return Richmond, NSW or Richmond, QLD. The site point is outside VIC, the POA shapefile (filtered to `STE_NAME21 == "Victoria"`) has no containing polygon, and the entire pipeline produces empty results. Or worse: the point is just across the border in NSW but near a VIC postcode, and the pipeline runs with subtly wrong data.
+4. **Addresses that geocode outside VIC:** A user enters "1 Smith St, Richmond" (forgetting VIC). Google may return Richmond, NSW or Richmond, QLD. The site point is outside VIC, the POA shapefile (filtered to VIC postcode prefix `3`, i.e. 3000-3999) has no containing polygon, and the entire pipeline produces empty results. Or worse: the point is just across the border in NSW but near a VIC postcode, and the pipeline runs with subtly wrong data. Note: the POA shapefile carries no `STE_NAME21` column (only SA1 does), so VIC filtering uses postcode prefix, not a state-name attribute.
 
 5. **Address format variations:** Users enter addresses in many formats: "292 Johnston St" vs "292-296 Johnston St" vs "292-296 Johnston Street". Google handles most of these, but the geocoded point can differ by 10-50 m between formulations, which matters for the 1 km catchment.
 

@@ -244,7 +244,9 @@ POA_ZIP = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["poa_shapefile"]
 SA1_ZIP = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["sa1_shapefile"]
 
 poa = gpd.read_file(POA_ZIP)
-poa = poa[poa["STE_NAME21"] == "Victoria"].to_crs("EPSG:7855")
+# POA shapefile has NO STE_NAME21 col (only SA1 carries state attrs).
+# Filter VIC by postcode prefix — VIC postcodes are 3000-3999 (ABS POA coding structure).
+poa = poa[poa["POA_CODE21"].str.startswith("3")].to_crs("EPSG:7855")
 
 sa1 = gpd.read_file(SA1_ZIP)
 sa1 = sa1[sa1["STE_NAME21"] == "Victoria"].to_crs("EPSG:7855")
