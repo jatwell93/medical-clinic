@@ -8,7 +8,7 @@ printed warning and a fallback rather than a hard crash. The two **hard
 requirements** are:
 
 1. **Google Places API key** (for geocoding + competitor search — no fallback)
-2. **POA shapefile** (for catchment geometry — no fallback)
+2. **POA boundary file** (for catchment geometry — no fallback)
 
 Everything else has a fallback path, but for investor-grade output you should
 upload all the files listed below.
@@ -80,35 +80,59 @@ do **Runtime → Restart & Run All**.
 
 ### Files to upload
 
-| # | File | Required? | Source | What happens if missing |
-|---|------|-----------|--------|------------------------|
-| 1 | `POA_2021_AUST_GDA2020_SHP.zip` | **YES** (hard crash) | [ABS digital boundaries](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard/asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files) — "Postal Areas" | Notebook cannot build catchment rings |
-| 2 | `SA1_2021_AUST_GDA2020.zip` | Recommended (degraded fallback) | Same ABS page — "Statistical Area Level 1" | Falls back to POA-level apportionment (coarser) |
-| 3 | `medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26.xlsx` | Recommended (state fallback exists) | [health.gov.au](https://www.health.gov.au/resources/publications/medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26) — published 25 May 2026 | Falls back to VIC state average (less local) |
-| 4 | `aihw-phc-19-csv_file_2425.csv` (extract from zip) | Recommended (national fallback exists) | [AIHW](https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist) — click "Data" tab, download `aihw-phc-019-csv-file-2324-2425.zip`, then **extract the CSV** from the zip | Falls back to national average age-band rates |
+| # | File | Required? | Size | Source | What happens if missing |
+|---|------|-----------|------|--------|------------------------|
+| 1 | `POA_2021_VIC_GDA2020.gpkg` | **YES** (hard crash) | ~15 MB | Pre-filtered from [ABS digital boundaries](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard/asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files) — "Postal Areas" (see below) | Notebook cannot build catchment rings |
+| 2 | `SA1_2021_VIC_GDA2020.gpkg` | Recommended (degraded fallback) | ~36 MB | Pre-filtered from same ABS page — "Statistical Area Level 1" (see below) | Falls back to POA-level apportionment (coarser) |
+| 3 | `medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26.xlsx` | Recommended (state fallback exists) | ~5 MB | [health.gov.au](https://www.health.gov.au/resources/publications/medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26) — published 25 May 2026 | Falls back to VIC state average (less local) |
+| 4 | `aihw-phc-19-csv_file_2425_VIC_SA3.csv` | Recommended (national fallback exists) | ~14 MB | Pre-filtered from [AIHW](https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist) — click "Data" tab, download `aihw-phc-019-csv-file-2324-2425.zip`, extract + filter (see below) | Falls back to national average age-band rates |
+
+> **Total upload: ~70 MB** (down from ~265 MB with the full national files —
+> 74% reduction). The VIC-only GeoPackages and trimmed CSV are pre-filtered
+> versions of the ABS/AIHW national files. See "How to create VIC-only files"
+> below.
 
 > **Check your `data/local/` folder before uploading.** You need all four
 > files for best results. Common issues:
-> - **File 2 (SA1):** Make sure you have `SA1_2021_AUST_GDA2020.zip` (the
->   shapefile), not `SA3_2021_AUST.xlsx` (a reference table — wrong file).
+> - **File 2 (SA1):** Make sure you have `SA1_2021_VIC_GDA2020.gpkg` (the
+>   VIC-only GeoPackage), not `SA3_2021_AUST.xlsx` (a reference table — wrong file).
 > - **File 3 (MBS):** Make sure you have the **SA3 Summary** file
 >   (`...statistical-area-sa3-summary...`), not the **Primary Care Service
 >   Type Summary** file (`...primary-care-service-type-summary...`). The
 >   latter is state-level only — no SA3 data (Pitfall 6).
 > - **File 4 (AIHW):** The download is a **zip** containing CSV files (not
->   xlsx). Extract `aihw-phc-19-csv_file_2425.csv` from the zip and upload
->   that CSV.
+>   xlsx). Extract `aihw-phc-19-csv_file_2425.csv` from the zip, then filter
+>   to VIC SA3 rows (see below).
+
+### How to create VIC-only files (one-time, ~2 minutes)
+
+The VIC-only GeoPackages and trimmed CSV are created from the full national
+files with a few lines of Python. Run this locally once, then upload the
+smaller files to Colab:
+
+```bash
+# 1. POA — VIC-only GeoPackage (56 MB zip → 15 MB GPKG)
+python -c "import geopandas as gpd; gpd.read_file('data/local/POA_2021_AUST_GDA2020_SHP.zip').query('POA_CODE21.str.startswith(\"3\")').to_file('data/local/POA_2021_VIC_GDA2020.gpkg', driver='GPKG')"
+
+# 2. SA1 — VIC-only GeoPackage (101 MB zip → 36 MB GPKG)
+python -c "import geopandas as gpd; gpd.read_file('data/local/SA1_2021_AUST_GDA2020.zip').query('STE_NAME21 == \"Victoria\"').to_file('data/local/SA1_2021_VIC_GDA2020.gpkg', driver='GPKG')"
+
+# 3. AIHW — VIC SA3 rows only (109 MB CSV → 14 MB CSV)
+python -c "import pandas as pd; df=pd.read_csv('data/local/aihw-phc-19-csv_file_2425.csv',low_memory=False,on_bad_lines='skip'); df[(df.GeographicUnit=='SA3')&(df.StateTerritory=='Vic')].to_csv('data/local/aihw-phc-19-csv_file_2425_VIC_SA3.csv',index=False)"
+```
 
 ### Download links (direct)
 
 - **ABS boundaries:** <https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard/asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files>
-  - Download: `SA1_2021_AUST_GDA2020.zip` (~150 MB)
-  - Download: `POA_2021_AUST_GDA2020_SHP.zip` (~50 MB)
+  - Download: `SA1_2021_AUST_GDA2020.zip` (~150 MB) → filter to `SA1_2021_VIC_GDA2020.gpkg` (~36 MB)
+  - Download: `POA_2021_AUST_GDA2020_SHP.zip` (~50 MB) → filter to `POA_2021_VIC_GDA2020.gpkg` (~15 MB)
+  - See "How to create VIC-only files" above for the one-line filter commands
 - **MBS SA3 Summary:** <https://www.health.gov.au/resources/publications/medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26>
-  - Download: the `.xlsx` file (~5 MB)
+  - Download: the `.xlsx` file (~5 MB) — upload as-is
 - **AIHW age-band rates:** <https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist>
   - Click the **Data** tab → download `aihw-phc-019-csv-file-2324-2425.zip` (~210 MB)
-  - **Extract the zip** and upload `aihw-phc-19-csv_file_2425.csv` (the 2024-25 data file, ~109 MB)
+  - **Extract the zip** to get `aihw-phc-19-csv_file_2425.csv` (the 2024-25 data file, ~109 MB)
+  - **Filter to VIC SA3 rows** → `aihw-phc-19-csv_file_2425_VIC_SA3.csv` (~14 MB) — see above
   - The zip also contains `aihw-phc-19-csv_file_2324.csv` (2023-24) and a metadata xlsx — you only need the 2425 CSV
 
 ---
@@ -159,9 +183,11 @@ files.download("/content/medical-clinic/outputs/Johnston_St_Feasibility_Report.p
 → You didn't add the key to Colab Secrets, or Notebook access is OFF.
 Go back to Step 2.
 
-### "SA1 shapefile missing — falling back to POA-level apportionment"
-→ You didn't upload `SA1_2021_AUST_GDA2020.zip`. The notebook still runs,
+### "SA1 boundary file missing — falling back to POA-level apportionment"
+→ You didn't upload `SA1_2021_VIC_GDA2020.gpkg`. The notebook still runs,
 but catchment apportionment is coarser. Upload it for best results.
+(If you only have the full national `SA1_2021_AUST_GDA2020.zip`, the notebook
+will use it as a fallback — but it's 3× larger and slower to upload.)
 
 ### "⚠ STATE BENCHMARK, NOT LOCAL — SA3 20607 data not found"
 → You didn't upload the MBS SA3 xlsx, or you uploaded the wrong file
@@ -173,8 +199,9 @@ in Step 3 and upload it for SA3-level (Yarra) demand signal.
 ### "⚠ AIHW age-band data not found. Using national average fallback."
 → You didn't upload the AIHW CSV. The notebook uses national average
 age-band rates (the same values in `BASE_ASSUMPTIONS`). Download the
-AIHW zip, extract `aihw-phc-19-csv_file_2425.csv`, and upload it
-for SA3-level rates.
+AIHW zip, extract `aihw-phc-19-csv_file_2425.csv`, filter to VIC SA3 rows
+(see "How to create VIC-only files" in Step 3), and upload the trimmed
+`aihw-phc-19-csv_file_2425_VIC_SA3.csv` for SA3-level rates.
 
 ### ABS API calls fail (network/timeout)
 → The notebook caches ABS responses in `data/cache/` (committed to git).
@@ -193,10 +220,10 @@ monthly reset or enable billing on your Google Cloud project.
 
 - [ ] Open notebook in Colab (GitHub tab)
 - [ ] Add `GOOGLE_PLACES_KEY` to Colab Secrets (notebook access ON)
-- [ ] Upload `POA_2021_AUST_GDA2020_SHP.zip` to `/content/medical-clinic/data/local/`
-- [ ] Upload `SA1_2021_AUST_GDA2020.zip` (recommended — not the SA3 xlsx reference table)
-- [ ] Upload MBS SA3 xlsx (recommended — must be the SA3 Summary, not the state-level file)
-- [ ] Upload AIHW CSV (recommended — extract `aihw-phc-19-csv_file_2425.csv` from the downloaded zip)
+- [ ] Upload `POA_2021_VIC_GDA2020.gpkg` to `/content/medical-clinic/data/local/` (~15 MB — required)
+- [ ] Upload `SA1_2021_VIC_GDA2020.gpkg` (~36 MB — recommended, not the SA3 xlsx reference table)
+- [ ] Upload MBS SA3 xlsx (~5 MB — recommended, must be the SA3 Summary, not the state-level file)
+- [ ] Upload `aihw-phc-19-csv_file_2425_VIC_SA3.csv` (~14 MB — recommended, VIC SA3 rows only)
 - [ ] **Runtime → Restart and Run All**
 - [ ] Verify `VERDICT: GO` appears at the end
 - [ ] Download PDF from `outputs/`

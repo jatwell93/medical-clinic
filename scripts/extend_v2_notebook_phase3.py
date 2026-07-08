@@ -70,7 +70,7 @@ PHASE3_ASSUMPTIONS_KEYS = [
     "    # NOTE: consults_per_capita_yr (AIHW SA3 4-band attendance rates) is defined ONCE",
     "    # in the Demand block above — do NOT redefine it here (was a duplicate key).",
     "    \"mbs_sa3_filename\":       \"medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26.xlsx\",  # D-01 manual download",
-    "    \"aihw_age_band_filename\": \"aihw-phc-19-csv_file_2425.csv\",  # D-02 manual download (extract from AIHW zip)",
+    "    \"aihw_age_band_filename\": \"aihw-phc-19-csv_file_2425_VIC_SA3.csv\",  # D-02 VIC SA3 rows only — 88% smaller than national CSV",
     "    \"avg_fte_per_clinic\":     4.0,        # RACGP 2019 (5.7 headcount) × DoH 2024 (0.74 FTE/GP) = 4.2, rounded down — D-10",
     "    \"amwac_per_100k\":         110.4,      # AMWAC 2000 planning benchmark (1:905) — D-10; latest actuals: 113 nat, 117 VIC",
     "    \"gp_fte_consults_per_yr\": 5500,       # ~110-130 consults/week × ~46 weeks — midpoint for 5 FTE = 27,500/yr — D-13",

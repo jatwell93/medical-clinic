@@ -240,16 +240,22 @@ import geopandas as gpd
 from shapely.geometry import Point
 
 # Load POA + SA1 boundaries (VIC only, EPSG:7855 for metric area math later)
-POA_ZIP = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["poa_shapefile"]
-SA1_ZIP = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["sa1_shapefile"]
+# Prefer VIC-only GeoPackages (pre-filtered — 68-74% smaller upload for Colab).
+# Fall back to full national ZIPs + filter if GPKG not found (backward compat).
+POA_PATH = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["poa_shapefile"]
+SA1_PATH = PROJECT_ROOT / "data" / "local" / BASE_ASSUMPTIONS["sa1_shapefile"]
 
-poa = gpd.read_file(POA_ZIP)
-# POA shapefile has NO STE_NAME21 col (only SA1 carries state attrs).
-# Filter VIC by postcode prefix — VIC postcodes are 3000-3999 (ABS POA coding structure).
-poa = poa[poa["POA_CODE21"].str.startswith("3")].to_crs("EPSG:7855")
+if POA_PATH.exists():
+    poa = gpd.read_file(POA_PATH).to_crs("EPSG:7855")  # already VIC-only GPKG
+else:
+    poa = gpd.read_file("data/local/POA_2021_AUST_GDA2020_SHP.zip")
+    poa = poa[poa["POA_CODE21"].str.startswith("3")].to_crs("EPSG:7855")  # VIC postcodes 3000-3999
 
-sa1 = gpd.read_file(SA1_ZIP)
-sa1 = sa1[sa1["STE_NAME21"] == "Victoria"].to_crs("EPSG:7855")
+if SA1_PATH.exists():
+    sa1 = gpd.read_file(SA1_PATH).to_crs("EPSG:7855")  # already VIC-only GPKG
+else:
+    sa1 = gpd.read_file("data/local/SA1_2021_AUST_GDA2020.zip")
+    sa1 = sa1[sa1["STE_NAME21"] == "Victoria"].to_crs("EPSG:7855")
 
 # Point-in-polygon: which POA contains the geocoded site?
 site_point = gpd.GeoDataFrame(
