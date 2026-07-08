@@ -2,11 +2,11 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Multi-Site Feasibility Tool
-status: planning
-last_updated: "2026-07-07T12:07:08.955Z"
-last_activity: 2026-07-07
+status: roadmap_created
+last_updated: "2026-07-08T11:00:00.000Z"
+last_activity: 2026-07-08
 progress:
-  total_phases: 0
+  total_phases: 6
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -18,20 +18,20 @@ progress:
 **Project:** JSMC — Johnston St Medical Clinic Feasibility Study
 **Roadmap:** [ROADMAP.md](./ROADMAP.md)
 **Milestones:** [MILESTONES.md](./MILESTONES.md)
-**Updated:** 2026-07-06
+**Updated:** 2026-07-08
 
 ## Current Status
 
-**Milestone v1.0 ARCHIVED** — PR [#1](https://github.com/jatwell93/medical-clinic/pull/1) merged, tagged v1.0.
+**Milestone v2.0 — Multi-Site Feasibility Tool** — roadmap created, ready for phase execution.
 
-All 5 phases complete. All 12 plans executed. All 32 requirements satisfied. 36/36 validator checks pass.
+6 phases defined (Phases 6–11), 35 requirements mapped across 6 phases. Phase numbering continues from v1.0 (which ended at Phase 5).
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-07-06)
+See: .planning/PROJECT.md (updated 2026-07-07)
 
-**Core value:** Answer, with defensible data and transparent assumptions, whether the clinic can be profitable on its own at this site — not as a script-driving vehicle for the pharmacy.
-**Current focus:** Planning next milestone (run `/gsd-new-milestone`)
+**Core value:** Answer, with defensible data and transparent assumptions, whether a clinic can be profitable on its own at a user-specified site — for any Victorian address the user enters.
+**Current focus:** v2.0 Multi-Site Feasibility Tool — Phase 6 (Site Config Restructure) is the next phase to execute.
 
 ## Milestone Archive
 
@@ -41,14 +41,13 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 
 ## Next Actions
 
-1. v1.0 milestone archived and tagged. REQUIREMENTS.md deleted (fresh for next milestone).
-2. Run `/gsd-new-milestone` to start the next cycle (questioning → research → requirements → roadmap).
-3. Candidate v2 items: Monte Carlo confidence intervals (V2-01), drive-time isochrones (V2-02), SA1/mesh-block apportionment (V2-03), interactive dashboard.
-4. Deferred to Colab runtime: PNG/PDF generation, assumptions register population, end-to-end Restart & Run All, HTML visual fidelity.
+1. Execute Phase 6 (Site Config Restructure) — run `/gsd-execute-phase` to start planning
+2. Phase 6 delivers the `#@param` site-input form, EPSG:7899 adoption, peer validation, and geocode quality checks
+3. Critical path: Phase 6 → 7 → 8 → 10 → 11 (Phase 9 parallelisable with Phase 8)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 6 (Site Config Restructure) — not started
 Plan: —
-Status: Defining requirements
-Last activity: 2026-07-07 — Milestone v2.0 started
+Status: Roadmap created, ready for phase execution
+Last activity: 2026-07-08 — v2.0 roadmap created (6 phases, 35 requirements mapped)

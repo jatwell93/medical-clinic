@@ -102,15 +102,59 @@ Explicitly excluded from v2.0. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| (populated by roadmapper) | | |
+| Requirement | Phase | Phase Name | Status |
+|-------------|-------|------------|--------|
+| SITE-01 | 6 | Site Config Restructure | Mapped |
+| SITE-02 | 6 | Site Config Restructure | Mapped |
+| SITE-03 | 6 | Site Config Restructure | Mapped |
+| SITE-04 | 6 | Site Config Restructure | Mapped |
+| SITE-05 | 6 | Site Config Restructure | Mapped |
+| SITE-06 | 6 | Site Config Restructure | Mapped |
+| SITE-07 | 6 | Site Config Restructure | Mapped |
+| GEO-01 | 7 | Geocode Parameterisation + POA/SA3 Derivation | Mapped |
+| GEO-02 | 7 | Geocode Parameterisation + POA/SA3 Derivation | Mapped |
+| GEO-03 | 7 | Geocode Parameterisation + POA/SA3 Derivation | Mapped |
+| GEO-04 | 7 | Geocode Parameterisation + POA/SA3 Derivation | Mapped |
+| GEO-05 | 6 | Site Config Restructure | Mapped |
+| GEO-06 | 7 | Geocode Parameterisation + POA/SA3 Derivation | Mapped |
+| GEO-07 | 7 | Geocode Parameterisation + POA/SA3 Derivation | Mapped |
+| DATA-01 | 8 | ABS + MBS Parameterisation | Mapped |
+| DATA-02 | 8 | ABS + MBS Parameterisation | Mapped |
+| DATA-03 | 8 | ABS + MBS Parameterisation | Mapped |
+| DATA-04 | 8 | ABS + MBS Parameterisation | Mapped |
+| DATA-05 | 8 | ABS + MBS Parameterisation | Mapped |
+| DATA-06 | 8 | ABS + MBS Parameterisation | Mapped |
+| REPORT-01 | 9 | Pharmacy Synergy Removal + Report Parameterisation | Mapped |
+| REPORT-02 | 9 | Pharmacy Synergy Removal + Report Parameterisation | Mapped |
+| REPORT-03 | 9 | Pharmacy Synergy Removal + Report Parameterisation | Mapped |
+| REPORT-04 | 9 | Pharmacy Synergy Removal + Report Parameterisation | Mapped |
+| REPORT-05 | 9 | Pharmacy Synergy Removal + Report Parameterisation | Mapped |
+| REPORT-06 | 9 | Pharmacy Synergy Removal + Report Parameterisation | Mapped |
+| QUAL-01 | 10 | Validator Update + Generator Hardening | Mapped |
+| QUAL-02 | 10 | Validator Update + Generator Hardening | Mapped |
+| QUAL-03 | 10 | Validator Update + Generator Hardening | Mapped |
+| QUAL-04 | 10 | Validator Update + Generator Hardening | Mapped |
+| REPRO-01 | 11 | v1.0 Reproduction Verification | Mapped |
+| REPRO-02 | 11 | v1.0 Reproduction Verification | Mapped |
+| REPRO-03 | 11 | v1.0 Reproduction Verification | Mapped |
+| REPRO-04 | 11 | v1.0 Reproduction Verification | Mapped |
+| REPRO-05 | 11 | v1.0 Reproduction Verification | Mapped |
 
 **Coverage:**
-- v2.0 requirements: 29 total
-- Mapped to phases: 0 (pending roadmap creation)
-- Unmapped: 29 ⚠️ (will be resolved by roadmapper)
+- v2.0 requirements: 35 total
+- Mapped to phases: 35 (100%)
+- Unmapped: 0 ✅
+
+**Phase Summary:**
+- Phase 6 (Site Config Restructure): 8 requirements — SITE-01..07, GEO-05
+- Phase 7 (Geocode Parameterisation + POA/SA3 Derivation): 6 requirements — GEO-01..04, GEO-06..07
+- Phase 8 (ABS + MBS Parameterisation): 6 requirements — DATA-01..06
+- Phase 9 (Pharmacy Synergy Removal + Report Parameterisation): 6 requirements — REPORT-01..06
+- Phase 10 (Validator Update + Generator Hardening): 4 requirements — QUAL-01..04
+- Phase 11 (v1.0 Reproduction Verification): 5 requirements — REPRO-01..05
+
+**Key Decision — GEO-02 (SA1 vs SA3 Shapefile):** Use the existing SA1 shapefile (already on hand, ~100 MB, carries `SA3_CODE21`/`SA3_NAME21` attributes — verified live). A single point-in-polygon on SA1s yields both SA1 and SA3 codes with no new download, and enables geometry reuse between §1.3 (derivation) and §2 (catchment apportionment). The dedicated SA3 shapefile alternative (~5 MB download) was rejected.
 
 ---
 *Requirements defined: 2026-07-08*
-*Last updated: 2026-07-08 after v2.0 milestone requirements definition*
+*Last updated: 2026-07-08 — roadmap created, 35/35 requirements mapped to Phases 6–11*
