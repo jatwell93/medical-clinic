@@ -67,7 +67,7 @@ API responses — makes ABS re-runs free) but **not** `data/local/` (gitignored
 
 The notebook includes a dedicated **§0.4 "Upload Local Data Files"** cell
 (Colab only — it's a no-op on Windows). After the §0.2 cell clones the repo,
-run the §0.4 cell to open a file picker and select the four files below. Then
+run the §0.4 cell to open a file picker and select the five files below. Then
 do **Runtime → Restart & Run All**.
 
 > The §0.4 cell moves uploaded files into `/content/medical-clinic/data/local/`
@@ -86,13 +86,14 @@ do **Runtime → Restart & Run All**.
 | 2 | `SA1_2021_VIC_GDA2020.gpkg` | Recommended (degraded fallback) | ~36 MB | Pre-filtered from same ABS page — "Statistical Area Level 1" (see below) | Falls back to POA-level apportionment (coarser) |
 | 3 | `medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26.xlsx` | Recommended (state fallback exists) | ~5 MB | [health.gov.au](https://www.health.gov.au/resources/publications/medicare-quarterly-statistics-statistical-area-sa3-summary-march-quarter-2025-26) — published 25 May 2026 | Falls back to VIC state average (less local) |
 | 4 | `aihw-phc-19-csv_file_2425_VIC_SA3.csv` | Recommended (national fallback exists) | ~14 MB | Pre-filtered from [AIHW](https://www.aihw.gov.au/reports/primary-health-care/medicare-subsidised-gp-allied-health-specialist) — click "Data" tab, download `aihw-phc-019-csv-file-2324-2425.zip`, extract + filter (see below) | Falls back to national average age-band rates |
+| 5 | `2021Census_G01_VIC_SA1.csv` | Recommended (deferred if missing) | ~5 MB | Pre-filtered from [ABS Census DataPacks](https://www.abs.gov.au/statistics/data-cubes/2021-census-data-packs) — GCP, SA1 level, VIC (see below) | v2 catchment population totals + v1-vs-v2 comparison deferred (the v1-flaw fix stays incomplete) |
 
-> **Total upload: ~70 MB** (down from ~265 MB with the full national files —
-> 74% reduction). The VIC-only GeoPackages and trimmed CSV are pre-filtered
+> **Total upload: ~75 MB** (down from ~265 MB with the full national files —
+> 72% reduction). The VIC-only GeoPackages and trimmed CSVs are pre-filtered
 > versions of the ABS/AIHW national files. See "How to create VIC-only files"
 > below.
 
-> **Check your `data/local/` folder before uploading.** You need all four
+> **Check your `data/local/` folder before uploading.** You need all five
 > files for best results. Common issues:
 > - **File 2 (SA1):** Make sure you have `SA1_2021_VIC_GDA2020.gpkg` (the
 >   VIC-only GeoPackage), not `SA3_2021_AUST.xlsx` (a reference table — wrong file).
@@ -103,10 +104,16 @@ do **Runtime → Restart & Run All**.
 > - **File 4 (AIHW):** The download is a **zip** containing CSV files (not
 >   xlsx). Extract `aihw-phc-19-csv_file_2425.csv` from the zip, then filter
 >   to VIC SA3 rows (see below).
+> - **File 5 (SA1 G01):** The ABS Census DataPack download is a **zip**
+>   containing CSVs for every geography level (SA1, SA2, POA, etc.) and every
+>   GCP table (G01, G02, ...). You only need the **G01 SA1** CSV for VIC —
+>   extract `2021Census_G01_VIC_SA1.csv` from the zip (see below). The full
+>   national `2021Census_G01_AUST_SA1.csv` (~100 MB) also works as a fallback
+>   but is 20× larger.
 
 ### How to create VIC-only files (one-time, ~2 minutes)
 
-The VIC-only GeoPackages and trimmed CSV are created from the full national
+The VIC-only GeoPackages and trimmed CSVs are created from the full national
 files with a few lines of Python. Run this locally once, then upload the
 smaller files to Colab:
 
@@ -119,6 +126,16 @@ python -c "import geopandas as gpd; gpd.read_file('data/local/SA1_2021_AUST_GDA2
 
 # 3. AIHW — VIC SA3 rows only (109 MB CSV → 14 MB CSV)
 python -c "import pandas as pd; df=pd.read_csv('data/local/aihw-phc-19-csv_file_2425.csv',low_memory=False,on_bad_lines='skip'); df[(df.GeographicUnit=='SA3')&(df.StateTerritory=='Vic')].to_csv('data/local/aihw-phc-19-csv_file_2425_VIC_SA3.csv',index=False)"
+
+# 4. SA1 G01 — extract the VIC SA1 G01 CSV from the Census DataPack zip
+#    The VIC DataPack zip already contains only VIC rows, so no filtering needed —
+#    just extract the one CSV:
+unzip -j "data/local/2021_GCP_all_for_VIC_short-header.zip" \
+  "2021 Census GCP All Geographies for VIC/SA1/VIC/2021Census_G01_VIC_SA1.csv" \
+  -d data/local/
+#    (If you downloaded the national AUST DataPack instead, the file is
+#     2021Census_G01_AUST_SA1.csv — upload it directly; the notebook falls
+#     back to it if the VIC file is absent.)
 ```
 
 ### Download links (direct)
@@ -134,6 +151,11 @@ python -c "import pandas as pd; df=pd.read_csv('data/local/aihw-phc-19-csv_file_
   - **Extract the zip** to get `aihw-phc-19-csv_file_2425.csv` (the 2024-25 data file, ~109 MB)
   - **Filter to VIC SA3 rows** → `aihw-phc-19-csv_file_2425_VIC_SA3.csv` (~14 MB) — see above
   - The zip also contains `aihw-phc-19-csv_file_2324.csv` (2023-24) and a metadata xlsx — you only need the 2425 CSV
+- **SA1 G01 total persons (Census DataPack):** <https://www.abs.gov.au/statistics/data-cubes/2021-census-data-packs>
+  - Download the **GCP (General Community Profile) DataPack** for **Victoria** (short-header) — `2021_GCP_all_for_VIC_short-header.zip` (~150 MB)
+  - **Extract just the SA1 G01 CSV** from the zip → `2021Census_G01_VIC_SA1.csv` (~5 MB) — see above
+  - Alternatively, download the national AUST DataPack and use `2021Census_G01_AUST_SA1.csv` (~100 MB) directly as a fallback
+  - The DataPack zip contains CSVs for every geography (SA1/SA2/POA/LGA/...) and every GCP table (G01/G02/...) — you only need the **G01 SA1** file
 
 ---
 
@@ -203,6 +225,15 @@ AIHW zip, extract `aihw-phc-19-csv_file_2425.csv`, filter to VIC SA3 rows
 (see "How to create VIC-only files" in Step 3), and upload the trimmed
 `aihw-phc-19-csv_file_2425_VIC_SA3.csv` for SA3-level rates.
 
+### "⚠ SA1 pop unavailable — v2 totals + v1 comparison deferred"
+→ You didn't upload `2021Census_G01_VIC_SA1.csv` (file 5). The notebook
+has the SA1 *boundaries* (file 2) but not the SA1 *populations*, so it
+can't compute the v2 apportioned catchment population totals — the
+headline v1-flaw fix stays incomplete. Download the ABS Census DataPack
+(GCP, SA1 level) from the link in Step 3, extract the VIC SA1 G01 CSV,
+and upload it. The national `2021Census_G01_AUST_SA1.csv` also works as
+a fallback (the notebook tries the VIC file first, then AUST).
+
 ### ABS API calls fail (network/timeout)
 → The notebook caches ABS responses in `data/cache/` (committed to git).
 If the repo clone succeeds, ABS calls should hit cache. If you see
@@ -224,6 +255,7 @@ monthly reset or enable billing on your Google Cloud project.
 - [ ] Upload `SA1_2021_VIC_GDA2020.gpkg` (~36 MB — recommended, not the SA3 xlsx reference table)
 - [ ] Upload MBS SA3 xlsx (~5 MB — recommended, must be the SA3 Summary, not the state-level file)
 - [ ] Upload `aihw-phc-19-csv_file_2425_VIC_SA3.csv` (~14 MB — recommended, VIC SA3 rows only)
+- [ ] Upload `2021Census_G01_VIC_SA1.csv` (~5 MB — recommended, SA1 G01 total persons for the v1-flaw fix)
 - [ ] **Runtime → Restart and Run All**
 - [ ] Verify `VERDICT: GO` appears at the end
 - [ ] Download PDF from `outputs/`
