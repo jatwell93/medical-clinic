@@ -1,0 +1,1844 @@
+{
+  "created_at": "2026-07-09T03:11:50.028507+00:00",
+  "elapsed": 0.113962,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:11:50 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=101",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzk2Mzk2Nzg3NzY3MTcsICJsb25naXR1ZGUiOiAxNDQuOTg1MzkwNDcwNzQ4fSwgInJhZGl1cyI6IDc1MC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "205",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJn2T8PiBD1moRMIeuLqMIOFw",
+        "types": [
+          "pharmacy",
+          "veterinary_care",
+          "dentist",
+          "doctor",
+          "pet_care",
+          "store",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "206 Johnston St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "206",
+            "shortText": "206",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Johnston Street",
+            "shortText": "Johnston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798866,
+          "longitude": 144.98204099999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Johnston Street Veterinary Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Veterinary Care",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "veterinary_care",
+        "shortFormattedAddress": "206 Johnston St, Fitzroy"
+      },
+      {
+        "id": "ChIJJ-iP_9VD1moRO7TJji0HHqI",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "35 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "35",
+            "shortText": "35",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7907948,
+          "longitude": 144.9867794
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Crane General Practice",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "35 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJtdp4gx5D1moRlne1lhahX_Y",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "60 Stanley St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "60",
+            "shortText": "60",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Stanley Street",
+            "shortText": "Stanley St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8020655,
+          "longitude": 144.98577699999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Dental Studio - Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "60 Stanley St, Collingwood"
+      },
+      {
+        "id": "ChIJaQREW55D1moRs9A3e9RCiHE",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 2/255 Wellington St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 2",
+            "shortText": "Suite 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "255",
+            "shortText": "255",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Street",
+            "shortText": "Wellington St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798744899999996,
+          "longitude": 144.98721300000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "MINT Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "Suite 2/255 Wellington St, Collingwood"
+      },
+      {
+        "id": "ChIJ9TfEZxtD1moRzV4wEs8rNJY",
+        "types": [
+          "pharmacy",
+          "physiotherapist",
+          "doctor",
+          "consultant",
+          "store",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "365 Hoddle St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "365",
+            "shortText": "365",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Hoddle Street",
+            "shortText": "Hoddle St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798981999999995,
+          "longitude": 144.9927476
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "cohealth Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "365 Hoddle St, Collingwood"
+      },
+      {
+        "id": "ChIJ4ezvdB9D1moR4INT9-py1vk",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "4-6 Johnston St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "4-6",
+            "shortText": "4-6",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Johnston Street",
+            "shortText": "Johnston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7988674,
+          "longitude": 144.9849518
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "cohealth Innerspace",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "4-6 Johnston St, Collingwood"
+      },
+      {
+        "id": "ChIJXW9ZPFhD1moRwj4igvpsssQ",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "35 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "35",
+            "shortText": "35",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7907455,
+          "longitude": 144.9867457
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "4Cyte Pathology Clifton Hill",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "35 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJA3joEOBC1moRSSlpEpHMoSk",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "244 Smith St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "244",
+            "shortText": "244",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8017463,
+          "longitude": 144.9842529
+        },
+        "businessStatus": "CLOSED_TEMPORARILY",
+        "displayName": {
+          "text": "My Doctor Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "244 Smith St, Collingwood"
+      },
+      {
+        "id": "ChIJ8U_aqeND1moRawtUiU6nwOg",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 2&3/255 Wellington St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 2&3",
+            "shortText": "Ste 2&3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "255",
+            "shortText": "255",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Street",
+            "shortText": "Wellington St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798744899999996,
+          "longitude": 144.98721300000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "4Cyte Pathology Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Ste 2&3/255 Wellington St, Collingwood"
+      },
+      {
+        "id": "ChIJb8l5gd9D1moRqhzqhPNJpsE",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929623,
+          "longitude": 144.9795757
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Australian Clinical Labs Fitzroy North",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      },
+      {
+        "id": "ChIJ0f4pK7VD1moRRJNDn-Ti-Bw",
+        "types": [
+          "chiropractor",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 3/255 Wellington St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 3",
+            "shortText": "Ste 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "255",
+            "shortText": "255",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Street",
+            "shortText": "Wellington St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798778399999996,
+          "longitude": 144.9872767
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "MINT CLINIC - Dr Shamistra Barathan - Integrative General Practitioner",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Ste 3/255 Wellington St, Collingwood"
+      },
+      {
+        "id": "ChIJE_7DHeBC1moRYuyFc0UfVxs",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "272A Smith St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "272A",
+            "shortText": "272A",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8011318,
+          "longitude": 144.9841389
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chan S O",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "272A Smith St, Collingwood"
+      },
+      {
+        "id": "ChIJUdkga-dC1moROKzH-uPh0Xo",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "425 Smith St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "425",
+            "shortText": "425",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7956368,
+          "longitude": 144.9844614
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Central Anaesthetic Group",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "425 Smith St, Fitzroy"
+      },
+      {
+        "id": "ChIJW5nkpCND1moR6KJQFx8_XH4",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929623,
+          "longitude": 144.9795757
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "DR KATHERINE LYPOURLIS",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      },
+      {
+        "id": "ChIJNXWIUCBD1moRRiMm9mdMc_Q",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "316 Napier St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "316",
+            "shortText": "316",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Napier Street",
+            "shortText": "Napier St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7981757,
+          "longitude": 144.9809703
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Adrienne Odell",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "316 Napier St, Fitzroy"
+      },
+      {
+        "id": "ChIJE_7DHeBC1moRuBzHBfjBZvc",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "272A Smith St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "272A",
+            "shortText": "272A",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8011318,
+          "longitude": 144.9841389
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "DR Oliver YM Wu",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "272A Smith St, Collingwood"
+      },
+      {
+        "id": "ChIJE4GNFTtD1moRy0jfzlvayFc",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929629,
+          "longitude": 144.9796035
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Sophie Mancey-Jones",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      },
+      {
+        "id": "ChIJsYJasAlD1moRnjFb604YueY",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929623,
+          "longitude": 144.9795757
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Deepak Sidhu",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      },
+      {
+        "id": "ChIJ2bgCpSND1moRC9zwHwr1uFM",
+        "types": [
+          "skin_care_clinic",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929629,
+          "longitude": 144.9796035
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Cheng-Jie Gu",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      },
+      {
+        "id": "ChIJ81FRqVJD1moRuRFMM0QoULE",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929755,
+          "longitude": 144.9795772
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Jenny Conway",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      }
+    ]
+  }
+}

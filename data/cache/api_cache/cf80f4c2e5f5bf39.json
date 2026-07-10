@@ -1,0 +1,1824 @@
+{
+  "created_at": "2026-07-09T03:14:14.648161+00:00",
+  "elapsed": 0.140581,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:14:14 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=125",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuODA2ODE2NDUzNDczMTQsICJsb25naXR1ZGUiOiAxNDUuMDI4OTA4MzM3MzM5fSwgInJhZGl1cyI6IDI1MC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "205",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJnSRf0cdD1moR28K2Mw5LPSk",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "163 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "163",
+            "shortText": "163",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806719,
+          "longitude": 145.03067
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kew Junction Medical Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "163 High St, Kew"
+      },
+      {
+        "id": "ChIJUeU_DMhD1moRhTElc-nvqCc",
+        "types": [
+          "skin_care_clinic",
+          "beauty_salon",
+          "medical_clinic",
+          "hair_care",
+          "manufacturer",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "level 2 suite 206/1 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "level 2 suite 206",
+            "shortText": "level 2 suite 206",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807088,
+          "longitude": 145.028305
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Victorian Dermal Group",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Skin Care Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "skin_care_clinic",
+        "shortFormattedAddress": "level 2 suite 206/1 Princess St, Kew"
+      },
+      {
+        "id": "ChIJG_WtQMZD1moRTbQeDhEYmfM",
+        "types": [
+          "massage_spa",
+          "skin_care_clinic",
+          "beauty_salon",
+          "spa",
+          "medical_clinic",
+          "hair_care",
+          "doctor",
+          "massage",
+          "local_government_office",
+          "government_office",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "181 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "181",
+            "shortText": "181",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806507800000006,
+          "longitude": 145.0311477
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Instant Laser Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Spa",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "spa",
+        "shortFormattedAddress": "181 High St, Kew"
+      },
+      {
+        "id": "ChIJiys0JcZD1moRG-ofF5hGFwI",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8069474,
+          "longitude": 145.03073999999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Ear and Hearing Australia - Kew",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "2 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJIYT6MMZD1moRi5wuPYK7-rw",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "163 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "163",
+            "shortText": "163",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806577399999995,
+          "longitude": 145.0305196
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology Kew",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "163 High St, Kew"
+      },
+      {
+        "id": "ChIJwzrKicRD1moRyCEMMEkk0ng",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "505/1 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "505",
+            "shortText": "505",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8070847,
+          "longitude": 145.0283155
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kew Rheumatology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "505/1 Princess St, Kew"
+      },
+      {
+        "id": "ChIJIW4xL8ZD1moR7QitCV0HC90",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1 Fenton Way, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Fenton Way",
+            "shortText": "Fenton Way",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807147,
+          "longitude": 145.0306968
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kew Podiatry",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "1 Fenton Way, Kew"
+      },
+      {
+        "id": "ChIJiys0JcZD1moRa8PDJAhFUZo",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807102199999996,
+          "longitude": 145.0307656
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Hearing Aid Australia",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Shop",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "store",
+        "shortFormattedAddress": "2 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJJ4YCtLVD1moRxwzIUoMMz04",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "403/1 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "403",
+            "shortText": "403",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8070793,
+          "longitude": 145.0283869
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Simon Gillian",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "403/1 Princess St, Kew"
+      },
+      {
+        "id": "ChIJiys0JcZD1moR4hNDTmyu-oI",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8069522,
+          "longitude": 145.0308026
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Hami Resalat Audiologist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "2 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJF_RFZ5ND1moRZSe4i5baYQE",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807027999999995,
+          "longitude": 145.030793
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mark Truong",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "2 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJiys0JcZD1moRu1lSgbFe8yU",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8070313,
+          "longitude": 145.0308377
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Moh Dadafarin, Audiologist - Hearing Test - Hearing Aids",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Shop",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "store",
+        "shortFormattedAddress": "2 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJt3tNCshD1moRz8dHBFaN_fo",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "15 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "15",
+            "shortText": "15",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806855899999995,
+          "longitude": 145.028539
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Anand Ramakrishnan",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "15 Princess St, Kew"
+      },
+      {
+        "id": "ChIJUeU_DMhD1moRr6wDPpaxXIg",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 204,Princess Tower, 1 Princess Street, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 204,Princess Tower, 1 Princess Street",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807082,
+          "longitude": 145.0283115
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Anthony Yapanis",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Suite 204,Princess Tower, 1 Princess Street, Kew"
+      },
+      {
+        "id": "ChIJbduXajZD1moRMdRhsoCTBVY",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807027999999995,
+          "longitude": 145.030793
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Wai Yin Pong",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "2 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJ1VlqPshD1moRMavCNYrDNLA",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "89 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "89",
+            "shortText": "89",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807811,
+          "longitude": 145.0280477
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dupuche RH",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "89 High St, Kew"
+      },
+      {
+        "id": "ChIJ36txPchD1moRpzeyUtss3x0",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "89 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "89",
+            "shortText": "89",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807825199999996,
+          "longitude": 145.0281199
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Eastern Neuropsychology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "89 High St, Kew"
+      },
+      {
+        "id": "ChIJVbUodchD1moRUxPwanVK4wk",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "15 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "15",
+            "shortText": "15",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806848699999996,
+          "longitude": 145.0285931
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Niche Plastic Surgery",
+          "languageCode": "en"
+        },
+        "shortFormattedAddress": "15 Princess St, Kew"
+      },
+      {
+        "id": "ChIJcWgcny1d1moRN1DcvEM6q64",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "15 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "15",
+            "shortText": "15",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806866899999996,
+          "longitude": 145.02845209999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Jonathan Burge",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "15 Princess St, Kew"
+      },
+      {
+        "id": "ChIJUeU_DMhD1moRm1ifGJyrlOI",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807069,
+          "longitude": 145.028407
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Porpavai Kasiannan",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "1 Princess St, Kew"
+      }
+    ]
+  }
+}

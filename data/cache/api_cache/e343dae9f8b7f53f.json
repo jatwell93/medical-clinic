@@ -1,0 +1,1889 @@
+{
+  "created_at": "2026-07-09T03:11:53.727383+00:00",
+  "elapsed": 0.134905,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:11:53 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=122",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzY5NDQ3NDUyNTE3NDQsICJsb25naXR1ZGUiOiAxNDQuOTgyNTQ3MzMxMDg4M30sICJyYWRpdXMiOiAxMjUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "207",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJW8GmWWlD1moRQx5mf4n9rlk",
+        "types": [
+          "medical_clinic",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7787389,
+          "longitude": 144.9879772
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJoWFrWoFD1moRi_ulbr8Btuo",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7786359,
+          "longitude": 144.9876018
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Dermatology Skin Clinic Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ7xTbXixD1moR2KhQPFc1G_g",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "55 Albion St, Brunswick VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "55",
+            "shortText": "55",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albion Street",
+            "shortText": "Albion St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick",
+            "shortText": "Brunswick",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7618824,
+          "longitude": 144.97300260000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Brunswick Doctors",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "55 Albion St, Brunswick"
+      },
+      {
+        "id": "ChIJ3XybO1xD1moR6YUxfS-Wfvc",
+        "types": [
+          "medical_clinic",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "212-214 Blyth St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "212-214",
+            "shortText": "212-214",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Blyth Street",
+            "shortText": "Blyth St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.767468699999995,
+          "longitude": 144.979557
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "East Brunswick Medical Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "212-214 Blyth St, Brunswick East"
+      },
+      {
+        "id": "ChIJSbeSsWtD1moRfV-sT8cU17c",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "consultant",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "329 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "329",
+            "shortText": "329",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7800605,
+          "longitude": 144.9863557
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Neighbourhood Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "329 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJrc-jfABD1moRAiBTanPQASc",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 275/277 Lygon St, Brunswick East VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 275",
+            "shortText": "Unit 275",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "277",
+            "shortText": "277",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.770032799999996,
+          "longitude": 144.97175909999999
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "4Cyte Pathology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 275/277 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJtxE9K0FD1moRsO7BqYKtqRw",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1/175 Holden St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "175",
+            "shortText": "175",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Holden Street",
+            "shortText": "Holden St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7798333,
+          "longitude": 144.986527
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fitzroy North Doctors",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "Level 1/175 Holden St, Fitzroy North"
+      },
+      {
+        "id": "ChIJWXJmuEBD1moRYvQe5amKuKk",
+        "types": [
+          "sports_complex",
+          "physiotherapist",
+          "gym",
+          "massage",
+          "doctor",
+          "sports_school",
+          "sports_activity_location",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "373-375 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "373-375",
+            "shortText": "373-375",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7788022,
+          "longitude": 144.9874063
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Premier Sports & Spinal Medicine Fitzroy North",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Health",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "health",
+        "shortFormattedAddress": "373-375 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ8xClUGlD1moR0vWS-9cHu3c",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St George's Road, 370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370 St George's Road",
+            "shortText": "370 St George's Road",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7785345,
+          "longitude": 144.9881962
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology North Fitzroy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St George's Road, 370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJRwvkqCND1moR-pBZlXbvPl8",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "330 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "330",
+            "shortText": "330",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7801656,
+          "longitude": 144.9868067
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fitzroy Foot and Ankle Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "330 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJWSenStFD1moRtghPqk0dqk0",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "271 Lygon St, Brunswick VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "271",
+            "shortText": "271",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick",
+            "shortText": "Brunswick",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7702714,
+          "longitude": 144.9717983
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "IN Radiology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "271 Lygon St, Brunswick"
+      },
+      {
+        "id": "ChIJV9gcTsxD1moRBO1vcZBR4z4",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Inner North Medical Clinic, 260-274 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "Inner North Medical Clinic",
+            "shortText": "Inner North Medical Clinic",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "260-274",
+            "shortText": "260-274",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.770109999999995,
+          "longitude": 144.97234
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dorevitch Pathology Brunswick East",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Inner North Medical Clinic, 260-274 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJMYwhKj9D1moRPLo2KHVNDLg",
+        "types": [
+          "sauna",
+          "public_bath",
+          "spa",
+          "massage",
+          "doctor",
+          "store",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "21/31 St Phillip St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "21",
+            "shortText": "21",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "31",
+            "shortText": "31",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Phillip Street",
+            "shortText": "St Phillip St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.776562999999996,
+          "longitude": 144.97247299999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Brunswick East Wellness & Detoxification Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Health",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "health",
+        "shortFormattedAddress": "21/31 St Phillip St, Brunswick East"
+      },
+      {
+        "id": "ChIJzQSnHLlD1moRZzgd0dIPKAk",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778639,
+          "longitude": 144.98758139999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Acne Rosacea Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJJw4jorJD1moRsdvCRrqbIV0",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 1/160 Edward St, Brunswick VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 1",
+            "shortText": "Unit 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "160",
+            "shortText": "160",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Edward Street",
+            "shortText": "Edward St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick",
+            "shortText": "Brunswick",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7750203,
+          "longitude": 144.9705875
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Podiatrist Julia Coombes",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 1/160 Edward St, Brunswick"
+      },
+      {
+        "id": "ChIJQ-52lAdD1moREAwHEge-tqE",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1, Suite 3/6 Bluestone Wy, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1, Suite 3",
+            "shortText": "Level 1, Suite 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "6",
+            "shortText": "6",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bluestone Way",
+            "shortText": "Bluestone Wy",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7717258,
+          "longitude": 144.9789375
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "4Cyte Pathology Brunswick East (Chisholm)",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Level 1, Suite 3/6 Bluestone Wy, Brunswick East"
+      },
+      {
+        "id": "ChIJlapuYkhD1moR3KTq1EYwxFw",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "155 Weston St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "155",
+            "shortText": "155",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Weston Street",
+            "shortText": "Weston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.775698,
+          "longitude": 144.97127300000002
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Massarany T P",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "155 Weston St, Brunswick East"
+      },
+      {
+        "id": "ChIJPbZtjsRD1moRvycKs1iQ_9o",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "The Neighbourhood Clinic, 329 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "The Neighbourhood Clinic",
+            "shortText": "The Neighbourhood Clinic",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "329",
+            "shortText": "329",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.780103,
+          "longitude": 144.986359
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Australian Clinical Labs Fitzroy North",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "The Neighbourhood Clinic, 329 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJGQq7k0ND1moRKlBgUcJdFVg",
+        "types": [
+          "association_or_organization",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "89 Nicholson St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "89",
+            "shortText": "89",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Nicholson Street",
+            "shortText": "Nicholson St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.774459,
+          "longitude": 144.97877979999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Australian Podiatry Association",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Association / Organization",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "association_or_organization",
+        "shortFormattedAddress": "89 Nicholson St, Brunswick East"
+      },
+      {
+        "id": "ChIJ32WdPEhD1moR5PnEhQSi47A",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "19 Bird Ave, Northcote VIC 3070, Australia",
+        "addressComponents": [
+          {
+            "longText": "19",
+            "shortText": "19",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bird Avenue",
+            "shortText": "Bird Ave",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Northcote",
+            "shortText": "Northcote",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3070",
+            "shortText": "3070",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.761994,
+          "longitude": 144.9905509
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Your Health Revolution",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Services",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "service",
+        "shortFormattedAddress": "19 Bird Ave, Northcote"
+      }
+    ]
+  }
+}

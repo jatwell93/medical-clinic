@@ -1,0 +1,1929 @@
+{
+  "created_at": "2026-07-09T03:09:40.905959+00:00",
+  "elapsed": 0.190857,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:09:40 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=138",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuODA5OTg5MjAwNzE4NjUsICJsb25naXR1ZGUiOiAxNDQuOTkxMDk4Njk2ODc2NzV9LCAicmFkaXVzIjogNzUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "207",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJiWsooe5C1moR4M2movLhAdw",
+        "types": [
+          "research_institute",
+          "skin_care_clinic",
+          "pharmacy",
+          "hair_salon",
+          "beauty_salon",
+          "medical_clinic",
+          "hair_care",
+          "doctor",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Wellington Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Parade",
+            "shortText": "Wellington Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.816659099999995,
+          "longitude": 144.9898687
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Sinclair Dermatology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "2 Wellington Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJudleQOhC1moRTD1G7Gg5jsg",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "St Vincent's Private Consulting Suites, level 1/141 Grey St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "St Vincent's Private Consulting Suites",
+            "languageCode": "en"
+          },
+          {
+            "longText": "level 1",
+            "shortText": "level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "141",
+            "shortText": "141",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grey Street",
+            "shortText": "Grey St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8118972,
+          "longitude": 144.9847586
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "I-MED Radiology East Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "St Vincent's Private Consulting Suites, level 1/141 Grey St, East Melbourne"
+      },
+      {
+        "id": "ChIJLxMXKe1D1moR7qSEFbW5H9s",
+        "types": [
+          "medical_center",
+          "hospital",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 6/51 Langridge St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 6",
+            "shortText": "Level 6",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "51",
+            "shortText": "51",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Langridge Street",
+            "shortText": "Langridge St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8067534,
+          "longitude": 144.9862137
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Collingwood Medical",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "Level 6/51 Langridge St, Collingwood"
+      },
+      {
+        "id": "ChIJxdcSYPtC1moRRul4s6MAHwI",
+        "types": [
+          "medical_center",
+          "physiotherapist",
+          "skin_care_clinic",
+          "medical_clinic",
+          "hospital",
+          "consultant",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "25/313 Victoria St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "25",
+            "shortText": "25",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "313",
+            "shortText": "313",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.809711,
+          "longitude": 144.995514
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Yarra Medical The Hive Shopping Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "25/313 Victoria St, Abbotsford"
+      },
+      {
+        "id": "ChIJJ3eADehC1moRJ4EV78qrFoI",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "124 Grey St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "124",
+            "shortText": "124",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grey Street",
+            "shortText": "Grey St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.811400899999995,
+          "longitude": 144.9841382
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology East Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "124 Grey St, East Melbourne"
+      },
+      {
+        "id": "ChIJ3-hKzelC1moRIO_hSp1Wd7Y",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "166 Gipps St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "166",
+            "shortText": "166",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812644399999996,
+          "longitude": 144.98400039999999
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Carey Roy P L",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "166 Gipps St, East Melbourne"
+      },
+      {
+        "id": "ChIJtdp4gx5D1moR4lobn_gCdik",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "4/23 Gipps St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "4",
+            "shortText": "4",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "23",
+            "shortText": "23",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8046995,
+          "longitude": 144.98796690000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "ProSmiles Dentist Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "4/23 Gipps St, Collingwood"
+      },
+      {
+        "id": "ChIJZejlkGtD1moR3oUpwySO60M",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "51 Langridge St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "51",
+            "shortText": "51",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Langridge Street",
+            "shortText": "Langridge St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8067187,
+          "longitude": 144.9864054
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "51 Langridge St, Collingwood"
+      },
+      {
+        "id": "ChIJIdIYYpVD1moRWHkx8rtRrRc",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 5.3/124 Grey St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 5.3",
+            "shortText": "Ste 5.3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "124",
+            "shortText": "124",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grey Street",
+            "shortText": "Grey St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8113524,
+          "longitude": 144.98435379999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Melbourne Gut Clinic I Gastroenterologists Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Ste 5.3/124 Grey St, East Melbourne"
+      },
+      {
+        "id": "ChIJTxXtIz3hvkkRup82Xt20wSE",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 1/412 Victoria Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 1",
+            "shortText": "Unit 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "412",
+            "shortText": "412",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8096187,
+          "longitude": 144.9852726
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "East Melbourne Dermatology and Aesthetics Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 1/412 Victoria Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJe1hMgilD1moRK830Ek_yGPw",
+        "types": [
+          "medical_lab",
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Yarra Medical The Hive Shopping Centre, 25/313-321 Victoria St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "25",
+            "shortText": "25",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra Medical The Hive Shopping Centre",
+            "shortText": "Yarra Medical The Hive Shopping Centre",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "313-321",
+            "shortText": "313-321",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8093711,
+          "longitude": 144.99566059999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Australian Clinical Labs Abbotsford",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Yarra Medical The Hive Shopping Centre, 25/313-321 Victoria St, Abbotsford"
+      },
+      {
+        "id": "ChIJB60CUAhD1moRfXqCt3ApfU0",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Lower Ground, 124 Grey St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Lower Ground",
+            "shortText": "Lower Ground",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "124",
+            "shortText": "124",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grey Street",
+            "shortText": "Grey St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.811400899999995,
+          "longitude": 144.9841382
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Icon Cancer Centre Epworth Freemasons",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "Lower Ground, 124 Grey St, East Melbourne"
+      },
+      {
+        "id": "ChIJu5DaMuhC1moRC42cljB-ZuA",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 1.1/124 Grey St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 1.1",
+            "shortText": "Ste 1.1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "124",
+            "shortText": "124",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grey Street",
+            "shortText": "Grey St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8113524,
+          "longitude": 144.98435379999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Victorian Breast and Oncology Care",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Ste 1.1/124 Grey St, East Melbourne"
+      },
+      {
+        "id": "ChIJ__-PMuhC1moRSHP_yF9Pn2s",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 40 level 4/166 Gipps St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 40 level 4",
+            "shortText": "Ste 40 level 4",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "166",
+            "shortText": "166",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812545899999996,
+          "longitude": 144.983945
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "East Melbourne Gastroenterology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Ste 40 level 4/166 Gipps St, East Melbourne"
+      },
+      {
+        "id": "ChIJ2atzpN1D1moRk4QYadNLplA",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 3/132 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 3",
+            "shortText": "Shop 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "132",
+            "shortText": "132",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.810334499999996,
+          "longitude": 144.99591859999998
+        },
+        "businessStatus": "CLOSED_TEMPORARILY",
+        "displayName": {
+          "text": "St. Vincent's Pathology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Shop 3/132 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJAWiWLehC1moRKKJGTpvvFiw",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "188 Gipps St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "188",
+            "shortText": "188",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812497,
+          "longitude": 144.9835566
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mr Otis Wang",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "188 Gipps St, East Melbourne"
+      },
+      {
+        "id": "ChIJ3-hKzelC1moRpD-790qMU3o",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 10/166 Gipps St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 10",
+            "shortText": "Suite 10",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "166",
+            "shortText": "166",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812635799999995,
+          "longitude": 144.9838658
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr.Christopher Brown",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Suite 10/166 Gipps St, East Melbourne"
+      },
+      {
+        "id": "ChIJ3-hKzelC1moRV056RmK8cNg",
+        "types": [
+          "finance",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 56/166 Gipps St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 56",
+            "shortText": "Suite 56",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "166",
+            "shortText": "166",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812509,
+          "longitude": 144.983935
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Associated Anaesthetists Group",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Banking and Finance",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "finance",
+        "shortFormattedAddress": "Suite 56/166 Gipps St, East Melbourne"
+      },
+      {
+        "id": "ChIJOTGflulm1moRvmb8bDwwLAU",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "382 Victoria Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "382",
+            "shortText": "382",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.809537,
+          "longitude": 144.984434
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Winnett Specialist Group",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "382 Victoria Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJzZQCj6hD1moRR0bjI52iI1s",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "188 Gipps St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "188",
+            "shortText": "188",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Gipps Street",
+            "shortText": "Gipps St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812497,
+          "longitude": 144.9835566
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kemble Wang",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "188 Gipps St, East Melbourne"
+      }
+    ]
+  }
+}

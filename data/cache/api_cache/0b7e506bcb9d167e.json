@@ -1,0 +1,570 @@
+{
+  "created_at": "2026-07-09T03:14:28.659298+00:00",
+  "elapsed": 0.128048,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:14:28 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=115",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaGFybWFjeSJdLCAibGFuZ3VhZ2VDb2RlIjogImVuLUFVIiwgImxvY2F0aW9uUmVzdHJpY3Rpb24iOiB7ImNpcmNsZSI6IHsiY2VudGVyIjogeyJsYXRpdHVkZSI6IC0zNy44MDkwNjIyMzE0MTA2MiwgImxvbmdpdHVkZSI6IDE0NS4wMjYwNjcxMjkzNDA3fSwgInJhZGl1cyI6IDEyNTAuMH19LCAibWF4UmVzdWx0Q291bnQiOiAyMH0=",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "209",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ3SXF18dD1moRCeaVSZFccpc",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "121 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "121",
+            "shortText": "121",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8070959,
+          "longitude": 145.0294707
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Kew",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "121 High St, Kew"
+      },
+      {
+        "id": "ChIJbUgNMcZD1moRg3Xl1KW7WK4",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "157-161 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "157-161",
+            "shortText": "157-161",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.806714299999996,
+          "longitude": 145.0306426
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Star Pharmacy Kew",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "157-161 High St, Kew"
+      },
+      {
+        "id": "ChIJf694qphD1moRrGRnksZWjoU",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "120 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "120",
+            "shortText": "120",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.80787,
+          "longitude": 145.038342
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Edge Compounding Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "120 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJ6TjRKsVD1moRc0qHzNM_UOM",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "118 Cotham Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "118",
+            "shortText": "118",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cotham Road",
+            "shortText": "Cotham Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.80786,
+          "longitude": 145.038286
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Cotham Road Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "118 Cotham Rd, Kew"
+      },
+      {
+        "id": "ChIJEcDzybRD1moRIrJYYdB-2_k",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "52 Church St, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "52",
+            "shortText": "52",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Church Street",
+            "shortText": "Church St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8147492,
+          "longitude": 145.02169279999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Advantage Pharmacy Hawthorn",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "52 Church St, Hawthorn"
+      },
+      {
+        "id": "ChIJJxr0bBZD1moRD3t2uD1aw7w",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "678 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "678",
+            "shortText": "678",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8123293,
+          "longitude": 145.0140404
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Pep pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "678 Victoria St, Richmond"
+      }
+    ]
+  }
+}

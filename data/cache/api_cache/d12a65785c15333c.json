@@ -1,0 +1,1854 @@
+{
+  "created_at": "2026-07-09T03:13:29.848633+00:00",
+  "elapsed": 0.23897,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:13:29 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=111",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkZW50aXN0Il0sICJsYW5ndWFnZUNvZGUiOiAiZW4tQVUiLCAibG9jYXRpb25SZXN0cmljdGlvbiI6IHsiY2lyY2xlIjogeyJjZW50ZXIiOiB7ImxhdGl0dWRlIjogLTM3Ljc4MjY4MTkyNjkzMjQ4LCAibG9uZ2l0dWRlIjogMTQ1LjAyMjUwMzk5NTE5Nzd9LCAicmFkaXVzIjogNTAwMC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "208",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJYy0F9WlB1moRg--W3MgUc_0",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "35 Whitehorse Rd Deepdene, Balwyn VIC 3103, Australia",
+        "addressComponents": [
+          {
+            "longText": "35 Whitehorse Rd Deepdene",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn",
+            "shortText": "Balwyn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3103",
+            "shortText": "3103",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.81051370000001,
+          "longitude": 145.0639383
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dental Boutique",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "35 Whitehorse Rd Deepdene, Balwyn"
+      },
+      {
+        "id": "ChIJP-zs2ZtD1moRqerKv6IdY9w",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 2/620 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 2",
+            "shortText": "Level 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "620",
+            "shortText": "620",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8138559,
+          "longitude": 145.01178969999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dental One",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Level 2/620 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJn2T8PiBD1moRMIeuLqMIOFw",
+        "types": [
+          "pharmacy",
+          "veterinary_care",
+          "dentist",
+          "doctor",
+          "pet_care",
+          "store",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "206 Johnston St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "206",
+            "shortText": "206",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Johnston Street",
+            "shortText": "Johnston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798866,
+          "longitude": 144.98204099999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Johnston Street Veterinary Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Veterinary Care",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "veterinary_care",
+        "shortFormattedAddress": "206 Johnston St, Fitzroy"
+      },
+      {
+        "id": "ChIJiyepkvZE1moRp23y83p2vDM",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "18 Robbs Parade, Northcote VIC 3070, Australia",
+        "addressComponents": [
+          {
+            "longText": "18",
+            "shortText": "18",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Robbs Parade",
+            "shortText": "Robbs Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Northcote",
+            "shortText": "Northcote",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3070",
+            "shortText": "3070",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7685355,
+          "longitude": 144.9997237
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Modern Orthodontics",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "18 Robbs Parade, Northcote"
+      },
+      {
+        "id": "ChIJ2SK6rB5D1moRJsBDvsEf73A",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Tenancy 1/32-34 Burwood Rd, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "Tenancy 1",
+            "shortText": "Tenancy 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "32-34",
+            "shortText": "32-34",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Burwood Road",
+            "shortText": "Burwood Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.821117,
+          "longitude": 145.021052
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Value Dental Centres Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Tenancy 1/32-34 Burwood Rd, Hawthorn"
+      },
+      {
+        "id": "ChIJK8eqsllE1moRenR8J4NNK5g",
+        "types": [
+          "dentist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "300 Bell St, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "300",
+            "shortText": "300",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bell Street",
+            "shortText": "Bell St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7454805,
+          "longitude": 145.00761989999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Your Community Health (balit wurun - Preston/PANCH)",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "300 Bell St, Preston"
+      },
+      {
+        "id": "ChIJ8enWZspD1moR_riprBqiE8Q",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "276 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "276",
+            "shortText": "276",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8057575,
+          "longitude": 145.0341365
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Bupa Dental Kew",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "276 High St, Kew"
+      },
+      {
+        "id": "ChIJO6JGf4ZE1moRaNyzZWvL_QQ",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "633 High St, Thornbury VIC 3071, Australia",
+        "addressComponents": [
+          {
+            "longText": "633",
+            "shortText": "633",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Thornbury",
+            "shortText": "Thornbury",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3071",
+            "shortText": "3071",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.761705,
+          "longitude": 144.999806
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Northside Dentist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "633 High St, Thornbury"
+      },
+      {
+        "id": "ChIJM1oN3c1D1moRZtF3pctBfVo",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1/765 Glenferrie Rd, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "765",
+            "shortText": "765",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Glenferrie Road",
+            "shortText": "Glenferrie Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8175783,
+          "longitude": 145.03589359999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Glenferrie Dental Hawthorn - Dental Implants and All on 4 Cosmetic Dentist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "Level 1/765 Glenferrie Rd, Hawthorn"
+      },
+      {
+        "id": "ChIJ69L30UBD1moR32ESuNfTaAs",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "39 Nicholson St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "39",
+            "shortText": "39",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Nicholson Street",
+            "shortText": "Nicholson St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778487399999996,
+          "longitude": 144.9779872
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Adawn Dental Studio",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "39 Nicholson St, Brunswick East"
+      },
+      {
+        "id": "ChIJYZq5fQBd1moREb0QFiRzuz4",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Blue Wave dental, 291 Victoria St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "Blue Wave dental",
+            "shortText": "Blue Wave dental",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "291",
+            "shortText": "291",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.809749,
+          "longitude": 144.99431099999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Blue Wave Dental / Braces & Aligners / General Dentist Abbotsford / Emergency / English & Espa\u00f1ol",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Blue Wave dental, 291 Victoria St, Abbotsford"
+      },
+      {
+        "id": "ChIJtdp4gx5D1moRlne1lhahX_Y",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "60 Stanley St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "60",
+            "shortText": "60",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Stanley Street",
+            "shortText": "Stanley St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8020655,
+          "longitude": 144.98577699999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Dental Studio - Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "60 Stanley St, Collingwood"
+      },
+      {
+        "id": "ChIJwUeoZkxB1moRHoJ5hVdbGjU",
+        "types": [
+          "dentist",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "16 Doncaster Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "16",
+            "shortText": "16",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Doncaster Road",
+            "shortText": "Doncaster Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.793526899999996,
+          "longitude": 145.0648104
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Smile Council Orthodontics",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "16 Doncaster Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJNWW0KNNA1moRWw_E-1a37KI",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 6 level 1/74 Doncaster Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 6 level 1",
+            "shortText": "Ste 6 level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "74",
+            "shortText": "74",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Doncaster Road",
+            "shortText": "Doncaster Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7931764,
+          "longitude": 145.0718643
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Myofunctional Centre North Balwyn",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Ste 6 level 1/74 Doncaster Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJdX2qQ_hE1moRMMzYPvJ7y7A",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "326 High St, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "326",
+            "shortText": "326",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.740987,
+          "longitude": 145.003692
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Preston Smiles",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "326 High St, Preston"
+      },
+      {
+        "id": "ChIJmbG0phBD1moRoRHtXDUuiHY",
+        "types": [
+          "skin_care_clinic",
+          "spa",
+          "dentist",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "260 Burwood Rd, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "260",
+            "shortText": "260",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Burwood Road",
+            "shortText": "Burwood Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8224151,
+          "longitude": 145.0323788
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "LYLA Clinic - Dermatology | Cosmetic | Dental",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Skin Care Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "skin_care_clinic",
+        "shortFormattedAddress": "260 Burwood Rd, Hawthorn"
+      },
+      {
+        "id": "ChIJmYBFjvdC1moRfRuFfIp2v8k",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "5 Dyer St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "5",
+            "shortText": "5",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Dyer Street",
+            "shortText": "Dyer St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8173558,
+          "longitude": 145.00340599999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Richmond Dentist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "5 Dyer St, Richmond"
+      },
+      {
+        "id": "ChIJSf2I_EVB1moRhQKNp9rZW00",
+        "types": [
+          "dentist",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "19 Belmore Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "19",
+            "shortText": "19",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Belmore Road",
+            "shortText": "Belmore Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.800926,
+          "longitude": 145.0657315
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Specialist Paediatric Children\u2019s Dentistry Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "19 Belmore Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJlUJ9ZxFD1moR-vC-I3RJphI",
+        "types": [
+          "dentist",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "117 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "117",
+            "shortText": "117",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7893321,
+          "longitude": 144.99001099999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Clifton Hill Dental",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "117 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJ7wlNpwND1moRikiiobi18NY",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "201 Nicholson St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "201",
+            "shortText": "201",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Nicholson Street",
+            "shortText": "Nicholson St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.802214299999996,
+          "longitude": 144.9971364
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Dental Studio - Abbotsford",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "201 Nicholson St, Abbotsford"
+      }
+    ]
+  }
+}

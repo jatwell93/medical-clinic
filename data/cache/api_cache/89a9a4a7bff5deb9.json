@@ -1,0 +1,1901 @@
+{
+  "created_at": "2026-07-09T03:10:21.873284+00:00",
+  "elapsed": 0.141441,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:10:21 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=124",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuODE0MjQ1MjExOTcwMDksICJsb25naXR1ZGUiOiAxNDUuMDEyNDI2ODYyMzEyNDV9LCAicmFkaXVzIjogNzUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "207",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJycwdK0lD1moRnj4QZUWXHUQ",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "132 Burnley St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "132",
+            "shortText": "132",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Burnley Street",
+            "shortText": "Burnley St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8173319,
+          "longitude": 145.00844759999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "earLAB: Ear Wax Removal & Custom Ear Plugs",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "132 Burnley St, Richmond"
+      },
+      {
+        "id": "ChIJO4Y3CehC1moR0yQ9NKfgNAs",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 4/600 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 4",
+            "shortText": "Level 4",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "600",
+            "shortText": "600",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8116637,
+          "longitude": 145.0102101
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Pain Specialists Australia",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Level 4/600 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJg7wgflRC1moRx1jGvwLkh1k",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Victoria Gardens Shopping Centre, Shop SP003/620 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop SP003",
+            "shortText": "Shop SP003",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria Gardens Shopping Centre",
+            "shortText": "Victoria Gardens Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "620",
+            "shortText": "620",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.813371599999996,
+          "longitude": 145.0112967
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Specsavers Optometrists & Audiology - Richmond Victoria Gardens S/C",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Health",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "health",
+        "shortFormattedAddress": "Victoria Gardens Shopping Centre, Shop SP003/620 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJ--M6YqRD1moRUsBF8JPRYw4",
+        "types": [
+          "physiotherapist",
+          "medical_center",
+          "medical_clinic",
+          "hospital",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "LEVEL 2/678 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "LEVEL 2",
+            "shortText": "LEVEL 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "678",
+            "shortText": "678",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8122584,
+          "longitude": 145.01404890000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Juno Specialists",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "LEVEL 2/678 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJ8bHbllNC1moRS9eeLZCeIWU",
+        "types": [
+          "physiotherapist",
+          "dentist",
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "620 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "620",
+            "shortText": "620",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8130653,
+          "longitude": 145.0098022
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Medical One - Richmond, Victoria Gardens",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "620 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJ9QEQ9jRC1moR95uyqUVRdEA",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "656 Bridge Rd, Richmond VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "656",
+            "shortText": "656",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bridge Road",
+            "shortText": "Bridge Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8203992,
+          "longitude": 145.0139874
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Hawthorn Sports Medicine",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "656 Bridge Rd, Richmond"
+      },
+      {
+        "id": "ChIJObTB3dpD1moRlgBSg54Ou84",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "620 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "620",
+            "shortText": "620",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8129712,
+          "longitude": 145.0108243
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology Richmond",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "620 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJU7j-MNlD1moR1C-eaNujr94",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "486 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "486",
+            "shortText": "486",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8115366,
+          "longitude": 145.0078748
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "4Cyte Pathology Richmond",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "486 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJQ8nS3FlC1moRIpqUbijDS4g",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "549 Bridge Rd, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "549",
+            "shortText": "549",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bridge Road",
+            "shortText": "Bridge Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.81937260000001,
+          "longitude": 145.0090997
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Hand Surgery",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "549 Bridge Rd, Richmond"
+      },
+      {
+        "id": "ChIJX5S4E0xB1moRHHD5ZzvFieU",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Juno Specialists, LEVEL 2/678 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Juno Specialists",
+            "languageCode": "en"
+          },
+          {
+            "longText": "LEVEL 2",
+            "shortText": "LEVEL 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "678",
+            "shortText": "678",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8122584,
+          "longitude": 145.01404890000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Nicole Gale",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Juno Specialists, LEVEL 2/678 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJIfyaqZ441moR5x2cXit9pr0",
+        "types": [
+          "medical_clinic",
+          "consultant",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Waterman Business Centre, Level 1, Suite 100/678 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1, Suite 100",
+            "shortText": "Level 1, Suite 100",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Waterman Business Centre",
+            "shortText": "Waterman Business Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "678",
+            "shortText": "678",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8123618,
+          "longitude": 145.013453
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Merge Health",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Services",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "service",
+        "shortFormattedAddress": "Waterman Business Centre, Level 1, Suite 100/678 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJn8eVF_9D1moR-Zy0TbQSIYo",
+        "types": [
+          "medical_center",
+          "hospital",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "656 Bridge Rd, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "656",
+            "shortText": "656",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bridge Road",
+            "shortText": "Bridge Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8203992,
+          "longitude": 145.0139874
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Chris Hasenkam",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "656 Bridge Rd, Richmond"
+      },
+      {
+        "id": "ChIJo_sVq1hD1moRipGSKjxC088",
+        "types": [
+          "skin_care_clinic",
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 2/650 Bridge Rd, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 2",
+            "shortText": "Level 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "650",
+            "shortText": "650",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bridge Road",
+            "shortText": "Bridge Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.820331599999996,
+          "longitude": 145.0137409
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Complete Skin Specialists",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Level 2/650 Bridge Rd, Richmond"
+      },
+      {
+        "id": "ChIJ___vqlVC1moRFA8xv3FXWfw",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 1/486 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 1",
+            "shortText": "Unit 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "486",
+            "shortText": "486",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8115366,
+          "longitude": 145.0078748
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Liz Morris",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 1/486 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJ0Y1wwiZD1moRts7-QACId64",
+        "types": [
+          "chiropractor",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "116 Murphy St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "116",
+            "shortText": "116",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Murphy Street",
+            "shortText": "Murphy St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8183265,
+          "longitude": 145.00959659999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Summit Chiropractic and Health Richmond",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Chiropractor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "chiropractor",
+        "shortFormattedAddress": "116 Murphy St, Richmond"
+      },
+      {
+        "id": "ChIJYzBc6lZC1moRscUcEW5R0h0",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "101 Burnley St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "101",
+            "shortText": "101",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Burnley Street",
+            "shortText": "Burnley St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8155729,
+          "longitude": 145.0092765
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Bella Freeman",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "101 Burnley St, Richmond"
+      },
+      {
+        "id": "ChIJlxEJtMxD1moRiyQ3P38eoGA",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "600 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "600",
+            "shortText": "600",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8131292,
+          "longitude": 145.0109722
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mr Vachara Niumsawatt",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "600 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJ27TtZVNC1moRI8n7qoJbul0",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "600 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "600",
+            "shortText": "600",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.811686099999996,
+          "longitude": 145.0103497
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Institute of Plastic Surgery",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "600 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJf2aLfVNC1moR5FmdE6sJsDA",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "600 Victoria St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "600",
+            "shortText": "600",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8116858,
+          "longitude": 145.010259
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Edmund Ek",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "600 Victoria St, Richmond"
+      },
+      {
+        "id": "ChIJnY_kig8j1moRpqcEmi1BeiY",
+        "types": [
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Juno Specialists, Level 2, 2/678 Victoria St, Richmond VIC 3021, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 2, 2",
+            "shortText": "Level 2, 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Juno Specialists",
+            "shortText": "Juno Specialists",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "678",
+            "shortText": "678",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Street",
+            "shortText": "Victoria St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3021",
+            "shortText": "3021",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.812329399999996,
+          "longitude": 145.0140404
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Meg Callander Sexology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Juno Specialists, Level 2, 2/678 Victoria St, Richmond"
+      }
+    ]
+  }
+}

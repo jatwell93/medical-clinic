@@ -1,0 +1,677 @@
+{
+  "created_at": "2026-07-09T03:09:53.025842+00:00",
+  "elapsed": 0.149738,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:09:53 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=133",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaGFybWFjeSJdLCAibGFuZ3VhZ2VDb2RlIjogImVuLUFVIiwgImxvY2F0aW9uUmVzdHJpY3Rpb24iOiB7ImNpcmNsZSI6IHsiY2VudGVyIjogeyJsYXRpdHVkZSI6IC0zNy43ODMwMzk4NjU0Njg5MTUsICJsb25naXR1ZGUiOiAxNDQuOTc0MDQ2MjE5NjI5Nn0sICJyYWRpdXMiOiAxMjUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "210",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ4Qt-VE9D1moR9sue_uzxd4o",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "158 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "158",
+            "shortText": "158",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7732515,
+          "longitude": 144.9716118
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Direct Chemist Outlet Brunswick East",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "158 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJiVcfYkhD1moRz9zwpy4xdxs",
+        "types": [
+          "pharmacy",
+          "health_food_store",
+          "food_store",
+          "health",
+          "store",
+          "point_of_interest",
+          "food",
+          "establishment"
+        ],
+        "formattedAddress": "92 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "92",
+            "shortText": "92",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.775742,
+          "longitude": 144.971187
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Healthylife Pharmacy Brunswick",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "92 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJR-LWzDhD1moRFmmtg4sWmEU",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2/751 Nicholson St, Carlton North VIC 3054, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "751",
+            "shortText": "751",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Nicholson Street",
+            "shortText": "Nicholson St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton North",
+            "shortText": "Carlton North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3054",
+            "shortText": "3054",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7817368,
+          "longitude": 144.9776099
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Carlton North Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "2/751 Nicholson St, Carlton North"
+      },
+      {
+        "id": "ChIJSwmM1z9D1moRSlerz-GCD2M",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "35 Best St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "35",
+            "shortText": "35",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Best Street",
+            "shortText": "Best St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7837446,
+          "longitude": 144.98310189999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "North Fitzroy Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "35 Best St, Fitzroy North"
+      },
+      {
+        "id": "ChIJN2Vz9C9D1moR_nQQ_YREWGA",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "701 Rathdowne St, Carlton North VIC 3054, Australia",
+        "addressComponents": [
+          {
+            "longText": "701",
+            "shortText": "701",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Rathdowne Street",
+            "shortText": "Rathdowne St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton North",
+            "shortText": "Carlton North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3054",
+            "shortText": "3054",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.788459599999996,
+          "longitude": 144.97189459999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "David Nolte Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "701 Rathdowne St, Carlton North"
+      },
+      {
+        "id": "ChIJVVX5Uk9D1moRAqwvJMxkeaw",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Direct Chemist Outlet Brunswick East, 158 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "Direct Chemist Outlet Brunswick East",
+            "shortText": "Direct Chemist Outlet Brunswick East",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "158",
+            "shortText": "158",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.773309999999995,
+          "longitude": 144.9716599
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "canna online",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Direct Chemist Outlet Brunswick East, 158 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJN170YUhD1moRsoiARsnLnaI",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "92 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "92",
+            "shortText": "92",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.775701999999995,
+          "longitude": 144.97117599999999
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dounias Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "92 Lygon St, Brunswick East"
+      }
+    ]
+  }
+}

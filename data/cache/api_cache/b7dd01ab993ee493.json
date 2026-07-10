@@ -1,0 +1,522 @@
+{
+  "created_at": "2026-07-09T03:15:10.914876+00:00",
+  "elapsed": 0.123212,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:15:11 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=109",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaHlzaW90aGVyYXBpc3QiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuODI1MTM5NTAyMjAxMjgsICJsb25naXR1ZGUiOiAxNDUuMDAxMjA5MTcwMzU2NDd9LCAicmFkaXVzIjogNTAwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "216",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJe-gz4IxC1moRnRlCw7Z8fIw",
+        "types": [
+          "physiotherapist",
+          "skin_care_clinic",
+          "massage",
+          "gym",
+          "sports_complex",
+          "sports_school",
+          "medical_clinic",
+          "sports_activity_location",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1/161-165 Swan St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "161-165",
+            "shortText": "161-165",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Swan Street",
+            "shortText": "Swan St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8254103,
+          "longitude": 144.9969941
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dynamic Stability Physio and Pilates Studio",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "1/161-165 Swan St, Richmond"
+      },
+      {
+        "id": "ChIJy4VjCI1C1moR2gQKffNM4HY",
+        "types": [
+          "physiotherapist",
+          "massage",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1/2 Royal Pl, Cremorne VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Royal Place",
+            "shortText": "Royal Pl",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Cremorne",
+            "shortText": "Cremorne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8259141,
+          "longitude": 144.99634659999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Richmond Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Level 1/2 Royal Pl, Cremorne"
+      },
+      {
+        "id": "ChIJkQO-avNC1moROUUcWHExVvc",
+        "types": [
+          "physiotherapist",
+          "massage",
+          "gym",
+          "sports_complex",
+          "sports_school",
+          "medical_clinic",
+          "sports_activity_location",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "361 Church St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "361",
+            "shortText": "361",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Church Street",
+            "shortText": "Church St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8233951,
+          "longitude": 144.998537
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Richmond Physiotherapy Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "361 Church St, Richmond"
+      },
+      {
+        "id": "ChIJWdBQBV5D1moRX-nsiVBzGhY",
+        "types": [
+          "fitness_center",
+          "physiotherapist",
+          "gym",
+          "sports_activity_location",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "9 Rooney St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "9",
+            "shortText": "9",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Rooney Street",
+            "shortText": "Rooney St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.827822399999995,
+          "longitude": 145.003577
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "ShapeShift Physio & Fitness",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Fitness center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "fitness_center",
+        "shortFormattedAddress": "9 Rooney St, Richmond"
+      },
+      {
+        "id": "ChIJ3au0SINC1moRcxI1fbZ4qss",
+        "types": [
+          "physiotherapist",
+          "massage",
+          "gym",
+          "sports_complex",
+          "consultant",
+          "sports_school",
+          "sports_activity_location",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ground Floor, 1 Albert St, Richmond VIC 3121, Australia",
+        "addressComponents": [
+          {
+            "longText": "Ground Floor",
+            "languageCode": "en"
+          },
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Richmond",
+            "shortText": "Richmond",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3121",
+            "shortText": "3121",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8282082,
+          "longitude": 144.99799640000003
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "High Line Active",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Ground Floor, 1 Albert St, Richmond"
+      }
+    ]
+  }
+}

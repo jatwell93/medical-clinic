@@ -1,0 +1,784 @@
+{
+  "created_at": "2026-07-09T03:10:21.105718+00:00",
+  "elapsed": 0.13942,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:10:21 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=127",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzk3NDAxODc3NDM5MDEsICJsb25naXR1ZGUiOiAxNDUuMDA4MTYyOTM1NTkxNjN9LCAicmFkaXVzIjogMTUwMC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "208",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ7wlNpwND1moRikiiobi18NY",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "201 Nicholson St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "201",
+            "shortText": "201",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Nicholson Street",
+            "shortText": "Nicholson St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.802214299999996,
+          "longitude": 144.9971364
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Dental Studio - Abbotsford",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "201 Nicholson St, Abbotsford"
+      },
+      {
+        "id": "ChIJ9TfEZxtD1moRzV4wEs8rNJY",
+        "types": [
+          "physiotherapist",
+          "pharmacy",
+          "medical_clinic",
+          "consultant",
+          "doctor",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "365 Hoddle St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "365",
+            "shortText": "365",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Hoddle Street",
+            "shortText": "Hoddle St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798981999999995,
+          "longitude": 144.9927476
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "cohealth Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "365 Hoddle St, Collingwood"
+      },
+      {
+        "id": "ChIJw14DLqND1moRpRJOzOaPb4Q",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "22 Spensley St, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "22",
+            "shortText": "22",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Spensley Street",
+            "shortText": "Spensley St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7884141,
+          "longitude": 144.9972216
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology Clifton Hill",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "22 Spensley St, Clifton Hill"
+      },
+      {
+        "id": "ChIJy62M8mdD1moRrt09qU5Vo5k",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1 St Heliers St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Heliers Street",
+            "shortText": "St Heliers St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8026835,
+          "longitude": 145.00275059999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Flying Needles TCM",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "The Convent, 1 St Heliers St, Abbotsford"
+      },
+      {
+        "id": "ChIJp89dC89d1moRApaU1tesW_A",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1, Convent Wellbeing at, The Convent, Studio C1/43 St Heliers St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Studio C1",
+            "shortText": "Studio C1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Convent Wellbeing at",
+            "shortText": "Convent Wellbeing at",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "The Convent",
+            "shortText": "The Convent",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "43",
+            "shortText": "43",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Heliers Street",
+            "shortText": "St Heliers St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8026878,
+          "longitude": 145.0028817
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Prideworthy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "Convent Wellbeing at, The Convent, 1, Studio C1/43 St Heliers St, Abbotsford"
+      },
+      {
+        "id": "ChIJc8QDeHVD1moRgRoFKOltRUI",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "15 Clifton St, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "15",
+            "shortText": "15",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Clifton Street",
+            "shortText": "Clifton St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.786947100000006,
+          "longitude": 145.0046261
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Wai Kwen Pun",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "15 Clifton St, Clifton Hill"
+      },
+      {
+        "id": "ChIJSSo5q-pn1moR-c0h80iYo_Y",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "PRONTO!, 200 Hoddle St, Abbotsford VIC 3067, Australia",
+        "addressComponents": [
+          {
+            "longText": "PRONTO!",
+            "languageCode": "en"
+          },
+          {
+            "longText": "200",
+            "shortText": "200",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Hoddle Street",
+            "shortText": "Hoddle St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Abbotsford",
+            "shortText": "Abbotsford",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3067",
+            "shortText": "3067",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8009699,
+          "longitude": 144.993133
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Tom Morley",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "PRONTO!, 200 Hoddle St, Abbotsford"
+      },
+      {
+        "id": "ChIJodG8Q3ND1moRZcj2XiaJKus",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "63 Heidelberg Rd, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "63",
+            "shortText": "63",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.78637,
+          "longitude": 144.998834
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Ceased practice",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "63 Heidelberg Rd, Clifton Hill"
+      }
+    ]
+  }
+}

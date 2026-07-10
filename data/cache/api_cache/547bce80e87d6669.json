@@ -1,0 +1,605 @@
+{
+  "created_at": "2026-07-09T03:09:57.926562+00:00",
+  "elapsed": 0.13507,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:09:58 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=118",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaHlzaW90aGVyYXBpc3QiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzg5Nzc3MTk5MjgxMzQ2LCAibG9uZ2l0dWRlIjogMTQ0Ljk5MTA5NzkxOTE2MDc4fSwgInJhZGl1cyI6IDc1MC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "217",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJE2whXRFD1moRHnXp_v8tn3w",
+        "types": [
+          "physiotherapist",
+          "medical_clinic",
+          "massage",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "101-103 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "101-103",
+            "shortText": "101-103",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7896412,
+          "longitude": 144.989535
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Clifton Hill Physiotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "101-103 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJD1TnNeJD1moRgBiDCYo1uco",
+        "types": [
+          "medical_center",
+          "physiotherapist",
+          "medical_clinic",
+          "hospital",
+          "consultant",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "217-241 Queens Parade, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "217-241",
+            "shortText": "217-241",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7865219,
+          "longitude": 144.9942932
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "TLC Medical Centres - Clifton Hill",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "217-241 Queens Parade, Fitzroy North"
+      },
+      {
+        "id": "ChIJn6HJRRFD1moRjWMarhxMCh4",
+        "types": [
+          "physiotherapist",
+          "sports_school",
+          "sports_complex",
+          "gym",
+          "medical_clinic",
+          "sports_activity_location",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "101-103 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "101-103",
+            "shortText": "101-103",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7896412,
+          "longitude": 144.989535
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Clifton Hill Pilates and Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "101-103 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJl3spVhFD1moR6vfHA5N7a2Q",
+        "types": [
+          "physiotherapist",
+          "sports_school",
+          "sports_complex",
+          "gym",
+          "medical_clinic",
+          "sports_activity_location",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "35 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "35",
+            "shortText": "35",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7907948,
+          "longitude": 144.9867794
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "SHAPE Physio and Pilates (Musculoskeletal and Pelvic Health Physio)",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "35 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJAexSyFJD1moRCHyXeoH8jWI",
+        "types": [
+          "physiotherapist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Rear Studio, 127 Queens Parade, Clifton Hill VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "Rear Studio",
+            "shortText": "Rear Studio",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "127",
+            "shortText": "127",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Clifton Hill",
+            "shortText": "Clifton Hill",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7893098,
+          "longitude": 144.9901891
+        },
+        "businessStatus": "CLOSED_TEMPORARILY",
+        "displayName": {
+          "text": "baby.physio",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Rear Studio, 127 Queens Parade, Clifton Hill"
+      },
+      {
+        "id": "ChIJaT1jna9D1moRziOQrVLURXg",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Bundha Sports Centre, Level 1/111 Queens Parade, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "Bundha Sports Centre",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "111",
+            "shortText": "111",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Queens Parade",
+            "shortText": "Queens Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7922989,
+          "longitude": 144.9839246
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Athletic Soul Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Bundha Sports Centre, Level 1/111 Queens Parade, Fitzroy North"
+      }
+    ]
+  }
+}

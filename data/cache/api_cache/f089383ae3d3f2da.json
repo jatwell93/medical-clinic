@@ -1,0 +1,1872 @@
+{
+  "created_at": "2026-07-09T03:09:51.736777+00:00",
+  "elapsed": 0.168936,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:09:51 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=144",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaGFybWFjeSJdLCAibGFuZ3VhZ2VDb2RlIjogImVuLUFVIiwgImxvY2F0aW9uUmVzdHJpY3Rpb24iOiB7ImNpcmNsZSI6IHsiY2VudGVyIjogeyJsYXRpdHVkZSI6IC0zNy43ODg2NTQzMTAzMTI2MSwgImxvbmdpdHVkZSI6IDE0NC45ODExNTA2MjY1MTI3N30sICJyYWRpdXMiOiAyNTAwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "210",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJMauleMJC1moRLdZc_y_7Pts",
+        "types": [
+          "general_hospital",
+          "skin_care_clinic",
+          "pharmacy",
+          "medical_clinic",
+          "hospital",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "109 Albert St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "109",
+            "shortText": "109",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8106168,
+          "longitude": 144.98404159999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Epworth Freemasons (Albert Street)",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Hospital",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "hospital",
+        "shortFormattedAddress": "109 Albert St, East Melbourne"
+      },
+      {
+        "id": "ChIJvdVhscpc1moR-F886Ej8SJE",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "120 to 124 Sydney Rd, Brunswick VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "120 to 124",
+            "shortText": "120 to 124",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Sydney Road",
+            "shortText": "Sydney Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick",
+            "shortText": "Brunswick",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7750936,
+          "longitude": 144.9609179
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Brunswick South",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "120 to 124 Sydney Rd, Brunswick"
+      },
+      {
+        "id": "ChIJ-bjZK99C1moRgj7zCGFTtlo",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "206 to 210 Brunswick St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "206 to 210",
+            "shortText": "206 to 210",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8013811,
+          "longitude": 144.9780763
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Fitzroy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "206 to 210 Brunswick St, Fitzroy"
+      },
+      {
+        "id": "ChIJRaJMwS1d1moRk612XbabnOI",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "veterinary_care",
+          "body_art_service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "311 Grattan St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "311",
+            "shortText": "311",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grattan Street",
+            "shortText": "Grattan St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.799772999999995,
+          "longitude": 144.956478
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "HealthSmart Pharmacy VCCC",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "311 Grattan St, Melbourne"
+      },
+      {
+        "id": "ChIJA3joEOBC1moRet5RjSjRBVA",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "244 to 246 Smith St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "244 to 246",
+            "shortText": "244 to 246",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.801744,
+          "longitude": 144.98400999999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "244 to 246 Smith St, Collingwood"
+      },
+      {
+        "id": "ChIJ72_z4tVD1moRLS3l9s-m3pM",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 10/397 Smith St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 10",
+            "shortText": "Suite 10",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "397",
+            "shortText": "397",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7966402,
+          "longitude": 144.98452
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Fitzroy Smith Street",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Suite 10/397 Smith St, Fitzroy"
+      },
+      {
+        "id": "ChIJ4Qt-VE9D1moR9sue_uzxd4o",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "158 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "158",
+            "shortText": "158",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7732515,
+          "longitude": 144.9716118
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Direct Chemist Outlet Brunswick East",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "158 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJn2T8PiBD1moRMIeuLqMIOFw",
+        "types": [
+          "pharmacy",
+          "dentist",
+          "medical_clinic",
+          "veterinary_care",
+          "pet_care",
+          "doctor",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "206 Johnston St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "206",
+            "shortText": "206",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Johnston Street",
+            "shortText": "Johnston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798866,
+          "longitude": 144.98204099999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Johnston Street Veterinary Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Veterinary Care",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "veterinary_care",
+        "shortFormattedAddress": "206 Johnston St, Fitzroy"
+      },
+      {
+        "id": "ChIJM8JsVbtd1moRmHt2WGq01-g",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "149 Sydney Rd, Brunswick VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "149",
+            "shortText": "149",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Sydney Road",
+            "shortText": "Sydney Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick",
+            "shortText": "Brunswick",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.773876,
+          "longitude": 144.96078939999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "BETTER LEAF BRUNSWICK",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "149 Sydney Rd, Brunswick"
+      },
+      {
+        "id": "ChIJRd4Ftspc1moRay_9_GMrq10",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Barkly Square Shopping Centre, J3/90-106 Sydney Rd, Brunswick VIC 3056, Australia",
+        "addressComponents": [
+          {
+            "longText": "J3",
+            "shortText": "J3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Barkly Square Shopping Centre",
+            "shortText": "Barkly Square Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "90-106",
+            "shortText": "90-106",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Sydney Road",
+            "shortText": "Sydney Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick",
+            "shortText": "Brunswick",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3056",
+            "shortText": "3056",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.775763999999995,
+          "longitude": 144.9630575
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Priceline Pharmacy Barkly Square",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Barkly Square Shopping Centre, J3/90-106 Sydney Rd, Brunswick"
+      },
+      {
+        "id": "ChIJE_7DHeBC1moRGUB_xssUHFg",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "272 Smith St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "272",
+            "shortText": "272",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8011254,
+          "longitude": 144.98399089999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Newton & Leung Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "272 Smith St, Collingwood"
+      },
+      {
+        "id": "ChIJ1Uz30cRC1moRbmHhjIENwU0",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "55 Victoria Parade, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "55",
+            "shortText": "55",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807722000000005,
+          "longitude": 144.975577
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "HealthSmart Pharmacy Victoria Parade",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "55 Victoria Parade, Fitzroy"
+      },
+      {
+        "id": "ChIJ7RgLP-xD1moRiJp-DF6A7JE",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "148 Smith St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "148",
+            "shortText": "148",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8042295,
+          "longitude": 144.9836129
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Smith Street Soul Pattinson Chemist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "148 Smith St, Collingwood"
+      },
+      {
+        "id": "ChIJZf1sW9ZC1moR7mWCXTbLsFQ",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "177 Elgin St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "177",
+            "shortText": "177",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Elgin Street",
+            "shortText": "Elgin St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.797446,
+          "longitude": 144.96846449999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Pickford Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "177 Elgin St, Carlton"
+      },
+      {
+        "id": "ChIJPRQoFWpD1moRnRVdnKukL34",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "381 Smith St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "381",
+            "shortText": "381",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Smith Street",
+            "shortText": "Smith St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7977007,
+          "longitude": 144.9842625
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Cann Life Dispensary",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "381 Smith St, Fitzroy"
+      },
+      {
+        "id": "ChIJ9TfEZxtD1moRzV4wEs8rNJY",
+        "types": [
+          "physiotherapist",
+          "pharmacy",
+          "medical_clinic",
+          "consultant",
+          "doctor",
+          "service",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "365 Hoddle St, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "365",
+            "shortText": "365",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Hoddle Street",
+            "shortText": "Hoddle St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798981999999995,
+          "longitude": 144.9927476
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "cohealth Collingwood",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "365 Hoddle St, Collingwood"
+      },
+      {
+        "id": "ChIJiVcfYkhD1moRz9zwpy4xdxs",
+        "types": [
+          "pharmacy",
+          "health_food_store",
+          "food_store",
+          "health",
+          "store",
+          "point_of_interest",
+          "food",
+          "establishment"
+        ],
+        "formattedAddress": "92 Lygon St, Brunswick East VIC 3057, Australia",
+        "addressComponents": [
+          {
+            "longText": "92",
+            "shortText": "92",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Brunswick East",
+            "shortText": "Brunswick East",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Merri-Bek City",
+            "shortText": "Merri-Bek City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3057",
+            "shortText": "3057",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.775742,
+          "longitude": 144.971187
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Healthylife Pharmacy Brunswick",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "92 Lygon St, Brunswick East"
+      },
+      {
+        "id": "ChIJp-I5Rd1C1moR3Zv8d0OyLVc",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "109 Albert St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "109",
+            "shortText": "109",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8106705,
+          "longitude": 144.98430349999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Slade Pharmacy East Melbourne - Albert Street",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "109 Albert St, East Melbourne"
+      },
+      {
+        "id": "ChIJk8R203pD1moR2au8kQiukXw",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 5/380 Lygon St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 5",
+            "shortText": "Shop 5",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "380",
+            "shortText": "380",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7978735,
+          "longitude": 144.9684218
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Health Hub Pharmacies Carlton",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Shop 5/380 Lygon St, Carlton"
+      },
+      {
+        "id": "ChIJlU4xvQVD1moRcaBeJMl-Ee0",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "UNIVERSITY OF MELBOURNE, Building 168, DM-1 Grattan St, Parkville VIC 3010, Australia",
+        "addressComponents": [
+          {
+            "longText": "DM-1",
+            "shortText": "DM-1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "UNIVERSITY OF MELBOURNE",
+            "shortText": "UNIVERSITY OF MELBOURNE",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Building 168",
+            "shortText": "Building 168",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Grattan Street",
+            "shortText": "Grattan St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Parkville",
+            "shortText": "Parkville",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3010",
+            "shortText": "3010",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798925,
+          "longitude": 144.962669
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "HealthSmart Pharmacy University",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "UNIVERSITY OF MELBOURNE, Building 168, DM-1 Grattan St, Parkville"
+      }
+    ]
+  }
+}

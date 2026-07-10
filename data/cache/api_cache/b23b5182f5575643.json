@@ -1,0 +1,1846 @@
+{
+  "created_at": "2026-07-09T03:12:32.510139+00:00",
+  "elapsed": 0.135613,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:12:32 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=122",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzc1ODc5MTYwOTIxMjgsICJsb25naXR1ZGUiOiAxNDQuOTg3NzA2ODUwMjIwODZ9LCAicmFkaXVzIjogNzUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "207",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJW8GmWWlD1moRQx5mf4n9rlk",
+        "types": [
+          "medical_clinic",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7787389,
+          "longitude": 144.9879772
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJoWFrWoFD1moRi_ulbr8Btuo",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7786359,
+          "longitude": 144.9876018
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Dermatology Skin Clinic Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJSbeSsWtD1moRfV-sT8cU17c",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "consultant",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "329 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "329",
+            "shortText": "329",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7800605,
+          "longitude": 144.9863557
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Neighbourhood Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "329 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJtxE9K0FD1moRsO7BqYKtqRw",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1/175 Holden St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "175",
+            "shortText": "175",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Holden Street",
+            "shortText": "Holden St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7798333,
+          "longitude": 144.986527
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fitzroy North Doctors",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Center",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_center",
+        "shortFormattedAddress": "Level 1/175 Holden St, Fitzroy North"
+      },
+      {
+        "id": "ChIJWXJmuEBD1moRYvQe5amKuKk",
+        "types": [
+          "sports_complex",
+          "physiotherapist",
+          "gym",
+          "massage",
+          "doctor",
+          "sports_school",
+          "sports_activity_location",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "373-375 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "373-375",
+            "shortText": "373-375",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7788022,
+          "longitude": 144.9874063
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Premier Sports & Spinal Medicine Fitzroy North",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Health",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "health",
+        "shortFormattedAddress": "373-375 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ8xClUGlD1moR0vWS-9cHu3c",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St George's Road, 370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370 St George's Road",
+            "shortText": "370 St George's Road",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7785345,
+          "longitude": 144.9881962
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Pathology North Fitzroy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St George's Road, 370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJRwvkqCND1moR-pBZlXbvPl8",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "330 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "330",
+            "shortText": "330",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7801656,
+          "longitude": 144.9868067
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fitzroy Foot and Ankle Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "330 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJzQSnHLlD1moRZzgd0dIPKAk",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778639,
+          "longitude": 144.98758139999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Acne Rosacea Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJPbZtjsRD1moRvycKs1iQ_9o",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "The Neighbourhood Clinic, 329 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "The Neighbourhood Clinic",
+            "shortText": "The Neighbourhood Clinic",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "329",
+            "shortText": "329",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.780103,
+          "longitude": 144.986359
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Australian Clinical Labs Fitzroy North",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "The Neighbourhood Clinic, 329 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ4zsiWmlD1moRVuvKxQfZit4",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778768,
+          "longitude": 144.988088
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic - Dr Lisa Cochrane",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ4zsiWmlD1moR5P-C0Jp8v9s",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778768,
+          "longitude": 144.988088
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic - Dr. Jeff Willcox",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ6TIn4XhD1moRDw3ZEsBQiHA",
+        "types": [
+          "skin_care_clinic",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7786359,
+          "longitude": 144.9876018
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Emma Veysey Dermatologist Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ4zsiWmlD1moRNclfhNvvDTc",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7787254,
+          "longitude": 144.98808019999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic - Dr. Richard Moore",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ4zsiWmlD1moRaO3k2wMFoxE",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778768,
+          "longitude": 144.988088
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic - Dr. Ruth McNair",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJC73HC1NF1moRsq4NLkUuhE4",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "391A St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "391A",
+            "shortText": "391A",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778448999999995,
+          "longitude": 144.9876674
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Angela Koutsofrigas | Acupuncture | Fertility, Pregnancy & Post Partum Support",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "391A St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJqWKan45D1moR4J0p5CQvjVA",
+        "types": [
+          "medical_center",
+          "doctor",
+          "hospital",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7786359,
+          "longitude": 144.9876018
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Wenyuan Liu Dermatologist Melbourne, \u76ae\u80a4\u79d1\u533b\u751f",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ4zsiWmlD1moRFN_YE1i8f4A",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778768,
+          "longitude": 144.988088
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic - Dr. Kelvin Adams",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJXcokcbtD1moRmx7OY2b1aOs",
+        "types": [
+          "skin_care_clinic",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "379 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "379",
+            "shortText": "379",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7786359,
+          "longitude": 144.9876018
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Mark Cicchiello Dermatologist Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "379 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJTxXzH8VC1moR19-2bEwZ8bg",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7787046,
+          "longitude": 144.9880978
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Haas Irene",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      },
+      {
+        "id": "ChIJ4zsiWmlD1moRzihqIYlPniY",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "370 St Georges Rd, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "370",
+            "shortText": "370",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Saint Georges Road",
+            "shortText": "St Georges Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.778768,
+          "longitude": 144.988088
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Clinic - Dr. Gini Skinner",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "370 St Georges Rd, Fitzroy North"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1946 @@
+{
+  "created_at": "2026-07-09T03:09:53.851260+00:00",
+  "elapsed": 0.148847,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:09:53 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=131",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaGFybWFjeSJdLCAibGFuZ3VhZ2VDb2RlIjogImVuLUFVIiwgImxvY2F0aW9uUmVzdHJpY3Rpb24iOiB7ImNpcmNsZSI6IHsiY2VudGVyIjogeyJsYXRpdHVkZSI6IC0zNy44MTY3MjY1MzQ1MzEwOCwgImxvbmdpdHVkZSI6IDE0NC45NzQwNDQwNTkzMDc0fSwgInJhZGl1cyI6IDEyNTAuMH19LCAibWF4UmVzdWx0Q291bnQiOiAyMH0=",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "209",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJc_yJZTVD1moRo_JKIsymGfM",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "LG50 Melbourne Central Shopping Centre, 300 Lonsdale St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "LG50 Melbourne Central Shopping Centre",
+            "shortText": "LG50 Melbourne Central Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "300",
+            "shortText": "300",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lonsdale Street",
+            "shortText": "Lonsdale St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.811569299999995,
+          "longitude": 144.9636246
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Melbourne Central",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "LG50 Melbourne Central Shopping Centre, Coop's Shot Tower, Shop 152/300 Lonsdale St, Melbourne"
+      },
+      {
+        "id": "ChIJD-kYKLVC1moRdCgmcuTmxo0",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "shop l2/345 Bourke St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "shop l2",
+            "shortText": "shop l2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "345",
+            "shortText": "345",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bourke Street",
+            "shortText": "Bourke St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8144722,
+          "longitude": 144.9635296
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "shop l2/345 Bourke St, Melbourne"
+      },
+      {
+        "id": "ChIJ1xdPD8pC1moRCZO6KMhZZzk",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 206 Midtown Plaza, 246 Bourke St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 206 Midtown Plaza",
+            "languageCode": "en"
+          },
+          {
+            "longText": "246",
+            "shortText": "246",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bourke Street",
+            "shortText": "Bourke St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.813105199999995,
+          "longitude": 144.9657085
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Melbourne Midtown Plaza",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Shop 206 Midtown Plaza, 246 Bourke St, Melbourne"
+      },
+      {
+        "id": "ChIJMauleMJC1moRLdZc_y_7Pts",
+        "types": [
+          "general_hospital",
+          "skin_care_clinic",
+          "pharmacy",
+          "hospital",
+          "store",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "109 Albert St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "109",
+            "shortText": "109",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8106168,
+          "longitude": 144.98404159999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Epworth Freemasons (Albert Street)",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Hospital",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "hospital",
+        "shortFormattedAddress": "109 Albert St, East Melbourne"
+      },
+      {
+        "id": "ChIJkeBVEkBD1moRFQ_HM8dkW3w",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 7 Lower, Level The Paramount Centre, 108 Bourke St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 7 Lower",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Level The Paramount Centre",
+            "shortText": "Level The Paramount Centre",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "108",
+            "shortText": "108",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bourke Street",
+            "shortText": "Bourke St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8118943,
+          "longitude": 144.9698743
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Melbourne Paramount Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Level The Paramount Centre, Shop 7 Lower, 108 Bourke St, Melbourne"
+      },
+      {
+        "id": "ChIJSdjNZbRC1moRi9PCbRRr1d8",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Part of, Level 1, Tenancy 2/276 Flinders St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1, Tenancy 2",
+            "shortText": "Level 1, Tenancy 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Part of",
+            "shortText": "Part of",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "276",
+            "shortText": "276",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Flinders Street",
+            "shortText": "Flinders St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.817828899999995,
+          "longitude": 144.9652873
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Melbourne - Flinders Street",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Part of, River View House, Level 1, Tenancy 2/276 Flinders St, Melbourne"
+      },
+      {
+        "id": "ChIJ4xm6A2pD1moResIOWNA6ZFk",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 55 QV Retail Center Lonsdale St &, Swanston St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 55 QV Retail Center Lonsdale St &",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Swanston Street",
+            "shortText": "Swanston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.810780699999995,
+          "longitude": 144.9652447
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Priceline Pharmacy QV",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Shop 55 QV Retail Center Lonsdale St &, Swanston St, Melbourne"
+      },
+      {
+        "id": "ChIJka9ZIrVC1moRbM82ZsJ7I0U",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "376 Bourke St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "376",
+            "shortText": "376",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bourke Street",
+            "shortText": "Bourke St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8143284,
+          "longitude": 144.9624625
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Priceline Pharmacy Bourke St West",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "376 Bourke St, Melbourne"
+      },
+      {
+        "id": "ChIJkxeA2rVC1moRKeSq_gRJG_o",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Lot 100 Lwr Ground 220 to, 226 Collins St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Lot 100 Lwr Ground 220 to",
+            "languageCode": "en"
+          },
+          {
+            "longText": "226",
+            "shortText": "226",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Collins Street",
+            "shortText": "Collins St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8154819,
+          "longitude": 144.96614050000002
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Manchester Unity",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Lot 100 Lwr Ground 220 to, 226 Collins St, Melbourne"
+      },
+      {
+        "id": "ChIJ1aVJjrVC1moRvye4s1ZBJ2A",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1, Shop MM01 Collins Arcade 260 Collins Street, Entrance via, 301 Little Collins St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1, Shop MM01 Collins Arcade 260 Collins Street",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Entrance via",
+            "shortText": "Entrance via",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "301",
+            "shortText": "301",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Little Collins Street",
+            "shortText": "Little Collins St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8152863,
+          "longitude": 144.9649456
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Priceline Pharmacy Collins Arcade (Previously Bourke St Mall)",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Entrance via, Level 1, Shop MM01 Collins Arcade 260 Collins Street, 301 Little Collins St, Melbourne"
+      },
+      {
+        "id": "ChIJFyypUspC1moRzDLK_OkRtRI",
+        "types": [
+          "medical_clinic",
+          "pharmacy",
+          "medical_center",
+          "medical_lab",
+          "dental_clinic",
+          "physiotherapist",
+          "hospital",
+          "store",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "3 23 QV Terrace, 292 Swanston St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "3 23 QV Terrace",
+            "languageCode": "en"
+          },
+          {
+            "longText": "292",
+            "shortText": "292",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Swanston Street",
+            "shortText": "Swanston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8103452,
+          "longitude": 144.96541969999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Medical One - QV",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "3 23 QV Terrace, 292 Swanston St, Melbourne"
+      },
+      {
+        "id": "ChIJUSsOdMtC1moRy-3-oze82wI",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 152C, Melbourne Central Shopping Centre, between STARBUCKS & FOSSIL Stores, Level 1/211 La Trobe St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "between STARBUCKS & FOSSIL Stores",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne Central Shopping Centre",
+            "shortText": "Melbourne Central Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "211",
+            "shortText": "211",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "La Trobe Street",
+            "shortText": "La Trobe St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.809869,
+          "longitude": 144.96362299999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Terry White Chemmart Melbourne Central",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Melbourne Central Shopping Centre, Shop 152C, between STARBUCKS & FOSSIL Stores, Level 1/211 La Trobe St, Melbourne"
+      },
+      {
+        "id": "ChIJwyFHM7JC1moRdJHDaS68Apc",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "P14 Southgate Shopping Centre, 3 Southgate Ave, Southbank VIC 3006, Australia",
+        "addressComponents": [
+          {
+            "longText": "P14 Southgate Shopping Centre",
+            "languageCode": "en"
+          },
+          {
+            "longText": "3",
+            "shortText": "3",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Southgate Avenue",
+            "shortText": "Southgate Ave",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Southbank",
+            "shortText": "Southbank",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3006",
+            "shortText": "3006",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8208092,
+          "longitude": 144.9662516
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Southgate Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "P14 Southgate Shopping Centre, 3 Southgate Ave, Southbank"
+      },
+      {
+        "id": "ChIJe0kWBvxD1moRak0jdqUka5Y",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "48/45 Collins St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "48",
+            "shortText": "48",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "45",
+            "shortText": "45",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Collins Street",
+            "shortText": "Collins St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.814245299999996,
+          "longitude": 144.9727141
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Priceline Pharmacy Collins Place",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Sofitel Forecourt, 48/45 Collins St, Melbourne"
+      },
+      {
+        "id": "ChIJsRHh-chC1moRMHEIb04r9xY",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "East End Place, Shop 7/121 Exhibition St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 7",
+            "shortText": "Shop 7",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East End Place",
+            "shortText": "East End Place",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "121",
+            "shortText": "121",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Exhibition Street",
+            "shortText": "Exhibition St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8123785,
+          "longitude": 144.9701411
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Ramsay Pharmacy Melbourne CBD",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Southern Cross Tower, East End Place, Shop 7/121 Exhibition St, Melbourne"
+      },
+      {
+        "id": "ChIJtX0w_LRC1moR_gqk3JVtaUc",
+        "types": [
+          "pharmacy",
+          "drugstore",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "60 Elizabeth St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "60",
+            "shortText": "60",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Elizabeth Street",
+            "shortText": "Elizabeth St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8167061,
+          "longitude": 144.9644806
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Elizabeth Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "60 Elizabeth St, Melbourne"
+      },
+      {
+        "id": "ChIJJe-uGk9d1moRTquU868KGJU",
+        "types": [
+          "pharmacy",
+          "health_food_store",
+          "drugstore",
+          "food_store",
+          "store",
+          "health",
+          "food",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "T11, 207-361 Flinders St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "T11",
+            "languageCode": "en"
+          },
+          {
+            "longText": "207-361",
+            "shortText": "207-361",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Flinders Street",
+            "shortText": "Flinders St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.817768,
+          "longitude": 144.96719
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Direct Chemist Outlet Flinders Street Station",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "T11, 207-361 Flinders St, Melbourne"
+      },
+      {
+        "id": "ChIJz53zK89C1moRrwn1W54oZ_4",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "shop 7/242 Exhibition St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "shop 7",
+            "shortText": "shop 7",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "242",
+            "shortText": "242",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Exhibition Street",
+            "shortText": "Exhibition St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8098484,
+          "longitude": 144.9699636
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Exhibition Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Telstra Corporate Centre, shop 7/242 Exhibition St, Melbourne"
+      },
+      {
+        "id": "ChIJ1Uz30cRC1moRbmHhjIENwU0",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "55 Victoria Parade, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "55",
+            "shortText": "55",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.807722000000005,
+          "longitude": 144.975577
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "HealthSmart Pharmacy Victoria Parade",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "55 Victoria Parade, Fitzroy"
+      },
+      {
+        "id": "ChIJGbL8_bRC1moRkLsELD0jrcM",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "128 to 132 Elizabeth St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "128 to 132",
+            "shortText": "128 to 132",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Elizabeth Street",
+            "shortText": "Elizabeth St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8150281,
+          "longitude": 144.9636798
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Discount Drug Store Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "128 to 132 Elizabeth St, Melbourne"
+      }
+    ]
+  }
+}

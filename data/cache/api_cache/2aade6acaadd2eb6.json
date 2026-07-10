@@ -1,0 +1,305 @@
+{
+  "created_at": "2026-07-09T03:16:54.971092+00:00",
+  "elapsed": 0.171032,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:16:55 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=116",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkZW50aXN0Il0sICJsYW5ndWFnZUNvZGUiOiAiZW4tQVUiLCAibG9jYXRpb25SZXN0cmljdGlvbiI6IHsiY2lyY2xlIjogeyJjZW50ZXIiOiB7ImxhdGl0dWRlIjogLTM3LjgzNjU5NTc5MDIwODUyLCAibG9uZ2l0dWRlIjogMTQ1LjAyODcwMDQyMTk1NTY1fSwgInJhZGl1cyI6IDEyNTAuMH19LCAibWF4UmVzdWx0Q291bnQiOiAyMH0=",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "209",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJSTd8nTBC1moRg1dholxOfBo",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "560 Glenferrie Rd, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "560",
+            "shortText": "560",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Glenferrie Road",
+            "shortText": "Glenferrie Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8275132,
+          "longitude": 145.0346831
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Smile Hawthorn",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "560 Glenferrie Rd, Hawthorn"
+      },
+      {
+        "id": "ChIJ8WPSSDpC1moRRVrRBk7yinw",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "520 Glenferrie Rd, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "520",
+            "shortText": "520",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Glenferrie Road",
+            "shortText": "Glenferrie Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.829330899999995,
+          "longitude": 145.0344702
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Greg Morris - Hawthorn Dentist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "520 Glenferrie Rd, Hawthorn"
+      },
+      {
+        "id": "ChIJQ3Z7nTBC1moRx7K_odmqZhs",
+        "types": [
+          "dentist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "560 Glenferrie Rd, Hawthorn VIC 3122, Australia",
+        "addressComponents": [
+          {
+            "longText": "560",
+            "shortText": "560",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Glenferrie Road",
+            "shortText": "Glenferrie Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Hawthorn",
+            "shortText": "Hawthorn",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3122",
+            "shortText": "3122",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.827515999999996,
+          "longitude": 145.034729
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Carolyn Ng Orthodontist Hawthorn",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "560 Glenferrie Rd, Hawthorn"
+      }
+    ]
+  }
+}

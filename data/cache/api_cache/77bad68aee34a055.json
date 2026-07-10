@@ -1,0 +1,758 @@
+{
+  "created_at": "2026-07-09T03:13:39.502018+00:00",
+  "elapsed": 0.10921,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:13:39 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=98",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzcwNTIyMTY5NTM0NTEsICJsb25naXR1ZGUiOiAxNDUuMDQ0MzM1NTYxOTQ0OTZ9LCAicmFkaXVzIjogMjUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "207",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJN7C_LBxE1moRMxTv_J6ArR0",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "73 Marshall St, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "73",
+            "shortText": "73",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Marshall Street",
+            "shortText": "Marshall St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7711094,
+          "longitude": 145.0466394
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Ivanhoe Dermatology Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "73 Marshall St, Ivanhoe"
+      },
+      {
+        "id": "ChIJRc2umohG1moRC1Hs-QzoVRU",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "154 Upper Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "154",
+            "shortText": "154",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Upper Heidelberg Road",
+            "shortText": "Upper Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7685842,
+          "longitude": 145.0429299
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Arm Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "154 Upper Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJN7C_LBxE1moRoFSrq615Mco",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "73 Marshall St, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "73",
+            "shortText": "73",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Marshall Street",
+            "shortText": "Marshall St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7711094,
+          "longitude": 145.0466394
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Alvin Chong",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "73 Marshall St, Ivanhoe"
+      },
+      {
+        "id": "ChIJN731vJ1F1moRviGu0FxB6AI",
+        "types": [
+          "doctor",
+          "store",
+          "health",
+          "service",
+          "association_or_organization",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 1/120 Upper Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 1",
+            "shortText": "Unit 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "120",
+            "shortText": "120",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Upper Heidelberg Road",
+            "shortText": "Upper Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7691946,
+          "longitude": 145.0421624
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Audika Hearing Clinic Ivanhoe",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 1/120 Upper Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJYSv5mohG1moRzDiRsIN9FnY",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "154 Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "154",
+            "shortText": "154",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7685842,
+          "longitude": 145.0429299
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mr Devinder Garewal - Orthopaedic Shoulder Surgeon - Melbourne Arm Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "154 Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJyeArjohG1moRQwJmwtmcku4",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "154 Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "154",
+            "shortText": "154",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7685842,
+          "longitude": 145.0429299
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mr Matthan Mammen",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "154 Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJzyVNwx5E1moRuS7QHpHfrsE",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "5 Ivanhoe Parade, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "5",
+            "shortText": "5",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Ivanhoe Parade",
+            "shortText": "Ivanhoe Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7684501,
+          "longitude": 145.0449061
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Ericton House Consulting Rooms",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "5 Ivanhoe Parade, Ivanhoe"
+      },
+      {
+        "id": "ChIJlToMDY9F1moRr9wuxUdxFiE",
+        "types": [
+          "medical_lab",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 2/120 Upper Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 2",
+            "shortText": "Shop 2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "120",
+            "shortText": "120",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Upper Heidelberg Road",
+            "shortText": "Upper Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7692146,
+          "longitude": 145.0421517
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "4Cyte Pathology Ivanhoe 2",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Shop 2/120 Upper Heidelberg Rd, Ivanhoe"
+      }
+    ]
+  }
+}

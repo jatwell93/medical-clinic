@@ -1,0 +1,1154 @@
+{
+  "created_at": "2026-07-09T03:11:32.680049+00:00",
+  "elapsed": 0.12894,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:11:32 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=117",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkZW50aXN0Il0sICJsYW5ndWFnZUNvZGUiOiAiZW4tQVUiLCAibG9jYXRpb25SZXN0cmljdGlvbiI6IHsiY2lyY2xlIjogeyJjZW50ZXIiOiB7ImxhdGl0dWRlIjogLTM3LjgxMTg0NTUwODQ4MDIwNCwgImxvbmdpdHVkZSI6IDE0NC45ODM5Njc4Nzg5MzczNn0sICJyYWRpdXMiOiA3NTAuMH19LCAibWF4UmVzdWx0Q291bnQiOiAyMH0=",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "209",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ40ok0cRC1moRScIO5ZNRcCM",
+        "types": [
+          "dentist",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ground Floor/150 Jolimont Rd, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Ground Floor",
+            "shortText": "Ground Floor",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "150",
+            "shortText": "150",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Jolimont Road",
+            "shortText": "Jolimont Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8170275,
+          "longitude": 144.9792975
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "DENTL East Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Ground Floor/150 Jolimont Rd, East Melbourne"
+      },
+      {
+        "id": "ChIJP8dliedC1moRFXnFjgyvrZE",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "21 Victoria Parade, Collingwood VIC 3066, Australia",
+        "addressComponents": [
+          {
+            "longText": "21",
+            "shortText": "21",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Collingwood",
+            "shortText": "Collingwood",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3066",
+            "shortText": "3066",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.808642899999995,
+          "longitude": 144.9834047
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Collingwood Dental Practice",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "21 Victoria Parade, Collingwood"
+      },
+      {
+        "id": "ChIJP9wsWMNC1moRhYxCrLsqvFg",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 2, 5th Floor/182 Victoria Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 2, 5th Floor",
+            "shortText": "Suite 2, 5th Floor",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "182",
+            "shortText": "182",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8089976,
+          "longitude": 144.9779111
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dentists of East Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Suite 2, 5th Floor/182 Victoria Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJ3SFSLepC1moRkzZAhJ2K0Tk",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1/126 Wellington Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "126",
+            "shortText": "126",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Parade",
+            "shortText": "Wellington Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8162359,
+          "longitude": 144.98594789999999
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "East Melbourne Dental Group",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "1/126 Wellington Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJB_z_QcNC1moRT2oPkhH56ec",
+        "types": [
+          "dental_clinic",
+          "dentist",
+          "medical_clinic",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "392 Albert St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "392",
+            "shortText": "392",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8095779,
+          "longitude": 144.9778567
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "DIEM DENTAL",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dental Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dental_clinic",
+        "shortFormattedAddress": "392 Albert St, East Melbourne"
+      },
+      {
+        "id": "ChIJn_d32udC1moR4BTfaaDGiLc",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 10/166 Albert St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 10",
+            "shortText": "Unit 10",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "166",
+            "shortText": "166",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.809996,
+          "longitude": 144.9852733
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Tribeca Dental",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Unit 10/166 Albert St, East Melbourne"
+      },
+      {
+        "id": "ChIJHxYriPlD1moRPOR90kmrqWc",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1st Floor/126 Wellington Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "1st Floor",
+            "shortText": "1st Floor",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "126",
+            "shortText": "126",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Parade",
+            "shortText": "Wellington Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8161969,
+          "longitude": 144.9859012
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Victor Ho",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "1st Floor/126 Wellington Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJ3SFSLepC1moRUY2RSfx0BxI",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1/126 Wellington Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "126",
+            "shortText": "126",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Parade",
+            "shortText": "Wellington Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.816223,
+          "longitude": 144.98594699999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Graham Culy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Level 1/126 Wellington Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJjxUjasNC1moRPux-quxhvHE",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "372 Albert St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "372",
+            "shortText": "372",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8096783,
+          "longitude": 144.9787223
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Albert Street Medical Centre - Dr. Cameron Catherine B.D.S",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "372 Albert St, East Melbourne"
+      },
+      {
+        "id": "ChIJ1_8e-udC1moRD8H8ltyNWoc",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "23 Clarendon St, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "23",
+            "shortText": "23",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Clarendon Street",
+            "shortText": "Clarendon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8096599,
+          "longitude": 144.9832438
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Les Janovic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "23 Clarendon St, East Melbourne"
+      },
+      {
+        "id": "ChIJiWbWYulD1moRbkeh8Mlze-Q",
+        "types": [
+          "dentist",
+          "medical_center",
+          "medical_clinic",
+          "hospital",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "126 Wellington Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "126",
+            "shortText": "126",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Wellington Parade",
+            "shortText": "Wellington Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8162107,
+          "longitude": 144.98592449999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Snore Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "126 Wellington Parade, East Melbourne"
+      },
+      {
+        "id": "ChIJK7cHV8NC1moR1pcCnv8vS9k",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "5/182 Victoria Parade, East Melbourne VIC 3002, Australia",
+        "addressComponents": [
+          {
+            "longText": "5",
+            "shortText": "5",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "182",
+            "shortText": "182",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Parade",
+            "shortText": "Victoria Parade",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "East Melbourne",
+            "shortText": "East Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3002",
+            "shortText": "3002",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.808868700000005,
+          "longitude": 144.97787309999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fowler Scott C",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "5/182 Victoria Parade, East Melbourne"
+      }
+    ]
+  }
+}

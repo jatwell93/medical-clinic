@@ -1,0 +1,1029 @@
+{
+  "created_at": "2026-07-09T03:12:48.427966+00:00",
+  "elapsed": 0.132927,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:12:48 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=118",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaHlzaW90aGVyYXBpc3QiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzY2ODk2MDQ5MTcxMzcsICJsb25naXR1ZGUiOiAxNDUuMDIxNzk5ODY2MjIxMDR9LCAicmFkaXVzIjogMTI1MC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "217",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJvSK3NHZE1moRsDxL5OQtd3k",
+        "types": [
+          "physiotherapist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "181 Station St, Fairfield VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "181",
+            "shortText": "181",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fairfield",
+            "shortText": "Fairfield",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7745716,
+          "longitude": 145.0192319
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fairfield Physiotherapy & Sports Injuries Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "181 Station St, Fairfield"
+      },
+      {
+        "id": "ChIJ4eY3W6RF1moRmr4H-GMLy7M",
+        "types": [
+          "physiotherapist",
+          "sports_complex",
+          "gym",
+          "sports_school",
+          "sports_activity_location",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "323 Victoria Rd, Thornbury VIC 3071, Australia",
+        "addressComponents": [
+          {
+            "longText": "323",
+            "shortText": "323",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Road",
+            "shortText": "Victoria Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Thornbury",
+            "shortText": "Thornbury",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3071",
+            "shortText": "3071",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7593557,
+          "longitude": 145.0128302
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Physio",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "323 Victoria Rd, Thornbury"
+      },
+      {
+        "id": "ChIJi6xuLRxE1moRXiPm7M3QWG8",
+        "types": [
+          "physiotherapist",
+          "sports_complex",
+          "gym",
+          "sports_school",
+          "sports_activity_location",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "73 Livingstone St, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "73",
+            "shortText": "73",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Livingstone Street",
+            "shortText": "Livingstone St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7667632,
+          "longitude": 145.03489
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Physiotherapy Centre Ivanhoe",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "73 Livingstone St, Ivanhoe"
+      },
+      {
+        "id": "ChIJa06ebJ1D1moR_IrYji-04WM",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2 Shiers St, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Shiers Street",
+            "shortText": "Shiers St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7747627,
+          "longitude": 145.0305905
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northcote Kids Physio",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "2 Shiers St, Alphington"
+      },
+      {
+        "id": "ChIJbbWDAGFF1moRdhbj23VPBeo",
+        "types": [
+          "chiropractor",
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "14/20 Abbott St, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "14",
+            "shortText": "14",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "20",
+            "shortText": "20",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Abbott Street",
+            "shortText": "Abbott St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7695799,
+          "longitude": 145.0287032
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "REGEN Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Chiropractor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "chiropractor",
+        "shortFormattedAddress": "14/20 Abbott St, Alphington"
+      },
+      {
+        "id": "ChIJvSK3NHZE1moRMt1yVuw3m1k",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "181 Station St, Fairfield VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "181",
+            "shortText": "181",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fairfield",
+            "shortText": "Fairfield",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.774566899999996,
+          "longitude": 145.0191715
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fairfield Physiotherapy & Sports Injuries Centre - Summers Mark",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "181 Station St, Fairfield"
+      },
+      {
+        "id": "ChIJs1KLbzlF1moRw6qLH95soYE",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "180 Victoria Rd, Northcote VIC 3070, Australia",
+        "addressComponents": [
+          {
+            "longText": "180",
+            "shortText": "180",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Road",
+            "shortText": "Victoria Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Northcote",
+            "shortText": "Northcote",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3070",
+            "shortText": "3070",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7689167,
+          "longitude": 145.0123946
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Perform Physio + Pilates",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "180 Victoria Rd, Northcote"
+      },
+      {
+        "id": "ChIJvSK3NHZE1moRSYG6xCOo-PY",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "181 Station St, Fairfield VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "181",
+            "shortText": "181",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fairfield",
+            "shortText": "Fairfield",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.774566899999996,
+          "longitude": 145.0191715
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fairfield Physiotherapy & Sports Injuries Centre - Tim Dornom",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "181 Station St, Fairfield"
+      },
+      {
+        "id": "ChIJ8VG2MHJE1moRA_fsPYhh7Wo",
+        "types": [
+          "physiotherapist",
+          "massage",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "325A Darebin Rd, Thornbury VIC 3071, Australia",
+        "addressComponents": [
+          {
+            "longText": "325A",
+            "shortText": "325A",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Darebin Road",
+            "shortText": "Darebin Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Thornbury",
+            "shortText": "Thornbury",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3071",
+            "shortText": "3071",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.76597770000001,
+          "longitude": 145.0270928
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "QMD Physiotherapy and Performance",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "325A Darebin Rd, Thornbury"
+      },
+      {
+        "id": "ChIJMdldb3lE1moRZfVHFG4Vc4s",
+        "types": [
+          "physiotherapist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "180 Victoria Rd, Northcote VIC 3070, Australia",
+        "addressComponents": [
+          {
+            "longText": "180",
+            "shortText": "180",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Victoria Road",
+            "shortText": "Victoria Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Northcote",
+            "shortText": "Northcote",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3070",
+            "shortText": "3070",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.769211,
+          "longitude": 145.01255999999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fizziotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "180 Victoria Rd, Northcote"
+      },
+      {
+        "id": "ChIJZQ31RylD1moRqQ9sBBkshqA",
+        "types": [
+          "physiotherapist",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 3/153 Station St, Fairfield VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 3",
+            "shortText": "Shop 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "153",
+            "shortText": "153",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fairfield",
+            "shortText": "Fairfield",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7761262,
+          "longitude": 145.0189995
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Good Form Physiotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Shop 3/153 Station St, Fairfield"
+      }
+    ]
+  }
+}

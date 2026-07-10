@@ -1,0 +1,760 @@
+{
+  "created_at": "2026-07-09T03:14:17.125449+00:00",
+  "elapsed": 0.142967,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:14:17 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=128",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuODAwMDc5MTE5NjYwNzE1LCAibG9uZ2l0dWRlIjogMTQ1LjAzNzQzNTc2NTAxOTY0fSwgInJhZGl1cyI6IDc1MC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "208",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ8enWZspD1moR_riprBqiE8Q",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "276 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "276",
+            "shortText": "276",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8057575,
+          "longitude": 145.0341365
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Bupa Dental Kew",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "276 High St, Kew"
+      },
+      {
+        "id": "ChIJY10Ti8JD1moRpx8PrFvA_1Y",
+        "types": [
+          "medical_clinic",
+          "medical_center",
+          "doctor",
+          "hospital",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 1/251 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 1",
+            "shortText": "Shop 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "251",
+            "shortText": "251",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8055785,
+          "longitude": 145.0336262
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kew City Medical Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "Shop 1/251 High St, Kew"
+      },
+      {
+        "id": "ChIJs1nb5bVD1moRUkDe07_jblc",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "308 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "308",
+            "shortText": "308",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.805263,
+          "longitude": 145.0355855
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Fluid Movement Podiatry",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "308 High St, Kew"
+      },
+      {
+        "id": "ChIJxX01KxRC1moRcQfTQqzIGKw",
+        "types": [
+          "doctor",
+          "store",
+          "health",
+          "service",
+          "association_or_organization",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "97 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "97",
+            "shortText": "97",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8007999,
+          "longitude": 145.02978729999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Richard Osborn Audiology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "97 Princess St, Kew"
+      },
+      {
+        "id": "ChIJtSN258BD1moRkTtUJmIlK4A",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "163 High St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "163",
+            "shortText": "163",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "High Street",
+            "shortText": "High St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8011858,
+          "longitude": 145.0295588
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr. Richard Crawford",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "163 High St, Kew"
+      },
+      {
+        "id": "ChIJ9QgMH-lD1moRsxQpb0R5PS8",
+        "types": [
+          "chiropractor",
+          "massage",
+          "doctor",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "77 Willsmere Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "77",
+            "shortText": "77",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Willsmere Road",
+            "shortText": "Willsmere Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7962965,
+          "longitude": 145.0353005
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kew Holistic Health",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Services",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "service",
+        "shortFormattedAddress": "77 Willsmere Rd, Kew"
+      },
+      {
+        "id": "ChIJVyB82sFD1moRO3qMXMqtXuA",
+        "types": [
+          "doctor",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "5 Willsmere Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "5",
+            "shortText": "5",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Willsmere Road",
+            "shortText": "Willsmere Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.798566799999996,
+          "longitude": 145.0307628
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Richard Prytula",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "5 Willsmere Rd, Kew"
+      },
+      {
+        "id": "ChIJtSN258BD1moRNCc8dt1UNjg",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "91 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "91",
+            "shortText": "91",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8012028,
+          "longitude": 145.029681
+        },
+        "businessStatus": "CLOSED_TEMPORARILY",
+        "displayName": {
+          "text": "Rice Alan Dr",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "91 Princess St, Kew"
+      }
+    ]
+  }
+}

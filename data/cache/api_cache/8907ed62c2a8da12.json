@@ -1,0 +1,670 @@
+{
+  "created_at": "2026-07-09T03:13:27.768999+00:00",
+  "elapsed": 0.143062,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:13:27 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=129",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkZW50aXN0Il0sICJsYW5ndWFnZUNvZGUiOiAiZW4tQVUiLCAibG9jYXRpb25SZXN0cmljdGlvbiI6IHsiY2lyY2xlIjogeyJjZW50ZXIiOiB7ImxhdGl0dWRlIjogLTM3Ljc4OTQxOTI2MDc0NDkxNCwgImxvbmdpdHVkZSI6IDE0NS4wMzEwMjg1OTQ1MjgzNX0sICJyYWRpdXMiOiAxNTAwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "210",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJyUS3GdND1moRCplqSrdiZZk",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 3/802 Heidelberg Rd, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 3",
+            "shortText": "Unit 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "802",
+            "shortText": "802",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.780622,
+          "longitude": 145.03357699999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dentists of Alphington",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Unit 3/802 Heidelberg Rd, Alphington"
+      },
+      {
+        "id": "ChIJI62k2OhD1moRlToLWEw6hCA",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "83 Willsmere Rd, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "83",
+            "shortText": "83",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Willsmere Road",
+            "shortText": "Willsmere Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7959379,
+          "longitude": 145.0356002
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Willsmere Dental",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "83 Willsmere Rd, Kew"
+      },
+      {
+        "id": "ChIJyaxEUr5D1moR8lsQ89T3b-s",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "806 Heidelberg Rd, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "806",
+            "shortText": "806",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7805283,
+          "longitude": 145.03376989999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Northside Endodontics",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "806 Heidelberg Rd, Alphington"
+      },
+      {
+        "id": "ChIJn4P1oo9D1moRNomZ9ERvIws",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "medical_clinic",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "29-31 Station St, Fairfield VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "29-31",
+            "shortText": "29-31",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fairfield",
+            "shortText": "Fairfield",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.782523999999995,
+          "longitude": 145.017948
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Alphington Dental Care Fairfield",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "29-31 Station St, Fairfield"
+      },
+      {
+        "id": "ChIJ5zpZVtxD1moRJNkSrJrqVeU",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "806 Heidelberg Rd, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "806",
+            "shortText": "806",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.780556,
+          "longitude": 145.033603
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Sara Firouzabadi Endodontist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "806 Heidelberg Rd, Alphington"
+      },
+      {
+        "id": "ChIJrarqHPZD1moR58cAha2Z05M",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 3/802 Heidelberg Rd, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 3",
+            "shortText": "Unit 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "802",
+            "shortText": "802",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.780621700000005,
+          "longitude": 145.0335768
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Aaron Martin",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Unit 3/802 Heidelberg Rd, Alphington"
+      },
+      {
+        "id": "ChIJb4I028BD1moRVp9HAJiiNUM",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "83 Princess St, Kew VIC 3101, Australia",
+        "addressComponents": [
+          {
+            "longText": "83",
+            "shortText": "83",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Princess Street",
+            "shortText": "Princess St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Kew",
+            "shortText": "Kew",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3101",
+            "shortText": "3101",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.801579,
+          "longitude": 145.02966859999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Estie Bav",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "83 Princess St, Kew"
+      }
+    ]
+  }
+}

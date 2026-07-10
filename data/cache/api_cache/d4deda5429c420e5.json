@@ -1,0 +1,1906 @@
+{
+  "created_at": "2026-07-09T03:11:27.458269+00:00",
+  "elapsed": 0.161494,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:11:27 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=118",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaHlzaW90aGVyYXBpc3QiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzk2MTI1MDYyOTE3ODYsICJsb25naXR1ZGUiOiAxNDQuOTY2OTE0OTczMTcyOH0sICJyYWRpdXMiOiAxMjUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "216",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJV9ghliBD1moR2nTzYj_sVmo",
+        "types": [
+          "physiotherapist",
+          "yoga_studio",
+          "fitness_center",
+          "sports_school",
+          "sports_complex",
+          "gym",
+          "sports_activity_location",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 1/124 Johnston St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 1",
+            "shortText": "Level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "124",
+            "shortText": "124",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Johnston Street",
+            "shortText": "Johnston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7985263,
+          "longitude": 144.9790965
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Universal Practice Fitzroy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Level 1/124 Johnston St, Fitzroy"
+      },
+      {
+        "id": "ChIJQWblk8xC1moRbwOqo6BZ2E8",
+        "types": [
+          "physiotherapist",
+          "sports_school",
+          "sports_complex",
+          "gym",
+          "medical_clinic",
+          "sports_activity_location",
+          "doctor",
+          "massage",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ground Floor/420 Swanston St, Melbourne VIC 3000, Australia",
+        "addressComponents": [
+          {
+            "longText": "Ground Floor",
+            "shortText": "Ground Floor",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "420",
+            "shortText": "420",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Swanston Street",
+            "shortText": "Swanston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne",
+            "shortText": "Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3000",
+            "shortText": "3000",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8069509,
+          "longitude": 144.9635108
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "City Baths Spinal & Sports Medicine Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Ground Floor/420 Swanston St, Melbourne"
+      },
+      {
+        "id": "ChIJEa-epBRD1moR4OvJPWQtWpQ",
+        "types": [
+          "physiotherapist",
+          "sports_school",
+          "sports_complex",
+          "gym",
+          "sports_activity_location",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "2/221 Drummond St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "2",
+            "shortText": "2",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "221",
+            "shortText": "221",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Drummond Street",
+            "shortText": "Drummond St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8011558,
+          "longitude": 144.9680243
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Physio Crew Carlton - Sports and Spinal Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "2/221 Drummond St, Carlton"
+      },
+      {
+        "id": "ChIJCYbRKM5C1moRa0r9fDC0sMg",
+        "types": [
+          "physiotherapist",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "201 Cardigan St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "201",
+            "shortText": "201",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Cardigan Street",
+            "shortText": "Cardigan St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8020773,
+          "longitude": 144.964928
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Carlton Sports & Spinal Osteo/Physio/Pilates",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Health",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "health",
+        "shortFormattedAddress": "201 Cardigan St, Carlton"
+      },
+      {
+        "id": "ChIJEyBb2tRC1moRFmYSyJViiSE",
+        "types": [
+          "physiotherapist",
+          "wellness_center",
+          "chiropractor",
+          "medical_clinic",
+          "doctor",
+          "massage",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Nona Lee Sports Centre, Ground Floor, Building 103 Tin Alley, Parkville VIC 3010, Australia",
+        "addressComponents": [
+          {
+            "longText": "Ground Floor, Building 103",
+            "shortText": "Ground Floor, Building 103",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Nona Lee Sports Centre",
+            "shortText": "Nona Lee Sports Centre",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Tin Alley",
+            "shortText": "Tin Alley",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Parkville",
+            "shortText": "Parkville",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3010",
+            "shortText": "3010",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7961676,
+          "longitude": 144.9622664
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Elite Akademy Sports Medicine & Physiotherapy - Parkville",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Nona Lee Sports Centre, Ground Floor, Building 103 Tin Alley, Parkville"
+      },
+      {
+        "id": "ChIJJyz6kjFd1moRfb705pmHGA8",
+        "types": [
+          "physiotherapist",
+          "gym",
+          "medical_clinic",
+          "sports_activity_location",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Level 8 14/20 Blackwood St, North Melbourne VIC 3051, Australia",
+        "addressComponents": [
+          {
+            "longText": "Level 8 14",
+            "shortText": "Level 8 14",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "20",
+            "shortText": "20",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Blackwood Street",
+            "shortText": "Blackwood St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "North Melbourne",
+            "shortText": "North Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3051",
+            "shortText": "3051",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8016581,
+          "longitude": 144.9550473
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Australian Prostate Centre",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "Level 8 14/20 Blackwood St, North Melbourne"
+      },
+      {
+        "id": "ChIJ1b5FO1lD1moRaw5q0AdgQKE",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "23 Kerr St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "23",
+            "shortText": "23",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Kerr Street",
+            "shortText": "Kerr St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.796239299999996,
+          "longitude": 144.976393
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Athletic Soul Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "23 Kerr St, Fitzroy"
+      },
+      {
+        "id": "ChIJbx4IlDdD1moRfLBmwVsRPg8",
+        "types": [
+          "gym",
+          "physiotherapist",
+          "sports_activity_location",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "23 Kerr St, Fitzroy VIC 3065, Australia",
+        "addressComponents": [
+          {
+            "longText": "23",
+            "shortText": "23",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Kerr Street",
+            "shortText": "Kerr St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy",
+            "shortText": "Fitzroy",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3065",
+            "shortText": "3065",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.79638990000001,
+          "longitude": 144.97637079999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Sharpe Athletic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Gym",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "gym",
+        "shortFormattedAddress": "23 Kerr St, Fitzroy"
+      },
+      {
+        "id": "ChIJMwoPGC5d1moRckeA1K0zXkM",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 327 level 3/55 Flemington Rd, North Melbourne VIC 3051, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 327 level 3",
+            "shortText": "Ste 327 level 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "55",
+            "shortText": "55",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Flemington Road",
+            "shortText": "Flemington Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "North Melbourne",
+            "shortText": "North Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3051",
+            "shortText": "3051",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.79976930000001,
+          "longitude": 144.9543219
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Health 4 Women",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Ste 327 level 3/55 Flemington Rd, North Melbourne"
+      },
+      {
+        "id": "ChIJY0DcuwpD1moRNo1GTbaw9Gs",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "74 Faraday St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "74",
+            "shortText": "74",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Faraday Street",
+            "shortText": "Faraday St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7989673,
+          "longitude": 144.9719216
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Melbourne Paediatric Physiotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "74 Faraday St, Carlton"
+      },
+      {
+        "id": "ChIJVa20LS5d1moRSSwHCxr5P14",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "44 Villiers St, North Melbourne VIC 3051, Australia",
+        "addressComponents": [
+          {
+            "longText": "44",
+            "shortText": "44",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Villiers Street",
+            "shortText": "Villiers St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "North Melbourne",
+            "shortText": "North Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3051",
+            "shortText": "3051",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7995719,
+          "longitude": 144.9534186
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mark Backway",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "44 Villiers St, North Melbourne"
+      },
+      {
+        "id": "ChIJVa20LS5d1moR4WXN8_2kALg",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "44 Villiers St, North Melbourne VIC 3051, Australia",
+        "addressComponents": [
+          {
+            "longText": "44",
+            "shortText": "44",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Villiers Street",
+            "shortText": "Villiers St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "North Melbourne",
+            "shortText": "North Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3051",
+            "shortText": "3051",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.799591,
+          "longitude": 144.95340199999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "North Melbourne Physiotherapy Clinic",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "44 Villiers St, North Melbourne"
+      },
+      {
+        "id": "ChIJRzFf_EJd1moRW5wOSEHl_qs",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite 319/55 Flemington Rd, North Melbourne VIC 3051, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 319",
+            "shortText": "Suite 319",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "55",
+            "shortText": "55",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Flemington Road",
+            "shortText": "Flemington Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "North Melbourne",
+            "shortText": "North Melbourne",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3051",
+            "shortText": "3051",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.79976930000001,
+          "longitude": 144.9543219
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Pelvic Fit Melbourne - North Melbourne",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Suite 319/55 Flemington Rd, North Melbourne"
+      },
+      {
+        "id": "ChIJCWRHLStd1moRMHRl3hyK_Tg",
+        "types": [
+          "physiotherapist",
+          "consultant",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "The Beaurepaire Centre, The University of Melbourne, 101 Tin Alley, Parkville VIC 3010, Australia",
+        "addressComponents": [
+          {
+            "longText": "The Beaurepaire Centre",
+            "shortText": "The Beaurepaire Centre",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "The University of Melbourne",
+            "shortText": "The University of Melbourne",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "101",
+            "shortText": "101",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Tin Alley",
+            "shortText": "Tin Alley",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Parkville",
+            "shortText": "Parkville",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3010",
+            "shortText": "3010",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7961171,
+          "longitude": 144.9611064
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Optimal Health Exercise Physiology",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Health",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "health",
+        "shortFormattedAddress": "The Beaurepaire Centre, The University of Melbourne, 101 Tin Alley, Parkville"
+      },
+      {
+        "id": "ChIJJ5ZaMm9D1moRMf8FC4FVlW0",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Suite101/538-540 Swanston St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite101",
+            "shortText": "Suite101",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "538-540",
+            "shortText": "538-540",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Swanston Street",
+            "shortText": "Swanston St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8040008,
+          "longitude": 144.96375659999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Physio2Flow",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "Suite101/538-540 Swanston St, Carlton"
+      },
+      {
+        "id": "ChIJKQ8e5tNC1moRlBzMKZT2yTA",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "18/96 Grattan St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "18",
+            "shortText": "18",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "96",
+            "shortText": "96",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Grattan Street",
+            "shortText": "Grattan St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.800133699999996,
+          "longitude": 144.9659222
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Robert J. Hanna",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "18/96 Grattan St, Carlton"
+      },
+      {
+        "id": "ChIJVQHimxJD1moRP5lgav8rQvI",
+        "types": [
+          "physiotherapist",
+          "medical_clinic",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "622 Lygon St, Carlton North VIC 3054, Australia",
+        "addressComponents": [
+          {
+            "longText": "622",
+            "shortText": "622",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Lygon Street",
+            "shortText": "Lygon St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton North",
+            "shortText": "Carlton North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3054",
+            "shortText": "3054",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7918886,
+          "longitude": 144.968714
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Lygon Therapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "622 Lygon St, Carlton North"
+      },
+      {
+        "id": "ChIJl_ZFripD1moR9qCFK7ntqes",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "54 Elgin St, Carlton VIC 3053, Australia",
+        "addressComponents": [
+          {
+            "longText": "54",
+            "shortText": "54",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Elgin Street",
+            "shortText": "Elgin St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Carlton",
+            "shortText": "Carlton",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Melbourne City",
+            "shortText": "Melbourne",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3053",
+            "shortText": "3053",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7974458,
+          "longitude": 144.9727341
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Inform Physiotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "54 Elgin St, Carlton"
+      },
+      {
+        "id": "ChIJx7NduSRD1moRi1YdomfcjYk",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "422 Nicholson St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "422",
+            "shortText": "422",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Nicholson Street",
+            "shortText": "Nicholson St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.789961999999996,
+          "longitude": 144.976644
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Kinesiology Integrative",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "422 Nicholson St, Fitzroy North"
+      },
+      {
+        "id": "ChIJKfr72IVD1moRQvuQpNXU0nM",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "460 Brunswick St, Fitzroy North VIC 3068, Australia",
+        "addressComponents": [
+          {
+            "longText": "460",
+            "shortText": "460",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Brunswick Street",
+            "shortText": "Brunswick St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fitzroy North",
+            "shortText": "Fitzroy North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Yarra City",
+            "shortText": "Yarra City",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3068",
+            "shortText": "3068",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7929623,
+          "longitude": 144.9795757
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Performance Plus Healthcare Fitzroy North",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "460 Brunswick St, Fitzroy North"
+      }
+    ]
+  }
+}

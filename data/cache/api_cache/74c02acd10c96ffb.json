@@ -1,0 +1,488 @@
+{
+  "created_at": "2026-07-09T03:14:06.635855+00:00",
+  "elapsed": 0.136611,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:14:06 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=123",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkZW50aXN0Il0sICJsYW5ndWFnZUNvZGUiOiAiZW4tQVUiLCAibG9jYXRpb25SZXN0cmljdGlvbiI6IHsiY2lyY2xlIjogeyJjZW50ZXIiOiB7ImxhdGl0dWRlIjogLTM3Ljc4NjI0MjYxNTA5Njg1LCAibG9uZ2l0dWRlIjogMTQ1LjA2OTkwNTg4NzU0NTg0fSwgInJhZGl1cyI6IDEyNTAuMH19LCAibWF4UmVzdWx0Q291bnQiOiAyMH0=",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "209",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJNWW0KNNA1moRWw_E-1a37KI",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Ste 6 level 1/74 Doncaster Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "Suite 6 level 1",
+            "shortText": "Ste 6 level 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "74",
+            "shortText": "74",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Doncaster Road",
+            "shortText": "Doncaster Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7931764,
+          "longitude": 145.0718643
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Myofunctional Centre North Balwyn",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "Ste 6 level 1/74 Doncaster Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJwUeoZkxB1moRHoJ5hVdbGjU",
+        "types": [
+          "dentist",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "16 Doncaster Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "16",
+            "shortText": "16",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Doncaster Road",
+            "shortText": "Doncaster Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.793526899999996,
+          "longitude": 145.0648104
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Smile Council Orthodontics",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "16 Doncaster Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJkXRBhUxB1moRgLrXfk_wKxI",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "11 Doncaster Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "11",
+            "shortText": "11",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Doncaster Road",
+            "shortText": "Doncaster Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7928432,
+          "longitude": 145.0652625
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "The Smile Team",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "11 Doncaster Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJRwa1JExB1moRfleEargxkUI",
+        "types": [
+          "dentist",
+          "dental_clinic",
+          "medical_clinic",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1122 Burke Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "1122",
+            "shortText": "1122",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Burke Road",
+            "shortText": "Burke Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7947437,
+          "longitude": 145.0639405
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Beautiful Smile - Balwyn North Dentist",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "1122 Burke Rd, Balwyn North"
+      },
+      {
+        "id": "ChIJRwa1JExB1moRhLhO57Fj1FQ",
+        "types": [
+          "dentist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1122 Burke Rd, Balwyn North VIC 3104, Australia",
+        "addressComponents": [
+          {
+            "longText": "1122",
+            "shortText": "1122",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Burke Road",
+            "shortText": "Burke Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Balwyn North",
+            "shortText": "Balwyn North",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3104",
+            "shortText": "3104",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7947607,
+          "longitude": 145.06393359999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Sjaifuddin Salim DR",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Dentist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "dentist",
+        "shortFormattedAddress": "1122 Burke Rd, Balwyn North"
+      }
+    ]
+  }
+}

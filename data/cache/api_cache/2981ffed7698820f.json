@@ -1,0 +1,685 @@
+{
+  "created_at": "2026-07-09T03:16:43.291175+00:00",
+  "elapsed": 0.144634,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:16:43 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=127",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaHlzaW90aGVyYXBpc3QiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuODQ3ODI0Njc5ODk1OTEsICJsb25naXR1ZGUiOiAxNDUuMDcxMzUzNDY5NDAyNDh9LCAicmFkaXVzIjogMTI1MC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "217",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ6ZHWkLlB1moR51tAHwEQe1Q",
+        "types": [
+          "physiotherapist",
+          "sports_complex",
+          "gym",
+          "wellness_center",
+          "massage",
+          "doctor",
+          "sports_school",
+          "sports_activity_location",
+          "medical_clinic",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1/1150 Toorak Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1150",
+            "shortText": "1150",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.848540899999996,
+          "longitude": 145.0774199
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Hartwell Physiotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "1/1150 Toorak Rd, Camberwell"
+      },
+      {
+        "id": "ChIJo6TlW5ZB1moRKt50qQNmFhQ",
+        "types": [
+          "physiotherapist",
+          "massage",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "518 Camberwell Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "518",
+            "shortText": "518",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Camberwell Road",
+            "shortText": "Camberwell Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8422877,
+          "longitude": 145.069057
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Physioworks Health Group Camberwell",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "518 Camberwell Rd, Camberwell"
+      },
+      {
+        "id": "ChIJsdWykblB1moRBBelzT-xVxk",
+        "types": [
+          "physiotherapist",
+          "sports_complex",
+          "gym",
+          "sports_school",
+          "sports_activity_location",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1205 Toorak Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "1205",
+            "shortText": "1205",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8484691,
+          "longitude": 145.0804423
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Instinct Health Physio Camberwell",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "1205 Toorak Rd, Camberwell"
+      },
+      {
+        "id": "ChIJd6XSHLlB1moRs5HWayVeL8g",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "984 Toorak Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "984",
+            "shortText": "984",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8470547,
+          "longitude": 145.06374499999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Leap Back Physio",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "984 Toorak Rd, Camberwell"
+      },
+      {
+        "id": "ChIJW-t_Rl9B1moR59o7rbImLdQ",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "3/1214 Toorak Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "3",
+            "shortText": "3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1214",
+            "shortText": "1214",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.848850999999996,
+          "longitude": 145.080682
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Camberwell Hand Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "3/1214 Toorak Rd, Camberwell"
+      },
+      {
+        "id": "ChIJw5IbF5FB1moRFhFIL2q3YCw",
+        "types": [
+          "physiotherapist",
+          "sports_complex",
+          "gym",
+          "sports_school",
+          "sports_activity_location",
+          "health",
+          "service",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "22 Athelstan Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "22",
+            "shortText": "22",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Athelstan Road",
+            "shortText": "Athelstan Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8405748,
+          "longitude": 145.064276
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Refit Physiotherapy and Exercise Rehab",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "22 Athelstan Rd, Camberwell"
+      },
+      {
+        "id": "ChIJ4-a-28ZB1moRC4DtqI9c7xc",
+        "types": [
+          "physiotherapist",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1160 Toorak Rd, Camberwell VIC 3124, Australia",
+        "addressComponents": [
+          {
+            "longText": "1160",
+            "shortText": "1160",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Camberwell",
+            "shortText": "Camberwell",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Boroondara City",
+            "shortText": "Boroondara",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3124",
+            "shortText": "3124",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8485059,
+          "longitude": 145.0777446
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Edgewater physiotherapy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Physiotherapist",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "physiotherapist",
+        "shortFormattedAddress": "1160 Toorak Rd, Camberwell"
+      }
+    ]
+  }
+}

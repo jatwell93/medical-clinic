@@ -1,0 +1,414 @@
+{
+  "created_at": "2026-07-09T03:13:43.793270+00:00",
+  "elapsed": 0.109513,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:13:43 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=95",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJkb2N0b3IiXSwgImxhbmd1YWdlQ29kZSI6ICJlbi1BVSIsICJsb2NhdGlvblJlc3RyaWN0aW9uIjogeyJjaXJjbGUiOiB7ImNlbnRlciI6IHsibGF0aXR1ZGUiOiAtMzcuNzc5NTA1MjgxMjg0NDIsICJsb25naXR1ZGUiOiAxNDUuMDM1ODEyMTQ4ODc3Mn0sICJyYWRpdXMiOiA3NTAuMH19LCAibWF4UmVzdWx0Q291bnQiOiAyMH0=",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "206",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJ9YGUX8tF1moR2zog8WfMVjY",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "service",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "The Local Doctor Ivanhoe, Path Room 1, 1065 Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "The Local Doctor Ivanhoe, Path Room 1",
+            "languageCode": "en"
+          },
+          {
+            "longText": "1065",
+            "shortText": "1065",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.774291399999996,
+          "longitude": 145.0393968
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dorevitch Pathology Ivanhoe The Local Doctor Ivanhoe",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "The Local Doctor Ivanhoe, Path Room 1, 1065 Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJY-A59fBF1moR97J7FUvm3d8",
+        "types": [
+          "doctor",
+          "service",
+          "association_or_organization",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 1/1065 Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 1",
+            "shortText": "Unit 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1065",
+            "shortText": "1065",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.774296899999996,
+          "longitude": 145.0393898
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Apex Hearing Ivanhoe",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 1/1065 Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJqc4gKtNF1moRAVgAg4z6ILI",
+        "types": [
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Unit 1/1065 Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "Unit 1",
+            "shortText": "Unit 1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "1065",
+            "shortText": "1065",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7744139,
+          "longitude": 145.0393037
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Dr Eddie @ The Local Doctor",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Doctor",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "doctor",
+        "shortFormattedAddress": "Unit 1/1065 Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJ7_EGnQVE1moRAP3geUke5ws",
+        "types": [
+          "medical_clinic",
+          "doctor",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1026 Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "1026",
+            "shortText": "1026",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Heidelberg Road",
+            "shortText": "Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7754183,
+          "longitude": 145.0391952
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Health & Wellbeing Practitioners of Ivanhoe",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Medical Clinic",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "medical_clinic",
+        "shortFormattedAddress": "1026 Heidelberg Rd, Ivanhoe"
+      }
+    ]
+  }
+}

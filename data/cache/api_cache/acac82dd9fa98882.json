@@ -1,0 +1,601 @@
+{
+  "created_at": "2026-07-09T03:15:08.014715+00:00",
+  "elapsed": 0.120739,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:15:08 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=107",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaGFybWFjeSJdLCAibGFuZ3VhZ2VDb2RlIjogImVuLUFVIiwgImxvY2F0aW9uUmVzdHJpY3Rpb24iOiB7ImNpcmNsZSI6IHsiY2VudGVyIjogeyJsYXRpdHVkZSI6IC0zNy44Mzk3MzcwNTg3OTQ4OSwgImxvbmdpdHVkZSI6IDE0NS4wMTExNTg4NzA3NjEzNH0sICJyYWRpdXMiOiAxMjUwLjB9fSwgIm1heFJlc3VsdENvdW50IjogMjB9",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "210",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJvTl4i69p1moR4xGsCqEZfQc",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "517 Malvern Rd, Toorak VIC 3142, Australia",
+        "addressComponents": [
+          {
+            "longText": "517",
+            "shortText": "517",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Malvern Road",
+            "shortText": "Malvern Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Toorak",
+            "shortText": "Toorak",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Stonnington City",
+            "shortText": "Stonnington",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3142",
+            "shortText": "3142",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.848003,
+          "longitude": 145.003718
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Hawksburn",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "517 Malvern Rd, Toorak"
+      },
+      {
+        "id": "ChIJ2Y1qTHxC1moR6FkLNEyLrfA",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Tok H Shopping Centre, Shop 1 2 2A & 3/459 Toorak Rd, Toorak VIC 3142, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 1 2 2A & 3",
+            "shortText": "Shop 1 2 2A & 3",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "und"
+          },
+          {
+            "longText": "Tok H Shopping Centre",
+            "shortText": "Tok H Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "und"
+          },
+          {
+            "longText": "459",
+            "shortText": "459",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Toorak",
+            "shortText": "Toorak",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Stonnington City",
+            "shortText": "Stonnington",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3142",
+            "shortText": "3142",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8408288,
+          "longitude": 145.0082831
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Toorak Village",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Tok H Shopping Centre, Shop 1 2 2A & 3/459 Toorak Rd, Toorak"
+      },
+      {
+        "id": "ChIJj9muMnxC1moRfv33rKiCf94",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "G.02/426 Toorak Rd, Toorak VIC 3142, Australia",
+        "addressComponents": [
+          {
+            "longText": "G.02",
+            "shortText": "G.02",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "426",
+            "shortText": "426",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Toorak Road",
+            "shortText": "Toorak Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Toorak",
+            "shortText": "Toorak",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Stonnington City",
+            "shortText": "Stonnington",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3142",
+            "shortText": "3142",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8411484,
+          "longitude": 145.00808089999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "C. Wallis & Son - TerryWhite Chemmart Toorak",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "G.02/426 Toorak Rd, Toorak"
+      },
+      {
+        "id": "ChIJqYL009Rp1moR7h2A4M8sW_0",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Hawksburn Village, 575 Malvern Rd, Toorak VIC 3142, Australia",
+        "addressComponents": [
+          {
+            "longText": "Hawksburn Village",
+            "shortText": "Hawksburn Village",
+            "types": [
+              "point_of_interest",
+              "establishment"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "575",
+            "shortText": "575",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Malvern Road",
+            "shortText": "Malvern Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Toorak",
+            "shortText": "Toorak",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Stonnington City",
+            "shortText": "Stonnington",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3142",
+            "shortText": "3142",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8482854,
+          "longitude": 145.0055166
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "National Pharmacies Toorak",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Hawksburn Village, 575 Malvern Rd, Toorak"
+      },
+      {
+        "id": "ChIJ2_NGPSto1moRyq65yUO8Qvs",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "523 Malvern Rd, Toorak VIC 3142, Australia",
+        "addressComponents": [
+          {
+            "longText": "523",
+            "shortText": "523",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Malvern Road",
+            "shortText": "Malvern Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Toorak",
+            "shortText": "Toorak",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Stonnington City",
+            "shortText": "Stonnington",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3142",
+            "shortText": "3142",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.848033199999996,
+          "longitude": 145.0039265
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Starr Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "523 Malvern Rd, Toorak"
+      },
+      {
+        "id": "ChIJq6raiINC1moRj-kSQA64-Jc",
+        "types": [
+          "pharmacy",
+          "store",
+          "health",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "12 River St, South Yarra VIC 3141, Australia",
+        "addressComponents": [
+          {
+            "longText": "12",
+            "shortText": "12",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "River Street",
+            "shortText": "River St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "South Yarra",
+            "shortText": "South Yarra",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Stonnington City",
+            "shortText": "Stonnington",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3141",
+            "shortText": "3141",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.8386346,
+          "longitude": 144.9978028
+        },
+        "businessStatus": "CLOSED_TEMPORARILY",
+        "displayName": {
+          "text": "Pharmacists",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "12 River St, South Yarra"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1325 @@
+{
+  "created_at": "2026-07-09T03:13:52.287528+00:00",
+  "elapsed": 0.135094,
+  "encoding": "UTF-8",
+  "headers": {
+    "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json; charset=UTF-8",
+    "Date": "Thu, 09 Jul 2026 03:13:52 GMT",
+    "Server": "scaffolding on HTTPServer2",
+    "Server-Timing": "gfet4t7; dur=124",
+    "Transfer-Encoding": "chunked",
+    "Vary": "*",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "0"
+  },
+  "reason": "OK",
+  "request": {
+    "body": "eyJpbmNsdWRlZFR5cGVzIjogWyJwaGFybWFjeSJdLCAibGFuZ3VhZ2VDb2RlIjogImVuLUFVIiwgImxvY2F0aW9uUmVzdHJpY3Rpb24iOiB7ImNpcmNsZSI6IHsiY2VudGVyIjogeyJsYXRpdHVkZSI6IC0zNy43NTgxNzAzOTA4NzgzODQsICJsb25naXR1ZGUiOiAxNDUuMDM0MzkyMDI1OTAwMjJ9LCAicmFkaXVzIjogMjUwMC4wfX0sICJtYXhSZXN1bHRDb3VudCI6IDIwfQ==",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Connection": "keep-alive",
+      "Content-Length": "211",
+      "Content-Type": "application/json",
+      "User-Agent": "python-requests/2.32.5",
+      "X-Goog-Api-Key": "AIzaSyAyu1btyz9fzE4YIz0LiXNNiRRVilsqkbA",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.location,places.types,places.primaryType,places.primaryTypeDisplayName,places.businessStatus,places.formattedAddress,places.shortFormattedAddress,places.addressComponents"
+    },
+    "method": "POST",
+    "url": "https://places.googleapis.com/v1/places:searchNearby"
+  },
+  "status_code": 200,
+  "url": "https://places.googleapis.com/v1/places:searchNearby",
+  "_decoded_content": {
+    "places": [
+      {
+        "id": "ChIJzzu6UkZE1moR27zGuW95uRI",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "6 Albert St, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "6",
+            "shortText": "6",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Albert Street",
+            "shortText": "Albert St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7530435,
+          "longitude": 145.0211697
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Head Office",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "6 Albert St, Preston"
+      },
+      {
+        "id": "ChIJKRs12ddF1moRM_Khw7mHyIE",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Northland Shopping Centre, Shop M0003/2 to 50 Murray Rd, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop M0003",
+            "shortText": "Shop M0003",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Northland Shopping Centre",
+            "shortText": "Northland Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "2 to 50",
+            "shortText": "2 to 50",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Murray Road",
+            "shortText": "Murray Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7398994,
+          "longitude": 145.02825009999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Northland",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Northland Shopping Centre, Shop M0003/2 to 50 Murray Rd, Preston"
+      },
+      {
+        "id": "ChIJIxm8fRlE1moR2uuTBGQbK3U",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "117 Upper Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "117",
+            "shortText": "117",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Upper Heidelberg Road",
+            "shortText": "Upper Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7689844,
+          "longitude": 145.04196199999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Ivanhoe",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "117 Upper Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJzwKbR4hD1moRGs_-MVTB7S8",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "136a to 138 Station St, Fairfield VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "136a to 138",
+            "shortText": "136a to 138",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Fairfield",
+            "shortText": "Fairfield",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.776396399999996,
+          "longitude": 145.0182184
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Fairfield VIC",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "136a to 138 Station St, Fairfield"
+      },
+      {
+        "id": "ChIJi2Gf0PBF1moRlhFmAfIQBWY",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Tenancy T08/85 Chifley Dr, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "Tenancy T08",
+            "shortText": "Tenancy T08",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "85",
+            "shortText": "85",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Chifley Drive",
+            "shortText": "Chifley Dr",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7447357,
+          "longitude": 145.0297721
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Preston - Home Co. DC",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Tenancy T08/85 Chifley Dr, Preston"
+      },
+      {
+        "id": "ChIJLSlBSyxE1moRDuRIBuen_8I",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "1/318 Bell St, Heidelberg West VIC 3081, Australia",
+        "addressComponents": [
+          {
+            "longText": "1",
+            "shortText": "1",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "318",
+            "shortText": "318",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Bell Street",
+            "shortText": "Bell St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Heidelberg West",
+            "shortText": "Heidelberg West",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3081",
+            "shortText": "3081",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7488072,
+          "longitude": 145.04100459999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Chemist Warehouse Heidelberg West",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "1/318 Bell St, Heidelberg West"
+      },
+      {
+        "id": "ChIJY_LST8pF1moRyzBysCtp6Yo",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "F16/50 Murray Rd, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "F16",
+            "shortText": "F16",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "50",
+            "shortText": "50",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Murray Road",
+            "shortText": "Murray Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7387811,
+          "longitude": 145.0291775
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Priceline Northland",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "North Land Shopping Centre, F16/50 Murray Rd, Preston"
+      },
+      {
+        "id": "ChIJnUJkaBlE1moRJzcuznE-7TI",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "135 Upper Heidelberg Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "135",
+            "shortText": "135",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Upper Heidelberg Road",
+            "shortText": "Upper Heidelberg Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7686694,
+          "longitude": 145.0422544
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Mount's Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "135 Upper Heidelberg Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJTYuFFkhE1moRzpkLdzaoshk",
+        "types": [
+          "drugstore",
+          "cosmetics_store",
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 1, 15-23 The Mall, Bell St, Heidelberg West VIC 3081, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 1, 15-23 The Mall",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Bell Street",
+            "shortText": "Bell St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Heidelberg West",
+            "shortText": "Heidelberg West",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3081",
+            "shortText": "3081",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.749362399999995,
+          "longitude": 145.0421323
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Direct Chemist Outlet Heidelberg West",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Drug Store",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "drugstore",
+        "shortFormattedAddress": "Shop 1, 15-23 The Mall, Bell St, Heidelberg West"
+      },
+      {
+        "id": "ChIJZRv1O1RE1moRrzVw6virpBU",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Northland Shopping Centre, Tenancy F007/2 to 50 Murray Rd, Preston VIC 3072, Australia",
+        "addressComponents": [
+          {
+            "longText": "Tenancy F007",
+            "shortText": "Tenancy F007",
+            "types": [
+              "subpremise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Northland Shopping Centre",
+            "shortText": "Northland Shopping Centre",
+            "types": [
+              "premise"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "2 to 50",
+            "shortText": "2 to 50",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Murray Road",
+            "shortText": "Murray Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Preston",
+            "shortText": "Preston",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3072",
+            "shortText": "3072",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.737460899999995,
+          "longitude": 145.0297156
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Amcal Northland",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "North Land Shopping Centre, Northland Shopping Centre, Tenancy F007/2 to 50 Murray Rd, Preston"
+      },
+      {
+        "id": "ChIJvfIODhNE1moRqQKG5x72JuI",
+        "types": [
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "340 Darebin Rd, Alphington VIC 3078, Australia",
+        "addressComponents": [
+          {
+            "longText": "340",
+            "shortText": "340",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Darebin Road",
+            "shortText": "Darebin Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Alphington",
+            "shortText": "Alphington",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3078",
+            "shortText": "3078",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.766659499999996,
+          "longitude": 145.0292546
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Cura Health Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "340 Darebin Rd, Alphington"
+      },
+      {
+        "id": "ChIJeT5QjGlE1moRl6yRCFOvq8w",
+        "types": [
+          "drugstore",
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "408A Station St, Thornbury VIC 3071, Australia",
+        "addressComponents": [
+          {
+            "longText": "408A",
+            "shortText": "408A",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Station Street",
+            "shortText": "Station St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Thornbury",
+            "shortText": "Thornbury",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Darebin City",
+            "shortText": "Darebin",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3071",
+            "shortText": "3071",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.7589337,
+          "longitude": 145.0212828
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Steve Kolliou Caremore Pharmacy Thornbury",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Drug Store",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "drugstore",
+        "shortFormattedAddress": "408A Station St, Thornbury"
+      },
+      {
+        "id": "ChIJzybgmyZE1moRDL-HMTcYKyU",
+        "types": [
+          "drugstore",
+          "pharmacy",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "234 Waterdale Rd, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "234",
+            "shortText": "234",
+            "types": [
+              "street_number"
+            ],
+            "languageCode": "en-AU"
+          },
+          {
+            "longText": "Waterdale Road",
+            "shortText": "Waterdale Rd",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.759169,
+          "longitude": 145.04424899999998
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Pharmacy 234",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Drug Store",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "drugstore",
+        "shortFormattedAddress": "234 Waterdale Rd, Ivanhoe"
+      },
+      {
+        "id": "ChIJMdUkcxlE1moR97WsXtcsb_4",
+        "types": [
+          "pharmacy",
+          "wellness_center",
+          "health",
+          "store",
+          "point_of_interest",
+          "establishment"
+        ],
+        "formattedAddress": "Shop 9, Ivanhoe Plaza Shopping Centre, Livingstone St, Ivanhoe VIC 3079, Australia",
+        "addressComponents": [
+          {
+            "longText": "Shop 9, Ivanhoe Plaza Shopping Centre",
+            "languageCode": "en"
+          },
+          {
+            "longText": "Livingstone Street",
+            "shortText": "Livingstone St",
+            "types": [
+              "route"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Ivanhoe",
+            "shortText": "Ivanhoe",
+            "types": [
+              "locality",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Banyule City",
+            "shortText": "Banyule",
+            "types": [
+              "administrative_area_level_2",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Victoria",
+            "shortText": "VIC",
+            "types": [
+              "administrative_area_level_1",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "Australia",
+            "shortText": "AU",
+            "types": [
+              "country",
+              "political"
+            ],
+            "languageCode": "en"
+          },
+          {
+            "longText": "3079",
+            "shortText": "3079",
+            "types": [
+              "postal_code"
+            ],
+            "languageCode": "en-AU"
+          }
+        ],
+        "location": {
+          "latitude": -37.767947,
+          "longitude": 145.04154300000002
+        },
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+          "text": "Ivanhoe Plaza Pharmacy",
+          "languageCode": "en"
+        },
+        "primaryTypeDisplayName": {
+          "text": "Pharmacy",
+          "languageCode": "en-AU"
+        },
+        "primaryType": "pharmacy",
+        "shortFormattedAddress": "Shop 9, Ivanhoe Plaza Shopping Centre, Livingstone St, Ivanhoe"
+      }
+    ]
+  }
+}
