@@ -22,6 +22,14 @@ outputs/
 # named after cache_name (e.g. data/cache/api_cache/), so match recursively.
 data/cache/**/redirects.sqlite
 
+# Google API caches — may contain API keys, never commit (D-15)
+data/cache/geocode_cache/
+data/cache/places_cache/
+
+# Generated notebook/report artifacts — regenerated on run
+Johnston_St_v2_executed.ipynb
+Johnston_St_v2_report.html
+
 # OS
 .DS_Store
 Thumbs.db

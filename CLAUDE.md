@@ -124,6 +124,20 @@ A professional-grade site feasibility analysis, delivered as a Colab notebook (`
 - Exact C21_* datakey dimension order NOT verified live (no network exec available) — flagged MEDIUM; notebook must introspect the datastructure at runtime.
 <!-- GSD:stack-end -->
 
+<!-- Healthdirect API — free government healthcare service directory -->
+## Healthdirect Consumer API (future v2 — free Google Places alternative for healthcare POIs)
+
+- **Base URL**: `https://api.nhsd.healthdirect.org.au/v5/healthcareServices/_search`
+- **Auth**: `x-api-key` HTTP header (register for free key at developers.nhsd.healthdirect.org.au)
+- **Search modes**: by proximity (lat/lon radius), by postcode, by coverage area, by practitioner
+- **Cost**: FREE — government API, no billing tier
+- **Data quality**: Government-verified active healthcare services — more reliable than Google Places for healthcare POIs
+- **Coverage**: GP clinics, pharmacies, hospitals, allied health, maternal/child health, nurse-led clinics, Aboriginal health services, emergency departments
+- **Gap**: No pathology/diagnostic imaging services listed
+- **Use case for v2**: Replace Google Places for healthcare competitor analysis. The National_Healthdirect_Health.xlsx in data/local/ is a bulk export of this API. For live/refreshed data, use the API directly with proximity search around the site.
+- **Docs**: https://developers.nhsd.healthdirect.org.au/docs/consumer-api/index.html
+- **Current usage**: Cell 48 (§4.4b) cross-references the bulk export against Google Places cache — auto-classifies ambiguous competitors and adds missing GPs. 42 GPs added, 14 auto-classified, reducing manual review from 188 to 174.
+
 <!-- GSD:conventions-start source:CONVENTIONS.md -->
 ## Conventions
 
