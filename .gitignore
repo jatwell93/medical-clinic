@@ -13,6 +13,10 @@ __pycache__/
 
 # Local fallback data — large files, not in git (D-13)
 data/local/
+# Exception: curated human-labelled classifications — reproducibility artifact, not bulk data.
+# NOTE: git requires `git add -f` to stage files under an ignored directory even with negation.
+# Once committed, `git add data/local/manual_classifications.csv` will work normally.
+!data/local/manual_classifications.csv
 
 # Generated outputs — maps, report, PDF (regenerated on run)
 outputs/
