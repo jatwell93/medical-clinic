@@ -44,9 +44,15 @@ See: .planning/PROJECT.md (updated 2026-07-07)
 2. Phase 6 delivers the `#@param` site-input form, EPSG:7899 adoption, peer validation, and geocode quality checks
 3. Critical path: Phase 6 → 7 → 8 → 10 → 11 (Phase 9 parallelisable with Phase 8)
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Status | Directory |
+|---|-------------|------|--------|--------|-----------|
+| 260711-gif | Fix batch of caching, competitor-accuracy & demand-constrained-verdict issues in Johnston_St_v2.ipynb (10 findings, T1–T5) | 2026-07-11 | 2338235 | Verified | [260711-gif-fix-batch-of-caching-competitor-accuracy](./quick/260711-gif-fix-batch-of-caching-competitor-accuracy/) |
+
 ## Current Position
 
 Phase: 6 (Site Config Restructure) — not started
 Plan: —
 Status: Roadmap created, ready for phase execution
-Last activity: 2026-07-08 — v2.0 roadmap created (6 phases, 35 requirements mapped)
+Last activity: 2026-07-11 — Completed quick task 260711-gif: caching cost-safety + competitor site-collapse + demand-constrained verdict (10 findings, verified)
