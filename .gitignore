@@ -22,9 +22,12 @@ outputs/
 # named after cache_name (e.g. data/cache/api_cache/), so match recursively.
 data/cache/**/redirects.sqlite
 
-# Google API caches — may contain API keys, never commit (D-15)
-data/cache/geocode_cache/
-data/cache/places_cache/
+# Google API manual-cache JSON files — contain NO secrets (only place records /
+# lat-lon coordinates). Un-ignoring so they travel to Colab via git clone.
+# These are the $0-rerun guarantee for the ~1781 Places + geocode responses.
+# VERIFIED: no API key present in any .json file in these dirs — D-15 unchanged.
+# !data/cache/geocode_cache/   # now tracked (see above)
+# !data/cache/places_cache/    # now tracked (see above)
 
 # Generated notebook/report artifacts — regenerated on run
 Johnston_St_v2_executed.ipynb
