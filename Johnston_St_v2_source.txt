@@ -1392,6 +1392,12 @@ def places_nearby_saturated(lat, lon, radius_m, included_types):
     # Every point in the parent circle of radius r is ≤ r/√2 from its nearest
     # sub-center — no annular blind spot. (Prior code: sub_radius=r/2, centres at
     # ±r/4 — left annulus between 0.75r and r uncovered, undercounting competitors.)
+    # CACHE NOTE: sub_radius and the offsets below feed the cache key
+    # (_places_cache_key hashes lat|lon|radius). CHANGING this subdivision
+    # geometry silently invalidates cached sub-queries for saturated rings,
+    # causing cache MISSes on rerun. To backfill: set ALLOW_LIVE_CALLS=True
+    # (bounded by MAX_LIVE_CALLS) in cell 0.3, run once, then commit
+    # data/cache/places_cache/ so future runs are $0 again.
     sub_radius = radius_m / math.sqrt(2)   # ≈ 0.7071 * r
     offsets = [
         ( radius_m / 2,  radius_m / 2),   # NE quadrant centre
