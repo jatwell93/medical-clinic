@@ -223,6 +223,83 @@ BASE_ASSUMPTIONS = {
 print(f"[params] {len(BASE_ASSUMPTIONS)} assumptions loaded")
 print(f"[params] FORCE_REFRESH={FORCE_REFRESH}")
 
+
+# --- Assumption register (verify BEFORE running; shareable) ------------------
+# Renders every decision-driving assumption as a table you can eyeball or send
+# to a co-founder, and writes data/local/assumptions_register.csv. This runs
+# before any API cell, so you can confirm the inputs AND the cost settings
+# below before a single billable call is made.
+import pandas as pd
+try:
+    from IPython.display import display
+except Exception:      # plain-python fallback (no notebook frontend)
+    display = print
+
+def _fmt_val(v):
+    if isinstance(v, dict):
+        return ", ".join(f"{k}: {vv}" for k, vv in v.items())
+    if isinstance(v, (list, tuple)):
+        return ", ".join(str(x) for x in v)
+    return v
+
+# (BASE_ASSUMPTIONS key, Category, Plain-English label, Unit, Confidence, Why / source)
+# Value is pulled LIVE from BASE_ASSUMPTIONS so this table never drifts from the model.
+_REGISTER = [
+    ("rent_yr",                "Costs",       "Annual rent",                      "$/yr",     "LOW",    "UNCONFIRMED - key sensitivity; ~$100k placeholder"),
+    ("n_gp_fte",               "Scope",       "GPs (full-time equivalent)",       "FTE",      "MEDIUM", "Project scope; RACGP small-clinic 3-6 FTE"),
+    ("n_allied_fte",           "Scope",       "Allied health",                    "FTE",      "MEDIUM", "Co-location model"),
+    ("gp_fte_consults_per_yr", "Demand",      "Full-book consults per GP/yr",     "consults", "MEDIUM", "~110-130/wk x ~46 wks per FTE GP"),
+    ("utilisation",            "Demand",      "Ramp target utilisation",          "fraction", "MEDIUM", "Target only - actual is demand-capped (achievable_util, 5.5b)"),
+    ("bulk_bill_share",        "Revenue",     "Bulk-bill share",                  "fraction", "MEDIUM", "70% bulk / 30% private mixed-billing model"),
+    ("std_rebate",             "Revenue",     "MBS item 23 rebate",               "$",        "HIGH",   "MBS Online, from 1 Jul 2025"),
+    ("private_fee",            "Revenue",     "Private gap fee (std consult)",    "$",        "LOW",    "UNCONFIRMED - inner-Melbourne typical"),
+    ("clinic_service_fee_pct", "Revenue",     "Clinic service fee (of billings)", "fraction", "LOW",    "UNCONFIRMED - GPs keep ~70%; range 27-33%"),
+    ("avg_fte_per_clinic",     "Competitors", "Avg GP FTE per existing clinic",   "FTE",      "LOW",    "Noisy Google-listing proxy - read as a range"),
+    ("floor_area_sqm",         "Fit-out",     "Floor area",                       "sqm",      "MEDIUM", "292 Johnston ground-floor plan"),
+    ("fitout_per_sqm",         "Fit-out",     "Fit-out cost",                     "$/sqm",    "MEDIUM", "Melbourne mid-case; range $1,200-2,200"),
+    ("fitout_total",           "Fit-out",     "Total fit-out (derived)",          "$",        "MEDIUM", "$/sqm x area + equipment lump sum"),
+    ("equipment_it_lump_sum",  "Fit-out",     "Equipment + IT setup",             "$",        "MEDIUM", "Exam beds, treatment, IT, software"),
+    ("nurse_salary_yr",        "Staffing",    "Nurse salary",                     "$/yr",     "HIGH",   "Fair Work MA000034, from 1 Jul 2026"),
+    ("reception_salary_yr",    "Staffing",    "Receptionist salary",              "$/yr",     "HIGH",   "Health Services Award L4, from 1 Jul 2026"),
+    ("manager_salary_yr",      "Staffing",    "Practice manager salary",          "$/yr",     "HIGH",   "Support Services L6, from 1 Jul 2026"),
+    ("oncost_multiplier",      "Staffing",    "On-cost multiplier",               "x",        "HIGH",   "12% super + ~2% WorkCover VIC"),
+    ("insurance_yr",           "Overheads",   "Insurance",                        "$/yr",     "MEDIUM", "Indemnity + public liability"),
+    ("consumables_yr",         "Overheads",   "Consumables",                      "$/yr",     "MEDIUM", "Medical supplies, ~$1.60/consult"),
+    ("admin_it_utilities_yr",  "Overheads",   "Admin / IT / utilities",           "$/yr",     "MEDIUM", "Practice software + hardware + utilities"),
+    ("working_capital_buffer_months", "Cash", "Working-capital buffer",           "months",   "MEDIUM", "3-month operating buffer"),
+    ("consults_per_capita_yr", "Demand",      "Consults per 100 people/yr by age","per 100",  "MEDIUM", "AIHW age-band attendance rates"),
+]
+_rows = [{
+    "Category": cat,
+    "Assumption": label,
+    "Value": _fmt_val(BASE_ASSUMPTIONS.get(key, "MISSING")),
+    "Unit": unit,
+    "Confidence": conf,
+    "Why / source": note,
+} for key, cat, label, unit, conf, note in _REGISTER]
+assumptions_df = pd.DataFrame(_rows, columns=["Category", "Assumption", "Value", "Unit", "Confidence", "Why / source"])
+
+_reg_path = PROJECT_ROOT / "data" / "local" / "assumptions_register.csv"
+_reg_path.parent.mkdir(parents=True, exist_ok=True)
+assumptions_df.to_csv(_reg_path, index=False)
+
+print("\n============== ASSUMPTION REGISTER (verify before you run) ==============")
+print("  Confidence: HIGH = sourced/confirmed | MEDIUM = benchmark | LOW = UNCONFIRMED, check me first")
+print(f"  Shareable copy saved -> {_reg_path}")
+with pd.option_context("display.max_colwidth", 70, "display.width", 220):
+    display(assumptions_df)
+
+print("\n============== API COST SAFETY (confirm before Run All) ==============")
+print(f"  ALLOW_LIVE_CALLS = {ALLOW_LIVE_CALLS}   -> " +
+      ("LIVE billable calls ENABLED" if ALLOW_LIVE_CALLS else "cache-only, $0 (raises on any cache miss)"))
+print(f"  MAX_LIVE_CALLS   = {MAX_LIVE_CALLS}   -> hard cap on billable calls this session")
+print(f"  FORCE_REFRESH    = {FORCE_REFRESH}   -> " +
+      ("IGNORES cache and re-fetches everything!" if FORCE_REFRESH else "uses cache"))
+if ALLOW_LIVE_CALLS:
+    print("  >> Live calls are ON: each is billable. Set ALLOW_LIVE_CALLS=False again after backfilling.")
+else:
+    print("  >> Safe: no money can be spent this session. Flip to True only to backfill the cache.")
+
 # ================= CELL 006 [MD] =================
 ## §0.5 Shared Chart Style
 
