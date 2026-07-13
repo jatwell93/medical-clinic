@@ -1432,6 +1432,7 @@ def places_nearby(lat, lon, radius_m, included_types):
     # (quota window reset) between retries, not short exponential backoff.
     # Count one LOGICAL call (billable unit) — NOT per retry attempt
     _places_live_calls += 1          # one billable request
+    print(f'[places] LIVE call {_places_live_calls}/{MAX_LIVE_CALLS} types={included_types} r={int(round(radius_m))}m', flush=True)
     _places_retry_attempts = 0       # track retries separately
     for attempt in range(4):
         resp = session.post(PLACES_URL, json=body, headers=headers)
