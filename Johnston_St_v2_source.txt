@@ -172,7 +172,7 @@ BASE_ASSUMPTIONS = {
     "consults_per_patient_yr": 5.0,       # patients-needed framing denominator — D-13c (AIHW nat avg 6.8, regular patients ~5)
     "mbs_item_23_rebate":     43.90,      # MBS Online, from 1 Jul 2025 (2.4% indexation) — confirmed
     "market_share_thresholds": {"low": 5, "high": 15},  # <5% low, 5-15% moderate, >15% high — D-14
-    "places_included_types":  ["doctor", "pharmacy", "physiotherapist", "dentist", "medical_lab"],  # Places API (New) Table A — D-05
+    "places_included_types":  ["doctor", "pharmacy", "physiotherapist", "medical_lab"],  # Places API (New) Table A — D-05
 
     # --- Phase 4: Financial Model (source: MBS Online, Fair Work, industry benchmarks) ---
     # MBS item mix (D-01) — MBS Online, from 1 Jul 2025 (2.4% indexation)
@@ -958,6 +958,22 @@ def _load_sa1_g01_datapack(sa1_codes):
     Returns (DataFrame[SA1_CODE21, Total_P_P] filtered to sa1_codes, source_label).
     Returns (None, 'none') if no DataPack file is found."""
     local_dir = PROJECT_ROOT / "data" / "local"
+    # Colab uploads the GCP DataPack as a zip, not the extracted CSV.
+    # Auto-extract the SA1 G01 CSV from the zip if the flat file is missing (D-03).
+    _vic_csv = local_dir / BASE_ASSUMPTIONS['sa1_g01_datapack']
+    if not _vic_csv.exists():
+        import zipfile as _zf, shutil as _sh
+        for _zp in local_dir.glob('*GCP_all_for_VIC*.zip'):
+            try:
+                with _zf.ZipFile(_zp) as _z:
+                    _m = [n for n in _z.namelist() if 'G01' in n and 'SA1' in n and n.endswith('.csv')]
+                    if _m:
+                        with _z.open(_m[0]) as _s, open(_vic_csv, 'wb') as _o:
+                            _sh.copyfileobj(_s, _o)
+                        print('[abs] auto-extracted SA1 G01 from ' + _zp.name)
+                        break
+            except Exception as _e:
+                print('[abs] WARN: SA1 G01 zip extract failed: ' + str(_e))
     vic_path  = local_dir / BASE_ASSUMPTIONS["sa1_g01_datapack"]
     aust_path = local_dir / "2021Census_G01_AUST_SA1.csv"
     for path, label in ((vic_path, "datapack-vic"), (aust_path, "datapack-aust")):
